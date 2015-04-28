@@ -1,0 +1,98 @@
+{
+  "alchemistsbench" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/alchemistsbench.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 3,
+    "ylen" : 2
+  },
+
+	"bookcase" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/bookcase.gif",
+    "solid" : true,
+    "opaque" : true,
+    "xlen" : 3,
+    "ylen" : 1
+  },
+
+	"chest" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/chest.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 1,
+    "ylen" : 1
+  },
+
+  "cupboard" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/cupboard.gif",
+    "solid" : true,
+    "opaque" : true,
+    "xlen" : 3,
+    "ylen" : 1
+  },
+
+  "fireplace" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/fireplace.gif",
+    "solid" : true,
+    "opaque" : true,
+    "xlen" : 3,
+    "ylen" : 1
+  },
+
+  "rack" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/rack.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 3,
+    "ylen" : 2
+  },
+
+  "table" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/table.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 3,
+    "ylen" : 2
+  },
+
+  "throne" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/throne.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 1,
+    "ylen" : 1
+  },
+
+  "tomb" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/tomb.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 3,
+    "ylen" : 2
+  },
+
+  "weaponsrack" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/weaponsrack.gif",
+    "solid" : true,
+    "opaque" : false,
+    "xlen" : 3,
+    "ylen" : 1
+  },
+
+  "rubble" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/rubble.gif",
+    "solid" : true,
+    "opaque" : true,
+    "xlen" : 1,
+    "ylen" : 1
+  },
+
+  "sack" : {
+    "tokenImage" : "../images/campaigns/core/map_furniture/sack.gif",
+    "solid" : false,
+    "opaque" : true,
+    "xlen" : 1,
+    "ylen" : 1
+  }
+
+}

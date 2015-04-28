@@ -1,0 +1,36 @@
+{
+
+	"stonewall" : {
+		"keywords" : ["stonewall","stone","wall"],
+		"tokenImage" : "../images/campaigns/core/map_walls/stonewall.gif"
+	},
+
+	"doorclosed" : {
+		"keywords" : ["doorclosed","wood","door"],
+		"tokenImage" : "../images/campaigns/core/map_walls/door.png",
+		"onActivate" : [{ "target":["self"], "effects":[["swap","dooropen"]] }]
+	},
+
+	"dooropen" : {
+		"keywords" : ["dooropen","doorway"],
+		"tokenImage" : "../images/campaigns/core/map_walls/dooropen.png",
+		"walkThrough" : true,
+		"seeThrough" : true,
+		"shootThrough" : true
+	},
+
+	"secretdoorclosed" : {
+		"keywords" : ["secretdoorclosed","hidden","stone","door"],
+		"tokenImage" : "../images/campaigns/core/map_walls/stonewall.gif",
+		"onFind" : [{ "target":["self"], "effects":[["swap","secretdooropen"]] }]
+	},
+
+	"secretdooropen" : {
+		"keywords" : ["secretdooropen","doorway"],
+		"tokenImage" : "../images/campaigns/core/map_walls/secretdooropen.png",
+		"walkThrough" : true,
+		"seeThrough" : true,
+		"shootThrough" : true
+	}
+
+}

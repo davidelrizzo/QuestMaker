@@ -1,0 +1,139 @@
+{
+	"nothing" : {
+		"name" : "Nothing",
+		"frequency" : 1,
+		"image" : "../img/card/nothing.gif",
+		"description" : ["Dispite a thorough search you find nothing."],
+		"maxItems" : 0,
+		"items" : [],
+		"effects" : []
+	},
+
+	"wanderingMonster" : {
+		"name" : "Wandering Monster",
+		"frequency" : 1,
+		"image" : "../img/card/wanderingmonster.gif",
+		"description" : ["As you are busy searching a monster stalks up on you and attacks."],
+		"maxItems" : 0,
+		"items" : [],
+		"effects" : [
+			{ "fn" : "addWanderingMonsters", "args" : [] },
+			{ "fn" : "endTurn", "args" : [] }
+		]
+	},
+
+	"arrowTrap" : { 
+		"name" : "Arrow Trap",
+		"frequency" : 1,
+		"image" : "../img/card/arrowtrap.gif",
+		"description" : ["As you search you unwittingly set off a trap. An arrow shoots out from the wall."],
+		"maxItems" : 0,
+		"items" : [],
+		"effects" : [{ "fn" : "damage", "args" : [1,"auto"] }]
+	},
+
+	"hazard" : { 
+		"name" : "Hazard",
+		"frequency" : 1,
+		"image" : "../img/card/hazard.gif", 
+		"description" : ["Suddenly, the stone beneath your feet gives way. You fall into a shallow hole, losing 1 Body Point and ending your turn. You may climb out and move normally on your next turn."],
+		"maxItems" : 0,
+		"items" : [],
+		"effects" : [
+			{ "fn" : "damage", "args" : [1,"auto"] },
+			{ "fn" : "addCondition", "args" : ["delayed"] }
+		]
+	},
+
+	"distracted" : { 
+		"name" : "Distracted by Searching",
+		"frequency" : 1,
+		"image" : "../img/card/gold.gif",
+		"description" : ["You find a small amount of gold hidden in several places. However you waste considerable time doing so."],
+		"maxItems" : 1,
+		"items" : [
+			{ "name" : "gold", "qty" : 5 },
+			{ "name" : "gold", "qty" : 10 },
+			{ "name" : "gold", "qty" : 15 }
+		],
+		"effects" : [
+			{ "fn" : "addCondition", "args" : ["delayed"] }
+		]
+	},
+
+	"equipment" : { 
+		"name" : "Equipment",
+		"frequency" : 1,
+		"image" : "../img/card/equipment.gif",
+		"description" : ["You unearth a cache of equipment that had been left lying around."],
+		"maxItems" : 2,
+		"items" : [
+			{ "name" : "holywater", "qty" : 1 },
+			{ "name" : "handaxe", "qty" : 1 },
+			{ "name" : "shortsword", "qty" : 1 },
+			{ "name" : "spear", "qty" : 1 },
+			{ "name" : "shield", "qty" : 1 },
+			{ "name" : "staff", "qty" : 1 },
+			{ "name" : "gold", "qty" : 15 },
+			{ "name" : "gem", "qty" : 1 }
+		],
+		"effects" : []
+	},
+
+	"potion" : { 
+		"name" : "Potion",
+		"frequency" : 1,
+		"image" : "../img/card/elixeroflife.gif",
+		"description" : [
+			"Standing on a shelf you see a dusty bottle. As you wipe it clean you realize you have found a magic potion.",
+			"You find a small bottle containing a lquid of shifting colours.",
+			"A leather bag hanging on the wall contains a potion.",
+			"Enveloped in a bundle of rags you find a small bottle of liquid."
+		],
+		"maxItems" : 1,
+		"items" : [
+			{ "name" : "potionResilience", "qty" : 1 },
+			{ "name" : "potionSpeed", "qty" : 1 },
+			{ "name" : "potionStrength", "qty" : 1 },
+			{ "name" : "potionHeroicBrew", "qty" : 1 }
+		],
+		"effects" : []
+	},
+
+	"gold" : { 
+		"name" : "Treasaure",
+		"frequency" : 1,
+		"image" : "../img/card/goldflipped.gif",
+		"description" : [
+			"Foolishly left unhidden lies a small box containing gold coins.",
+			"You find a loose stone behind which is hidden a small leather pouch wrapped in a small rag. You look inside and find gold coins.",
+			"A rummage through several items of clothing reveals a few gold coins.",
+			"A megre haul of coins is found in the pocket of a smelly, worn jerkin.",
+			"Amids the clutter, the old rags and reasy fur robes ad soiled blankets you find some gold coins."
+		],
+		"maxItems" : 1,
+		"items" : [ 
+			{ "name" : "gold", "qty" : 10 },
+			{ "name" : "gold", "qty" : 15 },
+			{ "name" : "gold", "qty" : 20 },
+			{ "name" : "gold", "qty" : 25 },
+			{ "name" : "gold", "qty" : 30 }
+		],
+		"effects" : []
+	},
+
+	"hoard" : { 
+		"name" : "Treasure Horde",
+		"frequency" : 1,
+		"image" : "../img/card/treasurehoard.gif",
+		"description" : ["Luck is with you. You find a small treasure chest hidden under a trapdoor containing priceless treasures."],
+		"maxItems" : 1,
+		"items" : [ 
+			{ "name" : "gold", "qty" : 100 },
+			{ "name" : "gem", "qty" : 1 },
+			{ "name" : "jewels", "qty" : 1 }
+		],
+		"effects" : []
+	}
+
+}

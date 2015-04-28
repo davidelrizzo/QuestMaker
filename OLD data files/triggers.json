@@ -1,0 +1,118 @@
+{
+
+	"speartrap" : {
+		"name" : "Spear Trap",
+		"keywords" : ["speartrap","trap","mechanical","trigger"],
+		"tokenImage" : "../images/campaigns/core/trigger_tokens/speartrap.png",
+		"portraitImage" : "../images/campaigns/core/card/speartrap.jpg",
+		"description" : "While walking a spear shoots out of a hole in the wall hitting you for <b>one</b> Body Point of damage. The trap is now harmless.",
+		"onActivate" : [
+			{ 
+				"target":["creature","all","inOwnSquare","hero"], 
+				"effects":[["damage",1,"body",1,false]] 
+			},
+			{ 	
+				"target":["self"], 
+				"effects":[["remove"]] 
+			}
+		],
+		"onFind" : [{ "target":["self"], "effects":[["remove"]] }]
+	},
+
+	"pittrap" : {
+		"name" : "Pit Traps",
+		"keywords" : ["pittrap","trap","mechanical","trigger"],
+		"tokenImage" : "../images/campaigns/core/trigger_tokens/pittrap.png",
+		"portraitImage" : "../images/campaigns/core/card/pittrap.jpg",
+		"description" : "The trapdoor opens up beneath you and you plundge into a deep hole taking one body point of damage. You are now stuck in the pit but can climb out as normal on your next turn. Other heroes that wish to pass must either climb into the pit or attempt to jump it.",
+		"onActivate" : [{ 
+			"target":["creature","all","inOwnSquare","hero"],
+			"effects":[["damage",1,"body",1,false],["addCondition","inapit"]] 
+		}],
+		"onJump" : [{ 
+			"target":["creature","all","inOwnSquare","hero"],
+			"effects":[["damage",1,"body",4,false],["damage",99,"move",1,false]]
+		}]
+	},
+
+	"fallingrocks" : {
+		"name" : "Falling Rocks",
+		"keywords" : ["fallingrocks","trap","natural","trigger"],
+		"tokenImage" : "../images/campaigns/core/trigger_tokens/fallingrocks.png",
+		"portraitImage" : "../images/campaigns/core/card/fallingrocks.jpg",
+		"description" : "The ceiling gives way above you showering you in rubble. You take one body point of damage per skull rolled on three combat dice. You are pushed out the way and the path is now blocked.",
+		"onActivate" : [{ 
+			"target":["creature","all","inOwnSquare","hero"],
+			"effects":[["damage",3,"body",4,false],["addCondition","inapit"],["push"]] 
+		}]
+	},
+
+	"poisonedneedletrap" : {
+		"name" : "Poisoned Needle Trap",
+		"keywords" : ["poisonedneedletrap","trap","mechanical","trigger"],
+		"tokenImage" : "../images/campaigns/core/trigger_tokens/poisonedneedletrap.png",
+		"portraitImage" : "../images/campaigns/core/card/antipoisonquill.jpg",
+		"description" : "While searching you are pricked by a tiny needle covered in vile green poison. You take one body point of damage. The trap can now be avoided.",
+		"onActivate" : [
+			{ 
+				"target":["creature","all","inOwnSquare","hero"], 
+				"effects":[["damage",1,"body",1,false]] 
+			},
+			{ 	
+				"target":["self"], 
+				"effects":[["remove"]] 
+			}
+		],
+		"onFind" : [{ "target":["self"], "effects":[["remove"]] }]
+	},
+
+	"entry" : {
+		"name" : "",
+		"keywords" : ["entry","trigger"],
+		"tokenImage" : null,
+		"portraitImage" : null,
+		"description" : null,
+		"hidden" : false
+	},
+
+	"exit" : {
+		"name" : "Leave this Quest?",
+		"keywords" : ["exit","trigger"],
+		"tokenImage" : null,
+		"portraitImage" : "../images/campaigns/core/card/exit.jpg",
+		"description" : "Are you sure you wish to leave this quest map and head back to town?",
+		"hidden" : false,
+		"optional" : true,
+		"onActivate" : [{ 
+			"target":["creature","all","inOwnSquare","hero"],
+			"effects":[["exitMap"]]
+		}]
+	},
+
+	"exitentry" : {
+		"name" : "Leave this Quest?",
+		"keywords" : ["exit","entry","trigger"],
+		"tokenImage" : null,
+		"portraitImage" : "../images/campaigns/core/card/exit.jpg",
+		"description" : "Are you sure you wish to leave this quest map and head back to town?",
+		"hidden" : false,
+		"optional" : true,
+		"onActivate" : [{
+			"target":["creature","all","inOwnSquare","hero"],
+			"effects":[["exitMap"]]
+		}]
+	},
+
+	"solidrock" : {
+		"name" : null,
+		"keywords" : ["solidrock","trigger"],
+		"tokenImage" : "../images/campaigns/core/trigger_tokens/solidrock.png",
+		"portraitImage" : null,
+		"description" : null,
+		"onActivate" : [{ 
+			"target":["creature","all","inOwnSquare","hero"],
+			"effects":[["addCondition","inawall"]]
+		}]
+	}
+
+}

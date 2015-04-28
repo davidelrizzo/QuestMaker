@@ -1,0 +1,44 @@
+{
+	"id" : "core",
+	"name" : "Core Campaign",
+	"gridSize" : 42,
+	"townName" : "Sleepy Village",
+	"shopName" : "General Store",
+	"storeImage" : "images/campaign/core/store_bg.jpg",
+	"introImage" : "images/campaign/core/intro_bg.jpg",
+	"data" : {
+		"creatures" : "json/core/creatures.json",
+		"equipment" : "json/core/equipment.json",
+		"conditions" : "json/core/conditions.json",
+		"containers" : "json/core/containers.json",
+		"spells" : "json/core/spells.json",
+		"triggers" : "json/core/triggers.json",
+		"treasure" : "json/core/treasure.json"
+	},
+	"minHeros" : 1,
+	"maxHeroes" : 4,
+	"startHeroTypes" : ["barbarian", "wizard","elf","dwarf"],
+	"levels" : [
+		{ 
+			"name" : "The Maze",
+			"intro" : "Lorem ipsum...",
+			"complete" : false,
+			"winCondition" : { "type":"exit", "args":[] },
+			"dataPath" : "json/core/level_maze.json"
+		},
+		{ 
+			"name" : "The Trial",
+			"intro" : "Lorem ipsum...",
+			"complete" : false,
+			"winCondition" : { "type":"kill", "args":["verag",1] },
+			"dataPath" : "json/core/level_trial.json"
+		},
+		{ 
+			"name" : "insertNameHere",
+			"intro" : "Lorem ipsum...",
+			"complete" : false,
+			"winCondition" : {},
+			"dataPath" : "json/core/level_insertNameHere.json"
+		}
+	]
+}

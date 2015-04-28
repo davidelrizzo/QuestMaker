@@ -1,0 +1,305 @@
+{
+
+	"gold" : {
+		"name" : "Gold Pieces",
+		"portraitImage" : "images/campaigns/core/cards/gold1.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "Currency of the realm, collect to purchase equipment in the town store. You can carry up to 250 coins in one equipment slot.",
+		"shopCategory" : "Valuables",
+		"shopLimit" : 0,
+		"maxStack" : 250,
+		"sellValue" : 1
+	},
+
+	"gems" : {
+		"name" : "Gems",
+		"portraitImage" : "images/campaigns/core/cards/gem.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "Shinny! You can carry up to 10 gems in one equipment slot. Gems can be sold for full value.",
+		"shopCategory" : "Valuables",
+		"shopLimit" : 10,
+		"maxStack" : 10,
+		"value" : 50,
+		"sellValue" : 50
+	},
+
+	"jewels" : {
+		"name" : "Jewels",
+		"portraitImage" : "images/campaigns/core/cards/jewels.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "Box o' jewels! You can carry up to 10 jewels in one equipment slot. Jewels can be sold for full value.",
+		"shopCategory" : "Valuables",
+		"shopLimit" : 10,
+		"maxStack" : 10,
+		"value" : 100,
+		"sellValue" : 100
+	},
+
+
+	"handaxe" : {
+		"name" : "Hand Axe",
+		"portraitImage" : "images/campaigns/core/cards/handaxe.jpg",
+		"description" : "The hand axe allows you to roll <b>two</b> combat dice in attack. May not be used by the wizard.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 1,
+		"slot" : ["mainhand"],
+		"restricted" : "wizard",
+		"value" : 100,
+		"whileApplied" : [["changeStat","meleeAttack",1]]
+	},
+
+	"shortsword" : {
+		"name" : "Short Sword",
+		"portraitImage" : "images/campaigns/core/cards/shortsword.jpg",
+		"description" : "The short sword allows you to roll <b>two</b> combat dice in attack. May not be used by the wizard.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 1,
+		"slot" : ["mainhand"],
+		"restricted" : "wizard",
+		"value" : 100,
+		"whileApplied" : [["changeStat","meleeAttack",1]]
+	},
+
+	"staff" : {
+		"name" : "Staff",
+		"portraitImage" : "images/campaigns/core/cards/staff.jpg",
+		"description" : "The Staff allows you to roll <b>two</b> combat dice in attack. The staff may be used to <b>attack diagonally</b>. You may not use an item in your off-hand when using the staff.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 1,
+		"slot" : ["mainhand","offhand"],
+		"value" : 150,
+		"whileApplied" : [["changeStat","meleeAttack",1],["addToList","attributes","attackDiagonal"]]
+	},
+
+	"spear" : {
+		"name" : "Spear",
+		"portraitImage" : "images/campaigns/core/cards/spear.jpg",
+		"description" : "The spear may be thrown at any opponent that is not adjacent to you for <b>two</b> combat dice in attack. Once thrown it is lost. You can carry up to four spears in one equipment slot. May not be used by the wizard.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 2,
+		"maxStack" : 4,
+		"restricted" : "wizard",
+		"value" : 50,
+		"onActivate" : [
+			{ "target":["creature","one","ranged","monster"], "effects":[["damage",2,"body",4,true]] },
+			{ "target":["self"], "effects":[["removeItem","spear"]] }
+		],
+		"activateAction" : "attack"
+	},
+
+	"broadsword" : {
+		"name" : "Broadsword",
+		"portraitImage" : "images/campaigns/core/cards/broadsword.jpg",
+		"description" : "The broadsword allows you to roll <b>three</b> combat dice in attack. May not be used by the wizard.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 1,
+		"slot" : ["mainhand"],
+		"restricted" : "wizard",
+		"value" : 250,
+		"whileApplied" : [["changeStat","meleeAttack",2]]
+	},
+
+	"crossbow" : {
+		"name" : "Crossbow",
+		"portraitImage" : "images/campaigns/core/cards/crossbow.jpg",
+		"description" : "The crossbow allows you to roll <b>three</b> combat dice in ranged attacks. <br>May not be used by the wizard.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 1,
+		"slot" : ["mainhand","offhand"],
+		"restricted" : "wizard",
+		"value" : 350,
+		"whileApplied" : [["changeStat","rangedAttack",3]]
+	},
+
+	"battleaxe" : {
+		"name" : "Battle Axe",
+		"portraitImage" : "images/campaigns/core/cards/battleaxe.jpg",
+		"description" : "The battleaxe allows you to roll <b>four</b> combat dice in attack.<br>May not be used by the wizard.",
+		"shopCategory" : "Weapons",
+		"shopLimit" : 1,
+		"slot" : ["mainhand","offhand"],
+		"restricted" : "wizard",
+		"value" : 400,
+		"whileApplied" : [["changeStat","meleeAttack",3]]
+	},
+
+	"chainmail" : {
+		"name" : "Chainmail",
+		"portraitImage" : "images/campaigns/core/cards/chainmail.jpg",
+		"description" : "Chainmail armour allows you to roll <b>three</b> combat dice in defence.<br>May not be used by the wizard.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 1,
+		"slot" : ["body"],
+		"restricted" : "wizard",
+		"value" : 450,
+		"whileApplied" : [["changeStat","defence",1]]
+	},
+
+	"bracers" : {
+		"name" : "Bracers",
+		"portraitImage" : "images/campaigns/core/cards/bracers.jpg",
+		"description" : "The bracers allow you to roll <b>one extra</b> combat dice in defence.<br>May only be used by the wizard.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 1,
+		"slot" : ["wrists"],
+		"restricted" : "martial",
+		"value" : 200,
+		"whileApplied" : [["changeStat","defence",1]]
+	},
+
+	"cloakofprotection" : {
+		"name" : "Cloak Of Protection",
+		"portraitImage" : "images/campaigns/core/cards/cloakofprotection.jpg",
+		"description" : "The cloak of protection allow you to roll <b>one extra</b> combat dice in defence.<br>May only be used by the wizard.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 1,
+		"slot" : ["body"],
+		"restricted" : "martial",
+		"value" : 350,
+		"whileApplied" : [["changeStat","defence",1]]
+	},
+
+	"helmet" : {
+		"name" : "Helmet",
+		"portraitImage" : "images/campaigns/core/cards/helmet.jpg",
+		"description" : "The helmet gives you to <b>one extra</b> combat dice in defence.<br>May not be used by the wizard.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 1,
+		"slot" : ["head"],
+		"restricted" : "wizard",
+		"value" : 120,
+		"whileApplied" : [["changeStat","defence",1]]
+	},
+
+	"shield" : {
+		"name" : "Shield",
+		"portraitImage" : "images/campaigns/core/cards/shield.jpg",
+		"description" : "The shield gives you to <b>one extra</b> combat dice in defence.<br>May not be used by the wizard.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 1,
+		"slot" : ["offhand"],
+		"restricted" : "wizard",
+		"value" : 100,
+		"whileApplied" : [["changeStat","defence",1]]
+	},
+
+	"platearmour" : {
+		"name" : "Plate Armour",
+		"portraitImage" : "images/campaigns/core/cards/platearmour.jpg",
+		"description" : "The plate armour allows you to roll <b>four</b> combat dice in defence BUT you roll <b>one less</b> dice for Movement.<br>May not be used by the wizard.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 1,
+		"slot" : ["body"],
+		"restricted" : "wizard",
+		"value" : 850,
+		"whileApplied" : [["changeStat","defence",2],["changeStat","totalMoveDice",-1]]
+	},
+
+
+
+	"toolkit" : {
+		"name" : "Tool Kit",
+		"portraitImage" : "images/campaigns/core/cards/toolkit.jpg",
+		"description" : "Yu can <b>use</b> the Tool Kit to remove any trap adjacent to you. On the roll of one combat die a skull indicates the trap goes off and you loose one Body Point. The trap is then removed<br>Cannot be used by the Dwarf.",
+		"shopCategory" : "Misc",
+		"shopLimit" : 1,
+		"slot" : ["tool"],
+		"restricted" : "dwarf",
+		"value" : 250,
+		"onActivate" : [
+			{ "target":["self"], "effects":[["damage",1,"body",4,false]], "ends":[] },
+			{ "target":["trigger","one","adjacent","trap"], "effects":[["removeTrigger"]] }
+		]
+	},
+
+	"holywater" : {
+		"name" : "Holy Water",
+		"portraitImage" : "images/campaigns/core/cards/holywater.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "Holy water may be thrown at any undead creature which will automaticaly take <b>one</b> Body Point of damage. Once thrown it is lost.",
+		"shopCategory" : "Misc",
+		"shopLimit" : 0,
+		"maxStack" : 6,
+		"value" : 80,
+		"onActivate" : [
+			{ "target":["creature","one","ranged","undead"], "effects":[["damage",1,"body",1,false]] },
+			{ "target":["self"], "effects":[["removeItem","holywater"]] }
+		],
+		"activateAction" : "attack"
+	},
+
+
+
+	"potionhealing" : {
+		"name" : "Potion of Healing",
+		"portraitImage" : "images/campaigns/core/cards/potionhealing.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "You may drink the healing potion during your turn, it will heal up to <b>four</b> lost Body Points. The potion is then discarded.",
+		"shopCategory" : "Potions",
+		"shopLimit" : 0,
+		"maxStack" : 6,
+		"value" : 60,
+		"onActivate" : [ { "target":["self"], "effects":[["heal",4],["removeItem","potionhealing"]] } ]
+	},
+
+	"potionresilience" : {
+		"name" : "Potion of Resilience",
+		"portraitImage" : "images/campaigns/core/cards/potionresilience.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "You may drink the potion of resilience during your turn, it will allow you to roll <b>two extra</b> combat dice in defence this turn. The potion is then discarded.",
+		"shopCategory" : "Potions",
+		"shopLimit" : 0,
+		"maxStack" : 6,
+		"value" : 60,
+		"onActivate" : [ { "target":["self"], "effects":[["addCondition","resilience"],["removeItem","potionresilience"]] } ]
+	},
+
+	"potionspeed" : {
+		"name" : "Potion of Speed",
+		"portraitImage" : "images/campaigns/core/cards/potionspeed.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "You may drink the potion of speed during your turn, it will add <b>twelve</b> to your Movement this turn. The potion is then discarded.",
+		"shopCategory" : "Potions",
+		"shopLimit" : 0,
+		"maxStack" : 6,
+		"value" : 40,
+		"onActivate" : [ { "target":["self"], "effects":[["changeStat","move",10],["removeItem","potionspeed"]] } ]
+	},
+
+	"potionstrength" : {
+		"name" : "Potion of Strength",
+		"portraitImage" : "images/campaigns/core/cards/potionstrength.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "You may drink the potion of strength during your turn, it will allow you to roll <b>two extra</b> combat dice this turn. The potion is then discarded.",
+		"shopCategory" : "Potions",
+		"shopLimit" : 0,
+		"maxStack" : 6,
+		"value" : 60,
+		"onActivate" : [ { "target":["self"], "effects":[["addCondition","strength"],["removeItem","potionstrength"]] }]
+	},
+
+	"heroicbrew" : {
+		"name" : "Heroic Brew",
+		"portraitImage" : "images/campaigns/core/cards/heroicbrew.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/treasure.jpg",
+		"description" : "You may drink the heroic brew during your turn, it will allow attack <b>one</b> additional time this turn. The potion is then discarded.",
+		"shopCategory" : "Potions",
+		"shopLimit" : 0,
+		"maxStack" : 6,
+		"value" : 100,
+		"onActivate" : [ { "target":["self"], "effects":[["addCondition","heroism"],["removeItem","heroicbrew"]] }]
+	},
+
+	"borinsarmour" : {
+		"name" : "Borin's Armour",
+		"portraitImage" : "images/campaigns/core/cards/borinsarmour.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/questtreasure.jpg",
+		"description" : "Borin's Armour allows you to roll <b>two extra</b> combat dice in defence.",
+		"shopCategory" : "Armour",
+		"shopLimit" : 0,
+		"slot" : ["body"],
+		"value" : 2000,
+		"whileApplied" : [["changeStat","defence",2]]
+	}
+
+}

@@ -1,0 +1,93 @@
+{
+
+	"dwarvenengineering" : {
+		"name" : "Dwarven Engineering",
+		"portraitImage" : "images/campaigns/core/cards/gears.jpg",
+		"description" : "Once per turn you may <b>use</b> this condition to remove an adjacent trap with no chance of failure.",
+		"onActivate" : { "target":["trigger","one","adjacent","trap"], "effects":[["removeTrigger"]] }
+	},
+
+	"heroism" : {
+		"name" : "Heroism",
+		"portraitImage" : "images/campaigns/core/cards/heroicbrew.jpg",
+		"description" : "You are have great heroism and can make one additional attack this turn.",
+		"whileApplied" : { "effects":[["changeStat","totalAttacks",1]], "ends":["turnEnd"] }
+	},
+
+	"delayed" : {
+		"name" : "Delayed",
+		"portraitImage" : "images/campaigns/core/cards/hazard.jpg",
+		"description" : "You have been delayed, you are unable to perform any actions this turn and are unable to move. You can still defend yourself as normal.",
+		"whileApplied" : { "effects":[["changeStat","totalMoveDice",-99],["changeStat","totalActions",-99]], "ends":["turnEnd"] }
+	},
+
+	"sleep" : {
+		"name" : "Sleep",
+		"portraitImage" : "images/campaigns/core/cards/sleep.jpg",
+		"description" : "You are in a deep slumber and may not take any action or defend yourself. At the start of your turn you will wake on the roll of 6 on one Standard die.",
+		"whileApplied" : {
+			"effects":[
+				["changeStat","totalMoveDice",-99],
+				["changeStat","totalActions",-99],
+				["changeStat","defence",-99]
+			],
+			"ends":["mindTest6+"]
+		}
+	},
+
+	"inapit" : {
+		"name" : "In a Pit",
+		"portraitImage" : "images/campaigns/core/cards/pittrap.jpg",
+		"description" : "You are standing in a deep pit. When entering a pit your attack and defence is redudced by one combat die each and your move reduced to zero. You can move out of the pit normaly on your next turn.",
+		"whileApplied" : { "effects":[["changeStat","meleeAttack",-1],["changeStat","defence",-1],["damage","move",-99]], "ends":["step"] }
+	},
+
+	"resilience" : {
+		"name" : "Resilience",
+		"portraitImage" : "images/campaigns/core/cards/resilience.jpg",
+		"description" : "You are more resistant to attacks. You gain two extra combat dice in defence. Ends when you take damage.",
+		"whileApplied" : { "effects":[["changeStat","defence",2]], "ends":["takeDamage"] }
+	},
+
+	"strength" : {
+		"name" : "Strength",
+		"portraitImage" : "images/campaigns/core/cards/strength.jpg",
+		"description" : "You have mighty strength and gain two extra combat dice in attack. Ends when there is no enemy in sight.",
+		"whileApplied" : { "effects":[["changeStat","meleeAttack",2]], "ends":["cantSee","monster"] }
+	},
+
+	"unseen" : {
+		"name" : "Unseen",
+		"portraitImage" : "images/campaigns/core/cards/veilofmist.jpg",
+		"description" : "You are cloaked from the eyes of your enemies and may pass by them as if they were not there.",
+		"whileApplied" : { "effects":[["addToList","noClip","creature"]], "ends":["turnEnd"] }
+	},
+
+	"rockwalker" : {
+		"name" : "Rock Walker",
+		"portraitImage" : "images/campaigns/core/cards/passthroughrock.jpg",
+		"description" : "You can walk straight through walls as if they were not there until the end of this turn. Beware: If you end your turn inside a wall you will be instantly crushed to death!",
+		"whileApplied" : { "effects":[["addToList","noClip","stone"]], "ends":["turnEnd"] }
+	},
+
+	"mindless" : {
+		"name" : "Mindless",
+		"portraitImage" : "images/campaigns/core/cards/?.jpg",
+		"description" : "This creature is mindless and cannot die with zero mind, it also cannot be affected by mind altering spells.",
+		"whileApplied" : { "effects":[["addToList","attributes","mindless"]], "ends":["never"] }
+	},
+
+	"summoned" : {
+		"name" : "Summoned Creature",
+		"portraitImage" : "images/campaigns/core/cards/genie.jpg",
+		"description" : "This creature has been summoned by magic and will dissapear at the end of its turn.",
+		"whileApplied" : { "effects":[["removeFromList","attributes","invincible"]], "ends":["turnEnd"] }
+	},
+
+	"inawall" : {
+		"name" : "In a Wall",
+		"portraitImage" : "images/campaigns/core/cards/inawall.jpg",
+		"description" : "You are inside solid rock. When the magic that alows you do this ends you will be trapped here and suffer a rather horrible death.",
+		"whileApplied" : { "effects":[["damage",99,"body",1,false]], "ends":["step"] }
+	}
+}

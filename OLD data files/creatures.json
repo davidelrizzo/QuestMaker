@@ -1,0 +1,195 @@
+{
+
+	"barbarian" : {
+		"name" : "Barbarian",
+		"keywords" : ["barbarian","martial","hero","creature"],
+		"team" : 1,
+		"portraitImage" : "images/campaigns/core/portraits/barbarian.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/babarian.png",
+		"defence" : 2,
+		"defenceChance" : 5,
+		"totalMoveDice" : 2,
+		"totalBody" : 8,
+		"totalMind" : 2,
+		"searchesPerTurn" : 1,
+		"noClipTargets" : ["hero"],
+		"tradeTargets" : ["hero"],
+		"attackTargets" : ["monster"],
+		"carryCapacity" : 8,
+		"equipment" : [{"item":"broadsword","qty":1}]
+	},
+
+	"dwarf" : {
+		"name" : "Dwarf",
+		"keywords" : ["dwarf","martial","hero","creature"],
+		"team" : 1,
+		"portraitImage" : "images/campaigns/core/portraits/dwarf.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/dwarf.png",
+		"defence" : 2,
+		"defenceChance" : 5,
+		"totalMoveDice" : 2,
+		"totalBody" : 7,
+		"totalMind" : 3,
+		"searchesPerTurn" : 1,
+		"noClipTargets" : ["hero"],
+		"tradeTargets" : ["hero"],
+		"attackTargets" : ["monster"],
+		"conditions" : ["dwarvenengineering"],
+		"carryCapacity" : 8,
+		"equipment" : [{"item":"handaxe","qty":1}]
+	},
+
+	"elf" : {
+		"name" : "Elf",
+		"keywords" : ["elf","martial","spellcaster","hero","creature"],
+		"team" : 1,
+		"portraitImage" : "images/campaigns/core/portraits/elf.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/elf.png",
+		"defence" : 2,
+		"defenceChance" : 5,
+		"totalMoveDice" : 2,
+		"totalBody" : 6,
+		"totalMind" : 4,
+		"searchesPerTurn" : 1,
+		"noClipTargets" : ["hero"],
+		"tradeTargets" : ["hero"],
+		"attackTargets" : ["monster"],
+		"numSpellsKnown" : 3,
+		"numSpellSchools" : 1,
+		"availableSpellSchools" : ["fire","earth","air","water"],
+		"carryCapacity" : 8,
+		"equipment" : [{"item":"shortsword","qty":1}]
+	},
+
+	"wizard" : {
+		"name" : "Wizard",
+		"keywords" : ["wizard","spellcaster","hero","creature"],
+		"team" : 1,
+		"portraitImage" : "images/campaigns/core/portraits/wizard.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/wizard.png",
+		"defence" : 2,
+		"defenceChance" : 5,
+		"totalMoveDice" : 2,
+		"totalBody" : 4,
+		"totalMind" : 5,
+		"searchesPerTurn" : 1,
+		"noClipTargets" : ["hero"],
+		"tradeTargets" : ["hero"],
+		"attackTargets" : ["monster"],
+		"numSpellsKnown" : 9,
+		"numSpellSchools" : 3,
+		"availableSpellSchools" : ["fire","earth","air","water"],
+		"carryCapacity" : 8
+	},
+
+
+	"goblin" : {
+		"name" : "Goblin",
+		"keywords" : ["goblin","greenskin","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/goblin.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/goblin.png",
+		"meleeAttack" : 2,
+		"totalMove" : 10
+	},
+
+	"orc" : {
+		"name" : "Orc",
+		"keywords" : ["orc","greenskin","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/orc.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/orc.png",
+		"meleeAttack" : 3,
+		"defence" : 2,
+		"totalMove" : 8,
+		"totalMind" : 2
+	},
+
+	"famir" : {
+		"name" : "Famir",
+		"keywords" : ["famir","greenskin","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/famir.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/famir.png",
+		"meleeAttack" : 3,
+		"defence" : 3,
+		"totalMove" : 6,
+		"totalMind" : 3
+	},
+
+	"skeleton" : {
+		"name" : "Skeleton",
+		"keywords" : ["skeleton","mindless","undead","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/skeleton.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/skeleton.png",
+		"meleeAttack" : 2,
+		"defence" : 2,
+		"totalMove" : 6,
+		"totalMind" : 0,
+		"conditions" : ["mindless"]
+	},
+
+	"zombie" : {
+		"name" : "Zombie",
+		"keywords" : ["zombie","mindless","undead","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/zombie.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/zombie.png",
+		"meleeAttack" : 2,
+		"defence" : 3,
+		"totalMove" : 5,
+		"totalMind" : 0,
+		"conditions" : ["mindless"]
+	},
+
+	"mummy" : {
+		"name" : "Mummy",
+		"keywords" : ["mummy","mindless","undead","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/mummy.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/mummy.png",
+		"meleeAttack" : 3,
+		"defence" : 4,
+		"totalMove" : 4,
+		"totalBody" : 2,
+		"totalMind" : 0,
+		"conditions" : ["mindless"]
+	},
+
+	"chaoswarrior" : {
+		"name" : "Chaos Warrior",
+		"keywords" : ["chaoswarrior","undead","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/chaoswarrior.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/chaoswarrior.png",
+		"meleeAttack" : 3,
+		"defence" : 4,
+		"totalMove" : 4,
+		"totalBody" : 2,
+		"totalMind" : 3
+	},
+
+	"gargoyal" : {
+		"name" : "Gargoyal",
+		"keywords" : ["gargoyal","undead","monster","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/gargoyal.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/gargoyle.png",
+		"xOff" : -3,
+		"yOff" : -10,
+		"meleeAttack" : 4,
+		"defence" : 4,
+		"totalMove" : 6,
+		"totalBody" : 3,
+		"totalMind" : 4
+	},
+
+	"genie" : {
+		"name" : "Genie",
+		"keywords" : ["genie","summoned","hero","creature"],
+		"portraitImage" : "images/campaigns/core/portraits/genie.jpg",
+		"tokenImage" : "images/campaigns/core/creature_tokens/genie.png",
+		"meleeAttack" : 5,
+		"defence" : 0,
+		"totalMove" : 10,
+		"totalBody" : 0,
+		"totalMind" : 0,
+		"noClipTargets" : ["hero"],
+		"attackTargets" : ["monster"],
+		"conditions" : ["summoned"]
+	}
+
+}

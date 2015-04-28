@@ -1,0 +1,107 @@
+{
+	"ballofflame" : {
+		"name" : "Ball of Flame",
+		"portraitImage" : "images/campaigns/core/cards/ballofflame.jpg",
+		"description" : "This spell may be shot one monster in range, enveloping it in <b>two</b> balls of fire. Each will inflict <b>one</b> Body Points of damage on <b>three</b> or more on a standard dice.",
+		"school" : "fire",
+		"onActivate" : [{ "target":["creature",1,"ranged","monster"], "effect":[["damage",2,"body",3]] }]
+	},
+
+	"fireofwrath" : {
+		"name" : "Fire of Wrath",
+		"portraitImage" : "images/campaigns/core/cards/fireofwrath.jpg",
+		"description" : "This spell may be shot at one monster in range, blasting it with flames. It will inflict <b>one</b> Body Point of damage on <b>three</b> or more on a standard dice.",
+		"school" : "fire",
+		"onActivate" : [{ "target":["creature",1,"ranged","monster"], "effect":[["damage",1,"body",3]] }]
+	},
+
+	"courage" : {
+		"name" : "Courage",
+		"portraitImage" : "images/campaigns/core/cards/courage.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. That Hero then gets <b>two extra</b> combat ice in attack. The spell is ends when the Hero can no longer see a monster.",
+		"school" : "fire",
+		"onActivate" : [{ "target":["creature",1,"sight","hero"], "effect":[["addCondition","courage"]] }]
+	},
+
+	"waterofhealing" : {
+		"name" : "Water of Healing",
+		"portraitImage" : "images/campaigns/core/cards/waterofhealing.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/waterspell.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. Contact with this revitalizing water will heal up to <b>four</b> Body Points.",
+		"school" : "water",
+		"onActivate" : [{ "target":["creature",1,"ranged","hero"], "effect":[["heal",4,"body"]] }]
+	},
+
+	"sleep" : {
+		"name" : "Sleep",
+		"portraitImage" : "images/campaigns/core/cards/sleep.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/waterspell.jpg",
+		"description" : "This spell may be cast on any one monster in sight. It puts it into a deep sleep and is unable to move, take actions or defend itself. The spell can be broke at once or at the at the start of that monsters turn by rolling one standard die for each of its Mind Points. If a <b>six</b> is rolled the spell is broken. This does not effect mindless creatures.",
+		"school" : "water",
+		"onActivate" : [{ "target":["creature",1,"sight","monster"], "effect":[["addCondition","sleep"]] }]
+	},
+
+	"veilofmist" : {
+		"name" : "Veil of Mist",
+		"portraitImage" : "images/campaigns/core/cards/veilofmist.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/waterspell.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. On that Hero's turn he may move through squares containing monsters unhindered.",
+		"school" : "water",
+		"onActivate" : [{ "target":["creature",1,"sight","hero"], "effect":[["addCondition","unseen"]] }]
+	},
+
+	"passthroughrock" : {
+		"name" : "Pass Through Rock",
+		"portraitImage" : "images/campaigns/core/cards/passthroughrock.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/earthspell.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. That Hero is able to pass through anything made of <b>stone</b>. The effect stops at the end of the turn, if the Hero is inside solid stone he is trapped forever!",
+		"school" : "earth",
+		"onActivate" : [{ "target":["creature",1,"sight","hero"], "effect":[["addCondition","passthroughrock"]] }]
+	},
+
+	"rockskin" : {
+		"name" : "Rockskin",
+		"portraitImage" : "images/campaigns/core/cards/rockskin.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/earthspell.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. That hero can roll <b>two extra</b> combat dice in defence. The spell is broken when the Hero takes damage.",
+		"school" : "earth",
+		"onActivate" : [{ "target":["creature",1,"sight","hero"], "effect":[["addCondition","rockskin"]] }]
+	},
+
+	"healbody" : {
+		"name" : "Heal Body",
+		"portraitImage" : "images/campaigns/core/cards/healbody.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/earthspell.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. Its magical power will immediately heal up to <b>four Body Points</b>.",
+		"school" : "earth",
+		"onActivate" : [{ "target":["creature",1,"sight","hero"], "effect":[["addCondition","healbody"]] }]
+	},
+
+	"tempest" : {
+		"name" : "Tempest",
+		"portraitImage" : "images/campaigns/core/cards/tempest.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/airspell.jpg",
+		"description" : "This spell creates a small whirlwind that envelops one monster in sight. That monster may not move or take actions next turn.",
+		"school" : "air",
+		"onActivate" : [{ "target":["creature",1,"sight","monster"], "effect":[["addCondition","delayed"]] }]
+	},
+
+	"swiftwind" : {
+		"name" : "Swiftwind",
+		"portraitImage" : "images/campaigns/core/cards/swiftwind.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/airspell.jpg",
+		"description" : "This spell may be cast on any one hero in sight including yourself. Its powerful burst of energy enables that Hero to move an additional <b>twelve squares</b> next time he moves.",
+		"school" : "air",
+		"onActivate" : [{ "target":["creature",1,"sight","hero"], "effect":[["addCondition","speed"]] }]
+	},
+
+	"genie" : {
+		"name" : "Genie",
+		"portraitImage" : "images/campaigns/core/cards/genie.jpg",
+		"backImage" : "images/campaigns/core/cardbacks/airspell.jpg",
+		"description" : "This spell conjures up a Genie on any empty square in sight for one turn. It will follow any comands you give it. It has five attack dice and cannot be killed with conventional attacks.",
+		"school" : "air",
+		"onActivate" : [{ "target":["emptyTile",1,"sight"], "effect":[["addCreature","genie"]] }]
+	}
+
+}
