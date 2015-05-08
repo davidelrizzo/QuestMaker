@@ -15,6 +15,11 @@ API and Interface for basic roguelike game and editor
 - There will be a separate Interface for the game and the editor
 
 
+## Design/Build philosophy
+- Plan (document) everything, iteratively code minimum possible
+- Game objects will be as abstract as possible to allow maximum editor variability
+
+
 ## Classes
 - **Campaign** <br> Player & Team info. Level list. Activities between levels
 - **Level** <br> Map (2D array), Victory conditions. 
@@ -23,7 +28,7 @@ API and Interface for basic roguelike game and editor
 - **Trigger** <br> Map entry/exit. Trap. Map revealer. Event on enter/leave
 - **Furniture** <br> One or more tiles grouped. Can contain Treasure
 - **Creature** <br> Universal hero or monster
-- **Equipment** <br> Held by creature or in Furniture. May be stacked. Event on activate
+- **Item** <br> Held by creature or in Furniture. May be stacked. Event on activate
 - **Spell** <br> Held by creature. Event on activate
 - **Condition** <br> An ongoing effect on a creature
 - **Treasure** <br> An event that can occur when searching for treasure
@@ -35,12 +40,12 @@ API and Interface for basic roguelike game and editor
 - Can only search for treasure on a furniture item (eg. chest, bookcase) not rooms
 - Search traps in visible area or limit of squares?
 - Item (stack) limit per creature (Say 8 for a hero, 0 for most monsters), some - items can be stacked though, eg. coins up to 100 or potions
-- All Equipment owned is immediately used. (eg. you cannot hold two items of same type, say two 'Left hand' items)
+- All Item owned is immediately used. (eg. you cannot hold two items of same type, say two 'Left hand' items)
 - Maps can be any shape or size (2D grid)
 - Each Tile can have one creature, one trigger, one item of furniture and a right and bottom wall.
 - Line of sight based on squares not rooms (this has implications for multi square objects like furniture)
 - Is line of sight per player, per team or per creature?
-- There is no difference between a hero and monster other than attribute values (eg. Can this creature leave the map? Can it reveal fog of war?, Can it carry equipment? etc..)
+- There is no difference between a hero and monster other than attribute values (eg. Can this creature leave the map? Can it reveal fog of war?, Can it carry Item? etc..)
 - Named special monsters are just different monster types that you only see once in a campaign
 - Campaign defines max players, number of teams and level sequence
 - Triggers (eg. traps, level exits) belong to a specific team(s) and can only be activated by that team
