@@ -1,12 +1,9 @@
 # Game Sequence
 
-## Assumptions
-- Single player (one player, one AI)
-
-## Sequence
 ```
 Select campaign
 Start new campaign
+    Add player (human or AI)
     Select controlled creatures (max/type set by campaign)(sets turn order)
         Select creature spells
     Start campaign loop
