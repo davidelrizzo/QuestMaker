@@ -4,6 +4,7 @@
 - Single player (one player, one AI)
 
 ## Sequence
+```
 Select campaign
 Start new campaign
     Select controlled creatures (max/type set by campaign)(sets turn order)
@@ -18,6 +19,7 @@ Start new campaign
                     Set path (only if valid, may include end action)
                         Step (end on trigger?)
                             Activate trigger
+                            Update map visibility
                         Search for treasure
                             Reveal treasure
                             Manage inventory
@@ -51,6 +53,6 @@ Start new campaign
     End campaign loop
     Campaign victory screen
 End campaign
-
+```
 
 
