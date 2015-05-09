@@ -20,7 +20,7 @@ API and Interface for basic roguelike game and editor
 - Game objects will be as abstract as possible to allow maximum editor variability
 
 
-## Classes
+## Basic classes
 - **Campaign** <br> Player & Team info. Level list. Activities between levels
 - **Level** <br> Map (2D array), Victory conditions. 
 - **Floor** <br> Tile graphics
@@ -34,7 +34,7 @@ API and Interface for basic roguelike game and editor
 - **Treasure** <br> An event that can occur when searching for treasure
 
 
-## Rule concepts
+## Game rule concepts
 - The ruleset should be similar to HeroQuest but far more flexible
 - No concept of rooms
 - Can only search for treasure on a furniture item (eg. chest, bookcase) not rooms
@@ -51,6 +51,7 @@ API and Interface for basic roguelike game and editor
 - Triggers (eg. traps, level exits) belong to a specific team(s) and can only be activated by that team
 - Each level (map) defines entry and exit points
 - Each level defines its own victory conditions
+- OPTION: There is no shop interface, just a shop level between each dungeon
 
 
 

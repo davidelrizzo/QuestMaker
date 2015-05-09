@@ -4,8 +4,8 @@
 Select campaign
 Start new campaign
     Add player (human or AI)
-    Select controlled creatures (max/type set by campaign)(sets turn order)
-        Select creature spells
+        Select controlled creatures (max/type set by campaign)(sets turn order)
+            Select creature spells
     Start campaign loop
         Select level, view level intro
         Start level
