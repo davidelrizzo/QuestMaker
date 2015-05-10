@@ -5,12 +5,12 @@ Select campaign
 Start new campaign
     Add player (human or AI)
         Select controlled creatures (max/type set by campaign)(sets turn order)
-            Select creature spells
     Start campaign loop
         Select level, view level intro
         Start level
+            Select creature spells
             Add map creatures to a player (eg. monsters to AI)
-            Start game round (track this?)
+            Start game round
                 Start creature turn
                     Show map (based on creature/team)
                     Set path (only if valid, may include end action)

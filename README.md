@@ -11,8 +11,9 @@ API and Interface for basic roguelike game and editor
 - The game and editor will run on Chrome desktop
 - All game data will be saved in JSON format
 - The API will deal with all data getting, setting and modification
-- The Interface will deal with all interaction, visuals and sound
+- The Interface will deal with all interaction, visuals and sound (graphic and sound data can be passed through the API but will never be manipulated by it)
 - There will be a separate Interface for the game and the editor
+- There will be one sprite sheet per game object type (eg. creatures, furniture, floors etc..) therefore data will only need to store offset (x,y)*gridSize
 
 
 ## Design/Build philosophy
@@ -30,8 +31,8 @@ API and Interface for basic roguelike game and editor
 - **Creature** <br> Universal hero or monster
 - **Item** <br> Held by creature or in Furniture. May be stacked. Event on activate
 - **Spell** <br> Held by creature. Event on activate
-- **Condition** <br> An ongoing effect on a creature
-- **Treasure** <br> An event that can occur when searching for treasure
+- **Condition** <br> A creature state or ability. Effect while applied and/or on manual activate
+- **Treasure** <br> An event that can occur when searching furniture (either pre-set or random), can contain items or trigger events (eg. wandering monster, trap)
 
 
 ## Game rule concepts
@@ -51,7 +52,19 @@ API and Interface for basic roguelike game and editor
 - Triggers (eg. traps, level exits) belong to a specific team(s) and can only be activated by that team
 - Each level (map) defines entry and exit points
 - Each level defines its own victory conditions
-- OPTION: There is no shop interface, just a shop level between each dungeon
+- OPTION: There is no shop interface, just a shop level between each dungeon and you move the heroes to each shop/merchant to buy/sell.
+
+
+## Interface ideas
+- Creature action will be dictated by click target. First click to set(highlight) path, second click perform. Possible click targets are:
+    - Empty tile: Move to that tile
+    - Creature(Enemy): Move to closest adjacent square and attack (or ranged attack if possible)
+    - Creature(Friend): Move to closest adjacent square and trade
+    - Furniture: Move to closest adjacent square and search for treasure
+    - Wall(Usable): Move to closest adjacent square and activate (eg. open)
+    - Trigger(Usable): Move to closest adjacent square and activate (eg. jump in pit, exit map)
+    - Self: Search for traps
+- Avoid hover to cater for touch devices
 
 
 
