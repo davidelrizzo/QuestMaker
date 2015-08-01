@@ -40,6 +40,7 @@ QM.Campaign = function (args) {
 
 
   // public method
+  // - from my understanding this is created EVERY time a new instance is, which is less efficient than using .prototype
   this.publicMethod = function (arg1, arg2) {
     console.log(arg1 + arg2);
     console.log(this.publicProperty);
