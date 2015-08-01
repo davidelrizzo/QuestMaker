@@ -29,24 +29,24 @@ Start new campaign
                                     Campaign failure screen
                         OR Interact with wall
                             Activate wall (eg. open door)
-                        OR Use (Item/Spell/Condition)
-                            Select item and target
+                        OR Use (Equipment/Spell/Condition)
+                            Select equipment and target
                             OR Select spell and target
                             OR Select condition and target
-                        OR Drop item (if on furniture adds to contents)
-                            Select item and quantity
+                        OR Drop equipment (if on furniture adds to contents)
+                            Select equipment and quantity
                             Drop
                         OR Trade
-                            Select item, quantity and target
+                            Select equipment, quantity and target
                             Trade (if valid)
                     End path
                 End turn (has level victory been met?)
             End round
         End level (is this the last level?)
         Shop 
-            Purchase item
-            OR Sell item
-            OR Trade item
+            Purchase equipment
+            OR Sell equipment
+            OR Trade equipment
     End campaign loop
     Campaign victory screen
 End campaign
