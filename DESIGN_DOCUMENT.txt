@@ -1,1 +1,23 @@
 DESIGN DOCUMENT
+
+Object Hierarchy:
+
+namespace HQApplication
+
+-> object GameState
+
+-> object Campaign
+
+--> object Player
+
+--> object Level
+
+--> object Map
+
+---> object Tile
+
+----> object Creature
+----> object Furniture
+----> object Trigger
+----> object Wall
+----> object Trap
