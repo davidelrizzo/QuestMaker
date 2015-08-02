@@ -17,12 +17,15 @@ var QM = window.QM || {};
 **********************************************************/
 QM.Campaign = function (args) {
 
+  // better to pass in args as a key/value pair Object than long rigid list
 
-  // CONSTRCUTOR function for Campaign
-  this.init = function (args) {
+
+  // CONSTRCUTOR function for Campaign (private only run on 'new Campaign')
+  var _init = function () {
+    // args should be available to this function because it is a parent property
     console.log(args);
   };
-  this.init(args);
+  _init();
 
 
   // private property
