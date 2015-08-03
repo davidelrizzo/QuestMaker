@@ -1,7 +1,7 @@
 // stop jsLint complaining about the global 'window' object
 /*jslint browser: true*/
 
-// Sets JavaScript to scrict mode
+// Sets JavaScript to strict mode
 "use strict";
 
 // Creates the QuestMaker global namespace if it doesn't already exist
@@ -23,42 +23,42 @@ QM.Campaign = function (DATA) {
 
 
 
-  // **private property:** _minPlayers, **type:** {Number:Integer}, **default:** 2
+  // **property:** _minPlayers, **type:** {Number:Integer}, **default:** 2
   // Minimum number of players possible in this Campaign
-  var _minPlayers = 2;
+  this.minPlayers = 2;
 
-  // **private property:** _maxPlayers, **type:** {Number:Integer}, **default:** 2
+  // **property:** _maxPlayers, **type:** {Number:Integer}, **default:** 2
   // Maximum number of players possible in this Campaign
-  var _maxPlayers = 2;
+  this.maxPlayers = 2;
 
-  // **public property:** players, **type:** {Array:Player}, **default:** Empty array []
-  // List of current players in this Campaign ('Player' object)
+  // **property:** players, **type:** {Array:Player}, **default:** Empty array []
+  // List of current players in this Campaign ('Player' object), the index of this array is the ID of each player and should never change after initialisation
   this.players = [];
 
 
 
-  // **private property:** _minTeams, **type:** {Number:Integer}, **default:** 2
+  // **property:** _minTeams, **type:** {Number:Integer}, **default:** 2
   // Minimum number of teams possible in this Campaign
-  var _minTeams = 2;
+  this.minTeams = 2;
 
-  // **private property:** _maxTeams, **type:** {Number:Integer}, **default:** 2
+  // **property:** _maxTeams, **type:** {Number:Integer}, **default:** 2
   // Maximum number of teams possible in this Campaign
-  var _maxTeams = 2;
+  this.maxTeams = 2;
 
-  // **public property:** teams, **type:** {Array:Team}, **default:** Empty array []
+  // **property:** teams, **type:** {Array:Team}, **default:** Empty array []
   // List of current teams in this Campaign ('Team' Class)
-  // _NOTE:_ team starting characters & map view settings (eg evil wizard player flag) will be defined in the Team object itself
+  // _NOTE:_ team starting characters & map view settings (eg evil wizard player flag) will be defined in the Team object itself, the index of this array is the ID of each team and should never change after initialisation
   this.teams = [];
 
 
 
-  // **public property:** currentLevel, **type:** {Number:Integer}, **default:** 0
+  // **property:** currentLevel, **type:** {Number:Integer}, **default:** 0
   // Id of the {levels} array which contains the current Level
   this.currentLevel = 0;
 
-  // **public property:** levels, **type:** {Array:(String|Level)}, **default:** Empty array
-  // An array containing either the level id {String} or the Level object itself after it has been loaded
-  this.level = [];
+  // **property:** levels, **type:** {Array:Level}, **default:** Empty array
+  // An array containing the levels in this Campaign ('Level' object), Levels may contain only a name if the level has not been leaded yet
+  this.levels = [];
 
 
 
@@ -67,16 +67,15 @@ QM.Campaign = function (DATA) {
   * ----
   * Initialises Campaign properties with DATA passed in on Campaign creation
   **********************************************************/
-  var _init = function () {
+  var init = function (DATA) {
 
-    // TODO: convert DATA (JSON string) to JS objects?
-    // TODO: create initial player settings from DATA
-    // TODO: create initial team settings from DATA
-    // TODO: create initial level settings from DATA
+    // TODO: convert DATA (JSON string) to JS objects? - validate JSON to Schema?
+    // TODO: create initial player settings from DATA  (eg. new Player)
+    // TODO: create initial team settings from DATA  (eg. new Team)
+    // TODO: create initial level settings from DATA  (eg. new Level)
 
   };
-  _init();
-
+  init();
 
 
 };
@@ -85,33 +84,38 @@ QM.Campaign = function (DATA) {
 
 
 /**********************************************************
-* PUBLIC METHOD: addPlayer
+* METHOD: addPlayer
 * ----
 * Adds a new player to the campaign and initialises it with passed in values
-* **argument:** player, **type:** {Object:Player}, **returns:** id of QM.Campaign.players it was added to
+* **argument:** initData, **type:** {String:JSON}
+* **returns:** id of players array it was added at
 **********************************************************/
-QM.Campaign.prototype.addPlayer = function (player) {
+QM.Campaign.prototype.addPlayer = function (initData) {
 
-  // TODO: push given Player onto QM.Campaign.players and return id
+  // TODO: create {new Player}, initialise with {initData}, push onto players array and return player id
+  // Should we validate the JSON data?
 
 };
+
+// NOTE: probably not worth creating removePlayer method yet as players are only added on campaign creation and never removed.
 
 
 /**********************************************************
-* PUBLIC METHOD: removePlayer
+* METHOD: addTeam
 * ----
-* Removes a player from the game
-* **argument:** id, **type:** {Number:Integer}, **returns:** nothing
+* Adds a new team to the campaign and initialises it with passed in values
+* **argument:** initData, **type:** {String:JSON}
+* **returns:** id of teams array it was added at
 **********************************************************/
-QM.Campaign.prototype.addPlayer = function (id) {
+QM.Campaign.prototype.addTeam = function (initData) {
 
-  // TODO: replace Player at QM.Campaign.players {id} with null (do not reduce the array count as that will affect the id of all other players)
+  // TODO: create {new Team}, initialise with {initData}, push onto teams array and return team id
+  // Should we validate the JSON data?
 
 };
 
+// NOTE: probably not worth creating removeTeam method yet as players are only added on campaign creation and never removed.
 
 
-// TODO: addTeam
-// TODO: removeTeam
 
-// TODO: loadLevel
+// TODO: loadLevel - it might be wiser to leave 'loading' to the Game engine as the API is only supposed to care about rule mechanics not file types and platform (it might be even easier to keep all level data in the Campaign data in the initial prototype to speed up development)
