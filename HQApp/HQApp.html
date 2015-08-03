@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+  <style type = "text/css"></style>
+  <meta charset="utf-8">
+  <title>Hero Quest Application</title>
+	
+  <script language='JavaScript' src="./Scripts/LABjs-2.0.3/lab.min.js"></script>
+  <script language='JavaScript'>
+    $LAB.script('./Scripts/Menu.js').wait()
+        .script('./Scripts/AppState.js').wait()
+        .script('./Scripts/HQApp.js').wait( function(){HQApp.start();});
+  </script>
+	
+</head>
+
+<body>
+  <canvas id="cDisplay" width="1024" height="768">Your browser doesn't support canvas!</canvas>
+</body>
+
+</html>
