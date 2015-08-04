@@ -9,30 +9,33 @@
 
 var QM = (function(QM){
 
-	function Menu_Singleton()
+	class Menu_Singleton
 	{
-	};
+		constructor()
+		{
+			this._mainMenu = undefined;
+			this._activeState = undefined;
+		}
 
-	Menu_Singleton.prototype.initialize = function()
-	{
-		this._mainMenu = new QM.MainMenu_Singleton();
-		this._activeState = this._mainMenu;
-	};
+		initialize()
+		{
+			QM.Menu._activeState = new QM.MainMenu_Singleton();			
+		}
 
-  	//--------------------------------------------------------------------------------
-  	// Method: runQuestMaker
-  	// Desc: This function runs the entirety of the application.  It asks that the
-  	//       currently active game state update and then render as required.  The
-  	//       details of what transpires with each update and render is controlled by
-  	//       the active game state.
-  	//--------------------------------------------------------------------------------
-	Menu_Singleton.prototype.runQuestMaker = function()
-	{
-		QM.Menu._activeState.update();
-		QM.Menu._activeState.render();
+		//----------------------------------------------------------------------------
+		// Method: runQuestMaker
+		// Desc: This method is responsible for 'running' the entire application.
+		//       It simply asks the currently active application state to update and
+		//       then render as required.
+		//----------------------------------------------------------------------------
+		runQuestMaker()
+		{
+			QM.Menu._activeState.update();
+			QM.Menu._activeState.render();
 
-		requestAnimationFrame(Menu_Singleton.prototype.runQuestMaker);
-	};
+			requestAnimationFrame(QM.Menu.runQuestMaker);
+		}
+	}
 
 	QM.Menu = new Menu_Singleton();
 

@@ -1,7 +1,7 @@
 //=====================================================================================
 // File: Canvas2D.js
-// Desc: This file contains the Canvas2D class which pertains to all standard canvas
-//       DOM 
+// Desc: This file contains the Canvas2D class which can be instantiated for any canvas
+//       element.  The class provides utility functions for manipulating the canvas.
 //=====================================================================================
 
 "use strict"

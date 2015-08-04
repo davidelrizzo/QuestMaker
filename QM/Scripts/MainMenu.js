@@ -7,17 +7,19 @@
 
 var QM = (function(QM){
 
-
-	function MainMenu_Singleton()
+	class MainMenu_Singleton extends QM.QMState
 	{
-		QM.QMState.call(this);
-	};
-	MainMenu_Singleton.prototype = Object.create(QM.QMState.prototype);
+		constructor()
+		{
+			this._backgroundImg = undefined;
+		}
 
-	MainMenu_Singleton.prototype.update()
-	{
-		console.log("MainMenu_Singleton.update");
-	};
+		update(){
+		}
+
+		render(){
+		}
+	}
 
 	QM.MainMenu_Singleton = MainMenu_Singleton;
 

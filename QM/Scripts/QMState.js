@@ -10,36 +10,11 @@
 
 var QM = (function(QM){
 
-  //----------------------------------------------------------------------------------
-  // Class: QMState
-  // Desc: This is the constructor class for an QMState object.  It is intended that
-  //       these objects will facilitate customized user interface with respect to the
-  //       current state of the application.  For example, one QMState object might
-  //       be a main menu page, another might be a store page.
-  //----------------------------------------------------------------------------------
-  function QMState()
-  {
-    // To Fill In
-  };
+  class QMState{
+    update(){} // children should overwrite this method.
 
-  //----------------------------------------------------------------------------------
-  // Method:
-  // Desc:
-  //----------------------------------------------------------------------------------
-	QMState.prototype.update = function()
-	{
-		// To Fill In
-    console.log("QMState.update");
-	};
-
-  //----------------------------------------------------------------------------------
-  // Method:
-  // Desc:
-  //----------------------------------------------------------------------------------
-	QMState.prototype.render = function()
-	{
-		// To Fill In
-	};	
+    run(){} // children should overwrite this method.
+  }
 
 	QM.QMState = QMState;
   
