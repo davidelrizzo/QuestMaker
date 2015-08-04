@@ -5,13 +5,14 @@
 
   <style type = "text/css"></style>
   <meta charset="utf-8">
-  <title>Hero Quest Application</title>
+  <title>Quest Maker</title>
 	
   <script language='JavaScript' src="./Scripts/LABjs-2.0.3/lab.min.js"></script>
   <script language='JavaScript'>
-    $LAB.script('./Scripts/Menu.js').wait()
-        .script('./Scripts/AppState.js').wait()
-        .script('./Scripts/HQApp.js').wait( function(){HQApp.start();});
+    $LAB.script('./Scripts/QMState.js').wait()
+        .script('./Scripts/Menu.js').wait()
+        .script('./Scripts/MainMenu.js').wait()
+        .script('./Scripts/QM.js').wait( function(){QM.start();});
   </script>
 	
 </head>

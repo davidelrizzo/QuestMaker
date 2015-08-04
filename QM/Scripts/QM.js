@@ -1,5 +1,5 @@
 //=====================================================================================
-// File: HQApp.js
+// File: QM.js
 // Desc: This file contains the initial definition of the Hero Quest application
 //       namespace.  All aspects of the Hero Quest application should exists within
 //       this namespace, whether they relate to user interface of the game engine
@@ -7,16 +7,16 @@
 //=====================================================================================
 "use strict"
 
-var HQApp = (function(HQApp){
+var QM = (function(QM){
   
   //----------------------------------------------------------------------------------
   // Method: start
   // Desc: This method initializes and runs the Hero Quest application.
   //----------------------------------------------------------------------------------
-  HQApp.start = function()
+  QM.start = function()
   {
-  	console.log(HQApp);
+  	console.log(this);
   };
 
-  return HQApp;
-})(HQApp || {});
+  return QM;
+})(QM || {});

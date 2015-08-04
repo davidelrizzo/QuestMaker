@@ -7,13 +7,23 @@
 
 "use strict"
 
-var HQApp = (function(HQApp){
+var QM = (function(QM){
 
-	function Menu_Singleton(mm)
+	function Game()
 	{
-		this._MainMenu = mm;
+		QM.QMState.call(this);
 	}
+	Game.prototype = Object.create(QM.QMState.prototype);
 
-	HQApp.mainMenu = new Menu_Singleton(HQApp.main_menu);
-	return HQApp;
-})(HQApp || {});
+	function Menu_Singleton()
+	{
+		this._MainMenu = QM.MainMenu;
+		this._Game = new Game();
+	};
+
+	QM.mainMenu = new Menu_Singleton();
+
+
+
+	return QM;
+})(QM || {});
