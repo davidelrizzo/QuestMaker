@@ -17,7 +17,8 @@ var QM = (function(QM){
   {
   	console.log("start");
 	QM.Canvas2D.initialize("cDisplay");
-  	console.log(QM);
+	QM.Menu.initialize();
+	QM.Menu.runQuestMaker();
   };
 
   QM.start = start;

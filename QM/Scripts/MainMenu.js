@@ -14,7 +14,12 @@ var QM = (function(QM){
 	};
 	MainMenu_Singleton.prototype = Object.create(QM.QMState.prototype);
 
-	QM.MainMenu = new MainMenu_Singleton();
+	MainMenu_Singleton.prototype.update()
+	{
+		console.log("MainMenu_Singleton.update");
+	};
+
+	QM.MainMenu_Singleton = MainMenu_Singleton;
 
 	return QM;
 })(QM || {});

@@ -4,6 +4,8 @@
 //       QM application.
 //=====================================================================================
 
+"use strict"
+
 var QM = (function(QM){
 
 	function Game_Singleton()
@@ -12,6 +14,6 @@ var QM = (function(QM){
 	}
 	Game_Singleton.prototype = Object.create(QM.QMState.prototype);
 
-	QM.Game = new Game_Singleton();
+	QM.Game_Singleton = Game_Singleton;
 	return QM;
 })(QM || {});

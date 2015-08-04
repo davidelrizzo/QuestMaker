@@ -29,6 +29,7 @@ var QM = (function(QM){
 	QMState.prototype.update = function()
 	{
 		// To Fill In
+    console.log("QMState.update");
 	};
 
   //----------------------------------------------------------------------------------
