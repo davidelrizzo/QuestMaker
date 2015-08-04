@@ -9,21 +9,13 @@
 
 var QM = (function(QM){
 
-	function Game()
-	{
-		QM.QMState.call(this);
-	}
-	Game.prototype = Object.create(QM.QMState.prototype);
-
 	function Menu_Singleton()
 	{
 		this._MainMenu = QM.MainMenu;
-		this._Game = new Game();
+		this._Game = QM.Game;
 	};
 
 	QM.mainMenu = new Menu_Singleton();
-
-
 
 	return QM;
 })(QM || {});

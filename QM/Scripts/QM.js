@@ -13,10 +13,14 @@ var QM = (function(QM){
   // Method: start
   // Desc: This method initializes and runs the Hero Quest application.
   //----------------------------------------------------------------------------------
-  QM.start = function()
+  function start()
   {
-  	console.log(this);
+  	console.log("start");
+	QM.Canvas2D.initialize("cDisplay");
+  	console.log(QM);
   };
+
+  QM.start = start;
 
   return QM;
 })(QM || {});
