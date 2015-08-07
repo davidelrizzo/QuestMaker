@@ -27,14 +27,14 @@ var QM = (function(QM){
 		var offsetx = (sprite.width*scale)/2;
 		var offsety = (sprite.height*scale)/2;
 
-		this.context.translate(position.x + offsetx, position.y + offset);
+		this.context.translate(position.x + offsetx, position.y + offsety);
 		this.context.rotate(rotation);
 
 		// Draw the image
 		this.context.drawImage(
 			sprite,										// Image to be drawn
 			0, 0, sprite.width, sprite.height, 			// Clipping coordinates on the sprite
-			-offset.x-offsetx, -offset.y-ofset,			// Where to draw the image
+			-offset.x-offsetx, -offset.y-offsety,		// Where to draw the image
 			sprite.width * scale, sprite.height * scale	// Scale of the image
 			);
 
@@ -43,10 +43,10 @@ var QM = (function(QM){
 
 	Canvas2D.prototype.clearCanvas = function()
 	{
-		Canvas2D.context.clearRect(0, 0, Canvas2D.canvas.width, Canvas2D.canvas.height);
+		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	}
 
-	QM.Canvas2D = new Canvas2D();
+	QM.Canvas2D = new Canvas2D();  // Canvas is global to the Namespace here.
 
 	return QM;
 })(QM || {});

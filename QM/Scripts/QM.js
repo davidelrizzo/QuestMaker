@@ -8,21 +8,53 @@
 "use strict"
 
 var QM = (function(QM){
-  
+
   //----------------------------------------------------------------------------------
   // Method: start
   // Desc: This method initializes and runs the Hero Quest application.
   //----------------------------------------------------------------------------------
-  function start()
+  QM.start = function()
   {
-  	console.log("start");
-  	console.log(QM);
-	QM.Canvas2D.initialize("cDisplay");
-	QM.Menu.initialize();
-	QM.Menu.runQuestMaker();
+    Debug("Start");
+
+    try{
+      QM.Canvas2D.initialize("cDisplay");
+      QM.QMState.initialize();
+    } catch (err) { console.log(err); }
+
+  	Debug(QM);
+    
+    try{
+      QM.mainLoop();  
+    } catch(err){ console.log(err); };
+    
   };
 
-  QM.start = start;
+  QM.mainLoop = function()
+  {
+    
+    /*
+    try{
+      var img = new Image();
+      img.src = "./Images/Background.gif";
+      QM.Canvas2D.drawImage(img, {x : 0, y : 0}, 0, {x : 0, y : 0}, 1);
+      //QM.Canvas2D.context.drawImage(img, 0, 0);
+    }
+    catch(err)
+    {
+      console.log(err);
+    }
+    
+    */
+    try
+    {
+      QM.QMState._currentState.update();
+      QM.QMState._currentState.render();
+    } catch (err) { console.log(err); };
+
+
+    requestAnimationFrame(QM.mainLoop);
+  }
 
   return QM;
 })(QM || {});

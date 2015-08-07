@@ -8,12 +8,24 @@
 
 var QM = (function(QM){
 
-	function Game_Singleton()
+	// Class: GameState
+	// Parent: State
+	function GameState()
 	{
-		QM.QMState.call(this);
+		QM.State.call(this);
 	}
-	Game_Singleton.prototype = Object.create(QM.QMState.prototype);
+	GameState.prototype = Object.create(QM.State.prototype);
 
-	QM.Game_Singleton = Game_Singleton;
+	GameState.prototype.update = function()
+	{
+		// add code.
+	}
+
+	GameState.prototype.render = function()
+	{
+		// add code.
+	}
+
+	QM.GameState = GameState;
 	return QM;
 })(QM || {});

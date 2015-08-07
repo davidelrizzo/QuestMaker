@@ -10,13 +10,21 @@
 
 var QM = (function(QM){
 
-  class QMState{
-    update(){} // children should overwrite this method.
+	// Class: QMState
+	function QMState()
+	{
+		this._mainMenuState = undefined;
+		this._gameState = undefined;
+		this._currentState = undefined;
+	}
 
-    run(){} // children should overwrite this method.
-  }
+	QMState.prototype.initialize = function()
+	{
+		this._mainMenuState = new QM.MainMenuState(QM.Canvas2D);
+		this._gameState = new QM.GameState;
+		this._currentState = this._mainMenuState;
+	}
 
-	QM.QMState = QMState;
-  
+	QM.QMState = new QMState();
 	return QM;
 })(QM || {});
