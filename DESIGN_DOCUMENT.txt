@@ -21,3 +21,17 @@ namespace HQApplication
 ----> object Trigger
 ----> object Wall
 ----> object Trap
+
+
+GAME STATES
+
+001 :- Main menu
+002 :- New game
+003 :- Continue game
+004 :- Load game
+005 :- Select campaign
+006 :- Select heroes
+007 :- Store
+008 :- Level introduction 
+009 :- Game
+010 :- Level conclusion
