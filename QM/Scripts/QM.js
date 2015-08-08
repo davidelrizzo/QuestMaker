@@ -18,7 +18,7 @@ var QM = (function(QM){
     Debug("Start");
 
     try{
-      QM.Canvas2D.initialize("cDisplay");
+    QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);
       QM.QMState.initialize();
     } catch (err) { console.log(err); }
 
@@ -32,20 +32,6 @@ var QM = (function(QM){
 
   QM.mainLoop = function()
   {
-    
-    /*
-    try{
-      var img = new Image();
-      img.src = "./Images/Background.gif";
-      QM.Canvas2D.drawImage(img, {x : 0, y : 0}, 0, {x : 0, y : 0}, 1);
-      //QM.Canvas2D.context.drawImage(img, 0, 0);
-    }
-    catch(err)
-    {
-      console.log(err);
-    }
-    
-    */
     try
     {
       QM.QMState._currentState.update();

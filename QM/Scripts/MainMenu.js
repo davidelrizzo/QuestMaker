@@ -21,13 +21,13 @@ var QM = (function(QM){
 		this.Button4 = {id : 4, text : "Exit", 		x : 170, y : 310, width : 300, height : 40};
 
 		// Constructor
-	}
+	};
 	MainMenuState.prototype = Object.create(QM.State.prototype);
 
 	MainMenuState.prototype.update = function()
 	{
 		// add code.
-	}
+	};
 
 	MainMenuState.prototype.render = function()
 	{
@@ -44,12 +44,55 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillText("Menu", 320, 100, 300);
 	
 		// Draw the buttons
-		//this.drawButton(this.Button1, this.isButtonSelected(this.Button1));
-		//this.drawButton(this.Button2, this.isButtonSelected(this.Button2));
-		//this.drawButton(this.Button3, this.isButtonSelected(this.Button3));
-		//this.drawButton(this.Button4, this.isButtonSelected(this.Button4));
+		this.drawButton(this.Button1, this.isButtonSelected(this.Button1));
+		this.drawButton(this.Button2, this.isButtonSelected(this.Button2));
+		this.drawButton(this.Button3, this.isButtonSelected(this.Button3));
+		this.drawButton(this.Button4, this.isButtonSelected(this.Button4));
 
-	}
+	};
+
+	MainMenuState.prototype.isButtonSelected = function(button)
+	{	
+		if(QM.Mouse.mousex < button.x) return false;
+		if(QM.Mouse.mousex > (button.x + button.width)) return false;
+		if(QM.Mouse.mousey < button.y) return false;
+		if(QM.Mouse.mousey > (button.y + button.height)) return false;
+		
+		this.selected = button.id;
+		return true;
+	};
+
+	MainMenuState.prototype.drawButton = function(button, selected)
+	{
+		QM.Canvas2D.context.font = "30px Arial";
+		QM.Canvas2D.context.fillStyle = "white";
+		QM.Canvas2D.context.textAlign = "center";
+	
+		if(selected)
+		{
+			// Background box
+			QM.Canvas2D.context.fillStyle = "yellow";
+			QM.Canvas2D.context.globalAlpha = 0.7;
+			QM.Canvas2D.context.fillRect(button.x, button.y, button.width, button.height);
+
+			// Text
+			QM.Canvas2D.context.globalAlpha = 1.0;
+			QM.Canvas2D.context.fillStyle = "purple";
+			QM.Canvas2D.context.fillText(button.text, button.x + (button.width/2), button.y+30, button.width);
+		}
+		else
+		{
+			// Background box
+			QM.Canvas2D.context.fillStyle = "blue";
+			QM.Canvas2D.context.globalAlpha = 0.7;
+			QM.Canvas2D.context.fillRect(button.x, button.y, button.width, button.height);	
+
+			// Text
+			QM.Canvas2D.context.globalAlpha = 1.0;
+			QM.Canvas2D.context.fillStyle = "white";
+			QM.Canvas2D.context.fillText(button.text, button.x + (button.width/2), button.y+30, button.width);
+		}	
+	};
 
 	QM.MainMenuState = MainMenuState;
 	return QM;
