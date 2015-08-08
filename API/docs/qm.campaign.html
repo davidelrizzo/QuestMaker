@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>qm.campaign.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>qm.campaign.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>stop jsLint complaining about the global ‘window’ object</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*jslint browser: true*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Sets JavaScript to strict mode</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">"use strict"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Creates the QuestMaker global namespace if it doesn’t already exist</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> QM = <span class="hljs-built_in">window</span>.QM || {};
+QM = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)  </span>{
+
+
+  <span class="hljs-comment">/**********************************************************
+  * CLASS: Campaign
+  * ====
+  * The Campaign class contains the methods used to run a campaign of game levels. It contains all data that is carried between levels.
+  *
+  * **argument:** {String:JSON} DATA - initial static loaded data for this campaign
+  **********************************************************/</span>
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Campaign</span> </span>{
+
+
+
+    <span class="hljs-comment">/**********************************************************
+    * CONSTRUCTOR
+    * ----
+    * Initialises Campaign properties with DATA passed in on Campaign creation
+    **********************************************************/</span>
+    constructor(DATA) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p><strong>property:</strong> _DATA, <strong>type:</strong> {String:JSON}, <strong>default:</strong> Empty String “”
+The DATA parameter contains all blueprint data for Campaign set-up including Campaign settings, Teams, Level (ids), Creatures, Spells, Triggers, Equipment, Conditions and Furniture data
+QUESTION: Should we convert this JSON string to JS objects? Should we validate JSON to a Schema?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.DATA = _DATA;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p><strong>property:</strong> _minPlayers, <strong>type:</strong> {Number:Integer}, <strong>default:</strong> 2
+Minimum number of players possible in this Campaign</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.minPlayers = <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p><strong>property:</strong> _maxPlayers, <strong>type:</strong> {Number:Integer}, <strong>default:</strong> 2
+Maximum number of players possible in this Campaign</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.maxPlayers = <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p><strong>property:</strong> players, <strong>type:</strong> {Array:Player}, <strong>default:</strong> Empty array []
+List of current players in this Campaign (‘Player’ object), the index of this array is the ID of each player and should never change after initialisation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.players = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>TODO: create initial player settings from DATA
+this.minPlayers = DATA.Campaign.minPlayers;
+this.maxPlayers = DATA.Campaign.maxPlayers;
+for i in DATA.Campaign.Players
+   this.addPlayer(DATA.Campaign.Players[i]);</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p><strong>property:</strong> _minTeams, <strong>type:</strong> {Number:Integer}, <strong>default:</strong> 2
+Minimum number of teams possible in this Campaign</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.minTeams = <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p><strong>property:</strong> _maxTeams, <strong>type:</strong> {Number:Integer}, <strong>default:</strong> 2
+Maximum number of teams possible in this Campaign</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.maxTeams = <span class="hljs-number">2</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p><strong>property:</strong> teams, <strong>type:</strong> {Array:Team}, <strong>default:</strong> Empty array []
+List of current teams in this Campaign (‘Team’ Class)
+<em>NOTE:</em> team starting characters &amp; map view settings (eg evil wizard player flag) will be defined in the Team object itself, the index of this array is the ID of each team and should never change after initialisation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.teams = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>TODO: create initial team settings from DATA
+this.minTeams = DATA.Campaign.minTeams;
+this.maxTeams = DATA.Campaign.maxTeams;
+for i in DATA.Campaign.Teams
+   this.addTeam(DATA.Campaign.Teams[i]);</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p><strong>property:</strong> currentLevel, <strong>type:</strong> {Number:Integer}, <strong>default:</strong> 0
+Id of the {levels} array which contains the current Level</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.currentLevel = <span class="hljs-number">0</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p><strong>property:</strong> levels, <strong>type:</strong> {Array:Level}, <strong>default:</strong> Empty array
+An array containing the levels in this Campaign (‘Level’ object), Levels may contain only a name if the level has not been leaded yet</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">this</span>.levels = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>TODO: create initial level settings from DATA
+for i in DATA.Campaign.Levels
+   this.addLevel(DATA.Campaign.Levels[i]);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+    }
+
+
+    <span class="hljs-comment">/**********************************************************
+    * METHOD: addPlayer
+    * ----
+    * Adds a new player to the campaign and initialises it with passed in values
+    * **argument:** initData, **type:** {String:JSON}
+    * **returns:** id of players array it was added at
+    **********************************************************/</span>
+    addPlayer(initData) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>TODO: create {new Player}, initialise with {initData}, push onto players array and return player id
+QUESTION: Should we validate the JSON data?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>QUESTION: is it worth creating removePlayer method yet as players are only added on campaign creation and never removed?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+    <span class="hljs-comment">/**********************************************************
+    * METHOD: addTeam
+    * ----
+    * Adds a new team to the campaign and initialises it with passed in values
+    * **argument:** initData, **type:** {String:JSON}
+    * **returns:** id of teams array it was added at
+    **********************************************************/</span>
+    addTeam(initData) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>TODO: create {new Team}, initialise with {initData}, push onto teams array and return team id
+QUESTION: Should we validate the JSON data?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>QUESTION: is it worth creating removeTeam method yet as teams are only added on campaign creation and never removed?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+
+    <span class="hljs-comment">/**********************************************************
+    * METHOD: addLevel
+    * ----
+    * Adds a new level to the campaign and initialises it with passed in values
+    * **argument:** initData, **type:** {String:JSON}
+    * **returns:** id of levels array it was added at
+    **********************************************************/</span>
+    addLevel(initData) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>TODO: create {new Level}, initialise with {initData}, push onto levels array and return team id
+QUESTION: Should we validate the JSON data?
+QUESTION: it might be wiser to leave ‘loading’ to the Game engine as the API is only supposed to care about rule mechanics not file types and platform (it might be even easier to keep all level data in the Campaign data in the initial prototype to speed up development)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>QUESTION: is it worth creating removeLevel method yet as levels are only added on campaign creation and never removed?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+
+
+  }
+
+};</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
