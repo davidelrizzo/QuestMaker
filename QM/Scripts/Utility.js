@@ -27,6 +27,14 @@ function LoadImage(path)
 	}
 };
 
+/**
+ * FUNCTION: writeText
+ * DESC: This function allows the user to write a long string to the canvas without
+ * 		 it being constrained by a defined width.
+ *		 Warning, at present this function does not account for a maximum height for
+ *       the area in which the text should be written.  Further, it does not yet
+ *       handle new line characters.  The parser appears to ignore them.
+ */
 function writeText(text, initx, inity, textHeight, maxwidth, context)
 {
 	var width = context.measureText(text);
