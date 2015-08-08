@@ -9,37 +9,50 @@
 
 var QM = (function(QM){
 
-  //----------------------------------------------------------------------------------
-  // Method: start
-  // Desc: This method initializes and runs the Hero Quest application.
-  //----------------------------------------------------------------------------------
+  /**
+   * Initialize the game application states and set the currently active state to
+   * the mainMenuSate.
+   */
+  try{
+    QM.mainMenuState = new QM.MainMenuState();
+    QM.gameState = new QM.GameState();
+    QM.campaignIntroState = new QM.CampaignIntroState();
+    QM.currentState = QM.mainMenuState;
+  } catch (err) { console.log(err); };
+
+  /**
+   * Method: start
+   * Desc: This method initializes and runs the Hero Quest application.
+   */
   QM.start = function()
   {
     Debug("Start");
 
-    try{
     QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);
-      QM.QMState.initialize();
-    } catch (err) { console.log(err); }
 
   	Debug(QM);
     
-    try{
-      QM.mainLoop();  
-    } catch(err){ console.log(err); };
+    QM.mainLoop();  
     
   };
 
   QM.mainLoop = function()
   {
+    Debug("mainLoop");
     try
     {
-      QM.QMState._currentState.update();
-      QM.QMState._currentState.render();
-    } catch (err) { console.log(err); };
+      var state = QM.currentState.update();
+      if (state != "exit"){
+        QM.currentState = QM[state];
+        QM.currentState.render();
 
-
-    requestAnimationFrame(QM.mainLoop);
+        requestAnimationFrame(QM.mainLoop);
+      } else {
+        // handle application exit.
+      }
+    } catch (err) { 
+      console.log(err); 
+    };
   }
 
   return QM;

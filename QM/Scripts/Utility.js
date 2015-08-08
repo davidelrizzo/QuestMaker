@@ -26,3 +26,29 @@ function LoadImage(path)
 		return img;
 	}
 };
+
+function writeText(text, initx, inity, textHeight, maxwidth, context)
+{
+	var width = context.measureText(text);
+	var textArray = text.split(" ");
+	var line = "";
+	var posx = initx;
+	var posy = inity;
+
+	Debug(textArray);
+
+	for(var n = 0; n < textArray.length; n++)
+	{
+		Debug(line);
+		if(context.measureText(line + textArray[n]).width > maxwidth)
+		{
+			context.fillText(line, posx, posy);
+			line = "";
+			posy += 20;
+		}
+		else
+		{
+			line += " " + textArray[n];
+		}
+	}
+};

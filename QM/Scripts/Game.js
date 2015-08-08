@@ -12,13 +12,13 @@ var QM = (function(QM){
 	// Parent: State
 	function GameState()
 	{
-		QM.State.call(this);
+		QM.QMState.call(this);
 	}
-	GameState.prototype = Object.create(QM.State.prototype);
+	GameState.prototype = Object.create(QM.QMState.prototype);
 
 	GameState.prototype.update = function()
 	{
-		// add code.
+		return "gameState";
 	}
 
 	GameState.prototype.render = function()

@@ -3,7 +3,7 @@
 // Desc: AppState is a base class to be used to create instances of the state of
 //		 application.  The user should be able to navigate between the various
 //       application states.  An application state should not be confused with a game
-//       state.
+//       state.  An application state is required to have an update and render method.
 //=====================================================================================
 
 "use strict"
@@ -13,18 +13,18 @@ var QM = (function(QM){
 	// Class: QMState
 	function QMState()
 	{
-		this._mainMenuState = undefined;
-		this._gameState = undefined;
-		this._currentState = undefined;
-	}
+	};
 
-	QMState.prototype.initialize = function()
+	QMState.prototype.update = function()
 	{
-		this._mainMenuState = new QM.MainMenuState(QM.Canvas2D);
-		this._gameState = new QM.GameState;
-		this._currentState = this._mainMenuState;
-	}
+		return "";
+	};
 
-	QM.QMState = new QMState();
+	QMState.prototype.render = function()
+	{
+
+	};
+
+	QM.QMState =  QMState;
 	return QM;
 })(QM || {});

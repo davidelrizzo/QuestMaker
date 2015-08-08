@@ -9,7 +9,7 @@ var QM = (function(QM){
 
 	// Class: MainMenuState
 	// Parent: State
-	function MainMenuState(canvas)
+	function MainMenuState()
 	{
 		QM.State.call(this);
 
@@ -26,14 +26,31 @@ var QM = (function(QM){
 
 	MainMenuState.prototype.update = function()
 	{
-		// add code.
+		if(QM.Mouse.mouseDown)
+		{
+			QM.Mouse.mouseDown = false;
+
+			// Determine which button is currently selected if at all.
+			if(this.isButtonSelected(this.Button1)) return "campaignIntroState";
+			if(this.isButtonSelected(this.Button2)) return "mainMenuState";
+			if(this.isButtonSelected(this.Button3)) return "mainMenuState";
+			if(this.isButtonSelected(this.Button4)) return "exit";
+		}
+
+		return "mainMenuState";
 	};
 
 	MainMenuState.prototype.render = function()
 	{
 		// add code.
 		QM.Canvas2D.clearCanvas();
-		QM.Canvas2D.drawImage(this.img_background, {x : 0, y : 0}, 0, {x : 0, y : 0}, 1);	// Draw the background image
+		//QM.Canvas2D.drawImage(this.img_background, {x : 0, y : 0}, 0, {x : 0, y : 0}, 1);	// Draw the background image
+		QM.Canvas2D.context.drawImage(
+			this.img_background,
+			0, 0, this.img_background.width, this.img_background.height,
+			0, 0,
+			1024, 768
+			);
 	
 		QM.Canvas2D.context.font = "30px Arial";
 		QM.Canvas2D.context.fillStyle = "white";

@@ -25,13 +25,14 @@ namespace HQApplication
 
 GAME STATES
 
-001 :- Main menu
-002 :- New game
+001 :- Main menu				"mainMenuState"
+002 :- New game 				""
 003 :- Continue game
 004 :- Load game
 005 :- Select campaign
 006 :- Select heroes
 007 :- Store
 008 :- Level introduction 
-009 :- Game
+009 :- Game 					"gameState"
 010 :- Level conclusion
+011 :- Editor 					"editorState"
