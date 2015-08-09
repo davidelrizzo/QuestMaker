@@ -45,7 +45,6 @@ var QM = (function(QM){
 		QM.Canvas2D.canvas.width = document.body.clientWidth;
 		QM.Canvas2D.canvas.height = document.body.clientHeight;
 
-		// add code.
 		QM.Canvas2D.clearCanvas();
 
 		// Paint a black background.
@@ -66,7 +65,6 @@ var QM = (function(QM){
 			// Scale the image.
 			scale = QM.Canvas2D.canvas.height/(this.img_background.height*scale)
 		}
-		console.log(scale); 
 		
 		QM.Canvas2D.context.drawImage(
 			this.img_background,
