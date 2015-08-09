@@ -67,7 +67,7 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillText("Hero Quest", 320, 50, 500);
 
 		// Introductory text style
-		QM.Canvas2D.context.font = "14px Arial";
+		QM.Canvas2D.context.font = "16px Cinzel";
 		QM.Canvas2D.context.fillStyle = "blue";
 		QM.Canvas2D.context.textAlign = "left";
 
@@ -76,8 +76,8 @@ var QM = (function(QM){
 		this.textFrameB.setPosition(QM.Canvas2D.canvas.width/2 + 20, QM.Canvas2D.canvas.height/2 - 210);
 
 		// write the introductory text
-		this.textFrameA.writeText(QM.HeroQuest.introText);
-		this.textFrameB.writeText(QM.HeroQuest.introText);
+		var text = this.textFrameA.writeText(QM.HeroQuest.introText);
+		this.textFrameB.writeText(text);
 
 
 		//writeText(QM.HeroQuest.introText, 20, 100, 30, 980, QM.Canvas2D.context);

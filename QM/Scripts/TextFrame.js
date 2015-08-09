@@ -29,34 +29,48 @@ var QM = (function(QM){
 	 * Desc: This method draws the TextFrame to the screen.  It assumes that the
 	 *       text style has been set elsewhere.  The text will be written to the limit
 	 *       of the text frame size.
-	 *       
-	 *       To do: return leftover text?
+	 * Return: This method returns the remaining text not written to the text frame.
 	 */
 	TextFrame.prototype.writeText = function(text)
 	{
 		// For display planning purposes.
-		this.context.fillStyle = "grey";
-		this.context.fillRect(this.posx, this.posy, this.width, this.height);
+		//this.context.fillStyle = "grey";
+		//this.context.fillRect(this.posx, this.posy, this.width, this.height);
 
 		var textArray = text.split(" ");
 		var line = "";
 		var w = this.posx + 10;  // In future knowledge of text size required.
 		var h = this.posy + 25;  // In future knowledge of text size required.
 
-		this.context.fillStyle = "blue";
+		this.context.fillStyle = "#000000";
 
-		for(var n = 0; n < textArray.length && h < (this.posy + this.height); n++)
+		// shift.
+		//for(var n = 0; n < textArray.length && h < (this.posy + this.height); n++)
+		//var n = 0;
+		while(textArray.length > 0 && h < (this.posy + this.height))
 		{
-			if(this.context.measureText(line + textArray[n]).width > (this.width-20))
+			if(this.context.measureText(line + textArray[0]).width > (this.width-20))
 			{
 				this.context.fillText(line, w, h);
 				line = "";
-				h += 16;
+				h += 18;
 			} else {
-				line += " " + textArray[n];
+				line += " " + textArray[0];
+				textArray.shift();  // remove the first element in the array.
 			}
 		}
+
+		line = "";
+		while(textArray.length > 0)
+		{
+			line += textArray[0] + " ";
+			textArray.shift();
+		}
+		//console.log(line);
+
+		return line;
 	};
+
 
 	QM.TextFrame = TextFrame;
 	return QM;
