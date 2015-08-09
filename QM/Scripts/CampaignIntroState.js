@@ -24,6 +24,7 @@ var QM = (function(QM){
 		this.stoneTexture = LoadImage("./Images/seamless_tiled_stone_texture_by_lendrick.jpg");
 		this.textFrameA = undefined;
 		this.textFrameB = undefined;
+		this.continueButton = undefined;
 	};
 	CampaignIntroState.prototype = Object.create(QM.QMState.prototype);
 
@@ -31,15 +32,25 @@ var QM = (function(QM){
 	{
 		this.textFrameA = new QM.TextFrame(canvas, context, 90, 300, 260, 400);
 		this.textFrameB = new QM.TextFrame(canvas, context, 395, 300, 260, 400);
+
+		try{
+			this.continueButton = new QM.TextButton(
+				"this is an alternate line of text",
+				 10, 10, 10,
+				 QM.Canvas2D.context, 
+				 QM.Mouse, 
+				 "#FFFFFF", "#800000", "#FFFFFF"
+			);
+		} catch (err) { console.log(this.continueButton)};
 	}
 
 	CampaignIntroState.prototype.update = function()
 	{
 		if(QM.Mouse.mouseDown)
 		{
-			QM.MouseDown = false;
+			QM.Mouse.mouseDown = false;
 
-
+			if(this.continueButton.isSelected()) console.log("selected");
 		}
 
 		return "campaignIntroState";
@@ -117,6 +128,9 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillStyle = "#FFFFFF";
 		QM.Canvas2D.context.font = "30px Rye";
 		QM.Canvas2D.context.fillText("Continue", 528, 785);
+
+		QM.Canvas2D.context.fillStyle = "#800000";
+		this.continueButton.drawButton();
 	};
 
 	QM.CampaignIntroState = CampaignIntroState;
