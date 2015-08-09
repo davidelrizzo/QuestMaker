@@ -43,11 +43,10 @@ function writeText(text, initx, inity, textHeight, maxwidth, context)
 	var posx = initx;
 	var posy = inity;
 
-	Debug(textArray);
+	//Debug(textArray);
 
 	for(var n = 0; n < textArray.length; n++)
 	{
-		Debug(line);
 		if(context.measureText(line + textArray[n]).width > maxwidth)
 		{
 			context.fillText(line, posx, posy);

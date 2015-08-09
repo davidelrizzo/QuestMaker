@@ -1,0 +1,64 @@
+"use strict"
+
+var QM = (function(QM){
+
+	/**
+	 * Class: TextFrame
+	 * Desc: This class is a construct within which multiline text can be written to.
+	 *       Note that its only aim is to write text and not features such as background
+	 *       or border detailing.
+	 */
+	function TextFrame(canvas, context, posx, posy, width, height)
+	{
+		this.canvas = canvas;
+		this.context = context;
+		this.posx = posx;
+		this.posy = posy;
+		this.width = width;
+		this.height = height;
+	};
+
+	TextFrame.prototype.setPosition = function(posx, posy)
+	{
+		this.posx = posx;
+		this.posy = posy;
+	}
+
+	/**
+	 * Method: writeText
+	 * Desc: This method draws the TextFrame to the screen.  It assumes that the
+	 *       text style has been set elsewhere.  The text will be written to the limit
+	 *       of the text frame size.
+	 *       
+	 *       To do: return leftover text?
+	 */
+	TextFrame.prototype.writeText = function(text)
+	{
+		// For display planning purposes.
+		this.context.fillStyle = "grey";
+		this.context.fillRect(this.posx, this.posy, this.width, this.height);
+
+		var textArray = text.split(" ");
+		var line = "";
+		var w = this.posx + 10;  // In future knowledge of text size required.
+		var h = this.posy + 25;  // In future knowledge of text size required.
+
+		this.context.fillStyle = "blue";
+
+		for(var n = 0; n < textArray.length && h < (this.posy + this.height); n++)
+		{
+			if(this.context.measureText(line + textArray[n]).width > (this.width-20))
+			{
+				this.context.fillText(line, w, h);
+				line = "";
+				h += 16;
+			} else {
+				line += " " + textArray[n];
+			}
+		}
+	};
+
+	QM.TextFrame = TextFrame;
+	return QM;
+	
+})(QM || {});

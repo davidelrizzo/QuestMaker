@@ -7,13 +7,21 @@ var QM = (function(QM){
 		QM.QMState.call(this);
 
 		this.backgroundImage = LoadImage("./Images/Book.gif");
+		this.textFrameA = undefined;
+		this.textFrameB = undefined;
 	};
 	CampaignIntroState.prototype = Object.create(QM.QMState.prototype);
 
+	CampaignIntroState.prototype.initialize = function(canvas, context)
+	{
+		this.textFrameA = new QM.TextFrame(canvas, context, 90, 300, 260, 400);
+		this.textFrameB = new QM.TextFrame(canvas, context, 395, 300, 260, 400);
+	}
+
 	CampaignIntroState.prototype.update = function()
 	{
-		//return "campaignIntroState";
-		return "exit";
+		return "campaignIntroState";
+		//return "exit";
 	};
 
 	CampaignIntroState.prototype.render = function()
@@ -51,18 +59,28 @@ var QM = (function(QM){
 			this.backgroundImage.height * scale													  // Scale the image here
 			);
 		
-		//QM.Canvas2D.drawImage(this.backgroundImage, {x : 0, y : 0}, 0, {x : 0, y : 0}, 1);	// Draw the background image
-
 		QM.Canvas2D.context.font = "30px Arial";
 		QM.Canvas2D.context.fillStyle = "white";
 		QM.Canvas2D.context.textAlign = "center";
 
 		// Title
 		QM.Canvas2D.context.fillText("Hero Quest", 320, 50, 500);
-		QM.Canvas2D.context.font = "20px Arial";
+
+		// Introductory text style
+		QM.Canvas2D.context.font = "14px Arial";
 		QM.Canvas2D.context.fillStyle = "blue";
 		QM.Canvas2D.context.textAlign = "left";
-		writeText(QM.HeroQuest.introText, 20, 100, 30, 980, QM.Canvas2D.context);
+
+		// set the position of the text frames
+		this.textFrameA.setPosition(QM.Canvas2D.canvas.width/2 - 285, QM.Canvas2D.canvas.height/2 - 210);
+		this.textFrameB.setPosition(QM.Canvas2D.canvas.width/2 + 20, QM.Canvas2D.canvas.height/2 - 210);
+
+		// write the introductory text
+		this.textFrameA.writeText(QM.HeroQuest.introText);
+		this.textFrameB.writeText(QM.HeroQuest.introText);
+
+
+		//writeText(QM.HeroQuest.introText, 20, 100, 30, 980, QM.Canvas2D.context);
 		//QM.Canvas2D.context.fillText(QM.HeroQuest.introText, 10, 100, 1000);
 		
 	};

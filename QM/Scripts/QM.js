@@ -33,9 +33,9 @@ var QM = (function(QM){
     canvas.setAttribute("width", document.body.clientWidth);
     canvas.setAttribute("height", document.body.clientHeight);
     document.body.appendChild(canvas);
-    console.log(canvas.id);
 
     QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);
+    QM.campaignIntroState.initialize(QM.Canvas2D.canvas, QM.Canvas2D.context);
 
   	Debug(QM);
     console.log(document.body.clientWidth);
