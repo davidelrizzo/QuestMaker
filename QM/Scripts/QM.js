@@ -28,9 +28,18 @@ var QM = (function(QM){
   {
     Debug("Start");
 
+    var canvas = document.createElement("canvas");
+    canvas.setAttribute("id", "cDisplay");
+    canvas.setAttribute("width", document.body.clientWidth);
+    canvas.setAttribute("height", document.body.clientHeight);
+    document.body.appendChild(canvas);
+    console.log(canvas.id);
+
     QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);
 
   	Debug(QM);
+    console.log(document.body.clientWidth);
+    console.log(document.body.clientHeight);
     
     QM.mainLoop();  
     

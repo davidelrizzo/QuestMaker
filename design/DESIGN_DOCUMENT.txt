@@ -32,7 +32,7 @@ GAME STATES
 005 :- Select campaign
 006 :- Select heroes
 007 :- Store
-008 :- Campaign introduction	"campaignIntroduction"
+008 :- Campaign introduction			"campaignIntroduction"
 009 :- Level introduction 
 010 :- Game 					"gameState"
 011 :- Level conclusion

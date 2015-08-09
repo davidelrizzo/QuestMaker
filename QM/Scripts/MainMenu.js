@@ -42,24 +42,66 @@ var QM = (function(QM){
 
 	MainMenuState.prototype.render = function()
 	{
+		QM.Canvas2D.canvas.width = document.body.clientWidth;
+		QM.Canvas2D.canvas.height = document.body.clientHeight;
+
 		// add code.
 		QM.Canvas2D.clearCanvas();
-		//QM.Canvas2D.drawImage(this.img_background, {x : 0, y : 0}, 0, {x : 0, y : 0}, 1);	// Draw the background image
+
+		// Paint a black background.
+		QM.Canvas2D.context.fillStyle = "000000";
+		QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
+
+		// Paint the questmaker (heroquest) background image to the center of the canvas if possible
+		var scale = 1;
+
+		if(this.img_background.width > QM.Canvas2D.canvas.width)
+		{
+			// The image is wider than the available space
+			// Scale the image.
+			scale = QM.Canvas2D.canvas.width/this.img_background.width;
+		} else if((this.img_background.height * scale) > QM.Canvas2D.canvas.height)
+		{
+			// The image height is greater than the available screen height
+			// Scale the image.
+			scale = QM.Canvas2D.canvas.height/(this.img_background.height*scale)
+		}
+		console.log(scale); 
+		
 		QM.Canvas2D.context.drawImage(
 			this.img_background,
-			0, 0, this.img_background.width, this.img_background.height,
-			0, 0,
-			1024, 768
+			0 , 0, this.img_background.width, this.img_background.height,  // Clipping coordinate on teh image
+			0 + ((QM.Canvas2D.canvas.width - (this.img_background.width*scale))/2),
+			0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2),														  // Where to draw the image
+			this.img_background.width * scale, 
+			this.img_background.height * scale													  // Scale the image here
 			);
-	
+
 		QM.Canvas2D.context.font = "30px Arial";
 		QM.Canvas2D.context.fillStyle = "white";
 		QM.Canvas2D.context.textAlign = "center";
 
 		// Title
-		QM.Canvas2D.context.fillText("Hero Quest", 320, 50, 500);
-		QM.Canvas2D.context.fillText("Menu", 320, 100, 300);
+		QM.Canvas2D.context.fillText(
+			"Hero Quest", 
+			QM.Canvas2D.canvas.width/2, 
+			0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 50, 
+			500
+			);
+		QM.Canvas2D.context.fillText("Menu", QM.Canvas2D.canvas.width/2, 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 100, 300);
 	
+		// Update the button width coordinates
+		this.Button1.x = (QM.Canvas2D.canvas.width/2) - (this.Button1.width/2);
+		this.Button2.x = (QM.Canvas2D.canvas.width/2) - (this.Button2.width/2);
+		this.Button3.x = (QM.Canvas2D.canvas.width/2) - (this.Button3.width/2);
+		this.Button4.x = (QM.Canvas2D.canvas.width/2) - (this.Button4.width/2);
+
+		// Update the button height coordinates
+		this.Button1.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 160;
+		this.Button2.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 210;
+		this.Button3.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 260;
+		this.Button4.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 310;
+
 		// Draw the buttons
 		this.drawButton(this.Button1, this.isButtonSelected(this.Button1));
 		this.drawButton(this.Button2, this.isButtonSelected(this.Button2));
