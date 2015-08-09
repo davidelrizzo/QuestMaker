@@ -45,8 +45,6 @@ var QM = (function(QM){
 		this.context.fillStyle = "#000000";
 
 		// shift.
-		//for(var n = 0; n < textArray.length && h < (this.posy + this.height); n++)
-		//var n = 0;
 		while(textArray.length > 0 && h < (this.posy + this.height))
 		{
 			if(this.context.measureText(line + textArray[0]).width > (this.width-20))
@@ -66,7 +64,6 @@ var QM = (function(QM){
 			line += textArray[0] + " ";
 			textArray.shift();
 		}
-		//console.log(line);
 
 		return line;
 	};

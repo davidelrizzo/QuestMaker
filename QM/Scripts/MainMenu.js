@@ -14,6 +14,7 @@ var QM = (function(QM){
 		QM.State.call(this);
 
 		this.img_background = LoadImage("./Images/Background.gif");
+		this.stoneTexture = LoadImage("./Images/seamless_tiled_stone_texture_by_lendrick.jpg");
 
 		this.Button1 = {id : 1, text : "New Game",	x : 170, y : 160, width : 300, height : 40};
 		this.Button2 = {id : 2, text : "Load Game", x : 170, y : 210, width : 300, height : 40};
@@ -47,9 +48,12 @@ var QM = (function(QM){
 
 		QM.Canvas2D.clearCanvas();
 
-		// Paint a black background.
-		QM.Canvas2D.context.fillStyle = "000000";
+		QM.Canvas2D.context.fillStyle = QM.Canvas2D.context.createPattern(this.stoneTexture, "repeat");
 		QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
+
+		// Paint a black background.
+		//QM.Canvas2D.context.fillStyle = "000000";
+		//QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
 
 		// Paint the questmaker (heroquest) background image to the center of the canvas if possible
 		var scale = 1;
@@ -75,7 +79,7 @@ var QM = (function(QM){
 			this.img_background.height * scale													  // Scale the image here
 			);
 
-		QM.Canvas2D.context.font = "30px Arial";
+		QM.Canvas2D.context.font = "50px Rye";
 		QM.Canvas2D.context.fillStyle = "white";
 		QM.Canvas2D.context.textAlign = "center";
 

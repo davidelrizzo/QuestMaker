@@ -43,12 +43,36 @@ var QM = (function(QM){
 			);
 
 		this.context.restore();
-	}
+	};
 
 	Canvas2D.prototype.clearCanvas = function()
 	{
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-	}
+	};
+
+	/*
+	 * Method: roundedRectangle
+	 * Description: This method draws a rectangle with rounded corners.
+	 *		This method assumes that the stroke and fill styles have already defined.
+	 * To Do:
+	 *		-> Option to turn fill and stroke on and off when calling the method.
+	 */
+	Canvas2D.prototype.roundedRectangle = function(x, y, width, height, radius)
+	{
+		this.context.beginPath();
+		this.context.moveTo(x+radius, y);
+		this.context.lineTo((x+width)-radius, y); // top line
+		this.context.arcTo((x+width), y, x+width, y+radius, radius); // top right
+		this.context.lineTo(x+width, (y+height)-radius); // right line
+		this.context.arcTo(x+width, (y+height), (x+width)-radius, y+height, radius); // bottom right
+		this.context.lineTo(x+radius, y+height); // bottom line
+		this.context.arcTo(x, y+height, x, (y+height)-radius,radius); // bottom left
+		this.context.lineTo(x, y+radius); // left line
+		this.context.arcTo(x, y, x+radius, y, radius); // top left corner
+
+		this.context.fill();
+		this.context.stroke();
+	};
 
 	QM.Canvas2D = new Canvas2D();  // Canvas is global to the Namespace here.
 
