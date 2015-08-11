@@ -1,0 +1,34 @@
+{
+  "name": "Core Campaign",
+  "graphics": "{JSON}",
+  "sound": "{JSON}",
+  "teams": [
+    {
+      "minPlayers": 1,
+      "maxPlayers": 4,
+      "startingCreatures": ["barbarian","elf","wizard","dwarf"],
+      "teamVisibility": true
+    },
+    {
+      "minPlayers": 1,
+      "maxPlayers": 1,
+      "startingCreatures": [],
+      "teamVisibility": false
+    }
+  ],
+  "levels": [
+    {
+      "name": "The Trial",
+      "description": "You have learnt well my friend. Now has come the time of your first trial. You are to travel east and enter the catacombs of Verag, a foul gargoyal. The catacombs guard the tomb of Fellmarg. The trial is not easy and some of you may not return. Those who do survive will continue their training. This is your first step on the road to becoming a hero... tread carefully my friends.",
+      "map": [[]]
+    }
+  ],
+  "creatures": [],
+  "furniture": [],
+  "triggers": [],
+  "walls": [],
+  "equipment": [],
+  "conditions": [],
+  "spells": []
+
+}
