@@ -27,6 +27,21 @@ function LoadImage(path)
 	}
 };
 
+function getAJAX(path){
+    var request = new XMLHttpRequest();
+    // "http://localhost/FileTest/text.txt"
+	request.open("GET", path, false);
+	request.send(null);
+		
+	if(request.status == 200){
+	  alert(request.responseText);
+	}
+	else{
+	  alert("Error- " + request.status + ": " + request.statusText);
+	}
+};
+
+
 /**
  * FUNCTION: writeText
  * DESC: This function allows the user to write a long string to the canvas without

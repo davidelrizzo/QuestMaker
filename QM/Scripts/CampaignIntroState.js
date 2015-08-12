@@ -33,15 +33,14 @@ var QM = (function(QM){
 		this.textFrameA = new QM.TextFrame(canvas, context, 90, 300, 260, 400);
 		this.textFrameB = new QM.TextFrame(canvas, context, 395, 300, 260, 400);
 
-		try{
-			this.continueButton = new QM.TextButton(
-				"this is an alternate line of text",
-				 10, 10, 10,
-				 QM.Canvas2D.context, 
-				 QM.Mouse, 
-				 "#FFFFFF", "#800000", "#FFFFFF"
-			);
-		} catch (err) { console.log(this.continueButton)};
+		this.continueButton = new QM.TextButton(
+			"Continue",
+			 620, 750, 10,
+			 QM.Canvas2D.context, 
+			 QM.Mouse,
+			 "30px Rye", 
+			 "#FFFFFF", "#800000", "#FFFFFF"
+		);
 	}
 
 	CampaignIntroState.prototype.update = function()
@@ -50,7 +49,9 @@ var QM = (function(QM){
 		{
 			QM.Mouse.mouseDown = false;
 
-			if(this.continueButton.isSelected()) console.log("selected");
+			if(this.continueButton.isSelected()){
+				return "levelIntroState";
+			}
 		}
 
 		return "campaignIntroState";
@@ -117,17 +118,6 @@ var QM = (function(QM){
 		var text = this.textFrameA.writeText(QM.HeroQuest.introText);
 		this.textFrameB.writeText(text);
 
-		// Continue button
-		QM.Canvas2D.context.strokeStyle = "#FFFFFF"
-		QM.Canvas2D.context.lineWidth = 2;
-		QM.Canvas2D.context.fillStyle = "#800000"; // Maroon
-		QM.Canvas2D.roundedRectangle(515, 750, 170, 50, 15);
-
-		QM.Canvas2D.context.fillStyle = "#FFFFFF";
-		QM.Canvas2D.context.font = "30px Rye";
-		QM.Canvas2D.context.fillText("Continue", 528, 785);
-
-		QM.Canvas2D.context.fillStyle = "#800000";
 		this.continueButton.drawButton();
 	};
 

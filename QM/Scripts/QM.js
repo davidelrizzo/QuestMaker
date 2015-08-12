@@ -17,6 +17,7 @@ var QM = (function(QM){
     QM.mainMenuState = new QM.MainMenuState();
     QM.gameState = new QM.GameState();
     QM.campaignIntroState = new QM.CampaignIntroState();
+    QM.levelIntroState = new QM.LevelIntroState();
     QM.currentState = QM.mainMenuState;
   } catch (err) { console.log(err); };
 
@@ -39,10 +40,11 @@ var QM = (function(QM){
 
     QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);
     QM.campaignIntroState.initialize(QM.Canvas2D.canvas, QM.Canvas2D.context);
+    try{
+      QM.levelIntroState.initialize(QM.Canvas2D.canvas, QM.Canvas2D.context, QM.Mouse);
+    } catch (e) { console.log(e);};
 
   	Debug(QM);
-    console.log(document.body.clientWidth);
-    console.log(document.body.clientHeight);
     
     QM.mainLoop();  
     

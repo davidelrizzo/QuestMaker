@@ -6,7 +6,6 @@
   <!-- Include Google fonts -->
   <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative:400,700,900' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'>
-  <!--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">-->
 
   <link rel = "stylesheet" type = "text/css" href = "./Styles/QMStyle.css"/>
   <meta charset="utf-8">
@@ -27,6 +26,7 @@
         .script('./Scripts/MainMenu.js').wait()
         .script('./Scripts/Game.js').wait()
         .script('./Scripts/CampaignIntroState.js').wait()
+        .script('./Scripts/LevelIntroState.js').wait()
         .script('./Scripts/Menu.js').wait()              
         .script('./Scripts/QM.js').wait(function(){QM.start();});
   </script>

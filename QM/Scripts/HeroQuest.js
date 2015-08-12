@@ -1,6 +1,12 @@
 "use strict"
 
 var QM = (function(QM){
+
+	function HeroQuest(){
+		QM.Campaign.call(this);
+	};
+
+	/*
 	class HeroQuest extends QM.Campaign{
 		constructor()
 		{
@@ -13,5 +19,7 @@ var QM = (function(QM){
 	};
 
 	QM.HeroQuest = new HeroQuest();
+	*/
+
 	return QM;
 })(QM || {});
