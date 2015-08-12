@@ -5,20 +5,17 @@
   "teams": [
     {
       "maxPlayers": 4,
-      "isAI": false,
       "startCreatures": ["barbarian","elf","wizard","dwarf"],
-      "teamVisibility": true
     },
     {
       "maxPlayers": 1,
-      "isAI": true,
       "startCreatures": [],
-      "teamVisibility": false
     }
   ],
   "levels": [
     {
       "name": "The Trial",
+      "graphics": "{JSON}",
       "description": "You have learnt well my friend. Now has come the time of your first trial. You are to travel east and enter the catacombs of Verag, a foul gargoyal. The catacombs guard the tomb of Fellmarg. The trial is not easy and some of you may not return. Those who do survive will continue their training. This is your first step on the road to becoming a hero... tread carefully my friends.",
       "map": [[]],
       "victoryCondition": "{JSON}",
