@@ -58,30 +58,28 @@ var QM = (function(QM){
 
 	CampaignIntroState.prototype.render = function()
 	{
+		// Ensure that the canvas dimensions = the document dimensions.
 		QM.Canvas2D.canvas.width = document.body.clientWidth;
 		QM.Canvas2D.canvas.height = document.body.clientHeight;
 
-		QM.Canvas2D.clearCanvas();
+		QM.Canvas2D.clearCanvas(); // Clear the canvas for drawing.
 
-		// Paint a black background.
-		//QM.Canvas2D.context.fillStyle = "000000";
-		//QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
-		
+		// Paint a stone pattern background.
 		QM.Canvas2D.context.fillStyle = QM.Canvas2D.context.createPattern(this.stoneTexture, "repeat");
 		QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
 
 		// Paint the campaignIntro backgroundImage (a book) to the center of the canvas.
-		var scale = 1;
+		var scale = 1;  // set a default scale of 1 (100%)
 
 		if(this.backgroundImage.width > QM.Canvas2D.canvas.width)
 		{
 			// The image is wider than the available space
-			// Scale the image.
+			// adjust the scale as required.
 			scale = QM.Canvas2D.canvas.width/this.backgroundImage.width;
 		} else if((this.backgroundImage.height * scale) > QM.Canvas2D.canvas.height)
 		{
 			// The image height is greater than the available screen height
-			// Scale the image.
+			// adjust the scale as required.
 			scale = QM.Canvas2D.canvas.height/(this.backgroundImage.height*scale)
 		}
 		
@@ -100,7 +98,7 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillStyle = "#FFFFFF"; // white
 		QM.Canvas2D.context.textAlign = "center";
 		QM.Canvas2D.context.fillText(
-			"Hero Quest", 
+			QM.HeroQuest.campaignName, 
 			QM.Canvas2D.canvas.width/2,
 			0+((QM.Canvas2D.canvas.height - (this.backgroundImage.height*scale))/2) - 20,
 			500

@@ -43,8 +43,8 @@ var QM = (function(QM){
 
 	MainMenuState.prototype.render = function()
 	{
-		QM.Canvas2D.canvas.width = document.body.clientWidth;
-		QM.Canvas2D.canvas.height = document.body.clientHeight;
+		QM.Canvas2D.canvas.width = window.innerWidth; //document.body.clientWidth;
+		QM.Canvas2D.canvas.height = window.innerHeight; //document.body.clientHeight;
 
 		QM.Canvas2D.clearCanvas();
 

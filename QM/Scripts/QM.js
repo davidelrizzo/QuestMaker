@@ -28,6 +28,9 @@ var QM = (function(QM){
   {
     Debug("Start");
 
+    /**
+     * Create a new canvas for the application and add it to the DOM.
+     */
     var canvas = document.createElement("canvas");
     canvas.setAttribute("id", "cDisplay");
     canvas.setAttribute("width", document.body.clientWidth);
