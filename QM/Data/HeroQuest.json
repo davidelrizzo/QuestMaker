@@ -1,4 +1,88 @@
 {
-  "name": "Core Campaign",
-  "introText": "The fire burns warmly, but casts little light into Mentor's study.\n The flickering shadows only hint at the vast number of books and scrolls that fill the many shelves.  Slowly Mentor walks over to the fire. Well, my friends, your training is complete. You are not yet true Heroes, you have yet to prove yourself. But first, let me tell you of Zargon... Many centuries ago, Zargon was my apprentice.  He worked hard and learned quickly. But impatience devoured him. He wanted to learn more powerful magic. I told him of the dangers, and that he should be patient, for in time he would become a great Sorcerer. But Zargon could not wait; each night he broke into my study and read my spell books. The secrets that were held within them were great indeed. Once he learned these secrets, Zargon fled. When I caught up with him, I found him greatly changed. He had pledged his allegiance to the Great Powers of Chaos. Fool! He saw magic only as a short-cut to power and paid no heed to the terrible price he would have to pay. I tried to reason with him, but to no avail. He laughed in my face and then unleashed a terrible spell which I was hard-pressed to counter. For many days we battled, but Zargon had allies stronger even than I, and I could not defeat him. In the end, as we both weakened, he fled and sought refuge in the Northern Chaos Wastes. There he licked his wounds and honed his skills, conjuring ancient powers with which to overthrow the Empire.\n"
+	"name" : "Hero Quest",
+	"introText" : "The fire burns warmly, but casts little light into Mentor's study.\n The flickering shadows only hint at the vast number of books and scrolls that fill the many shelves.  Slowly Mentor walks over to the fire. Well, my friends, your training is complete. You are not yet true Heroes, you have yet to prove yourself. But first, let me tell you of Zargon... Many centuries ago, Zargon was my apprentice.  He worked hard and learned quickly. But impatience devoured him. He wanted to learn more powerful magic. I told him of the dangers, and that he should be patient, for in time he would become a great Sorcerer. But Zargon could not wait; each night he broke into my study and read my spell books. The secrets that were held within them were great indeed. Once he learned these secrets, Zargon fled. When I caught up with him, I found him greatly changed. He had pledged his allegiance to the Great Powers of Chaos. Fool! He saw magic only as a short-cut to power and paid no heed to the terrible price he would have to pay. I tried to reason with him, but to no avail. He laughed in my face and then unleashed a terrible spell which I was hard-pressed to counter. For many days we battled, but Zargon had allies stronger even than I, and I could not defeat him. In the end, as we both weakened, he fled and sought refuge in the Northern Chaos Wastes. There he licked his wounds and honed his skills, conjuring ancient powers with which to overthrow the Empire.\n",
+	"levels" : [
+		{
+			"name" : "The Trial",
+			"introText" : "You have learned well, my friends. Now has come the time of your first trial. You must first enter the catacombs which contain Fellmarg's Tomb. You must seek out and destroy Verag, a foul Gargoyl who hides in the catacombs. This Quest is not easy and you must work together in order to survive. This is your first step on the road to becoming true Heroes. Tread carefully my friends.",
+			"mapData" : {
+				"spriteIndex" : [
+				    "./Images/Floor Tiles/hidden.bmp",
+					"./Images/Floor Tiles/stone_tile_001.bmp",
+					"./Images/Floor Tiles/stone_tile_002.bmp",
+					"./Images/Floor Tiles/stone_tile_003.bmp",
+					"./Images/Floor Tiles/stone_tile_004.bmp",
+					"./Images/Floor Tiles/stone_tile_005.bmp",
+					"./Images/Floor Tiles/stone_tile_006.bmp",
+					"./Images/Floor Tiles/stone_tile_007.bmp",
+					"./Images/Floor Tiles/stone_tile_008.bmp",
+					"./Images/Floor Tiles/stone_tile_009.bmp",
+					"./Images/Floor Tiles/stone_tile_010.bmp",
+					"./Images/Floor Tiles/stone_tile_011.bmp",
+					"./Images/Floor Tiles/stone_tile_012.bmp",
+					"./Images/Floor Tiles/stone_tile_013.bmp",
+					"./Images/Floor Tiles/stone_tile_014.bmp",
+					"./Images/Floor Tiles/stone_tile_015.bmp",
+					"./Images/Floor Tiles/stone_tile_016.bmp"
+				],
+				"map" : [
+					[
+						{"id" : 1, 	"rotation" : 0, "wall" : ["left", "top"]},
+					 	{"id" : 2, 	"rotation" : 0, "wall" : ["top"]},
+					 	{"id" : 3, 	"rotation" : 0, "wall" : ["top"]},
+					 	{"id" : 4, 	"rotation" : 0, "wall" : ["top", "right"]}
+					],
+					[
+						{"id" : 5, 	"rotation" : 0, "wall" : ["left"]},
+					 	{"id" : 6, 	"rotation" : 0, "wall" : []},
+					 	{"id" : 7, 	"rotation" : 0, "wall" : []},
+					 	{"id" : 8, 	"rotation" : 0, "wall" : ["right"]}
+					],
+					[
+						{"id" : 9,	"rotation" : 0, "wall" : ["left"]},
+					 	{"id" : 10, "rotation" : 0, "wall" : []},
+					 	{"id" : 11, "rotation" : 0, "wall" : []},
+					 	{"id" : 12, "rotation" : 0, "wall" : ["right"]}
+					],
+					[
+						{"id" : 13, "rotation" : 0, "wall" : ["left", "bottom"]},
+						{"id" : 14, "rotation" : 0, "wall" : ["bottom"]},
+					 	{"id" : 15, "rotation" : 0, "wall" : ["bottom"]},
+					 	{"id" : 16, "rotation" : 0, "wall" : ["bottom", "right"]}
+					]
+				]
+			}
+		},
+		{
+			"name" : "The rescue of Sir Ragnar",
+			"introText" : "Sir Ragnar, one of the Emperor's most powerful knights, has been captured. There is reason to believe that he is being held prisoner by Ulag, the Orc Warlord. You are to find Sir Ragnar and bring him back to the stairway. Prince Magnus will pay 240 gold coins to be divided among the Heroes, if they rescue Sir Ragnar. No reward will be paid if Sir Ragnar is killed during the escape.",
+			"mapData" : {
+				"sprites" : [
+				    "./Images/Floor Tiles/hidden.bmp",
+					"./Images/Floor Tiles/stone_tile_001.bmp",
+					"./Images/Floor Tiles/stone_tile_002.bmp",
+					"./Images/Floor Tiles/stone_tile_003.bmp",
+					"./Images/Floor Tiles/stone_tile_004.bmp",
+					"./Images/Floor Tiles/stone_tile_005.bmp",
+					"./Images/Floor Tiles/stone_tile_006.bmp",
+					"./Images/Floor Tiles/stone_tile_007.bmp",
+					"./Images/Floor Tiles/stone_tile_008.bmp",
+					"./Images/Floor Tiles/stone_tile_009.bmp",
+					"./Images/Floor Tiles/stone_tile_010.bmp",
+					"./Images/Floor Tiles/stone_tile_011.bmp",
+					"./Images/Floor Tiles/stone_tile_012.bmp",
+					"./Images/Floor Tiles/stone_tile_013.bmp",
+					"./Images/Floor Tiles/stone_tile_014.bmp",
+					"./Images/Floor Tiles/stone_tile_015.bmp",
+					"./Images/Floor Tiles/stone_tile_016.bmp"
+				],
+				"map" : [
+					[{},{},{},{}],
+					[{},{},{},{}],
+					[{},{},{},{}],
+					[{},{},{},{}]
+				]
+			}
+		}
+	]
 }

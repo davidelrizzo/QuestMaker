@@ -3,19 +3,27 @@
 var QM = (function(QM){
 
 	function ActiveGameData(){
+		this.gameData = undefined;
+		this.activeLevel = undefined;
+		this.activeMapSprites = [];
+	};
 
-	}
-
-	ActiveGameData.prototype.setupData = function(campaignData){
+	ActiveGameData.prototype.setupData = function(jsonCampaignDataPath){
 		try{
-			this.campaignData = JSON.parse(campaignData);
+			this.gameData = JSON.parse(getAJAX(jsonCampaignDataPath));
 		} catch (e) {
 			console.log(e);
 		};
-		
-		this.campaign = {};
-		this.campaign.name = campaignData.campaign.name;
-		//this.campaign.introText = campaignData.campaign.introText;
+	};
+
+	ActiveGameData.prototype.loadMapSprites = function(){
+		var len = this.gameData.levels[this.activeLevel].mapData.spriteIndex.length;
+		console.log(len);
+		for(var x = 0; x < len; x++){
+			try{
+				this.activeMapSprites[x] = LoadImage(this.gameData.levels[this.activeLevel].mapData.spriteIndex[x]);
+			} catch (e) { console.log(e); };
+		}
 	};
 
 	QM.ActiveGameData = ActiveGameData;
