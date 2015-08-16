@@ -1,0 +1,21 @@
+{
+	"map": [
+		[
+			{"tile": "floor", "wall": ["left", "top"]}, 
+			{"tile": "floor", "wall": ["top"]},
+			{"tile": "floor", "wall": ["top"]},
+			{"tile": "floor", "wall": ["top", "right"]}
+		],
+		[
+			{"tile": "floor", "wall": ["left"]},
+			{"tile": "floor", "wall": []},
+			{"tile": "floor", "wall": []},
+			{"tile": "floor", "wall": }
+		],
+		["undefined",{"tile": "floor"},{"tile": "floor"},{"tile": "floor"}],
+		["undefined",{"tile": "floor"},{"tile": "floor"},{"tile": "floor"}]
+	],
+	"objects": [],
+	"creatures": [],
+	"effects": []
+}

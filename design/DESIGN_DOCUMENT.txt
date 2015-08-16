@@ -6,6 +6,7 @@ namespace HQApplication
 
 -> object GameState
 
+-> object ActiveGameData
 -> object Campaign
 
 --> object Player
@@ -26,14 +27,14 @@ namespace HQApplication
 GAME STATES
 
 001 :- Main menu				"mainMenuState"
-002 :- New game 				""
-003 :- Continue game
-004 :- Load game
-005 :- Select campaign
-006 :- Select heroes
-007 :- Store
-008 :- Campaign introduction			"campaignIntroduction"
-009 :- Level introduction 
+002 :- New game 				"newGameState"
+003 :- Continue game 			"continueGameState"
+004 :- Load game                "loadGameState"
+005 :- Select campaign 			"campaignSelectState"
+006 :- Select heroes			"heroSelectSta"
+007 :- Store					"storeState"
+008 :- Campaign introduction	"campaignIntroState"
+009 :- Level introduction 		"levelIntroState"
 010 :- Game 					"gameState"
-011 :- Level conclusion
+011 :- Level conclusion			"endLevelState"
 012 :- Editor 					"editorState"

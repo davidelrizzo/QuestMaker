@@ -7,14 +7,12 @@
 "use strict"
 
 var QM = (function(QM){
-	function Canvas2D()
-	{
+	function Canvas2D(){
 		this.canvas = undefined;
 		this.context = undefined;
 	};
 
-	Canvas2D.prototype.initialize = function(canvasName, mousemove, mousedown, mouseup)
-	{
+	Canvas2D.prototype.initialize = function(canvasName, mousemove, mousedown, mouseup){
 		this.canvas = document.getElementById(canvasName);
 		this.context = this.canvas.getContext("2d");
 
@@ -23,8 +21,7 @@ var QM = (function(QM){
 		this.canvas.addEventListener("mouseup", mouseup, false);
 	};
 
-	Canvas2D.prototype.drawImage = function(sprite, position, rotation, offset, scale)
-	{
+	Canvas2D.prototype.drawImage = function(sprite, position, rotation, offset, scale){
 		this.context.save();
 
 		// Transformation information
@@ -40,13 +37,12 @@ var QM = (function(QM){
 			0, 0, sprite.width, sprite.height, 			// Clipping coordinates on the sprite
 			-offset.x-offsetx, -offset.y-offsety,		// Where to draw the image
 			sprite.width * scale, sprite.height * scale	// Scale of the image
-			);
+		);
 
 		this.context.restore();
 	};
 
-	Canvas2D.prototype.clearCanvas = function()
-	{
+	Canvas2D.prototype.clearCanvas = function(){
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	};
 
@@ -57,8 +53,7 @@ var QM = (function(QM){
 	 * To Do:
 	 *		-> Option to turn fill and stroke on and off when calling the method.
 	 */
-	Canvas2D.prototype.roundedRectangle = function(x, y, width, height, radius)
-	{
+	Canvas2D.prototype.roundedRectangle = function(x, y, width, height, radius){
 		this.context.beginPath();
 		this.context.moveTo(x+radius, y);
 		this.context.lineTo((x+width)-radius, y); // top line
@@ -74,7 +69,7 @@ var QM = (function(QM){
 		this.context.stroke();
 	};
 
-	QM.Canvas2D = new Canvas2D();  // Canvas is global to the Namespace here.
-
+	QM.Canvas2D = new Canvas2D();
 	return QM;
+	
 })(QM || {});

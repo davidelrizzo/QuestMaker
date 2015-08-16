@@ -25,7 +25,7 @@ var QM = (function(QM){
 		this.textFrameA = undefined;
 		this.textFrameB = undefined;
 		this.continueButton = undefined;
-	};
+	}
 	CampaignIntroState.prototype = Object.create(QM.QMState.prototype);
 
 	CampaignIntroState.prototype.initialize = function(canvas, context)

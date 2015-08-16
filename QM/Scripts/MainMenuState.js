@@ -7,8 +7,6 @@
 
 var QM = (function(QM){
 
-	// Class: MainMenuState
-	// Parent: State
 	function MainMenuState()
 	{
 		QM.State.call(this);
@@ -20,9 +18,7 @@ var QM = (function(QM){
 		this.Button2 = {id : 2, text : "Load Game", x : 170, y : 210, width : 300, height : 40};
 		this.Button3 = {id : 3, text : "Editor", 	x : 170, y : 260, width : 300, height : 40};
 		this.Button4 = {id : 4, text : "Exit", 		x : 170, y : 310, width : 300, height : 40};
-
-		// Constructor
-	};
+	}
 	MainMenuState.prototype = Object.create(QM.State.prototype);
 
 	MainMenuState.prototype.update = function()
@@ -43,7 +39,7 @@ var QM = (function(QM){
 
 	MainMenuState.prototype.render = function()
 	{
-		QM.Canvas2D.canvas.width = window.innerWidth; //document.body.clientWidth;
+		QM.Canvas2D.canvas.width = window.innerWidth;   //document.body.clientWidth;
 		QM.Canvas2D.canvas.height = window.innerHeight; //document.body.clientHeight;
 
 		QM.Canvas2D.clearCanvas();

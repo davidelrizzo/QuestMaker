@@ -1,37 +1,11 @@
-//=====================================================================================
-// File: QM.js
-// Desc: This file contains the initial definition of the Hero Quest application
-//       namespace.  All aspects of the Hero Quest application should exists within
-//       this namespace, whether they relate to user interface of the game engine
-//       itself.
-//=====================================================================================
 "use strict"
 
 var QM = (function(QM){
 
-  /**
-   * Initialize the game application states and set the currently active state to
-   * the mainMenuSate.
-   */
-  try{
-    QM.mainMenuState = new QM.MainMenuState();
-    QM.gameState = new QM.GameState();
-    QM.campaignIntroState = new QM.CampaignIntroState();
-    QM.levelIntroState = new QM.LevelIntroState();
-    QM.currentState = QM.mainMenuState;
-  } catch (err) { console.log(err); };
-
-  /**
-   * Method: start
-   * Desc: This method initializes and runs the Hero Quest application.
-   */
-  QM.start = function()
-  {
+  QM.start = function(){
     Debug("Start");
 
-    /**
-     * Create a new canvas for the application and add it to the DOM.
-     */
+    // Create a new canvas for the application and add it to the DOM.
     var canvas = document.createElement("canvas");
     canvas.setAttribute("id", "cDisplay");
     canvas.setAttribute("width", document.body.clientWidth);
@@ -39,35 +13,40 @@ var QM = (function(QM){
     document.body.appendChild(canvas);
 
     QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);
-    QM.campaignIntroState.initialize(QM.Canvas2D.canvas, QM.Canvas2D.context);
-    try{
-      QM.levelIntroState.initialize(QM.Canvas2D.canvas, QM.Canvas2D.context, QM.Mouse);
-    } catch (e) { console.log(e);};
 
-  	Debug(QM);
-    
+    this.initializeGameStates();
+
     QM.mainLoop();  
-    
   };
 
-  QM.mainLoop = function()
-  {
-    Debug("mainLoop");
-    try
-    {
-      var state = QM.currentState.update();
-      if (state != "exit"){
-        QM.currentState = QM[state];
-        QM.currentState.render();
+  QM.mainLoop = function(){
+  	Debug("mainLoop");
+    var state = QM.currentState.update();
+    console.log(state);
+    if (state != "exit"){
+      QM.currentState = QM[state];
+      QM.currentState.render();
+      requestAnimationFrame(QM.mainLoop);
+    } else {
+      // handle application exit.
+    }
+  };
 
-        requestAnimationFrame(QM.mainLoop);
-      } else {
-        // handle application exit.
-      }
-    } catch (err) { 
-      console.log(err); 
-    };
-  }
+  QM.initializeGameStates = function(){
+    try{
+    	this.mainMenuState = new this.MainMenuState();
+    	this.campaignIntroState = new this.CampaignIntroState();
+    	this.levelIntroState = new this.LevelIntroState();
+   	 	this.gameState = new this.GameState(QM.Canvas2D.canvas, QM.Canvas2D.context);
+   	 	this.currentState = this.gameState;
+
+   	 	this.activeGameData = new this.ActiveGameData();
+   	 	this.activeGameData.setupData("http://localhost/QuestMaker/QM/Data/HeroQuest.json");
+	} catch (e) {console.log(e);}
+
+    this.campaignIntroState.initialize(this.Canvas2D.canvas, this.Canvas2D.context);
+    this.levelIntroState.initialize(this.Canvas2D.canvas, this.Canvas2D.context, this.Mouse);
+  };
 
   return QM;
 })(QM || {});

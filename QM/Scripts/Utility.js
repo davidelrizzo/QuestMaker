@@ -28,17 +28,21 @@ function LoadImage(path)
 };
 
 function getAJAX(path){
+	console.log("getAJAX");
+
     var request = new XMLHttpRequest();
     // "http://localhost/FileTest/text.txt"
 	request.open("GET", path, false);
 	request.send(null);
 		
 	if(request.status == 200){
-	  alert(request.responseText);
+	  //alert(request.responseText);
 	}
 	else{
 	  alert("Error- " + request.status + ": " + request.statusText);
 	}
+
+	return request.responseText;
 };
 
 
