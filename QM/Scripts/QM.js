@@ -37,17 +37,8 @@ var QM = (function(QM){
     	this.mainMenuState = new this.MainMenuState();
     	this.campaignIntroState = new this.CampaignIntroState();
     	this.levelIntroState = new this.LevelIntroState();
-
-    	/** Temporary Code for Prototyping **/
-   	 	this.activeGameData = new this.ActiveGameData();
-   	 	this.activeGameData.setupData("./Data/HeroQuest.json");
-   	 	this.activeGameData.activeLevel = 0;
-   	 	this.activeGameData.loadMapSprites();
-   	 	console.log(this.activeGameData.activeMapSprites[0]);
-   	 	/** End Temporary Code for Prototyping **/
-
-   	 	this.gameState = new this.GameState(QM.Canvas2D.canvas, QM.Canvas2D.context, this.activeGameData);
-   	 	this.currentState = this.gameState;
+   	 	this.gameState = new this.GameState(QM.Canvas2D.canvas, QM.Canvas2D.context);
+   	 	this.currentState = this.mainMenuState;
 
 	} catch (e) {console.log(e);}
 

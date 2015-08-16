@@ -5,6 +5,10 @@
 		{
 			"name" : "The Trial",
 			"introText" : "You have learned well, my friends. Now has come the time of your first trial. You must first enter the catacombs which contain Fellmarg's Tomb. You must seek out and destroy Verag, a foul Gargoyl who hides in the catacombs. This Quest is not easy and you must work together in order to survive. This is your first step on the road to becoming true Heroes. Tread carefully my friends.",
+			"teams" : [
+				{"heroes" : ["Barbarian", "Elf", "Dwarf", "Wizard"]},
+				{"Zargon" : ["Org", "Goblin", "Gargoyl"]}
+			],
 			"mapData" : {
 				"spriteIndex" : [
 				    "./Images/Floor Tiles/hidden.bmp",

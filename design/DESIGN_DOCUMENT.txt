@@ -38,3 +38,33 @@ GAME STATES
 010 :- Game 					"gameState"
 011 :- Level conclusion			"endLevelState"
 012 :- Editor 					"editorState"
+
+
+HANDLING OF ENGINE DATA
+
+Main Menu State
+NEW GAME
+		=> Create a new empty activeGameData
+
+Campaign State
+Select a campaign 
+		=> Load campaign data into activeGameData
+		=> Set activeLevel to 0 (1st level)
+		=> Load graphics into activeGameData.sprites
+		=> Set activeGameDate.turn = 1
+
+
+Select heroes State
+		=> Get hero list from activeGameData.campaign.level[n].heroes
+		=> Add selected heroes to activeGameData... []
+
+Store State
+		=> Update activeGameData.heroes....
+
+GameState
+		If (activeGameData.turn === 1)
+			Player entry
+		else{
+			currently active turn.update
+			currently active turn.render
+		}

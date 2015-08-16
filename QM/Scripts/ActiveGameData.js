@@ -2,26 +2,20 @@
 
 var QM = (function(QM){
 
-	function ActiveGameData(){
-		this.gameData = undefined;
-		this.activeLevel = undefined;
+	function ActiveGameData(campaign){
+		this.campaign = campaign;
+		this.activeLevel = 0;
 		this.activeMapSprites = [];
-	};
-
-	ActiveGameData.prototype.setupData = function(jsonCampaignDataPath){
-		try{
-			this.gameData = JSON.parse(getAJAX(jsonCampaignDataPath));
-		} catch (e) {
-			console.log(e);
-		};
+		this.activePlayer = 0;
+		this.turn = 0;
 	};
 
 	ActiveGameData.prototype.loadMapSprites = function(){
-		var len = this.gameData.levels[this.activeLevel].mapData.spriteIndex.length;
+		var len = this.campaign.levels[this.activeLevel].mapData.spriteIndex.length;
 		console.log(len);
 		for(var x = 0; x < len; x++){
 			try{
-				this.activeMapSprites[x] = LoadImage(this.gameData.levels[this.activeLevel].mapData.spriteIndex[x]);
+				this.activeMapSprites[x] = LoadImage(this.campaign.levels[this.activeLevel].mapData.spriteIndex[x]);
 			} catch (e) { console.log(e); };
 		}
 	};

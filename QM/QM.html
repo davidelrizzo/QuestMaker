@@ -13,23 +13,25 @@
 
   <script language='JavaScript' src="./Scripts/LABjs-2.0.3/lab.min.js"></script>
   <script language='JavaScript'>
-    $LAB.script('./Scripts/Mouse.js').wait()
-        .script('./Scripts/Canvas2D.js').wait()
-        .script('./Scripts/TextButton.js').wait()
-        .script('./Scripts/TextFrame.js').wait()
+    $LAB.script('./Scripts/Input/Mouse.js').wait()
+
+        .script('./Scripts/Graphics/Canvas2D.js').wait()
+        .script('./Scripts/Graphics/TextButton.js').wait()
+        .script('./Scripts/Graphics/TextFrame.js').wait()
+
         .script('./Scripts/Utility.js').wait()
-        .script('./Scripts/Level.js').wait()
-        .script('./Scripts/ActiveGameData.js').wait()
+
         .script('./Scripts/API/Campaign.js').wait()
-        .script('./Scripts/HeroQuest.js').wait()
+
+        .script('./Scripts/ActiveGameData.js').wait()
+        
         .script('./Scripts/State.js').wait()
         .script('./Scripts/QMState.js').wait()
         .script('./Scripts/MainMenuState.js').wait()
-        .script('./Scripts/Game.js').wait()
         .script('./Scripts/CampaignIntroState.js').wait()
         .script('./Scripts/LevelIntroState.js').wait()
         .script('./Scripts/GameState.js').wait()
-        .script('./Scripts/Menu.js').wait()
+
         .script('./Scripts/QM.js').wait(function(){QM.start();});
   </script>
 	

@@ -26,6 +26,14 @@ var QM = (function(QM){
 
 	LevelIntroState.prototype.update = function()
 	{
+		if(QM.Mouse.mouseDown){
+			QM.Mouse.mouseDown = false;
+
+			if(this.continueButton.isSelected()){
+				QM.activeGameData.loadMapSprites();
+				return "gameState";
+			}
+		}
 		return "levelIntroState";
 	};
 
@@ -48,7 +56,7 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillStyle = "#FFFFFF";
 		QM.Canvas2D.context.textAlign = "center";
 		QM.Canvas2D.context.fillText(
-			"LEVEL SELECTION PAGE",
+			//QM.activeGameData.gameData.,
 			QM.Canvas2D.canvas.width/2,
 			100,
 			QM.Canvas2D.context.measureText("LEVEL SELECTION PAGE").width

@@ -27,11 +27,27 @@ var QM = (function(QM){
 		{
 			QM.Mouse.mouseDown = false;
 
-			// Determine which button is currently selected if at all.
-			if(this.isButtonSelected(this.Button1)) return "campaignIntroState";
-			if(this.isButtonSelected(this.Button2)) return "mainMenuState";
-			if(this.isButtonSelected(this.Button3)) return "mainMenuState";
-			if(this.isButtonSelected(this.Button4)) return "exit";
+			if(this.isButtonSelected(this.Button1)){
+				var gameData = JSON.parse(getAJAX("./Data/HeroQuest.json"));
+				var campaign = new QM.Campaign();
+
+				campaign.campaignName = gameData.name;
+				campaign.introText = gameData.introText;
+				campaign.levels = gameData.levels;
+				
+				QM.activeGameData = new QM.ActiveGameData(campaign);
+
+				return "campaignIntroState";	
+			} 
+			if(this.isButtonSelected(this.Button2)){
+				return "mainMenuState";	
+			} 
+			if(this.isButtonSelected(this.Button3)){
+				return "mainMenuState";	
+			} 
+			if(this.isButtonSelected(this.Button4)){
+				return "exit";	
+			} 
 		}
 
 		return "mainMenuState";
@@ -46,10 +62,6 @@ var QM = (function(QM){
 
 		QM.Canvas2D.context.fillStyle = QM.Canvas2D.context.createPattern(this.stoneTexture, "repeat");
 		QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
-
-		// Paint a black background.
-		//QM.Canvas2D.context.fillStyle = "000000";
-		//QM.Canvas2D.context.fillRect(0, 0, QM.Canvas2D.canvas.width, QM.Canvas2D.canvas.height);
 
 		// Paint the questmaker (heroquest) background image to the center of the canvas if possible
 		var scale = 1;

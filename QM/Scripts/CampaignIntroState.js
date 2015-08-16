@@ -16,8 +16,7 @@
 
 var QM = (function(QM){
 
-	function CampaignIntroState()
-	{
+	function CampaignIntroState(){
 		QM.QMState.call(this);
 
 		this.backgroundImage = LoadImage("./Images/Book.gif");
@@ -28,8 +27,7 @@ var QM = (function(QM){
 	}
 	CampaignIntroState.prototype = Object.create(QM.QMState.prototype);
 
-	CampaignIntroState.prototype.initialize = function(canvas, context)
-	{
+	CampaignIntroState.prototype.initialize = function(canvas, context){
 		this.textFrameA = new QM.TextFrame(canvas, context, 90, 300, 260, 400);
 		this.textFrameB = new QM.TextFrame(canvas, context, 395, 300, 260, 400);
 
@@ -43,10 +41,8 @@ var QM = (function(QM){
 		);
 	}
 
-	CampaignIntroState.prototype.update = function()
-	{
-		if(QM.Mouse.mouseDown)
-		{
+	CampaignIntroState.prototype.update = function(){
+		if(QM.Mouse.mouseDown){
 			QM.Mouse.mouseDown = false;
 
 			if(this.continueButton.isSelected()){
@@ -57,8 +53,7 @@ var QM = (function(QM){
 		return "campaignIntroState";
 	};
 
-	CampaignIntroState.prototype.render = function()
-	{
+	CampaignIntroState.prototype.render = function(){
 		// Ensure that the canvas dimensions = the document dimensions.
 		QM.Canvas2D.canvas.width = document.body.clientWidth;
 		QM.Canvas2D.canvas.height = document.body.clientHeight;
@@ -99,7 +94,7 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillStyle = "#FFFFFF"; // white
 		QM.Canvas2D.context.textAlign = "center";
 		QM.Canvas2D.context.fillText(
-			QM.HeroQuest.campaignName, 
+			QM.activeGameData.campaign.name, 
 			QM.Canvas2D.canvas.width/2,
 			0+((QM.Canvas2D.canvas.height - (this.backgroundImage.height*scale))/2) - 20,
 			500
@@ -115,7 +110,8 @@ var QM = (function(QM){
 		this.textFrameB.setPosition(QM.Canvas2D.canvas.width/2 + 20, QM.Canvas2D.canvas.height/2 - 210);
 
 		// write the introductory text
-		var text = this.textFrameA.writeText(QM.HeroQuest.introText);
+		console.log(QM.activeGameData);
+		var text = this.textFrameA.writeText(QM.activeGameData.campaign.introText);
 		this.textFrameB.writeText(text);
 
 		this.continueButton.drawButton();
