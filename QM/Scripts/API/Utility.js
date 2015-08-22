@@ -21,8 +21,3 @@ QM.API.Utility.rollDice = function(numDice){
 
 	return total;
 };
-
-QM.API.Utility.laodCreatureFromJSON(json){
-	
-	return creatures;
-}

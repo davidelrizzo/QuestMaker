@@ -4,6 +4,7 @@ var QM = (function(QM){
 
   QM.start = function(){
     Debug("Start");
+    console.log(QM);
 
     // Create a new canvas for the application and add it to the DOM.
     var canvas = document.createElement("canvas");
@@ -20,9 +21,9 @@ var QM = (function(QM){
   };
 
   QM.mainLoop = function(){
-  	Debug("mainLoop");
+  	//Debug("mainLoop");
     var state = QM.currentState.update();
-    console.log(state);
+    //console.log(state);
     if (state != "exit"){
       QM.currentState = QM[state];
       QM.currentState.render();

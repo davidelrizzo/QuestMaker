@@ -29,13 +29,25 @@
 			"mind" : 1, 
 			"attackDice" : 2, 
 			"defendDice" : 1, 
-			"moveTotal" : 10
+			"moveTotal" : 10,
+			"sprite" : "./Images/Creatures/Goblin.gif"
 		},
 		"Orc_001" : {
-			"name" : "Orc"
+			"name" : "Orc",
+			"body" : 1,
+			"mind" : 2,
+			"attackDice" : 3,
+			"defendDice" : 2,
+			"moveTotal" : 8,
+			"sprite" : "./Images/Creatures/Orc.gif"
 		},
 		"Gargoyl_001" : {
-			"name" : "Gargoyl"
+			"name" : "Gargoyl",
+			"body" : 1,
+			"mind" : 4,
+			"attackDice" : 4,
+			"defendDice" : 4,
+			"moveTotal" : 6
 		}
 	},
 	"levels" : [
@@ -55,7 +67,7 @@
 				{
 					"name" : "Zargon", 
 					"creatures" : [
-						{"templateID" : "Orc_001", 		"posX" : 4, "posY" : 2}, 
+						{"templateID" : "Orc_001", 		"posX" : 2, "posY" : 2}, 
 						{"templateID" : "Goblin_001", 	"posX" : 1, "posY" : 1}, 
 						{"templateID" : "Gargoyl_001", 	"posX" : 3, "posY" : 3}
 					]

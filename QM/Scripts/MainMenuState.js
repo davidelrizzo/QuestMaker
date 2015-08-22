@@ -29,7 +29,7 @@ var QM = (function(QM){
 
 			if(this.isButtonSelected(this.newGameButton)){
 				var gameData = JSON.parse(getAJAX("./Data/HeroQuest.json"));
-				var campaign = new QM.Campaign();
+				var campaign = new QM.API.Campaign();
 
 				campaign.campaignName = gameData.name;
 				campaign.introText = gameData.introText;

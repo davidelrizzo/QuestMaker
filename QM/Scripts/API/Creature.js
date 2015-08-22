@@ -4,10 +4,11 @@ var QM = (function(QM){
 
 	// Class Creature
 	function Creature(){
-		this.team = undefined;
-		this.user = undefined;
+		this.team 				= undefined;
+		this.user 				= undefined;
 
-		this.name = undefined;
+		this.templateID 		= undefined;
+		this.name 				= undefined;
 
 		this.body = {
 			"base" : undefined,
@@ -19,20 +20,23 @@ var QM = (function(QM){
 			"damage" : 0
 		};
 
-		this.attackDice = undefined;
-		this.defendDice = undefined;
+		this.attackDice 		= undefined;
+		this.defendDice 		= undefined;
 
-		this.moveDice = undefined;
-		this.moveTotal = undefined;
-		this.moveCount = 0;
+		this.moveDice 			= undefined;
+		this.moveTotal 			= undefined;
+		this.moveCount 			= 0;
 
-		this.leftHand = undefined;
-		this.rightHand = undefined;
-		this.chest = undefined;
-		this.head = undefined;
+		this.leftHand 			= undefined;
+		this.rightHand 			= undefined;
+		this.chest 				= undefined;
+		this.head 				= undefined;
 
-		this.posX = undefined;
-		this.posY = undefined;
+		this.spellList			= undefined;
+		this.selectedSpells		= undefined;
+
+		this.posX 				= undefined;
+		this.posY 				= undefined;
 	}
 
 	Creature.prototype.move = function(){
@@ -70,6 +74,7 @@ var QM = (function(QM){
 		//return this.defendDice;
 	};
 
-	QM.Creature = Creature;
+	QM.API = QM.API || {};
+	QM.API.Creature = Creature;
 	return QM;
 })(QM || {});

@@ -16,6 +16,7 @@ var QM = (function(QM){
 
 	GameState.prototype.update = function(){
 		//console.log(QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].teams[0]);
+		console.log(QM.activeGameData);
 
 		/** PSEUDO CODE **
 		 * Check 
@@ -40,6 +41,7 @@ var QM = (function(QM){
 	GameState.prototype.printMap = function(){
 		var map =  QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].mapData.map;
 		
+		// Print the floor tiles.
 		for(var y = 0; y < map.length; y++){
 			for(var x = 0; x < map[y].length; x++){
 				QM.Canvas2D.drawImage(
@@ -51,6 +53,28 @@ var QM = (function(QM){
 				);
 			}
 		}
+
+		// Print Objects and Traps
+
+		// Print Creatures
+		for(var team = 0; team < QM.activeGameData.creatures.length; team++){
+			for(var creature = 0; creature < QM.activeGameData.creatures[team].length; creature++){
+				//if(QM.activeGameData.Object.key(QM.activeGameData.cratures[team][creature])
+				var x = QM.activeGameData.creatures[team][creature].posX;
+				var y = QM.activeGameData.creatures[team][creature].posY;
+				if(QM.activeGameData.activeCreatureSprites[QM.activeGameData.creatures[team][creature].templateID] !== undefined){
+				QM.Canvas2D.drawImage(
+					QM.activeGameData.activeCreatureSprites[QM.activeGameData.creatures[team][creature].templateID],
+					{x : x*this.tileSize*this.gridScale, y: y*this.tileSize*this.gridScale},
+					0,
+					{x:0, y:0},
+					this.gridScale
+				);
+				}
+			}
+		}
+
+		// Lighting Effects
 	};
 
 	QM.GameState = GameState;

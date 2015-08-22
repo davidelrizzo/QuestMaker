@@ -30,7 +30,9 @@ var QM = (function(QM){
 			QM.Mouse.mouseDown = false;
 
 			if(this.continueButton.isSelected()){
+				// Load graphic resources for the current level.
 				QM.activeGameData.loadMapSprites();
+				QM.activeGameData.loadCreatureSprites();
 				return "gameState";
 			}
 		}
