@@ -38,7 +38,7 @@ api.Pt.prototype.equalTo = function (pt) {
 // Static function: Dice
 // ======================================
 // **Dice()** - singleton object containing static functions for rolling dice
-api.Dice = {
+api.DICE = {
 
   // **Dice.chance(n)** - rolls d6 and returns true if >= n {@arg: integer between 1 and 6}
   chance: function(n) {
