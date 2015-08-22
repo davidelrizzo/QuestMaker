@@ -21,9 +21,8 @@ var QM = (function(QM){
   };
 
   QM.mainLoop = function(){
-  	//Debug("mainLoop");
     var state = QM.currentState.update();
-    //console.log(state);
+    console.log(state);
     if (state != "exit"){
       QM.currentState = QM[state];
       QM.currentState.render();

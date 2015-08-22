@@ -12,7 +12,8 @@
 			"leftHand" : "",
 			"rightHand" : "",
 			"chest" : "",
-			"head" : ""
+			"head" : "",
+			"sprite" : "./Images/Creatures/spriteBarbarian.gif"
 		},
 		"Elf_001" : {
 			"name" : "Elf"
@@ -47,7 +48,8 @@
 			"mind" : 4,
 			"attackDice" : 4,
 			"defendDice" : 4,
-			"moveTotal" : 6
+			"moveTotal" : 6,
+			"sprite" : "./Images/Creatures/Gargoyl.gif"
 		}
 	},
 	"levels" : [

@@ -1,3 +1,13 @@
+/**
+ * File: GameState.js
+ * Desc:
+ * Todo:
+ *		-> Ensure that the sprites drawn are centered with respect to tileSize if the
+ *		   image is an irregular height or width
+ *		-> Render objects and traps
+ *		-> Render lighting effects if required
+ */
+
 "use strict"
 
 var QM = (function(QM){
@@ -15,7 +25,6 @@ var QM = (function(QM){
 	GameState.prototype = Object.create(QM.QMState.prototype);
 
 	GameState.prototype.update = function(){
-		//console.log(QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].teams[0]);
 		console.log(QM.activeGameData);
 
 		/** PSEUDO CODE **
@@ -59,7 +68,6 @@ var QM = (function(QM){
 		// Print Creatures
 		for(var team = 0; team < QM.activeGameData.creatures.length; team++){
 			for(var creature = 0; creature < QM.activeGameData.creatures[team].length; creature++){
-				//if(QM.activeGameData.Object.key(QM.activeGameData.cratures[team][creature])
 				var x = QM.activeGameData.creatures[team][creature].posX;
 				var y = QM.activeGameData.creatures[team][creature].posY;
 				if(QM.activeGameData.activeCreatureSprites[QM.activeGameData.creatures[team][creature].templateID] !== undefined){
