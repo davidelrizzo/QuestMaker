@@ -15,7 +15,12 @@ var QM = (function(QM){
 	GameState.prototype = Object.create(QM.QMState.prototype);
 
 	GameState.prototype.update = function(){
-		console.log(QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].teams[0]);
+		//console.log(QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].teams[0]);
+
+		/** PSEUDO CODE **
+		 * Check 
+		 * ActiveGameData.currentPlayersTurn()
+		 */
 		return "gameState";
 	};
 
@@ -24,10 +29,8 @@ var QM = (function(QM){
 		this.height = document.body.clientHeight;
 		QM.Canvas2D.clearCanvas();
 
-
-		//Paint a stone pattern background
-		//this.context.fillStyle = this.context.createPattern(this.stoneTexture, "repeat");
-		this.context.fillStyle = "black";
+		// black background.
+		this.context.fillStyle = "#000000";
 		this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 		this.printMap();

@@ -17,21 +17,11 @@ var QM = (function (QM){
 	 */
 
 	function Campaign(){
-		/**
-		 * Load the campaign data from a json file.
-		 */
-
-		/*
-		try{
-			var data = JSON.parse(json);
-		} catch (e) { console.log(e); };
-		*/
-
 		this.campaignName = undefined;		// Name of the campaign.
 		this.introText = undefined;			// Campaign introductory text.
 		this.levels = undefined;			// List of levels.
 		//this.teams = undefined;			// List of teams.
-		//this.creatures = undefined;		// Creature templates?
+		this.creatureTemplates = undefined;		// Creature templates?
 		//this.furniture = undefined;		// List of furniture
 		//this.triggers = undefined;		// List of triggers
 		//this.equipment = undefined;		// List of available equipment (for store)

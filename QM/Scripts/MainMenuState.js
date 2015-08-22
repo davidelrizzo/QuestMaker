@@ -14,10 +14,10 @@ var QM = (function(QM){
 		this.img_background = LoadImage("./Images/Background.gif");
 		this.stoneTexture = LoadImage("./Images/seamless_tiled_stone_texture_by_lendrick.jpg");
 
-		this.Button1 = {id : 1, text : "New Game",	x : 170, y : 160, width : 300, height : 40};
-		this.Button2 = {id : 2, text : "Load Game", x : 170, y : 210, width : 300, height : 40};
-		this.Button3 = {id : 3, text : "Editor", 	x : 170, y : 260, width : 300, height : 40};
-		this.Button4 = {id : 4, text : "Exit", 		x : 170, y : 310, width : 300, height : 40};
+		this.newGameButton = {id : 1, text : "New Game",	x : 170, y : 160, width : 300, height : 40};
+		this.loadGameButton = {id : 2, text : "Load Game", x : 170, y : 210, width : 300, height : 40};
+		this.editorButton = {id : 3, text : "Editor", 	x : 170, y : 260, width : 300, height : 40};
+		this.exitButton = {id : 4, text : "Exit", 		x : 170, y : 310, width : 300, height : 40};
 	}
 	MainMenuState.prototype = Object.create(QM.State.prototype);
 
@@ -27,25 +27,28 @@ var QM = (function(QM){
 		{
 			QM.Mouse.mouseDown = false;
 
-			if(this.isButtonSelected(this.Button1)){
+			if(this.isButtonSelected(this.newGameButton)){
 				var gameData = JSON.parse(getAJAX("./Data/HeroQuest.json"));
 				var campaign = new QM.Campaign();
 
 				campaign.campaignName = gameData.name;
 				campaign.introText = gameData.introText;
 				campaign.levels = gameData.levels;
+				campaign.creatureTemplates = gameData.creatureTemplates;
 				
 				QM.activeGameData = new QM.ActiveGameData(campaign);
 
+				console.log(this.activeGameData);
+
 				return "campaignIntroState";	
 			} 
-			if(this.isButtonSelected(this.Button2)){
+			if(this.isButtonSelected(this.loadGameButton)){
 				return "mainMenuState";	
 			} 
-			if(this.isButtonSelected(this.Button3)){
+			if(this.isButtonSelected(this.editorButton)){
 				return "mainMenuState";	
 			} 
-			if(this.isButtonSelected(this.Button4)){
+			if(this.isButtonSelected(this.exitButton)){
 				return "exit";	
 			} 
 		}
@@ -101,22 +104,22 @@ var QM = (function(QM){
 		QM.Canvas2D.context.fillText("Menu", QM.Canvas2D.canvas.width/2, 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 100, 300);
 	
 		// Update the button width coordinates
-		this.Button1.x = (QM.Canvas2D.canvas.width/2) - (this.Button1.width/2);
-		this.Button2.x = (QM.Canvas2D.canvas.width/2) - (this.Button2.width/2);
-		this.Button3.x = (QM.Canvas2D.canvas.width/2) - (this.Button3.width/2);
-		this.Button4.x = (QM.Canvas2D.canvas.width/2) - (this.Button4.width/2);
+		this.newGameButton.x = (QM.Canvas2D.canvas.width/2) - (this.newGameButton.width/2);
+		this.loadGameButton.x = (QM.Canvas2D.canvas.width/2) - (this.loadGameButton.width/2);
+		this.editorButton.x = (QM.Canvas2D.canvas.width/2) - (this.editorButton.width/2);
+		this.exitButton.x = (QM.Canvas2D.canvas.width/2) - (this.exitButton.width/2);
 
 		// Update the button height coordinates
-		this.Button1.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 160;
-		this.Button2.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 210;
-		this.Button3.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 260;
-		this.Button4.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 310;
+		this.newGameButton.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 160;
+		this.loadGameButton.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 210;
+		this.editorButton.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 260;
+		this.exitButton.y = 0 + ((QM.Canvas2D.canvas.height - (this.img_background.height*scale))/2) + 310;
 
 		// Draw the buttons
-		this.drawButton(this.Button1, this.isButtonSelected(this.Button1));
-		this.drawButton(this.Button2, this.isButtonSelected(this.Button2));
-		this.drawButton(this.Button3, this.isButtonSelected(this.Button3));
-		this.drawButton(this.Button4, this.isButtonSelected(this.Button4));
+		this.drawButton(this.newGameButton, this.isButtonSelected(this.newGameButton));
+		this.drawButton(this.loadGameButton, this.isButtonSelected(this.loadGameButton));
+		this.drawButton(this.editorButton, this.isButtonSelected(this.editorButton));
+		this.drawButton(this.exitButton, this.isButtonSelected(this.exitButton));
 
 	};
 
