@@ -13,7 +13,7 @@
 			"rightHand" : "",
 			"chest" : "",
 			"head" : "",
-			"sprite" : "./Images/Creatures/spriteBarbarian.gif"
+			"sprite" : "./Images/Creatures/barbarian.png"
 		},
 		"Elf_001" : {
 			"name" : "Elf"
@@ -31,7 +31,7 @@
 			"attackDice" : 2, 
 			"defendDice" : 1, 
 			"moveTotal" : 10,
-			"sprite" : "./Images/Creatures/Goblin.gif"
+			"sprite" : "./Images/Creatures/goblin.png"
 		},
 		"Orc_001" : {
 			"name" : "Orc",
@@ -40,7 +40,7 @@
 			"attackDice" : 3,
 			"defendDice" : 2,
 			"moveTotal" : 8,
-			"sprite" : "./Images/Creatures/Orc.gif"
+			"sprite" : "./Images/Creatures/orc.png"
 		},
 		"Gargoyl_001" : {
 			"name" : "Gargoyl",
@@ -49,7 +49,7 @@
 			"attackDice" : 4,
 			"defendDice" : 4,
 			"moveTotal" : 6,
-			"sprite" : "./Images/Creatures/Gargoyl.gif"
+			"sprite" : "./Images/Creatures/gargoyl.png"
 		}
 	},
 	"levels" : [
@@ -60,7 +60,7 @@
 				{
 					"name" : "Empire", 
 					"creatures" : [
-						{"templateID" : "Barbarian_001"},
+						{"templateID" : "Barbarian_001", "posX" : 2, "posY": 14},
 						{"templateID" : "Elf_001"}, 
 						{"templateID" : "Dwarf_001"},
 						{"templateID" : "Wizard_001"}
@@ -69,15 +69,21 @@
 				{
 					"name" : "Zargon", 
 					"creatures" : [
-						{"templateID" : "Orc_001", 		"posX" : 2, "posY" : 2}, 
+						{"templateID" : "Orc_001", 			"posX" : 2, "posY" : 2}, 
 						{"templateID" : "Goblin_001", 	"posX" : 1, "posY" : 1}, 
-						{"templateID" : "Gargoyl_001", 	"posX" : 3, "posY" : 3}
+						{"templateID" : "Gargoyl_001", 	"posX" : 3, "posY" : 3},
+						{"templateID" : "Goblin_001", 	"posX" : 2, "posY" : 11},
+						{"templateID" : "Orc_001",			"posX" : 2, "posY" : 12},
+						{"templateID" : "Orc_001",			"posX" : 7, "posY" : 14},
+						{"templateID" : "Orc_001",			"posX" : 8, "posY" : 15}
+
 					]
 				}
 			],
 			"mapData" : {
 				"spriteIndex" : [
-				    "./Images/Floor Tiles/hidden.bmp",
+				  "./Images/Floor Tiles/hidden.bmp",
+				  
 					"./Images/Floor Tiles/stone_tile_001.bmp",
 					"./Images/Floor Tiles/stone_tile_002.bmp",
 					"./Images/Floor Tiles/stone_tile_003.bmp",
@@ -93,33 +99,163 @@
 					"./Images/Floor Tiles/stone_tile_013.bmp",
 					"./Images/Floor Tiles/stone_tile_014.bmp",
 					"./Images/Floor Tiles/stone_tile_015.bmp",
-					"./Images/Floor Tiles/stone_tile_016.bmp"
+					"./Images/Floor Tiles/stone_tile_016.bmp",
+
+					"./Images/Floor Tiles/stone_tile_017.bmp",
+					"./Images/Floor Tiles/stone_tile_018.bmp",
+					"./Images/Floor Tiles/stone_tile_019.bmp",
+					"./Images/Floor Tiles/stone_tile_020.png",
+					"./Images/Floor Tiles/stone_tile_021.png",
+					"./Images/Floor Tiles/stone_tile_022.png",
+					"./Images/Floor Tiles/stone_tile_023.png",
+					"./Images/Floor Tiles/stone_tile_024.png",
+					"./Images/Floor Tiles/stone_tile_025.png",
+					"./Images/Floor Tiles/stone_tile_026.png",
+					"./Images/Floor Tiles/stone_tile_027.png",
+					"./Images/Floor Tiles/stone_tile_028.png",
+					"./Images/Floor Tiles/stone_tile_029.png",
+					"./Images/Floor Tiles/stone_tile_030.png",
+					"./Images/Floor Tiles/stone_tile_031.png",
+					"./Images/Floor Tiles/stone_tile_032.png",
+					"./Images/Floor Tiles/stone_tile_033.png",
+					"./Images/Floor Tiles/stone_tile_034.png",
+					"./Images/Floor Tiles/stone_tile_035.png",
+					"./Images/Floor Tiles/stone_tile_036.png",
+
+					"./Images/Floor Tiles/stone_tile_037.png",
+					"./Images/Floor Tiles/stone_tile_038.png",
+					"./Images/Floor Tiles/stone_tile_039.png",
+					"./Images/Floor Tiles/stone_tile_040.png",
+					"./Images/Floor Tiles/stone_tile_041.png",
+					"./Images/Floor Tiles/stone_tile_042.png",
+					"./Images/Floor Tiles/stone_tile_043.png",
+					"./Images/Floor Tiles/stone_tile_044.png",
+					"./Images/Floor Tiles/stone_tile_045.png",
+					"./Images/Floor Tiles/stone_tile_046.png",
+					"./Images/Floor Tiles/stone_tile_047.png",
+					"./Images/Floor Tiles/stone_tile_048.png",
+					"./Images/Floor Tiles/stone_tile_049.png",
+					"./Images/Floor Tiles/stone_tile_050.png",
+					"./Images/Floor Tiles/stone_tile_051.png",
+					"./Images/Floor Tiles/stone_tile_052.png",
+
+					"./Images/Walls/white_wall.png"
 				],
 				"map" : [
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
 					[
+						{},
+						{"id" : 37, "rotation" : 0, "wall" : ["left","top"]},
+						{"id" : 38, "rotation" : 0, "wall" : ["top"]},
+						{"id" : 39, "rotation" : 0, "wall" : ["top"]},
+						{"id" : 40, "rotation" : 0, "wall" : ["top","right"]},
+						{},{},
+						{},{},
+						{},
+						{},{},{},{},{},{},
+						{}
+					],
+					[
+						{},
+						{"id" : 41, "rotation" : 0, "wall" : ["left"]},
+						{"id" : 42, "rotation" : 0, "wall" : []},
+						{"id" : 43, "rotation" : 0, "wall" : []},
+						{"id" : 44, "rotation" : 0, "wall" : ["right"]},
+						{},{},
+						{},{},
+						{},
+						{},{},{},{},{},{},
+						{}
+					],
+					[
+						{},
+						{"id" : 45, "rotation" : 0, "wall" : ["left"]},
+						{"id" : 46, "rotation" : 0, "wall" : []},
+						{"id" : 47, "rotation" : 0, "wall" : []},
+						{"id" : 48, "rotation" : 0, "wall" : ["right"]},
+						{},{},
+						{},{},
+						{},{},{},{},{},{},{},{},{}
+					],
+					[
+						{},
+						{"id" : 49, "rotation" : 0, "wall" : ["left","bottom"]},
+						{"id" : 50, "rotation" : 0, "wall" : ["bottom"]},
+						{"id" : 51, "rotation" : 0, "wall" : ["bottom"]},
+						{"id" : 52, "rotation" : 0, "wall" : ["right", "bottom"]},
+						{"id" : 17, "rotation" : 0, "wall" : ["left", "top"]},
+						{"id" : 18, "rotation" : 0, "wall" : ["top"]},
+						{"id" : 19, "rotation" : 0, "wall" : ["top"]},
+						{"id" : 20, "rotation" : 0, "wall" : ["top", "right"]},
+						{},{},{},
+						{},{},
+						{},{},{},{}
+					],
+					[
+						{},
 						{"id" : 1, 	"rotation" : 0, "wall" : ["left", "top"]},
-					 	{"id" : 2, 	"rotation" : 0, "wall" : ["top"]},
-					 	{"id" : 3, 	"rotation" : 0, "wall" : ["top"]},
-					 	{"id" : 4, 	"rotation" : 0, "wall" : ["top", "right"]}
+						{"id" : 2, 	"rotation" : 0, "wall" : ["top"]},
+						{"id" : 3, 	"rotation" : 0, "wall" : ["top"]},
+						{"id" : 4, 	"rotation" : 0, "wall" : ["top", "right"]},
+						{"id" : 21, "rotation" : 0, "wall" : ["left"]},
+						{"id" : 22, "rotation" : 0, "wall" : []},
+						{"id" : 23, "rotation" : 0, "wall" : []},
+						{"id" : 24, "rotation" : 0, "wall" : ["right"]},
+						{},{},{},
+						{},{},
+						{},{},{},{}
 					],
 					[
+						{},
 						{"id" : 5, 	"rotation" : 0, "wall" : ["left"]},
-					 	{"id" : 6, 	"rotation" : 0, "wall" : []},
-					 	{"id" : 7, 	"rotation" : 0, "wall" : []},
-					 	{"id" : 8, 	"rotation" : 0, "wall" : ["right"]}
+						{"id" : 6, 	"rotation" : 0, "wall" : []},
+						{"id" : 7, 	"rotation" : 0, "wall" : []},
+						{"id" : 8, 	"rotation" : 0, "wall" : ["right"]},
+						{"id" : 25, "rotation" : 0, "wall" : ["left"]},
+						{"id" : 26, "rotation" : 0, "wall" : []},
+						{"id" : 27, "rotation" : 0, "wall" : []},
+						{"id" : 28, "rotation" : 0, "wall" : ["right"]},
+						{},{},{},
+						{},{},
+						{},{},{},{}
 					],
 					[
+						{},
 						{"id" : 9,	"rotation" : 0, "wall" : ["left"]},
-					 	{"id" : 10, "rotation" : 0, "wall" : []},
-					 	{"id" : 11, "rotation" : 0, "wall" : []},
-					 	{"id" : 12, "rotation" : 0, "wall" : ["right"]}
+						{"id" : 10, "rotation" : 0, "wall" : []},
+						{"id" : 11, "rotation" : 0, "wall" : []},
+						{"id" : 12, "rotation" : 0, "wall" : ["right"]},
+						{"id" : 29, "rotation" : 0, "wall" : ["left"]},
+						{"id" : 30, "rotation" : 0, "wall" : []},
+						{"id" : 31, "rotation" : 0, "wall" : []},
+						{"id" : 32, "rotation" : 0, "wall" : ["right"]},
+						{},{},{},
+						{},{},
+						{},{},{},{}
 					],
 					[
+						{},
 						{"id" : 13, "rotation" : 0, "wall" : ["left", "bottom"]},
 						{"id" : 14, "rotation" : 0, "wall" : ["bottom"]},
-					 	{"id" : 15, "rotation" : 0, "wall" : ["bottom"]},
-					 	{"id" : 16, "rotation" : 0, "wall" : ["bottom", "right"]}
-					]
+						{"id" : 15, "rotation" : 0, "wall" : ["bottom"]},
+						{"id" : 16, "rotation" : 0, "wall" : ["bottom", "right"]},
+						{"id" : 33, "rotation" : 0, "wall" : ["bottom", "left"]},
+						{"id" : 34, "rotation" : 0, "wall" : ["bottom"]},
+						{"id" : 35, "rotation" : 0, "wall" : ["bottom"]},
+						{"id" : 36, "rotation" : 0, "wall" : ["bottom", "right"]},
+						{},{},{},
+						{},{},
+						{},{},{},{}
+					],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}]
 				],
 				"creatures" : []
 			}

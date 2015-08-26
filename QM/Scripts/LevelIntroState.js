@@ -33,7 +33,7 @@ var QM = (function(QM){
 				// Load graphic resources for the current level.
 				QM.activeGameData.loadMapSprites();
 				QM.activeGameData.loadCreatureSprites();
-				return "gameState";
+				return "setupGameState";
 			}
 		}
 		return "levelIntroState";

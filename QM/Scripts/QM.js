@@ -34,13 +34,13 @@ var QM = (function(QM){
 
   QM.initializeGameStates = function(){
     try{
-    	this.mainMenuState = new this.MainMenuState();
-    	this.campaignIntroState = new this.CampaignIntroState();
-    	this.levelIntroState = new this.LevelIntroState();
-   	 	this.gameState = new this.GameState(QM.Canvas2D.canvas, QM.Canvas2D.context);
-   	 	this.currentState = this.mainMenuState;
-
-	} catch (e) {console.log(e);}
+    	this.mainMenuState       = new this.MainMenuState();
+    	this.campaignIntroState  = new this.CampaignIntroState();
+    	this.levelIntroState     = new this.LevelIntroState();
+      this.setupGameState      = new this.SetupGameState(QM.Canvas2D.canvas, QM.Canvas2D.context);
+   	 	this.gameState           = new this.GameState(QM.Canvas2D.canvas, QM.Canvas2D.context);
+   	 	this.currentState        = this.mainMenuState;
+    } catch (e) {console.log(e);}
 
     this.campaignIntroState.initialize(this.Canvas2D.canvas, this.Canvas2D.context);
     this.levelIntroState.initialize(this.Canvas2D.canvas, this.Canvas2D.context, this.Mouse);
