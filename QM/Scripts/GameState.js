@@ -93,49 +93,95 @@ var QM = (function(QM){
 		}
 	};
 
-	GameState.prototype.printWalls = function(){
+	GameState.prototype.printBorder = function(){
 		var map =  QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].mapData.map;
 
 		for(var y = 0; y < map.length; y++){
 			for(var x = 0; x < map[y].length; x++){
-				if(map[y][x].wall !== undefined && map[y][x].visible !== false){
-					for(var w = 0; w < map[y][x].wall.length; w ++){
-						switch (map[y][x].wall[w]){
-							case "top":
-								this.context.beginPath();
-								this.context.lineWidth = 10*this.gridScale;
-								this.context.strokeStyle = "white";
-								this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-								this.context.lineTo(x*this.tileSize*this.gridScale + (this.tileSize*this.gridScale), y*this.tileSize*this.gridScale);
-								this.context.stroke();
-								break;
-							case "right":
-								this.context.beginPath();
-								this.context.lineWidth = 10*this.gridScale;
-								this.context.strokeStyle = "white";
-								this.context.moveTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-								this.context.lineTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
-								this.context.stroke();
-								break;
-							case "bottom":
-								this.context.beginPath();
-								this.context.lineWidth = 10*this.gridScale;
-								this.context.strokeStyle = "white";
-								this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
-								this.context.lineTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
-								this.context.stroke();
-								break;
-							case "left":
-								this.context.beginPath();
-								this.context.lineWidth = 10*this.gridScale;
-								this.context.strokeStyle = "white";
-								this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-								this.context.lineTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
-								this.context.stroke();
-								break;
-							default:
-								console.log("Unexpected wall identifier");
-								break;
+				if(map[y][x].visible !== false && map[y][x].border !== undefined){
+					// Print the walls
+					if(map[y][x].border.wall !== undefined){
+						for(var w = 0; w < map[y][x].border.wall.length; w ++){
+							switch (map[y][x].border.wall[w]){
+								case "top":
+									this.context.beginPath();
+									this.context.lineWidth = 10*this.gridScale;
+									this.context.strokeStyle = "white";
+									this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+									this.context.lineTo(x*this.tileSize*this.gridScale + (this.tileSize*this.gridScale), y*this.tileSize*this.gridScale);
+									this.context.stroke();
+									break;
+								case "right":
+									this.context.beginPath();
+									this.context.lineWidth = 10*this.gridScale;
+									this.context.strokeStyle = "white";
+									this.context.moveTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+									this.context.lineTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.stroke();
+									break;
+								case "bottom":
+									this.context.beginPath();
+									this.context.lineWidth = 10*this.gridScale;
+									this.context.strokeStyle = "white";
+									this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.lineTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.stroke();
+									break;
+								case "left":
+									this.context.beginPath();
+									this.context.lineWidth = 10*this.gridScale;
+									this.context.strokeStyle = "white";
+									this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+									this.context.lineTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.stroke();
+									break;
+								default:
+									console.log("Unexpected wall identifier");
+									break;
+							}
+						}
+					}
+
+					// Print the doors
+					if(map[y][x].border.door !== undefined){
+						var sprite;
+						for(var d = 0; d < map[y][x].border.door.length; d++){
+							switch(map[y][x].border.door[d].side){
+								case "top":
+									break;
+								case "right":
+									break;
+								case "bottom":
+									this.context.save();
+									sprite = QM.activeGameData.activeMapSprites[map[y][x].border.door[d].id];
+									this.context.drawImage(
+										sprite,
+										0, 0, sprite.width, sprite.height,
+										x*this.tileSize*this.gridScale, (y*this.tileSize+50)*this.gridScale,
+										sprite.width * this.gridScale, sprite.height * this.gridScale
+										);
+									this.context.restore();
+									break;
+								case "left":
+									sprite = QM.activeGameData.activeMapSprites[map[y][x].border.door[d].id];
+
+									var offsetx = sprite.width/2*this.gridScale;
+									var offsety = sprite.height/2*this.gridScale;
+
+									this.context.save();
+									this.context.translate(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+									this.context.rotate(90*Math.PI/180);
+
+									this.context.drawImage(sprite, 
+										0, 0, sprite.width, sprite.height,
+										0, -offsety,
+										sprite.width*this.gridScale, sprite.height*this.gridScale);
+
+									this.context.restore();
+									break;
+								default:
+									break;
+							}
 						}
 					}
 				}
@@ -180,7 +226,7 @@ var QM = (function(QM){
 	GameState.prototype.printMap = function(){
 		this.printGrid();
 		this.printFloor();
-		this.printWalls();
+		this.printBorder();
 		
 		// Print Objects and Traps
 
