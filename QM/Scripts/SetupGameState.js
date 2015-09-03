@@ -44,19 +44,7 @@ var QM = (function(QM){
 		/**
 		 * Add a hud overlay for the canvas
 		 */
-
-		var divHud = document.createElement("div");
-		divHud.id = "divHud";
-		document.getElementById("divGameSpace").appendChild(divHud);
-		divHud.addEventListener("mousemove", QM.Mouse.onMousemove, false);
-		divHud.addEventListener("mousedown", QM.Mouse.onMousedown, false);
-		divHud.addEventListener("mouseup", QM.Mouse.onMouseup, false);
-
-		var para = document.createElement("p");
-		para.id = "pDummyText";
-		para.innerHTML += "Dummy Text";
-
-		document.getElementById("divHud").appendChild(para);
+		QM.hud = new QM.HUD();
 		
 		return "gameState";
 	};

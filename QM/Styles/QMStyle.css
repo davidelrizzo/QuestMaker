@@ -29,6 +29,14 @@ footer{
 	height: 100%;
 }
 
+#bIncreaseScale{
+
+}
+
+#bDecreaseScale{
+	position: absolute;
+}
+
 #divCanvas{
 	z-index: 1;
 	position: absolute;

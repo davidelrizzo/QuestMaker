@@ -13,7 +13,7 @@ var QM = (function(QM){
 			if(this.map[y][x].border.wall[c] === wall) return true;
 		}
 		return false;		
-	}
+	};
 
 	/**
 	 * Func: hasDoor
@@ -40,7 +40,7 @@ var QM = (function(QM){
 		}
 
 		return false;
-	}
+	};
 
 	Map.prototype.getSightline = function(x0, y0, x1, y1, checkWall){
 		console.log("getSightLine - x,y " + x0 + "," + y0 + " x,y " + x1 + "," + y1);
@@ -134,7 +134,7 @@ var QM = (function(QM){
 				}
 			}
 		}		
-	}
+	};
 
 	function initializeMapVisibility(map){
 		for(var y = 0; y < map.length; y++){
@@ -142,7 +142,15 @@ var QM = (function(QM){
 				map[y][x].visible = false;
 			}
 		}
-	}
+	};
+
+	Map.prototype.setGlobalMapVisibility = function(visible){
+		for(var y = 0; y < map.length; y++){
+			for(var x = 0; x < map[y].length; x++){
+				map[y][x].visible = visible;
+			}
+		}		
+	};
 
 
 	/**
