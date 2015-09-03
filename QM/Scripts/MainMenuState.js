@@ -14,10 +14,10 @@ var QM = (function(QM){
 		this.img_background = LoadImage("./Images/Background.gif");
 		this.stoneTexture 	= LoadImage("./Images/seamless_tiled_stone_texture_by_lendrick.jpg");
 
-		this.newGameButton 	=	{id : 1, text : "New Game",	x : 170, y : 160, width : 300, height : 40};
-		this.loadGameButton = {id : 2, text : "Load Game", x : 170, y : 210, width : 300, height : 40};
-		this.editorButton 	= {id : 3, text : "Editor", 	x : 170, y : 260, width : 300, height : 40};
-		this.exitButton 		=	{id : 4, text : "Exit", 		x : 170, y : 310, width : 300, height : 40};
+		this.newGameButton 	=	{id : 1, text : "New Game",		x : 170, y : 160, width : 300, height : 40};
+		this.loadGameButton = {id : 2, text : "Load Game", 	x : 170, y : 210, width : 300, height : 40};
+		this.editorButton 	= {id : 3, text : "Editor", 		x : 170, y : 260, width : 300, height : 40};
+		this.exitButton 		=	{id : 4, text : "Exit", 			x : 170, y : 310, width : 300, height : 40};
 	}
 	MainMenuState.prototype = Object.create(QM.State.prototype);
 
@@ -37,8 +37,6 @@ var QM = (function(QM){
 				campaign.creatureTemplates = gameData.creatureTemplates;
 				
 				QM.activeGameData = new QM.ActiveGameData(campaign);
-
-				console.log(this.activeGameData);
 
 				return "campaignIntroState";	
 			} 

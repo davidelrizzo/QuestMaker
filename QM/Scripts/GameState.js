@@ -25,15 +25,11 @@ var QM = (function(QM){
 	GameState.prototype = Object.create(QM.QMState.prototype);
 
 	GameState.prototype.update = function(){
-		console.log(QM.activeGameData);
-
 		// Identify mouse input
 		if(QM.Mouse.mouseDown === true){
 			var x = Math.floor(QM.Mouse.mousex / this.tileSize);			
 			var y = Math.floor(QM.Mouse.mousey / this.tileSize);
 		}
-
-		console.log(QM.activeGameData.activeTile);
 
 		/** PSEUDO CODE **
 		 * Check 
@@ -52,7 +48,20 @@ var QM = (function(QM){
 		this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 		this.printMap();
+	};
 
+	GameState.prototype.printMap = function(){
+		this.printGrid();
+		this.printFloor();
+		this.printBorder();
+		
+		// Print Objects and Traps
+
+		this.printCreatures();
+
+		// Lighting Effects
+
+		this.printMouseLocation();
 	};
 
 	GameState.prototype.printGrid = function(){
@@ -76,7 +85,8 @@ var QM = (function(QM){
 	};
 
 	GameState.prototype.printFloor = function(){
-		var map =  QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].mapData.map;
+		//var map =  QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].mapData.map;
+		var map = QM.activeGameData.activeMap.map;
 
 		for(var y = 0; y < map.length; y++){
 			for(var x = 0; x < map[y].length; x++){
@@ -94,7 +104,8 @@ var QM = (function(QM){
 	};
 
 	GameState.prototype.printBorder = function(){
-		var map =  QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].mapData.map;
+		//var map =  QM.activeGameData.campaign.levels[QM.activeGameData.activeLevel].mapData.map;
+		var map = QM.activeGameData.activeMap.map;
 
 		for(var y = 0; y < map.length; y++){
 			for(var x = 0; x < map[y].length; x++){
@@ -144,50 +155,73 @@ var QM = (function(QM){
 
 					// Print the doors
 					if(map[y][x].border.door !== undefined){
-						var sprite;
-						for(var d = 0; d < map[y][x].border.door.length; d++){
-							switch(map[y][x].border.door[d].side){
-								case "top":
-									break;
-								case "right":
-									break;
-								case "bottom":
-									this.context.save();
-									sprite = QM.activeGameData.activeMapSprites[map[y][x].border.door[d].id];
-									this.context.drawImage(
-										sprite,
-										0, 0, sprite.width, sprite.height,
-										x*this.tileSize*this.gridScale, (y*this.tileSize+50)*this.gridScale,
-										sprite.width * this.gridScale, sprite.height * this.gridScale
-										);
-									this.context.restore();
-									break;
-								case "left":
-									sprite = QM.activeGameData.activeMapSprites[map[y][x].border.door[d].id];
-
-									var offsetx = sprite.width/2*this.gridScale;
-									var offsety = sprite.height/2*this.gridScale;
-
-									this.context.save();
-									this.context.translate(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-									this.context.rotate(90*Math.PI/180);
-
-									this.context.drawImage(sprite, 
-										0, 0, sprite.width, sprite.height,
-										0, -offsety,
-										sprite.width*this.gridScale, sprite.height*this.gridScale);
-
-									this.context.restore();
-									break;
-								default:
-									break;
-							}
-						}
+						this.printDoors(map, x, y);
 					}
 				}
 			}
 		}		
 	};
+
+	GameState.prototype.printDoors = function(map, x, y){
+		var sprite;
+		for(var d = 0; d < map[y][x].border.door.length; d++){
+			sprite = QM.activeGameData.activeMapSprites[map[y][x].border.door[d].id];
+			switch(map[y][x].border.door[d].side){
+				case "top":
+					this.context.save();
+					this.context.drawImage(
+						sprite,
+						0, 0, sprite.width, sprite.height,
+						x*this.tileSize*this.gridScale, (y*this.tileSize-(.5*sprite.height))*this.gridScale,
+						sprite.width * this.gridScale, sprite.height * this.gridScale
+						);
+					this.context.restore();
+					break;
+				case "right":
+					var offsetx = sprite.width/2*this.gridScale;
+					var offsety = sprite.height/2*this.gridScale;
+
+					this.context.save();
+					this.context.translate(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+					this.context.rotate(90*Math.PI/180);
+
+					this.context.drawImage(sprite, 
+						0, 0, sprite.width, sprite.height,
+						0, -this.tileSize*this.gridScale-offsety,
+						sprite.width*this.gridScale, sprite.height*this.gridScale);
+
+					this.context.restore();
+					break;
+				case "bottom":
+					this.context.save();
+					this.context.drawImage(
+						sprite,
+						0, 0, sprite.width, sprite.height,
+						x*this.tileSize*this.gridScale, (y*this.tileSize+this.tileSize-(.5*sprite.height))*this.gridScale,
+						sprite.width * this.gridScale, sprite.height * this.gridScale
+						);
+					this.context.restore();
+					break;
+				case "left":
+					var offsetx = sprite.width/2*this.gridScale;
+					var offsety = sprite.height/2*this.gridScale;
+
+					this.context.save();
+					this.context.translate(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+					this.context.rotate(90*Math.PI/180);
+
+					this.context.drawImage(sprite, 
+						0, 0, sprite.width, sprite.height,
+						0, -offsety,
+						sprite.width*this.gridScale, sprite.height*this.gridScale);
+
+					this.context.restore();
+					break;
+				default:
+					break;
+			}
+		}		
+	}
 
 	GameState.prototype.printCreatures = function(){
 		for(var team = 0; team < QM.activeGameData.creatures.length; team++){
@@ -221,20 +255,6 @@ var QM = (function(QM){
 		this.context.globalAlpha = 0.4;
 		this.context.fill();
 		this.context.globalAlpha = 1.0;
-	};
-
-	GameState.prototype.printMap = function(){
-		this.printGrid();
-		this.printFloor();
-		this.printBorder();
-		
-		// Print Objects and Traps
-
-		this.printCreatures();
-
-		// Lighting Effects
-
-		this.printMouseLocation();
 	};
 
 	QM.GameState = GameState;

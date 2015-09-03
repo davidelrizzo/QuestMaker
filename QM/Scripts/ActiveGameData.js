@@ -7,15 +7,14 @@ var QM = (function(QM){
 		this.activeLevel = 0;
 		this.activeMapSprites = [];
 
-
 		this.activeTeam = 0;
 		this.activeCreature = 0;
 		this.activeCreatureSprites = {};
+		this.activeMap = new QM.API.Map(this.campaign.levels[this.activeLevel].mapData.map);
+		console.log(this.activeMap);
 		this.turn = 0;
 
 		this.creatures = loadCreatures(this.campaign, this.activeLevel);
-
-		initializeBoardVisiblity(this.campaign.levels[this.activeLevel].mapData.map);
 	};
 
 	function loadCreatures(campaign, activeLevel){
@@ -56,10 +55,9 @@ var QM = (function(QM){
 	}
 
 	ActiveGameData.prototype.loadMapSprites = function(){
-		var len = this.campaign.levels[this.activeLevel].mapData.spriteIndex.length;
-		for(var x = 0; x < len; x++){
+		for(var key in this.campaign.levels[this.activeLevel].mapData.spriteIndex){
 			try{
-				this.activeMapSprites[x] = LoadImage(this.campaign.levels[this.activeLevel].mapData.spriteIndex[x]);
+				this.activeMapSprites[key] = LoadImage(this.campaign.levels[this.activeLevel].mapData.spriteIndex[key]);
 			} catch (e) { console.log(e); };
 		}
 	};
@@ -67,14 +65,6 @@ var QM = (function(QM){
 	ActiveGameData.prototype.loadCreatureSprites = function(){
 		for(var key in this.campaign.creatureTemplates){
 			this.activeCreatureSprites[key] = LoadImage(this.campaign.creatureTemplates[key].sprite);
-		}
-	}
-
-	function initializeBoardVisiblity(map){
-		for(var y = 0; y < map.length; y++){
-			for(var x = 0; x < map[y].length; x++){
-				map[y][x].visible = false;
-			}
 		}
 	}
 

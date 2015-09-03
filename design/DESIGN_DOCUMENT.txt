@@ -35,9 +35,10 @@ GAME STATES
 007 :- Store					"storeState"
 008 :- Campaign introduction	"campaignIntroState"
 009 :- Level introduction 		"levelIntroState"
-010 :- Game 					"gameState"
-011 :- Level conclusion			"endLevelState"
-012 :- Editor 					"editorState"
+010 :- Setup game 				"setupGameState"
+011 :- Game 					"gameState"
+012 :- Level conclusion			"endLevelState"
+013 :- Editor 					"editorState"
 
 
 HANDLING OF ENGINE DATA
