@@ -110,7 +110,6 @@ var QM = (function(QM){
 		this.textFrameB.setPosition(QM.Canvas2D.canvas.width/2 + 20, QM.Canvas2D.canvas.height/2 - 210);
 
 		// write the introductory text
-		console.log(QM.activeGameData);
 		var text = this.textFrameA.writeText(QM.activeGameData.campaign.introText);
 		this.textFrameB.writeText(text);
 

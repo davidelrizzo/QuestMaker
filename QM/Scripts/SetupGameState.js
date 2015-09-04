@@ -33,11 +33,11 @@ var QM = (function(QM){
 		for(y = 0; y < map.length; y++){
 			if(y == 0 || y == (map.length-1)){
 				for(x = 0; x < map[y].length; x++){
-					QM.activeGameData.activeMap.getSightline(QM.activeGameData.creatures[0][0].posX, QM.activeGameData.creatures[0][0].posY, x, y, true);
+					QM.activeGameData.activeMap.getSightline(QM.activeGameData.creatures[0][0].posX, QM.activeGameData.creatures[0][0].posY, x, y, false);
 				}
 			} else {
-				QM.activeGameData.activeMap.getSightline(QM.activeGameData.creatures[0][0].posX, QM.activeGameData.creatures[0][0].posY, 0, y, true);
-				QM.activeGameData.activeMap.getSightline(QM.activeGameData.creatures[0][0].posX, QM.activeGameData.creatures[0][0].posY, map[y].length-1, y, true);
+				QM.activeGameData.activeMap.getSightline(QM.activeGameData.creatures[0][0].posX, QM.activeGameData.creatures[0][0].posY, 0, y, false);
+				QM.activeGameData.activeMap.getSightline(QM.activeGameData.creatures[0][0].posX, QM.activeGameData.creatures[0][0].posY, map[y].length-1, y, false);
 			}
 		}
 

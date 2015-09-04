@@ -17,13 +17,16 @@ var QM = (function(QM){
 		this.divHud.addEventListener("mousedown", QM.Mouse.onMousedown, false);
 		this.divHud.addEventListener("mouseup", QM.Mouse.onMouseup, false);
 
+		document.onkeydown 	= QM.Input.keyboard.onKeyDown;
+		document.onkeyup 	= QM.Input.keyboard.onKeyUp;
+
 		this.increaseScaleButton.id = "bIncreaseScale";
 		this.increaseScaleButton.innerHTML += "Increase Scale";
-		this.increaseScaleButton.addEventListener("click", function(){ QM.gameState.gridScale += .1; });
+		this.increaseScaleButton.onclick = function(){ QM.gameState.gridScale += .1; };
 
 		this.decreaseScaleButton.id = "bDecreaseScale";
 		this.decreaseScaleButton.innerHTML += "Decrease Scale";
-		this.decreaseScaleButton.addEventListener("click", function(){ QM.gameState.gridScale -= .1; });
+		this.decreaseScaleButton.onclick = function(){ QM.gameState.gridScale -= .1; };
 
 		document.getElementById("divHud").appendChild(this.increaseScaleButton);
 		document.getElementById("divHud").appendChild(this.decreaseScaleButton);

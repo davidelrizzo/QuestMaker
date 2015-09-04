@@ -61,7 +61,7 @@
 					"name" : "Empire", 
 					"creatures" : [
 						{"templateID" : "Barbarian_001", "posX" : 2, "posY": 14},
-						{"templateID" : "Elf_001"}, 
+						{"templateID" : "Elf_001", "posX" : 2, "posY":13}, 
 						{"templateID" : "Dwarf_001"},
 						{"templateID" : "Wizard_001"}
 					]

@@ -21,6 +21,8 @@ var QM = (function(QM){
 
 		this.tileSize = 64;
 		this.gridScale = .8;
+		this.viewPort = {"x" : 0, "y" : 0};
+		this.MOVE_RATE = 5;
 	}
 	GameState.prototype = Object.create(QM.QMState.prototype);
 
@@ -30,6 +32,22 @@ var QM = (function(QM){
 			var x = Math.floor(QM.Mouse.mousex / this.tileSize);			
 			var y = Math.floor(QM.Mouse.mousey / this.tileSize);
 		}
+
+		// Handle keyboard input
+		if(QM.Input.keyboard.keys[QM.Input.key.up]){
+			this.viewPort.y -= this.MOVE_RATE;
+		}
+		if(QM.Input.keyboard.keys[QM.Input.key.right]){
+			this.viewPort.x += this.MOVE_RATE;
+		}
+		if(QM.Input.keyboard.keys[QM.Input.key.down]){
+			this.viewPort.y += this.MOVE_RATE;
+		}
+		if(QM.Input.keyboard.keys[QM.Input.key.left]){
+			this.viewPort.x -= this.MOVE_RATE;
+		}
+
+		console.log(this.viewPort);
 
 		/** PSEUDO CODE **
 		 * Check 
@@ -71,15 +89,15 @@ var QM = (function(QM){
 
 		for(var y = 0; y < this.canvas.height; y+=(64*this.gridScale)){
 			this.context.beginPath();
-			this.context.moveTo(0, y);
-			this.context.lineTo(this.canvas.width, y);
+			this.context.moveTo(0, y + (this.viewPort.y % this.tileSize * this.gridScale));
+			this.context.lineTo(this.canvas.width, y + this.viewPort.y % this.tileSize * this.gridScale);
 			this.context.stroke();
 		}
 
 		for(var x = 0; x < this.canvas.width; x+=(64*this.gridScale)){
 			this.context.beginPath();
-			this.context.moveTo(x, 0);
-			this.context.lineTo(x, this.canvas.height);
+			this.context.moveTo(x + this.viewPort.x % this.tileSize * this.gridScale, 0);
+			this.context.lineTo(x + this.viewPort.x % this.tileSize * this.gridScale, this.canvas.height);
 			this.context.stroke();
 		}
 	};
@@ -93,7 +111,7 @@ var QM = (function(QM){
 				if(map[y][x].visible !== false && map[y][x].id !== undefined){
 					QM.Canvas2D.drawImage(
 						QM.activeGameData.activeMapSprites[map[y][x].id],
-						{x: x*this.tileSize*this.gridScale, y: y*this.tileSize*this.gridScale},
+						{x: x*this.tileSize*this.gridScale + this.viewPort.x*this.gridScale, y: y*this.tileSize*this.gridScale + this.viewPort.y*this.gridScale},
 						map[y][x].rotation,
 						{x : 0, y : 0},
 						this.gridScale
@@ -118,32 +136,32 @@ var QM = (function(QM){
 									this.context.beginPath();
 									this.context.lineWidth = 10*this.gridScale;
 									this.context.strokeStyle = "white";
-									this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-									this.context.lineTo(x*this.tileSize*this.gridScale + (this.tileSize*this.gridScale), y*this.tileSize*this.gridScale);
+									this.context.moveTo((x*this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y) * this.gridScale);
+									this.context.lineTo((x*this.tileSize + this.tileSize+this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y) * this.gridScale);
 									this.context.stroke();
 									break;
 								case "right":
 									this.context.beginPath();
 									this.context.lineWidth = 10*this.gridScale;
 									this.context.strokeStyle = "white";
-									this.context.moveTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-									this.context.lineTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.moveTo((x*this.tileSize + this.tileSize + this.viewPort.x) * this.gridScale, (y*this.tileSize + this.viewPort.y) * this.gridScale);
+									this.context.lineTo((x*this.tileSize + this.viewPort.x + this.tileSize) * this.gridScale, (y*this.tileSize + this.viewPort.y + this.tileSize)*this.gridScale)
 									this.context.stroke();
 									break;
 								case "bottom":
 									this.context.beginPath();
 									this.context.lineWidth = 10*this.gridScale;
 									this.context.strokeStyle = "white";
-									this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
-									this.context.lineTo(x*this.tileSize*this.gridScale + this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.moveTo((x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y + this.tileSize) * this.gridScale);
+									this.context.lineTo((x * this.tileSize + this.viewPort.x + this.tileSize) * this.gridScale, (y * this.tileSize + this.viewPort.y + this.tileSize) * this.gridScale);
 									this.context.stroke();
 									break;
 								case "left":
 									this.context.beginPath();
 									this.context.lineWidth = 10*this.gridScale;
 									this.context.strokeStyle = "white";
-									this.context.moveTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
-									this.context.lineTo(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale + this.tileSize*this.gridScale);
+									this.context.moveTo((x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y) * this.gridScale);
+									this.context.lineTo((x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y + this.tileSize) * this.gridScale);
 									this.context.stroke();
 									break;
 								default:
@@ -172,23 +190,23 @@ var QM = (function(QM){
 					this.context.drawImage(
 						sprite,
 						0, 0, sprite.width, sprite.height,
-						x*this.tileSize*this.gridScale, (y*this.tileSize-(.5*sprite.height))*this.gridScale,
+						(x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y - (.5 * sprite.height)) * this.gridScale,
 						sprite.width * this.gridScale, sprite.height * this.gridScale
 						);
 					this.context.restore();
 					break;
 				case "right":
-					var offsetx = sprite.width/2*this.gridScale;
-					var offsety = sprite.height/2*this.gridScale;
+					var offsetx = sprite.width/2 * this.gridScale;
+					var offsety = sprite.height/2 * this.gridScale;
 
 					this.context.save();
-					this.context.translate(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+					this.context.translate((x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y ) * this.gridScale);
 					this.context.rotate(90*Math.PI/180);
 
 					this.context.drawImage(sprite, 
 						0, 0, sprite.width, sprite.height,
-						0, -this.tileSize*this.gridScale-offsety,
-						sprite.width*this.gridScale, sprite.height*this.gridScale);
+						0, -this.tileSize * this.gridScale - offsety,
+						sprite.width * this.gridScale, sprite.height * this.gridScale);
 
 					this.context.restore();
 					break;
@@ -197,17 +215,17 @@ var QM = (function(QM){
 					this.context.drawImage(
 						sprite,
 						0, 0, sprite.width, sprite.height,
-						x*this.tileSize*this.gridScale, (y*this.tileSize+this.tileSize-(.5*sprite.height))*this.gridScale,
+						(x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y + this.tileSize - (.5 * sprite.height)) * this.gridScale,
 						sprite.width * this.gridScale, sprite.height * this.gridScale
 						);
 					this.context.restore();
 					break;
 				case "left":
-					var offsetx = sprite.width/2*this.gridScale;
-					var offsety = sprite.height/2*this.gridScale;
+					var offsetx = sprite.width/2 * this.gridScale;
+					var offsety = sprite.height/2 * this.gridScale;
 
 					this.context.save();
-					this.context.translate(x*this.tileSize*this.gridScale, y*this.tileSize*this.gridScale);
+					this.context.translate((x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y) * this.gridScale);
 					this.context.rotate(90*Math.PI/180);
 
 					this.context.drawImage(sprite, 
@@ -233,7 +251,7 @@ var QM = (function(QM){
 					if(map[y][x].visible !== false){
 						QM.Canvas2D.drawImage(
 							QM.activeGameData.activeCreatureSprites[QM.activeGameData.creatures[team][creature].templateID],
-							{x : x*this.tileSize*this.gridScale, y: y*this.tileSize*this.gridScale},
+							{x : (x * this.tileSize + this.viewPort.x ) * this.gridScale, y: (y * this.tileSize + this.viewPort.y ) * this.gridScale},
 							0,
 							{x:0, y:0},
 							this.gridScale

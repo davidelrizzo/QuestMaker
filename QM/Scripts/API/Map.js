@@ -8,7 +8,6 @@ var QM = (function(QM){
 	}
 
 	Map.prototype.hasWall = function(x, y, wall){
-		console.log(this.map[y][x]);
 		for(var c = 0; c < this.map[y][x].border.wall.length; c++){
 			if(this.map[y][x].border.wall[c] === wall) return true;
 		}
@@ -42,9 +41,12 @@ var QM = (function(QM){
 		return false;
 	};
 
+	/**
+	 * 	Func: getSightline
+	 *	Desc: Naive and unoptimized implementation of a ray-cast algorithm.
+	 *		  Sightline from (x0, y0) to (x1, y1).
+	 */
 	Map.prototype.getSightline = function(x0, y0, x1, y1, checkWall){
-		console.log("getSightLine - x,y " + x0 + "," + y0 + " x,y " + x1 + "," + y1);
-
 		var dy = y1-y0;
 		var dx = x1-x0;
 		var m; // slope
