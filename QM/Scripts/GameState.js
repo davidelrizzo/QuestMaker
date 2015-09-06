@@ -47,7 +47,8 @@ var QM = (function(QM){
 			this.viewPort.x -= this.MOVE_RATE;
 		}
 
-		console.log(this.viewPort);
+		console.log("viewPort: " + this.viewPort.x + " : " + this.viewPort.y + " mouse " + QM.Mouse.mousex + " : " + QM.Mouse.mousey);
+
 
 		/** PSEUDO CODE **
 		 * Check 
@@ -111,7 +112,10 @@ var QM = (function(QM){
 				if(map[y][x].visible !== false && map[y][x].id !== undefined){
 					QM.Canvas2D.drawImage(
 						QM.activeGameData.activeMapSprites[map[y][x].id],
-						{x: x*this.tileSize*this.gridScale + this.viewPort.x*this.gridScale, y: y*this.tileSize*this.gridScale + this.viewPort.y*this.gridScale},
+						{ 
+							x : (x * this.tileSize + this.viewPort.x) * this.gridScale,
+							y : (y * this.tileSize + this.viewPort.y) * this.gridScale
+						},
 						map[y][x].rotation,
 						{x : 0, y : 0},
 						this.gridScale
@@ -190,9 +194,11 @@ var QM = (function(QM){
 					this.context.drawImage(
 						sprite,
 						0, 0, sprite.width, sprite.height,
-						(x * this.tileSize + this.viewPort.x) * this.gridScale, (y * this.tileSize + this.viewPort.y - (.5 * sprite.height)) * this.gridScale,
-						sprite.width * this.gridScale, sprite.height * this.gridScale
-						);
+						(x * this.tileSize + this.viewPort.x) * this.gridScale, 
+						(y * this.tileSize + this.viewPort.y - (.5 * sprite.height)) * this.gridScale,
+						sprite.width * this.gridScale, 
+						sprite.height * this.gridScale
+					);
 					this.context.restore();
 					break;
 				case "right":
@@ -262,13 +268,26 @@ var QM = (function(QM){
 		}
 	};
 
+	GameState.prototype.getMouseCellLocation = function(){
+		var x = Math.floor((QM.Mouse.mousex - (this.viewPort.x * this.gridScale)) / (this.tileSize * this.gridScale));
+		var y = Math.floor((QM.Mouse.mousey - (this.viewPort.y * this.gridScale)) / (this.tileSize * this.gridScale));
+
+		return {"x" : x, "y" : y};
+	};
+
 	GameState.prototype.printMouseLocation = function(){
 		var tileDim = this.tileSize*this.gridScale;
-		var x = Math.floor(QM.Mouse.mousex / tileDim);
-		var y = Math.floor(QM.Mouse.mousey / tileDim);
+
+		var cell = this.getMouseCellLocation();
+		console.log(cell);
 
 		this.context.beginPath();
-		this.context.rect(x*tileDim, y*tileDim,tileDim,tileDim);
+		this.context.rect(
+			(cell.x * this.tileSize + this.viewPort.x) * this.gridScale,
+			(cell.y * this.tileSize + this.viewPort.y) * this.gridScale,
+			tileDim,
+			tileDim
+		);
 		this.context.fillStyle = "blue";
 		this.context.globalAlpha = 0.4;
 		this.context.fill();
