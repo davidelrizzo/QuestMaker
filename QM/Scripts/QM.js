@@ -19,8 +19,10 @@ var QM = (function(QM){
 
     var canvas = document.createElement("canvas");
     canvas.setAttribute("id", "cDisplay");
-    canvas.setAttribute("width", document.body.clientWidth);
-    canvas.setAttribute("height", document.body.clientHeight);
+    //canvas.setAttribute("width", document.body.clientWidth);
+    //canvas.setAttribute("height", document.body.clientHeight);
+    canvas.setAttribute("width", 640);
+    canvas.setAttribute("height", 480);
     document.getElementById("divCanvas").appendChild(canvas);
 
     QM.Canvas2D.initialize("cDisplay", QM.Mouse.onMousemove, QM.Mouse.onMousedown, undefined);

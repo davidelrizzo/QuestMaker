@@ -1,6 +1,51 @@
 {
 	"name" : "Hero Quest",
 	"introText" : "The fire burns warmly, but casts little light into Mentor's study.\n The flickering shadows only hint at the vast number of books and scrolls that fill the many shelves.  Slowly Mentor walks over to the fire. Well, my friends, your training is complete. You are not yet true Heroes, you have yet to prove yourself. But first, let me tell you of Zargon... Many centuries ago, Zargon was my apprentice.  He worked hard and learned quickly. But impatience devoured him. He wanted to learn more powerful magic. I told him of the dangers, and that he should be patient, for in time he would become a great Sorcerer. But Zargon could not wait; each night he broke into my study and read my spell books. The secrets that were held within them were great indeed. Once he learned these secrets, Zargon fled. When I caught up with him, I found him greatly changed. He had pledged his allegiance to the Great Powers of Chaos. Fool! He saw magic only as a short-cut to power and paid no heed to the terrible price he would have to pay. I tried to reason with him, but to no avail. He laughed in my face and then unleashed a terrible spell which I was hard-pressed to counter. For many days we battled, but Zargon had allies stronger even than I, and I could not defeat him. In the end, as we both weakened, he fled and sought refuge in the Northern Chaos Wastes. There he licked his wounds and honed his skills, conjuring ancient powers with which to overthrow the Empire.\n",
+	"equipmentTemplates" : {
+		"weapons" : {
+			"Dagger" : {
+				"damage" : 1, 
+				"restricted" : [],
+				"cost" : 25,
+				"diagonal" : true,
+				"threat" : 1,
+				"ranged" : true,
+				"use" : 1
+			},
+			"Shortsword" : {
+				"damage" : 2,
+				"restricted" : ["Wizard", "Monk", "Bard"],
+				"cost" : 150,
+				"diagonal" : false,
+				"threat" : 1,
+				"ranged" : false
+			},
+			"Broadsword" : {
+				"damage" : 3,
+				"restricted" : ["Wizard", "Monk", "Bard"],
+				"cost" : 250,
+				"diagonal" : false,
+				"threat" : 1,
+				"ranged" : false
+			},
+			"Longsword" : {
+				"damage" : 3,
+				"restricted" : ["Wizard", "Monk", "Bard"],
+				"cost" : 350,
+				"diagonal" : true,
+				"threat" : 1,
+				"ranged" : false
+			},
+			"Staff" : {
+				"damage" : 1,
+				"restricted" : [],
+				"cost" : 100,
+				"diagonal" : true,
+				"threat" : 1,
+				"ranged" : false
+			}
+		}
+	},
 	"creatureTemplates" : {
 		"Barbarian_001" : {
 			"name" : "Barbarian",
@@ -16,13 +61,25 @@
 			"sprite" : "./Images/Creatures/barbarian.png"
 		},
 		"Elf_001" : {
-			"name" : "Elf"
+			"name" : "Elf",
+			"body" : 6,
+			"mind" : 4,
+			"attackDice" : 2,
+			"defendDice" : 2,
+			"moveDice" : 2,
+			"leftHand" : "",
+			"rightHand" : "",
+			"chest" : "",
+			"head" : "",
+			"sprite" : "./Images/Creatures/elf.png"
 		},
 		"Dwarf_001" : {
-			"name" : "Dwarf"
+			"name" : "Dwarf",
+			"sprite" : "./Images/Creatures/dwarf.png"
 		},
 		"Wizard_001" : {
-			"name" : "Wizard"
+			"name" : "Wizard",
+			"sprite" : "./Images/Creatures/wizard.png"
 		},
 		"Goblin_001" : {
 			"name" : "Goblin", 
@@ -60,19 +117,19 @@
 				{
 					"name" : "Empire", 
 					"creatures" : [
-						{"templateID" : "Barbarian_001", "posX" : 2, "posY": 14},
-						{"templateID" : "Elf_001", "posX" : 2, "posY":13}, 
-						{"templateID" : "Dwarf_001"},
-						{"templateID" : "Wizard_001"}
+						{"templateID" : "Barbarian_001", 	"posX" : 2, "posY" : 14},
+						{"templateID" : "Elf_001", 			"posX" : 2, "posY" : 13}, 
+						{"templateID" : "Dwarf_001", 		"posX" : 1, "posY" : 14},
+						{"templateID" : "Wizard_001", 		"posX" : 1, "posY" : 13}
 					]
 				},
 				{
 					"name" : "Zargon", 
 					"creatures" : [
 						{"templateID" : "Orc_001", 			"posX" : 2, "posY" : 2}, 
-						{"templateID" : "Goblin_001", 	"posX" : 1, "posY" : 1}, 
-						{"templateID" : "Gargoyl_001", 	"posX" : 3, "posY" : 3},
-						{"templateID" : "Goblin_001", 	"posX" : 2, "posY" : 11},
+						{"templateID" : "Goblin_001", 		"posX" : 1, "posY" : 1}, 
+						{"templateID" : "Gargoyl_001", 		"posX" : 3, "posY" : 3},
+						{"templateID" : "Goblin_001", 		"posX" : 2, "posY" : 11},
 						{"templateID" : "Orc_001",			"posX" : 2, "posY" : 12},
 						{"templateID" : "Orc_001",			"posX" : 7, "posY" : 14},
 						{"templateID" : "Orc_001",			"posX" : 8, "posY" : 15}
@@ -82,7 +139,7 @@
 			],
 			"mapData" : {
 				"spriteIndex" : {
-				  "0" : "./Images/Floor Tiles/hidden.bmp",
+				  	"0" : "./Images/Floor Tiles/hidden.bmp",
 					
 					"1"  : "./Images/Floor Tiles/stone_tile_001.bmp",
 					"2"  : "./Images/Floor Tiles/stone_tile_002.bmp",

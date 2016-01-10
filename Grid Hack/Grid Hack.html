@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<meta charset = "utf-8">
+	<title>Grid Hack</title>
+	<link rel="stylesheet" type="text/css" href="Grid Hack.css">
+
+	<script src="./Scripts/standard.js"></script>
+	<script src="./Scripts/StandardLib/MessagePump.js"></script>
+
+	<!-- Load Input libraries -->
+	<script src="./Scripts/Input/mouse.js"></script>
+	<script src="./Scripts/Input/keyboard.js"></script>
+
+	<!-- Load File libraries -->
+	<script src="./Scripts/File/ajax.js"></script>
+	<script src="./Scripts/File/json.js"></script>
+
+	<!-- Load Graphics -->
+	<script src="./Scripts/Graphics/display.js"></script>
+	<script src="./Scripts/Graphics/pixel.js"></script>
+	<script src="./Scripts/Graphics/sprite.js"></script>
+
+	<!-- Load Game libraries -->
+	<script src="./Scripts/team.js"></script>
+	<script src="./Scripts/cell.js"></script>
+	<script src="./Scripts/level.js"></script>
+	<script src="./Scripts/campaign.js"></script>
+	<script src="./Scripts/map.js"></script>
+	<script src="./Scripts/agent.js"></script>
+	<script src="./Scripts/assets.js"></script>
+	<script src="./Scripts/wall.js"></script>
+	<script src="./Scripts/door.js"></script>
+	<script src="./Scripts/trigger.js"></script>
+
+	<script src="./Scripts/stateSetup.js"></script>
+	<script src="./Scripts/stateGame.js"></script>
+
+	<script src="./Scripts/gh.js"></script>
+</head>
+
+<body onload="onload()" onresize="onresize()">
+
+	<div id="all">
+		<canvas id="ghCanvas">Your browser does not support canvas. Please upgrade to a modern browser.</canvas>
+	</div>
+
+<script>
+
+/**
+ * Executes before the page onload function
+ */
+(function(){
+	console.log("start");
+
+	var canvas 		   = document.getElementById("ghCanvas");
+	canvas.width 	   = canvas.parentNode.offsetWidth;
+	canvas.height 	   = canvas.parentNode.offsetHeight;
+	canvas.onmousemove = input.mouse.onMouseMove;
+	canvas.onclick     = input.mouse.onClick;
+
+	document.onkeydown = input.keyboard.onKeyDown;
+	document.onkeyup   = input.keyboard.onKeyUp;
+
+	gh.setup("ghCanvas");
+
+})();
+
+/**
+ * Executes when the page is loaded
+ */
+function onload(){
+	console.log("onload");
+
+	loadAssets();
+}
+
+function onresize(){
+	var canvas 		= document.getElementById("ghCanvas");
+	canvas.width    = canvas.parentNode.offsetWidth;
+	canvas.height   = canvas.parentNode.offsetHeight;
+}
+
+function loadAssets(){
+	if(graphics.getLoaded() !== 0){
+		requestAnimationFrame(loadAssets);
+	} else {
+		for(var key in gh.assets.sprites){
+			gh.assets.sprites[key].buildImageData();
+		}
+
+		gh.run();
+	}
+}
+
+</script>
+
+</body>
+
+</html>

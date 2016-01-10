@@ -23,6 +23,8 @@ var QM = (function(QM){
 		this.gridScale = .8;
 		this.viewPort = {"x" : 0, "y" : 0};
 		this.MOVE_RATE = 5;
+
+		this.selectedCell = {}; // {"x" : , "y" ; }
 	}
 	GameState.prototype = Object.create(QM.QMState.prototype);
 
@@ -47,19 +49,32 @@ var QM = (function(QM){
 			this.viewPort.x -= this.MOVE_RATE;
 		}
 
-		console.log("viewPort: " + this.viewPort.x + " : " + this.viewPort.y + " mouse " + QM.Mouse.mousex + " : " + QM.Mouse.mousey);
-
+		//console.log("viewPort: " + this.viewPort.x + " : " + this.viewPort.y + " mouse " + QM.Mouse.mousex + " : " + QM.Mouse.mousey);
 
 		/** PSEUDO CODE **
 		 * Check 
 		 * ActiveGameData.currentPlayersTurn()
 		 */
+
+		if(QM.activeGameData.getActiveCreature().hasActions()){
+			console.log(QM.activeGameData.getActiveCreature());
+			if(QM.Mouse.mouseDown){
+				// Handle input
+				var cell = this.getMouseCellLocation();
+				this.selectedCell = cell;
+				console.log(cell);
+			}
+		}
+		
+
 		return "gameState";
 	};
 
 	GameState.prototype.render = function(){
-		this.width = document.body.clientWidth;
-		this.height = document.body.clientHeight;
+		//this.width = document.body.clientWidth;
+		//this.height = document.body.clientHeight;
+		this.canvas.width = 640;
+		this.canvas.height = 480;
 		QM.Canvas2D.clearCanvas();
 
 		// black background.
@@ -67,6 +82,9 @@ var QM = (function(QM){
 		this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 		this.printMap();
+		//this.printMouseLocation();
+		this.printSelectedCell();
+
 	};
 
 	GameState.prototype.printMap = function(){
@@ -79,8 +97,6 @@ var QM = (function(QM){
 		this.printCreatures();
 
 		// Lighting Effects
-
-		this.printMouseLocation();
 	};
 
 	GameState.prototype.printGrid = function(){
@@ -279,12 +295,31 @@ var QM = (function(QM){
 		var tileDim = this.tileSize*this.gridScale;
 
 		var cell = this.getMouseCellLocation();
-		console.log(cell);
 
 		this.context.beginPath();
 		this.context.rect(
 			(cell.x * this.tileSize + this.viewPort.x) * this.gridScale,
 			(cell.y * this.tileSize + this.viewPort.y) * this.gridScale,
+			tileDim,
+			tileDim
+		);
+		this.context.fillStyle = "blue";
+		this.context.globalAlpha = 0.4;
+		this.context.fill();
+		this.context.globalAlpha = 1.0;
+	};
+
+	GameState.prototype.printSelectedCell = function(){
+		var tileDim = this.tileSize*this.gridScale;
+
+		if(this.selectedCell === {}){
+			return;
+		}
+
+		this.context.beginPath();
+		this.context.rect(
+			(this.selectedCell.x * this.tileSize + this.viewPort.x) * this.gridScale,
+			(this.selectedCell.y * this.tileSize + this.viewPort.y) * this.gridScale,
 			tileDim,
 			tileDim
 		);

@@ -1,0 +1,253 @@
+{
+	"name" 					: "The Trial",
+	"introText"			: "You have learned well, my friends. Now has come the in the catacombs. This Quest is not easy and you must time of your first trial. You must first enter the work together in order to survive. This is your first catacombs which contain Fellmarg’s Tomb. You must step on the road to becoming true Heroes. Tread seek out and destroy Verag, a foul Gargoyle who hides carefully my friends.",
+	"numHeroes"			: 4,
+	"availableHeroes"	: [ "Barbarian", "Elf", "Dwarf", "Wizard"],
+	"teams"			: {
+		"Empire"			: {"hostile" : ["Zargon"], "allies" : ["Empire"]},
+		"Zargon"			: {"hostile" : ["Empire"], "allies" : ["Zargon"]}
+		},
+	"stdGraphics"		: {"door" : {"closed" : "closedDoor.png", "open" : "openDoor.gif", "closedHighlight" : "closedDoorHighlight.gif", "openDoorHighlight" : "openDoorHighlight.gif"},
+	                       "tokenHighlight" : "tokenHighlight.gif"},
+	"mapData"				:{
+		"map" : [
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left","top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_002.bmp", "rotation" : 0},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_003.bmp", "rotation" : 0},
+				{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}
+			],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				
+				{"visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_037.png", "rotation" : 0, "border" : {"wall" : ["top", "left"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_038.png", "rotation" : 0, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_039.png", "rotation" : 0, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_040.png", "rotation" : 0, "border" : {"wall" : ["top"]}},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top", "left"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{},
+
+				{},{},{},{},{},{},{}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_041.png", "rotation" : 0, "border" : {"door" : {"left" : {"open" : false}}}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_042.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_043.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_044.png", "rotation" : 0},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+
+				{},
+				{},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{},{},{},{},{},{},{},{}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false},  "img" : "stone_tile_045.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_046.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_047.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_048.png", "rotation" : 0},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+				
+				{},
+				{},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{},{},{},{},{},{},{},{}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_049.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_050.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_051.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_052.png", "rotation" : 0},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_017.bmp", "rotation" : 0, "border" : {"wall" : ["left","top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_018.bmp", "rotation" : 0, "border" : {"wall" : ["top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_019.bmp", "rotation" : 0, "border" : {"wall" : ["top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_020.png", "rotation" : 0, "border" : {"wall" : ["top"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_1.png", "rotation" : 0, "border" : {"wall" : ["top","left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_2.png", "rotation" : 0, "border" : {"door" : {"top" : {"open" : false}}}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_3.png", "rotation" : 0, "border" : {"wall" : ["top"]}},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+
+				{},{},{},{}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_001.bmp", "rotation" : 0, "border" : {"wall" : ["left", "top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_002.bmp", "rotation" : 0, "border" : {"wall" : ["top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_003.bmp", "rotation" : 0, "border" : {"wall" : ["top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_004.bmp", "rotation" : 0, "border" : {"wall" : ["top"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_021.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_022.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_023.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_024.png", "rotation" : 0},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_4.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_5.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_6.png", "rotation" : 0},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_005.bmp", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_006.bmp", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_007.bmp", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_008.bmp", "rotation" : 0},
+				
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_025.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_026.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_027.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_028.png", "rotation" : 0},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_7.png", "rotation" : 0, "border" : {"door" : {"left" : {"open" : false}}}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_8.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_9.png", "rotation" : 0},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},{},{},{},{},{}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_009.bmp", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_010.bmp", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_011.bmp", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_012.bmp", "rotation" : 0},
+				
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_029.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_030.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_031.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_032.png", "rotation" : 0},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_10.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_11.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_12.png", "rotation" : 0},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+				{},
+				{},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_013.bmp", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_014.bmp", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_015.bmp", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_016.bmp", "rotation" : 0},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_033.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_034.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_035.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_036.png", "rotation" : 0},
+
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_13.png", "rotation" : 0, "border" : {"wall" : ["left"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_14.png", "rotation" : 0},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "stone_tile_19_15.png", "rotation" : 0},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{},
+				{},
+				{},
+
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"door" : {"top" : {"open" : false}}}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"door" : {"top" : {"open" : false}}}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{},
+				{},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top","left"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}}
+			],
+			[
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}}
+			]
+		],
+		"triggers"	: [
+			{"type" : "entry", "pos" : {"x" : 1, "y": 13}},
+			{"type" : "entry", "pos" : {"x" : 2, "y": 13}},
+			{"type" : "entry", "pos" : {"x" : 1, "y": 14}},
+			{"type" : "entry", "pos" : {"x" : 2, "y": 14}},
+
+			{"type" : "exit", "pos" : {"x" : 1, "y": 13}},
+			{"type" : "exit", "pos" : {"x" : 2, "y": 13}},
+			{"type" : "exit", "pos" : {"x" : 1, "y": 14}},
+			{"type" : "exit", "pos" : {"x" : 2, "y": 14}}
+		],
+		"objects" 	: [],
+		"agents"	: [
+			{"id" : "Orc", "position" : {"x" : 2, "y" : 11}, "faction" : "Zargon"},
+			{"id" : "Orc", "position" : {"x" : 7, "y" : 13}, "faction" : "Zargon"},
+			{"id" : "Orc", "position" : {"x" : 8, "y" : 14}, "faction" : "Zargon"}
+		]
+	}
+}

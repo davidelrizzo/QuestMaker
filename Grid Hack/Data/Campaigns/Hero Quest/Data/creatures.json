@@ -1,0 +1,96 @@
+{
+	"Barbarian" : {
+		"name" 						: "Barbarian",
+		"sprites" 					: {
+										"display" : "Barbarian.gif",
+										"token"		: "barbarianToken.gif"
+									},
+		"description" 				: "You are the Barbarian, greatest warrior of all. But beware magic, for your sword is no defence against it.",
+		"body" 						: 8,
+		"mind" : 								2,
+		"baseDefence" : 				2,
+		"mainHand" : 						"Broadsword",
+		"offHand" : 						{},
+		"chest" : 							{},
+		"head" : 								{},
+		"moveDice" : 						2,
+		"spellList" : 					[],
+		"weaponsRestricted" : 	[]
+	},
+	"Elf" : {
+		"name" : 								"Elf",
+		"sprites"								: {
+															"display" : "Elf.gif",
+															"token"		: "elfToken.gif"
+														},
+		"description" : 				"You are the Elf, a master of both magic and sword. You must use both well if you are to triumph. You have the power to cast 3 magical spells, all relating to one natural element.",
+		"body" :								6,
+		"mind" : 								4,
+		"baseDefence" : 				2,
+		"mainHand" : 						"Shortsword",
+		"offHand" : 						{},
+		"chest" : 							{},
+		"head" : 								{},
+		"moveDice" : 						2,
+		"spellList" : 					[],
+		"weaponsRestricted" : 	[]
+	},
+	"Dwarf" : {
+		"name" : 								"Dwarf",
+		"sprites"								: {
+															"display" : "Dwarf.gif",
+															"token"		: "dwarfToken.gif"
+														},
+		"description" : 				"You are the Dwarf. You are a good warrior and have the unique ability to disarm traps without a tool kit.",
+		"body" :								7,
+		"mind" : 								3,
+		"baseDefence" : 				2,
+		"mainHand" : 						"Shortsword",
+		"offHand" : 						{},
+		"chest" : 							{},
+		"head" : 								{},
+		"moveDice" : 						2,
+		"spellList" : 					[],
+		"weaponsRestricted" : 	[]
+	},
+	"Wizard" : {
+		"name" : 								"Wizard",
+		"sprites"								: {
+															"display" : "Wizard.gif",
+															"token"		: "wizardToken.gif"
+														},
+		"description" : 				"You are the Wizard. You have the power to cast many different spells. In combat, however, you are weak. You cannot wear armor or use large weapons. Therefore, you must cast your spells wisely and avoid physical combat.",
+		"body" :								4,
+		"mind" : 								6,
+		"baseDefence" : 				2,
+		"mainHand" : 						"Dagger",
+		"offHand" : 						"",
+		"chest" : 							"",
+		"head" : 								"",
+		"moveDice" : 						2,
+		"baseMove" 							: 0,
+		"spellList" : 					[],
+		"restrictions" : 				[
+				{"key" : "weaponTemplates", "id" : [], "property" : ["size"], "category" : ["medium", "large"]}
+			]
+	},
+	"Orc" : {
+		"name"					: "Orc",
+		"sprites"				: {
+									"display" 	: "Orc.gif",
+									"token"		: "orcToken.gif"
+								},
+		"description"			: "Orcs are related to Goblins, but are larger and much more powerful. The form the rank and file of Zargon's armies and delight in cruelty and slaughter. Savage and vicious warriors, Orcs should never be underestimated.",
+		"body"					: 1,
+		"mind"					: 1,
+		"baseDefence"			: 2,
+		"mainHand"				: "Broadsword",
+		"offHand"				: "",
+		"chest"					: "",
+		"head"					: "",
+		"moveDice" 				: 0,
+		"baseMove"				: 8,
+		"spellList"				: [],
+		"restrictions"			: []
+	}
+}

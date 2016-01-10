@@ -1,0 +1,21 @@
+{
+	"name" 				: "Prince Magnus's Gold",
+	"introText"			: "",
+	"numHeroes"			: 4,
+	"availableHeroes"	: ["Barbarian", "Elf", "Dwarf", "Wizard"],
+	"factions"			: {
+							"Empire" : {"Zargon" : "hostile"},
+							"Zargon" : {"Empire" : "hostile"}
+						},
+	"stdGraphics"		: {"door" : {"closed" : "closedDoor.png", "open" : "openDoor.gif"}},
+	"mapData"			: {
+							"map" : [
+							],
+							"triggers" : [
+							],
+							"objects" : [
+							],
+							"agents" : [
+							]
+						}
+}

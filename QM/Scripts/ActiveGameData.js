@@ -68,6 +68,10 @@ var QM = (function(QM){
 		}
 	}
 
+	ActiveGameData.prototype.getActiveCreature = function(){
+		return this.creatures[this.activeTeam][this.activeCreature];
+	}
+
 	QM.ActiveGameData = ActiveGameData;
 	return QM;
 })(QM || {});

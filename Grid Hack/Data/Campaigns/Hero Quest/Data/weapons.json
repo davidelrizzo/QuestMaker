@@ -1,0 +1,47 @@
+{
+	"Dagger" : {
+		"name" : 		"dagger",
+		"size" :		"small",
+		"attack" : 		1,
+		"hands" : 		1,
+		"range" : 		1,
+		"diagonal" : 	false,
+		"cost" : 		25						
+	},
+	"Shortsword" : {
+		"name" : 		"shortsword",
+		"size" :		"medium",
+		"attack" : 		2,
+		"hands" : 		1,
+		"range" : 		1,
+		"diagonal" : 	false,
+		"cost" : 		150			
+	},
+	"Broadsword" : {
+		"name" :		"broadsword",
+		"size" :		"medium",
+		"attack" : 		3,
+		"hands" : 		1,
+		"range" : 		1,
+		"diagonal" :	false,
+		"cost" : 		250
+	},
+	"Longsword" : {
+		"name" : 		"longsword",
+		"size"	:		"large",
+		"attack" : 		3,
+		"hands" : 		1,
+		"range" :		1,
+		"diagonal" : 	true,
+		"cost" : 		350
+	},
+	"Staff" : {
+		"name" : 		"staff",
+		"size" : 		"large",
+		"attack" : 		1,
+		"hands" :		2,
+		"range" : 		1,
+		"diagonal" : 	true,
+		"cost" : 		100
+	}
+}
