@@ -34,6 +34,8 @@
 	<script src="./Scripts/wall.js"></script>
 	<script src="./Scripts/door.js"></script>
 	<script src="./Scripts/trigger.js"></script>
+	<script src="./Scripts/turn.js"></script>
+	<script src="./Scripts/user.js"></script>
 
 	<script src="./Scripts/stateSetup.js"></script>
 	<script src="./Scripts/stateGame.js"></script>
@@ -62,6 +64,7 @@
 	canvas.onclick     = input.mouse.onClick;
 
 	document.onkeydown = input.keyboard.onKeyDown;
+	//document.onkeypress = input.keyboard.onKeyDown;
 	document.onkeyup   = input.keyboard.onKeyUp;
 
 	gh.setup("ghCanvas");

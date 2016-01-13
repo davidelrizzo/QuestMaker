@@ -1,45 +1,27 @@
 /**
-*	OBJECTS
-*
-*	Display
-*   Sprite
-*   Pixel
-*
-*	Hud
-*	Board
-*	
-*	Map
-*	Cell
-*
-*	Agent
-*   Wall
-*   Door
-*   Trigger
-*	Border
-*	Item
-*
-*	GameState
-*	
-*	Message
-*
-*   json
-*	
-*	Keyboard
-*	Mouse
-*/
+ *
+ * @module gh
+ * @main gh
+ */
 
 "use strict"
 
+/**
+ * @class gh
+ */
 var gh = (function(gh){
 	console.log("gh.js loaded");
 	
 
 	/**
-	 *    Load various game assets here.
+	 * Load various game assets here.
 	 *
 	 * TO DO
 	 *    o add a player hero roster for placement on the board
 	 *    o add creatures to the resources list
+	 *
+	 * @method setup
+	 * @param {String} canvasID The identifier of a DOM canvas element.
 	 */
 	gh.setup = function(canvasID){
 		console.log("gh.setup");
@@ -57,13 +39,16 @@ var gh = (function(gh){
 
 		gh.ptrActiveLevel.heroes = gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates);
 
+
 		gh.stateSetup.initialize();
 
 		console.log(this);
 	};
 
 	/**
-	 *    The main game loop
+	 * The main game loop
+	 *
+	 * @method run
 	 */
 	gh.run = function(){
 		gh.activeState = gh[gh.activeState].run();
@@ -72,8 +57,10 @@ var gh = (function(gh){
 	};
 	
 	/**
-	 * DESC
-	 *    Dummy function to generate a group of starting heroes for placement.
+	 * Dummy function to generate a group of starting heroes for placement.
+	 *
+	 * @method generateStartingPlayers
+	 * @param {json} jsonAgentTemplates A json object which defines the properties of agents in the game.
 	 */
 	gh.generateStartingPlayers = function(jsonAgentTemplates){
 		var players = [];

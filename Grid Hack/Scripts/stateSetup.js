@@ -20,12 +20,6 @@
  *      Eg 
  *			if play.position !== onBoard
  *				place at entry location
- *
- * TO DO
- *      Starting visibility based on entry location
- *      User input for starting locations
- *      Get Agent sprites
- *      Draw agents
  */
 
 "use strict"
@@ -56,10 +50,12 @@ var gh = (function(gh){
             this.msgPump.addListener("addPlayer", this, "addPlayer");
 
             // get a list of doors.
+            /*
             var doors = gh.ptrActiveLevel.map.getDoors();
             for(var it = 0; it < doors.length; it++){
             	this.msgPump.addListener("onMouseOver", doors[it], "onMouseOver");
             }
+            */
 
             // Add the agent onMouseOver message handlers.
             
@@ -77,8 +73,8 @@ var gh = (function(gh){
             // Set the initial map visibility
             gh.ptrActiveLevel.map.clearVisibility(gh.ptrActiveLevel.teams);
 
+            // Setup initial visiblity based on line of sight from entry triggers.
             var floor = gh.ptrActiveLevel.map.floor;
-            console.log(gh.ptrActiveLevel.map.floor.length);
             for(var it = 0; it < entryT.length; it++){
 				for(var y = 0; y < floor.length; y++){
 					for(var x = 0; x < floor[y].length;){
@@ -102,7 +98,14 @@ var gh = (function(gh){
 
 			if(placed >= gh.ptrActiveLevel.heroes.length){
 				// setup turn order.
-				this.setupTurnOrder();
+
+				gh.ptrActiveLevel.turnOrder = new gh.TurnOrder(["Empire", "Zargon"]);
+				gh.ptrActiveLevel.players = {
+					"Empire" : new gh.Player("Chris", "Empire", gh.ptrActiveLevel.heroes),
+					"Zargon" : new gh.Computer("Zargon", undefined)
+				};
+
+				gh.stateGame.initialize();
 				return "stateGame";
 			}
 
@@ -140,10 +143,12 @@ var gh = (function(gh){
 					}
 				}
 			}
-		}
+		} 	
 
 		stateSetup.update = function(){
 			var selectedCell = gh.display.getMouseToCell(input.mouse.x, input.mouse.y);
+
+			console.log("update");
 
 			var cell;
 			if(gh.ptrActiveLevel.map.floor[selectedCell.y] !== undefined){
@@ -176,25 +181,32 @@ var gh = (function(gh){
 
 			}
 
-			if(input.keyboard.key[input.keyboard.PLUS]){
+			if(input.keyboard.isPressed(input.keyboard.PLUS)){
+				input.keyboard.key[input.keyboard.PLUS].pressed = false;
 				gh.display.scale += 0.05;
 			}
-			if(input.keyboard.key[input.keyboard.MINUS]){
+			if(input.keyboard.isPressed(input.keyboard.MINUS)){
+				input.keyboard.key[input.keyboard.MINUS].pressed = false;
 				gh.display.scale -= 0.05;
 				if(gh.display.scale < 0.2){
 					gh.display.scale = 0.2;
 				}
 			}
-			if(input.keyboard.key[input.keyboard.UP]){
+
+			//if(input.keyboard.key[input.keyboard.UP]){
+			if(input.keyboard.isPressed(input.keyboard.UP)){
 				gh.display.offset.y -= 5;
 			}
-			if(input.keyboard.key[input.keyboard.DOWN]){
+			//if(input.keyboard.key[input.keyboard.DOWN]){
+			if(input.keyboard.isPressed(input.keyboard.DOWN)){
 				gh.display.offset.y += 5;
 			}
-			if(input.keyboard.key[input.keyboard.LEFT]){
+			//if(input.keyboard.key[input.keyboard.LEFT]){
+			if(input.keyboard.isPressed(input.keyboard.LEFT)){
 				gh.display.offset.x -= 5;
 			}
-			if(input.keyboard.key[input.keyboard.RIGHT]){
+			//if(input.keyboard.key[input.keyboard.RIGHT]){
+			if(input.keyboard.isPressed(input.keyboard.RIGHT)){
 				gh.display.offset.x += 5;
 			}
 

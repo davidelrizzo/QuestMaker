@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>assets.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Agent.html">Agent</a></li>
+                                <li><a href="../classes/Cell.html">Cell</a></li>
+                                <li><a href="../classes/Computer.html">Computer</a></li>
+                                <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/input.html">input</a></li>
+                                <li><a href="../classes/json.html">json</a></li>
+                                <li><a href="../classes/keybaord.html">keybaord</a></li>
+                                <li><a href="../classes/Level.html">Level</a></li>
+                                <li><a href="../classes/Map.html">Map</a></li>
+                                <li><a href="../classes/mouse.html">mouse</a></li>
+                                <li><a href="../classes/Player.html">Player</a></li>
+                                <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/User.html">User</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/input.html">input</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: assets.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * DESCRIPTION
+ *        assets.js contains methods which relate to loading and manipulating game
+ *        resources, specifically music and graphic assets.  These should be loaded
+ *        prior to running a level and removed once the level is complete.  
+ *
+ * TO CONSIDER
+ *        At present, as the assets are loaded after the other game data, game objects 
+ *        which interact with the assets for drawing or playing music rely on some 
+ *        knowledge of the assets structures, and are thus coupled.  E.g. a cell has
+ *        a sprite &quot;name&quot; value which indexes the correct sprite to draw in the asset
+ *        sprite object.  It would be better for the cell to have a pointer variable
+ *        to that sprite object.
+ */
+
+&quot;use strict&quot;
+
+var gh = (function(gh){
+
+	var assets = (function(assets){
+
+		assets.loadMapSprites = function(jsonMap, directory){
+			this.sprites = this.sprites || {};
+
+			for(var y = 0; y &lt; jsonMap.floor.length; y++){
+				for(var x = 0; x &lt; jsonMap.floor[y].length; x++){
+					if(jsonMap.floor[y][x].sprites !== undefined){
+						this.sprites[jsonMap.floor[y][x].sprites] = new graphics.Sprite(directory + jsonMap.floor[y][x].sprites);
+					}
+				}
+			}
+		};
+
+		assets.loadStdGraphics = function(jsonStdGraphics, directory){
+			this.sprites = this.sprites || {};
+
+			// Load the door graphics
+			if(jsonStdGraphics.door !== undefined){
+				this.sprites[jsonStdGraphics.door.closed] = new graphics.Sprite(directory + jsonStdGraphics.door.closed);
+				this.sprites[jsonStdGraphics.door.closedHighlight] = new graphics.Sprite(directory + jsonStdGraphics.door.closedHighlight);
+				this.sprites[jsonStdGraphics.door.open] = new graphics.Sprite(directory + jsonStdGraphics.door.open);
+				this.sprites[jsonStdGraphics.door.openDoorHighlight] = new graphics.Sprite(directory + jsonStdGraphics.door.openDoorHighlight);
+			}
+		};
+
+		assets.loadAgentSprites = function(jsonAgents, directory){
+			this.sprites = this.sprites || {};
+
+			for(var key in jsonAgents){
+				var agent = jsonAgents[key].sprites;
+				for(var img in agent){
+					this.sprites[agent[img]] = new graphics.Sprite(directory + agent[img]);
+				}
+			}
+		};
+
+		return assets;
+	})(assets || {});
+	
+	gh.assets = assets;
+	return gh;
+})(gh || {});
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

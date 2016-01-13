@@ -1,0 +1,1218 @@
+{
+    "project": {},
+    "files": {
+        "File\\json.js": {
+            "name": "File\\json.js",
+            "modules": {},
+            "classes": {
+                "json": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Graphics\\display.js": {
+            "name": "Graphics\\display.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Graphics\\sprite.js": {
+            "name": "Graphics\\sprite.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Input\\keyboard.js": {
+            "name": "Input\\keyboard.js",
+            "modules": {
+                "input": 1
+            },
+            "classes": {
+                "keybaord": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Input\\mouse.js": {
+            "name": "Input\\mouse.js",
+            "modules": {},
+            "classes": {
+                "input": 1,
+                "mouse": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "agent.js": {
+            "name": "agent.js",
+            "modules": {},
+            "classes": {
+                "Agent": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "assets.js": {
+            "name": "assets.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "cell.js": {
+            "name": "cell.js",
+            "modules": {},
+            "classes": {
+                "Cell": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "door.js": {
+            "name": "door.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "gh.js": {
+            "name": "gh.js",
+            "modules": {
+                "gh": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "level.js": {
+            "name": "level.js",
+            "modules": {},
+            "classes": {
+                "Level": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "map.js": {
+            "name": "map.js",
+            "modules": {},
+            "classes": {
+                "Map": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "messagePump.js": {
+            "name": "messagePump.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "stateGame.js": {
+            "name": "stateGame.js",
+            "modules": {},
+            "classes": {
+                "stateGame": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "stateSetup.js": {
+            "name": "stateSetup.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "trigger.js": {
+            "name": "trigger.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "turn.js": {
+            "name": "turn.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "user.js": {
+            "name": "user.js",
+            "modules": {},
+            "classes": {
+                "gh": 1,
+                "User": 1,
+                "Player": 1,
+                "Computer": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "wall.js": {
+            "name": "wall.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "gh": {
+            "name": "gh",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "gh": 1,
+                "json": 1,
+                "Agent": 1,
+                "Cell": 1,
+                "Level": 1,
+                "Map": 1,
+                "stateGame": 1,
+                "User": 1,
+                "Player": 1,
+                "Computer": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "user.js",
+            "line": 32,
+            "itemtype": "main"
+        },
+        "input": {
+            "name": "input",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "input": 1,
+                "keybaord": 1,
+                "mouse": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "main",
+            "file": "Input\\mouse.js",
+            "line": 12,
+            "itemtype": "main",
+            "module": "input"
+        }
+    },
+    "classes": {
+        "gh": {
+            "name": "gh",
+            "shortname": "gh",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "user.js",
+            "line": 7
+        },
+        "json": {
+            "name": "json",
+            "shortname": "json",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "File\\json.js",
+            "line": 20,
+            "is_constructor": 1
+        },
+        "input": {
+            "name": "input",
+            "shortname": "input",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "input",
+            "namespace": "",
+            "file": "Input\\mouse.js",
+            "line": 7
+        },
+        "keybaord": {
+            "name": "keybaord",
+            "shortname": "keybaord",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "input",
+            "namespace": "",
+            "file": "Input\\keyboard.js",
+            "line": 13,
+            "submodule": "input"
+        },
+        "mouse": {
+            "name": "mouse",
+            "shortname": "mouse",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "input",
+            "namespace": "",
+            "file": "Input\\mouse.js",
+            "line": 12,
+            "submodule": "input"
+        },
+        "Agent": {
+            "name": "Agent",
+            "shortname": "Agent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "agent.js",
+            "line": 12,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The identifier of the agent.",
+                    "type": "String"
+                },
+                {
+                    "name": "position",
+                    "description": "{x, y} The x,y coordinates of the agent in the game world.",
+                    "type": "Object(Inteter, Integer)"
+                },
+                {
+                    "name": "team",
+                    "description": "The name of the team (faction) that the agent belongs to.",
+                    "type": "String"
+                },
+                {
+                    "name": "sprites",
+                    "description": "An object which contains the images for the various action states the agent might be in.",
+                    "type": "Object"
+                },
+                {
+                    "name": "moveDice",
+                    "description": "The number of dice rolled when a user moves.",
+                    "type": "Integer"
+                }
+            ]
+        },
+        "Cell": {
+            "name": "Cell",
+            "shortname": "Cell",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "cell.js",
+            "line": 16,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "x",
+                    "description": "The x-coordinate of a cell.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "y",
+                    "description": "The y-coordinate of a cell.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "path",
+                    "description": "The path of the cell image.",
+                    "type": "String"
+                },
+                {
+                    "name": "img",
+                    "description": "The sprite reperasentative of the cell.",
+                    "type": "Sprite"
+                },
+                {
+                    "name": "borders",
+                    "description": "The borders of the cell.",
+                    "type": "Object"
+                },
+                {
+                    "name": "size",
+                    "description": "The pixel size of the cell.",
+                    "type": "Integer"
+                }
+            ]
+        },
+        "Level": {
+            "name": "Level",
+            "shortname": "Level",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "level.js",
+            "line": 13,
+            "is_constructor": 1
+        },
+        "Map": {
+            "name": "Map",
+            "shortname": "Map",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "map.js",
+            "line": 12,
+            "is_constructor": 1
+        },
+        "stateGame": {
+            "name": "stateGame",
+            "shortname": "stateGame",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "stateGame.js",
+            "line": 13
+        },
+        "User": {
+            "name": "User",
+            "shortname": "User",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "user.js",
+            "line": 13,
+            "is_constructor": 1
+        },
+        "Player": {
+            "name": "Player",
+            "shortname": "Player",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "user.js",
+            "line": 21,
+            "extends": "User",
+            "is_constructor": 1
+        },
+        "Computer": {
+            "name": "Computer",
+            "shortname": "Computer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "user.js",
+            "line": 32,
+            "extends": "User",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "File\\json.js",
+            "line": 26,
+            "itemtype": "method",
+            "name": "loadDataFile",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 38,
+            "itemtype": "method",
+            "name": "getTeams",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 51,
+            "itemtype": "method",
+            "name": "getFloor",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 123,
+            "itemtype": "method",
+            "name": "getAgents",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 146,
+            "itemtype": "method",
+            "name": "getTriggers",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 175,
+            "itemtype": "method",
+            "name": "getLevel",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 196,
+            "itemtype": "method",
+            "name": "getCampaignLevels",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "File\\json.js",
+            "line": 209,
+            "itemtype": "method",
+            "name": "getCampaign",
+            "class": "json",
+            "module": "gh"
+        },
+        {
+            "file": "Graphics\\display.js",
+            "line": 1,
+            "description": "TO DO\n   Separate the display to include a 'board' and a 'hud'.\n   The 'board' is intended to display the active game.\n   The hud displays the user interaction tools.  EG, weapon slots,\n   spells, potions, etc...\n\n   Consider having the display 'listen' for changes to the keyboard state.",
+            "class": "input",
+            "module": "gh"
+        },
+        {
+            "file": "Graphics\\sprite.js",
+            "line": 1,
+            "description": "FILE sprite.js\nDESC\nREQUIRES\n   pixel.js\nTO DO\n       o add rotation capability\n       o add cursor hit detection\n       o this requires a imageData storage component\n         build this when the sprite is initialized?",
+            "class": "input",
+            "module": "gh"
+        },
+        {
+            "file": "Graphics\\sprite.js",
+            "line": 18,
+            "description": "Globals",
+            "class": "input",
+            "module": "gh"
+        },
+        {
+            "file": "Input\\keyboard.js",
+            "line": 34,
+            "itemtype": "event",
+            "name": "onKeyDown",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "An event which contains the relevant KeyCode data.",
+                    "type": "Event"
+                }
+            ],
+            "class": "keybaord",
+            "module": "input",
+            "submodule": "input"
+        },
+        {
+            "file": "Input\\keyboard.js",
+            "line": 54,
+            "itemtype": "event",
+            "name": "onKeyUp",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "An event which contains the relevant KeyCode data.",
+                    "type": "Event"
+                }
+            ],
+            "class": "keybaord",
+            "module": "input",
+            "submodule": "input"
+        },
+        {
+            "file": "Input\\keyboard.js",
+            "line": 63,
+            "description": "This method determines whether or not a key has been pressed or not for the first time.",
+            "itemtype": "method",
+            "name": "isPressed",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "The ascii value of the key for which to querry its state.",
+                    "type": "Integer"
+                }
+            ],
+            "class": "keybaord",
+            "module": "input",
+            "submodule": "input"
+        },
+        {
+            "file": "Input\\mouse.js",
+            "line": 21,
+            "itemtype": "event",
+            "name": "onMouseMove",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "An event which contains the relevant mouse data.",
+                    "type": "Event"
+                }
+            ],
+            "class": "mouse",
+            "module": "input",
+            "submodule": "input"
+        },
+        {
+            "file": "Input\\mouse.js",
+            "line": 32,
+            "itemtype": "event",
+            "name": "onClick",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "An event which contains the relevant mouse data.",
+                    "type": "Event"
+                }
+            ],
+            "class": "mouse",
+            "module": "input",
+            "submodule": "input"
+        },
+        {
+            "file": "agent.js",
+            "line": 30,
+            "itemtype": "method",
+            "name": "draw",
+            "params": [
+                {
+                    "name": "imgState",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "spriteTable",
+                    "description": "An object which contains images indexed by their sprite name.",
+                    "type": "Objext"
+                },
+                {
+                    "name": "context",
+                    "description": "The context upon which the agent is drawn.",
+                    "type": "Context"
+                },
+                {
+                    "name": "scale",
+                    "description": "The scale to which the agent is drawn.",
+                    "type": "Flaot"
+                },
+                {
+                    "name": "cellSize",
+                    "description": "The size of a cell on the map.  This is used to help scale the image to the correct size.",
+                    "type": "Num"
+                },
+                {
+                    "name": "offset",
+                    "description": "The map viewport offset which is used to help determine where the image should be drawn on the context.",
+                    "type": "Object"
+                }
+            ],
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 49,
+            "description": "This method moves the agent one step up, down, left or rigth.",
+            "itemtype": "method",
+            "name": "onMove",
+            "params": [
+                {
+                    "name": "args",
+                    "description": "args.direction is one of four values: \"left\", \"right\", \"up\" and \"down\".\n                     args.floor\n                     args.agents\n                     args.objects",
+                    "type": "String"
+                }
+            ],
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 59,
+            "description": "if(!this.currentTurn){\n\treturn false;\n}",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 74,
+            "description": "If the border of the cell would block movement in the desired direction return.",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 108,
+            "description": "Is the desired destination a \"walkable\" cell",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 118,
+            "description": "Check to see if the target cell is already occupied by another agent.",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 127,
+            "description": "Update the agent location in the map.",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 133,
+            "description": "Remove the pointer to the agents prior position.",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 138,
+            "description": "Update the agents knowledge of its own location.",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 144,
+            "description": "Update the map visiblity",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 151,
+            "description": "INPUT\n   args:\n       mouseX\n       mouseY\n       cellX\n       cellY\n       cellSize\n       offset {x, y}\n       scale\n       cell\n       agents\n\nAgents get priority focus, so need to disable the focus on any\nother objects in a cell if the mouse is over the agent.",
+            "itemtype": "method",
+            "name": "onMouseOver",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "agent.js",
+            "line": 207,
+            "itemtype": "method",
+            "name": "isMouseOver",
+            "class": "Agent",
+            "module": "gh"
+        },
+        {
+            "file": "assets.js",
+            "line": 1,
+            "description": "DESCRIPTION\n       assets.js contains methods which relate to loading and manipulating game\n       resources, specifically music and graphic assets.  These should be loaded\n       prior to running a level and removed once the level is complete.  \n\nTO CONSIDER\n       At present, as the assets are loaded after the other game data, game objects \n       which interact with the assets for drawing or playing music rely on some \n       knowledge of the assets structures, and are thus coupled.  E.g. a cell has\n       a sprite \"name\" value which indexes the correct sprite to draw in the asset\n       sprite object.  It would be better for the cell to have a pointer variable\n       to that sprite object.",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "cell.js",
+            "line": 36,
+            "itemtype": "method",
+            "name": "draw",
+            "class": "Cell",
+            "module": "gh"
+        },
+        {
+            "file": "cell.js",
+            "line": 66,
+            "itemtype": "method",
+            "name": "getDoors",
+            "class": "Cell",
+            "module": "gh"
+        },
+        {
+            "file": "cell.js",
+            "line": 81,
+            "description": "This function returns true if the cell is a walkable 'floor'.\nThis function returns false if the cell is not a walkable 'floor'.",
+            "itemtype": "method",
+            "name": "isFloor",
+            "class": "Cell",
+            "module": "gh"
+        },
+        {
+            "file": "cell.js",
+            "line": 96,
+            "description": "This method determines whether or not the border of a cell is 'blocked'.  A wall, closed door or closed secret-door all qualify as blocking objects.  Open doors and open secret doors do not qualify as blocking objects.",
+            "itemtype": "method",
+            "name": "isBorderBlocked",
+            "params": [
+                {
+                    "name": "side",
+                    "description": "The border of the cell which should be checked.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "true if the border is blocked or false if the border is not blocked.",
+                "type": "Bool"
+            },
+            "class": "Cell",
+            "module": "gh"
+        },
+        {
+            "file": "door.js",
+            "line": 6,
+            "description": "INPUT\n   cell1, cell2: \n       A string denoting the side of a cell which the door\n       occupies.  Accepted values are \"top\", \"left\", \"right\", \"bottom\".\n   x1, y1, x2, y2: \n       a number value representing a cell x or y\n       coordinate in the map.\n   open: \n       boolean value noting whether or not the door is opem.\n   images: \n       the sprites which depict the door in its various states.",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "door.js",
+            "line": 39,
+            "description": "DESC\n   Change the state of the door from open to closed or vis versa.\nINPUT\n   args:",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "door.js",
+            "line": 61,
+            "description": "INPUT\n   args:\n       mouseX\n       mouseY\n       cellX\n       cellY\n       cellSize\n       offset {x, y}\n       scale\n       cell\n       agents",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "gh.js",
+            "line": 16,
+            "description": "Load various game assets here.\n\nTO DO\n   o add a player hero roster for placement on the board\n   o add creatures to the resources list",
+            "itemtype": "method",
+            "name": "setup",
+            "params": [
+                {
+                    "name": "canvasID",
+                    "description": "The identifier of a DOM canvas element.",
+                    "type": "String"
+                }
+            ],
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "gh.js",
+            "line": 48,
+            "description": "The main game loop",
+            "itemtype": "method",
+            "name": "run",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "gh.js",
+            "line": 59,
+            "description": "Dummy function to generate a group of starting heroes for placement.",
+            "itemtype": "method",
+            "name": "generateStartingPlayers",
+            "params": [
+                {
+                    "name": "jsonAgentTemplates",
+                    "description": "A json object which defines the properties of agents in the game.",
+                    "type": "Json"
+                }
+            ],
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "level.js",
+            "line": 29,
+            "description": "This method draws the visible agents to the board.",
+            "itemtype": "method",
+            "name": "drawAgents",
+            "class": "Level",
+            "module": "gh"
+        },
+        {
+            "file": "level.js",
+            "line": 57,
+            "itemtype": "method",
+            "name": "drawEntry",
+            "class": "Level",
+            "module": "gh"
+        },
+        {
+            "file": "level.js",
+            "line": 68,
+            "itemtype": "method",
+            "name": "isEntryTriggerSelected",
+            "class": "Level",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 21,
+            "itemtype": "method",
+            "name": "drawFloor",
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 34,
+            "itemtype": "method",
+            "name": "drawGrid",
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 58,
+            "description": "To build a list of unique doors (a door is refferenced twice in every map)\nit is necessary to select only the 'left' and 'top' doors.",
+            "itemtype": "method",
+            "name": "getDoors",
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 87,
+            "itemtype": "method",
+            "name": "updateAgentView",
+            "params": [
+                {
+                    "name": "agent",
+                    "description": "The agent for which the map visibility should be updated.",
+                    "type": "Agent"
+                }
+            ],
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 107,
+            "itemtype": "method",
+            "name": "clearVisibility",
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 121,
+            "description": "DESC\n\tThis function sets the visibility of a ray of cells from the first cell in\n\tthe ray.  This function checks for doors and walls which may obstruct the\n\trays 'line of sight'.\n \tINPUT\n\tray: \t\tan array of cells which are in a line\n\tfaction: \tthe string reference of the faction for which to set visibility\n\tvisible: \tthe visibility to set the cells to",
+            "itemtype": "method",
+            "name": "setRayVisibility",
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "map.js",
+            "line": 211,
+            "description": "DESC\n\t\tThis function returns an array of cells that lie between two points.\n     This line is not interrupted by lack of visibility or objects.",
+            "itemtype": "method",
+            "name": "getLine",
+            "class": "Map",
+            "module": "gh"
+        },
+        {
+            "file": "messagePump.js",
+            "line": 5,
+            "description": "Private Globals",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 20,
+            "description": "This method must be called prior to the run method.\nIt is responsible for:\n1) Setting up the games player turn order\n2) Setting up the message listening queue's for agents, objects, borders, cells and triggers.",
+            "itemtype": "method",
+            "name": "initialize",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 30,
+            "description": "Setup the turn order",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 35,
+            "description": "Setup message listeners",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 52,
+            "description": "This method calls the update and render methods.  If there is no",
+            "itemtype": "method",
+            "name": "run",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 63,
+            "description": "This method adjudicates user mouse and keyboard input and updates message queues accordingly.",
+            "itemtype": "method",
+            "name": "update",
+            "return": {
+                "description": "id of the Grid Hack game state to continue with: \"stateGame\" or \"stateExit\".",
+                "type": "String"
+            },
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 95,
+            "description": "Handle mouse input.",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 106,
+            "description": "Handle keyboard input.",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 167,
+            "description": "This method draws the board to the canvas with respect to a players (team) view.",
+            "itemtype": "method",
+            "name": "render",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateSetup.js",
+            "line": 1,
+            "description": "FILE stateSetup.js\nDESC This class singleton handles the setup phase of the game.\n     The user selectes the initial placement of the starting heroes.\n     The user might enter through a door, or alternatively, pre-selected\n     starting squares.\n\n     Starting squres: these are highlighted and the user may place a \n     hero by left clicking on them.\n\n     Starting door: this is more complicated as in reality the player\n     moves through it on the first turn.  That is to say it doesn't fit\n     within the starting square paradigm and more appropriately belongs in\n     the gameState phase of the application.  However, this would then\n     require a check to see if the player is on the board every level?\n\n     Maybe consider rebuilding.  Each player has a starting action sequence\n     that should be completed before proceeding to a standard action phase?\n\n     Eg \n\t\t\tif play.position !== onBoard\n\t\t\t\tplace at entry location",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "stateSetup.js",
+            "line": 37,
+            "description": "o Add message handlers\no Setup board visiblity",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "stateSetup.js",
+            "line": 115,
+            "description": "DESC\n  This function is intended to set the focus of a given cell to\n  the object which is beneith the mouse.\nNOTE\n  This function may be redundant.\n  To an extent couple with gh.display.",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "trigger.js",
+            "line": 5,
+            "description": "BASE CLASS Trigger",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "trigger.js",
+            "line": 15,
+            "description": "INPUT:",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "trigger.js",
+            "line": 27,
+            "description": "CLASS EntryTrigger",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "trigger.js",
+            "line": 54,
+            "description": "CLASS ExitTirgger",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "turn.js",
+            "line": 1,
+            "description": "What sort of turn structure do I want.\nSort first by teams.  Each team goes at one time.\nThis should be a list to allow for easy rotation.\nAssume the players belong to one team.",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "turn.js",
+            "line": 18,
+            "description": "INPUT\n\t\tplayers: the players.  EG. \"Empire\" and \"Zargon\"\n\t\tplayrs need to be set up in advance.\n     Players need",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "wall.js",
+            "line": 21,
+            "description": "INPUT\n      context: the context upon which to draw\n      x, y:    the x and y pixel coordinates of the cell\n      scale:   the scale at which to draw the walls\n      sprites: a list of sprites loaded into memory.  Not used by Wall at\n               this juncture.",
+            "class": "",
+            "module": "gh"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nTO DO\n   Separate the display to include a 'board' and a 'hud'.\n   The 'board' is intended to display the active game.\n   The hud displays the user interaction tools.  EG, weapon slots,\n   spells, potions, etc...\n\n   Consider having the display 'listen' for changes to the keyboard state.",
+            "line": " Graphics\\display.js:1"
+        },
+        {
+            "message": "Missing item type\nFILE sprite.js\nDESC\nREQUIRES\n   pixel.js\nTO DO\n       o add rotation capability\n       o add cursor hit detection\n       o this requires a imageData storage component\n         build this when the sprite is initialized?",
+            "line": " Graphics\\sprite.js:1"
+        },
+        {
+            "message": "Missing item type\nGlobals",
+            "line": " Graphics\\sprite.js:18"
+        },
+        {
+            "message": "Missing item type\nif(!this.currentTurn){\n\treturn false;\n}",
+            "line": " agent.js:59"
+        },
+        {
+            "message": "Missing item type\nIf the border of the cell would block movement in the desired direction return.",
+            "line": " agent.js:74"
+        },
+        {
+            "message": "Missing item type\nIs the desired destination a \"walkable\" cell",
+            "line": " agent.js:108"
+        },
+        {
+            "message": "Missing item type\nCheck to see if the target cell is already occupied by another agent.",
+            "line": " agent.js:118"
+        },
+        {
+            "message": "Missing item type\nUpdate the agent location in the map.",
+            "line": " agent.js:127"
+        },
+        {
+            "message": "Missing item type\nRemove the pointer to the agents prior position.",
+            "line": " agent.js:133"
+        },
+        {
+            "message": "Missing item type\nUpdate the agents knowledge of its own location.",
+            "line": " agent.js:138"
+        },
+        {
+            "message": "Missing item type\nUpdate the map visiblity",
+            "line": " agent.js:144"
+        },
+        {
+            "message": "Missing item type\nDESCRIPTION\n       assets.js contains methods which relate to loading and manipulating game\n       resources, specifically music and graphic assets.  These should be loaded\n       prior to running a level and removed once the level is complete.  \n\nTO CONSIDER\n       At present, as the assets are loaded after the other game data, game objects \n       which interact with the assets for drawing or playing music rely on some \n       knowledge of the assets structures, and are thus coupled.  E.g. a cell has\n       a sprite \"name\" value which indexes the correct sprite to draw in the asset\n       sprite object.  It would be better for the cell to have a pointer variable\n       to that sprite object.",
+            "line": " assets.js:1"
+        },
+        {
+            "message": "Missing item type\nINPUT\n   cell1, cell2: \n       A string denoting the side of a cell which the door\n       occupies.  Accepted values are \"top\", \"left\", \"right\", \"bottom\".\n   x1, y1, x2, y2: \n       a number value representing a cell x or y\n       coordinate in the map.\n   open: \n       boolean value noting whether or not the door is opem.\n   images: \n       the sprites which depict the door in its various states.",
+            "line": " door.js:6"
+        },
+        {
+            "message": "Missing item type\nDESC\n   Change the state of the door from open to closed or vis versa.\nINPUT\n   args:",
+            "line": " door.js:39"
+        },
+        {
+            "message": "Missing item type\nINPUT\n   args:\n       mouseX\n       mouseY\n       cellX\n       cellY\n       cellSize\n       offset {x, y}\n       scale\n       cell\n       agents",
+            "line": " door.js:61"
+        },
+        {
+            "message": "Missing item type\nPrivate Globals",
+            "line": " messagePump.js:5"
+        },
+        {
+            "message": "Missing item type\nSetup the turn order",
+            "line": " stateGame.js:30"
+        },
+        {
+            "message": "Missing item type\nSetup message listeners",
+            "line": " stateGame.js:35"
+        },
+        {
+            "message": "Missing item type\nHandle mouse input.",
+            "line": " stateGame.js:95"
+        },
+        {
+            "message": "Missing item type\nHandle keyboard input.",
+            "line": " stateGame.js:106"
+        },
+        {
+            "message": "Missing item type\nFILE stateSetup.js\nDESC This class singleton handles the setup phase of the game.\n     The user selectes the initial placement of the starting heroes.\n     The user might enter through a door, or alternatively, pre-selected\n     starting squares.\n\n     Starting squres: these are highlighted and the user may place a \n     hero by left clicking on them.\n\n     Starting door: this is more complicated as in reality the player\n     moves through it on the first turn.  That is to say it doesn't fit\n     within the starting square paradigm and more appropriately belongs in\n     the gameState phase of the application.  However, this would then\n     require a check to see if the player is on the board every level?\n\n     Maybe consider rebuilding.  Each player has a starting action sequence\n     that should be completed before proceeding to a standard action phase?\n\n     Eg \n\t\t\tif play.position !== onBoard\n\t\t\t\tplace at entry location",
+            "line": " stateSetup.js:1"
+        },
+        {
+            "message": "Missing item type\no Add message handlers\no Setup board visiblity",
+            "line": " stateSetup.js:37"
+        },
+        {
+            "message": "Missing item type\nDESC\n  This function is intended to set the focus of a given cell to\n  the object which is beneith the mouse.\nNOTE\n  This function may be redundant.\n  To an extent couple with gh.display.",
+            "line": " stateSetup.js:115"
+        },
+        {
+            "message": "Missing item type\nBASE CLASS Trigger",
+            "line": " trigger.js:5"
+        },
+        {
+            "message": "Missing item type\nINPUT:",
+            "line": " trigger.js:15"
+        },
+        {
+            "message": "Missing item type\nCLASS EntryTrigger",
+            "line": " trigger.js:27"
+        },
+        {
+            "message": "Missing item type\nCLASS ExitTirgger",
+            "line": " trigger.js:54"
+        },
+        {
+            "message": "Missing item type\nWhat sort of turn structure do I want.\nSort first by teams.  Each team goes at one time.\nThis should be a list to allow for easy rotation.\nAssume the players belong to one team.",
+            "line": " turn.js:1"
+        },
+        {
+            "message": "Missing item type\nINPUT\n\t\tplayers: the players.  EG. \"Empire\" and \"Zargon\"\n\t\tplayrs need to be set up in advance.\n     Players need",
+            "line": " turn.js:18"
+        },
+        {
+            "message": "Missing item type\nINPUT\n      context: the context upon which to draw\n      x, y:    the x and y pixel coordinates of the cell\n      scale:   the scale at which to draw the walls\n      sprites: a list of sprites loaded into memory.  Not used by Wall at\n               this juncture.",
+            "line": " wall.js:21"
+        }
+    ]
+}

@@ -1,8 +1,19 @@
+/**
+ * @module gh
+ */
+
 "use strict"
 
+/**
+ * @class gh
+ */
 var gh = (function(gh){
 	console.log("level.js loaded");
 
+	/** 
+	 * @class Level
+	 * @constructor
+	 */
 	function Level(name, introText, numHeroes, availableHeroes, teams, map, agents, triggers, stdGraphics){
 		this.name                = name;
 		this.introText           = introText;
@@ -15,6 +26,11 @@ var gh = (function(gh){
 		this.stdGraphics         = stdGraphics;
 	}
 
+	/**
+	 * This method draws the visible agents to the board.
+	 *
+	 * @method drawAgents
+	 */
 	Level.prototype.drawAgents = function(context, scale, size, offset, team){
 		//console.log(this.agents);
 
@@ -38,6 +54,9 @@ var gh = (function(gh){
 
 	};
 
+	/**
+	 * @method drawEntry
+	 */
 	Level.prototype.drawEntryTriggers = function(context, scale, size, offset){
 		var entryTriggers = this.triggers.entry;
 
@@ -46,6 +65,9 @@ var gh = (function(gh){
 		}
 	}
 
+	/**
+	 * @method isEntryTriggerSelected
+	 */
 	Level.prototype.isEntryTriggerSelected = function(x, y){
 		for(var it = 0; it < this.triggers.entry.length; it++){
 			//if(this.triggers)

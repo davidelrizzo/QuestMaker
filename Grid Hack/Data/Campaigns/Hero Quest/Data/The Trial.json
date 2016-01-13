@@ -197,10 +197,12 @@
 			],
 			[
 				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["left"]}},
+
 				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
-				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
-				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"door" : {"top" : {"open" : false}}}},
-				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "corridoor_003.png", "border" : {"wall" : ["top"]}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "corridoor_001.png", "border" : {"door" : {"top" : {"open" : false}}}},
+				{"walkable" : true, "visible" : {"Empire" : false, "Zargon" : false}, "img" : "corridoor_002.png", "border" : {"wall" : ["top"]}},
+
 				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
 				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"wall" : ["top"]}},
 				{"visible" : {"Empire" : false, "Zargon" : false}, "border" : {"door" : {"top" : {"open" : false}}}},

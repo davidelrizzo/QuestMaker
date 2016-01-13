@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>door.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Agent.html">Agent</a></li>
+                                <li><a href="../classes/Cell.html">Cell</a></li>
+                                <li><a href="../classes/Computer.html">Computer</a></li>
+                                <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/input.html">input</a></li>
+                                <li><a href="../classes/json.html">json</a></li>
+                                <li><a href="../classes/keybaord.html">keybaord</a></li>
+                                <li><a href="../classes/Level.html">Level</a></li>
+                                <li><a href="../classes/Map.html">Map</a></li>
+                                <li><a href="../classes/mouse.html">mouse</a></li>
+                                <li><a href="../classes/Player.html">Player</a></li>
+                                <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/User.html">User</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/input.html">input</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: door.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&quot;use strict&quot;
+
+var gh = (function(gh){
+	console.log(&quot;door.js loaded&quot;);
+
+    /**
+     * INPUT
+     *    cell1, cell2: 
+     *        A string denoting the side of a cell which the door
+     *        occupies.  Accepted values are &quot;top&quot;, &quot;left&quot;, &quot;right&quot;, &quot;bottom&quot;.
+     *    x1, y1, x2, y2: 
+     *        a number value representing a cell x or y
+     *        coordinate in the map.
+     *    open: 
+     *        boolean value noting whether or not the door is opem.
+     *    images: 
+     *        the sprites which depict the door in its various states.
+     */
+	function Door(cell1, x1, y1, cell2, x2, y2, open, images){
+		this.id = &quot;door&quot;;
+
+		this[cell1] = {&quot;x&quot; : x1, &quot;y&quot; : y1};
+		this[cell2] = {&quot;x&quot; : x2, &quot;y&quot; : y2};
+
+		this.images = images;
+
+		if(this[cell1].x &gt; this[cell2].x){
+			this.side = &quot;left&quot;;
+		}
+
+		if(this[cell1].y &gt; this[cell2].y){
+			this.side = &quot;top&quot;;
+		}
+
+		this.open = open;
+		this.focus = false;
+	}
+
+	/**
+	 * DESC
+	 *    Change the state of the door from open to closed or vis versa.
+	 * INPUT
+	 *    args:
+	 */
+	Door.prototype.onUse = function(args){
+		if(this.focus === true){
+			switch(this.open){
+				case true:
+				  this.open = false;
+				  break;
+				case false:
+				  this.open = true;
+				  break;
+				default:
+				  break;
+			}
+		}
+
+	}
+
+    /**
+     * INPUT
+     *    args:
+     *        mouseX
+     *        mouseY
+     *        cellX
+     *        cellY
+     *        cellSize
+     *        offset {x, y}
+     *        scale
+     *        cell
+     *        agents
+     */
+	Door.prototype.onMouseOver = function(args){
+
+        // Does this cell have a door?
+        // And if so, which side of the cell is the door on?
+        var side;
+        switch(this.side){
+        	case &quot;top&quot;:
+        	  if(this.top.x === args.cellX &amp;&amp; this.top.y === args.cellY){
+        	  	side = &quot;top&quot;;
+        	  } else if(this.bottom.x === args.cellX &amp;&amp; this.bottom.y === args.cellY){
+        	  	side = &quot;bottom&quot;;
+        	  } else{
+        	  	// the cell selected does not have this door.
+        	  	this.focus = false;
+        	  	return;
+        	  }
+        	  break;
+        	case &quot;left&quot;:
+        	  if(this.left.x === args.cellX &amp;&amp; this.left.y === args.cellY){
+        	  	side = &quot;left&quot;;
+        	  } else if(this.right.x === args.cellX &amp;&amp; this.right.y === args.cellY){
+        	  	side = &quot;right&quot;;
+        	  } else{
+        	  	// the cell selected does not have this door.
+        	  	this.focus = false;
+        	  	return;
+        	  }
+        	  break;
+        	default:
+        	  break;
+        }
+
+        // Does an agent already have focus in the cell.
+        // If so, set door focus to false and return.
+		if(args.agents[args.cellY] !== undefined){
+			if(args.agents[args.cellY][args.cellX] !== undefined){
+				if(args.agents[args.cellY][args.cellX].focus === true){
+                    this.focus = false;
+                    return;
+				}
+			}
+		}
+
+        // Get the relevant sprite for door location calculations.
+        var sprite;
+        if(this.open){
+        	sprite = gh.assets.sprites[this.images.open];
+        } else {
+        	sprite = gh.assets.sprites[this.images.closed];
+        }
+
+        // Get the bounding rectangle within which the door is located.
+        var spriteLocation = {};
+
+		switch(this.side){
+			case &quot;left&quot;:
+			    spriteLocation.left   = (this.left.x * args.cellSize * args.scale) + args.offset.x - (0.5 * sprite.img.height * args.scale);
+			    spriteLocation.top    = (this.left.y * args.cellSize * args.scale) + args.offset.y;
+			    spriteLocation.right  = (this.left.x * args.cellSize * args.scale) + args.offset.x + (0.5 * sprite.img.height * args.scale);
+			    spriteLocation.bottom = (this.left.y * args.cellSize * args.scale) + args.offset.y + (args.cellSize * args.scale);
+			    break;
+			case &quot;top&quot;:
+			    spriteLocation.left   = (this.top.x * args.cellSize * args.scale) + args.offset.x;
+			    spriteLocation.top    = (this.top.y * args.cellSize * args.scale) + args.offset.y - (0.5 * sprite.img.height * args.scale);
+			    spriteLocation.right  = (this.top.x * args.cellSize * args.scale) + args.offset.x + (args.cellSize * args.scale);
+			    spriteLocation.bottom = (this.top.y * args.cellSize * args.scale) + args.offset.y +(0.5 * sprite.img.height * args.scale);
+			    break;
+			default:
+			    console.log(&quot;error&quot;);
+			    break;
+		}
+
+		if(args.mouseX &lt;= spriteLocation.left || args.mouseX &gt;= spriteLocation.right || args.mouseY &lt;= spriteLocation.top || args.mouseY &gt;= spriteLocation.bottom){
+			this.focus = false;
+			return;
+		}
+
+        // Check if the mouse is actually over the door.
+        // This ensures that when we are checking for pixel values nothign outside of the
+        // sprite&#x27;s area is checked.
+        var ratiox = args.cellSize / sprite.img.width;
+        var ratioy = (sprite.img.height*args.scale) / sprite.img.height;
+
+        var relx = 0;
+        var rely = 0;
+
+        var pixel = undefined;
+
+        // Determine wehre the mosue is located within the virtual sprite.
+		relx = args.mouseX - spriteLocation.left;
+		rely = args.mouseY - spriteLocation.top;
+		relx = relx / args.scale;
+		rely = rely / args.scale;
+
+        if(side === &quot;left&quot; || side === &quot;right&quot;){
+        	pixel = sprite.getPixelColor(rely, relx);
+        } else {
+        	pixel = sprite.getPixelColor(relx, rely);
+        }
+
+		if(!pixel.isTransparent()){
+			this.focus = true;
+			return;
+		} else {
+			this.focus = false;
+			return;
+		}
+
+        this.focus = false;
+	};
+
+	Door.prototype.draw = function(context, x, y, size, scale, sprites, side){
+		context.save();
+
+		//console.log(&quot;A&quot;);
+		//console.log(sprites);
+		if(this.open){
+			if(this.focus){
+				var doorSprite = sprites[this.images.openDoorHighlight];
+			} else {
+				var doorSprite = sprites[this.images.open];
+			}
+		} else {
+			//console.log(&quot;B&quot;);
+			if(this.focus){
+			//	console.log(&quot;D&quot;);
+				var doorSprite = sprites[this.images.closedHighlight];
+			} else {
+			//	console.log(&quot;C&quot;);
+				var doorSprite = sprites[this.images.closed];
+			}
+		}
+
+        //console.log(&quot;X&quot;);
+		//console.log(doorSprite);
+
+		switch(side){
+			case &quot;top&quot;:
+				doorSprite.draw(context, x, y - (.5*doorSprite.img.height*scale), doorSprite.img.width * scale, doorSprite.img.height * scale);
+			  break;
+			case &quot;left&quot;:
+				context.translate(x, y);
+				context.rotate(90*Math.PI/180);
+				doorSprite.draw(context, 0 , 0 - (.5*doorSprite.img.height*scale), doorSprite.img.width * scale, doorSprite.img.height * scale);
+				break;
+			case &quot;right&quot;:
+				context.translate(x + (size * scale), y);
+				context.rotate(90*Math.PI/180);
+				doorSprite.draw(context, 0 , 0 - (.5*doorSprite.img.height*scale), doorSprite.img.width * scale, doorSprite.img.height * scale);
+				break;
+			case &quot;bottom&quot;:
+				doorSprite.draw(context, x, y - (.5*doorSprite.img.height*scale) + (size * scale), doorSprite.img.width * scale, doorSprite.img.height * scale);
+				break;
+			default:
+			  break;
+		}
+
+
+		context.restore();
+	};
+
+	gh.Door = Door;
+
+	return gh;
+})(gh || {});
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -4,16 +4,28 @@
  *        file structure.  E.g. a campaign json data file is located in 
  *        "./Data/Campaigns/*campaign name* /Data/*specific file name*".  This might not be
  *        a sensible assumption with regards to flexibility in design.
+ *
+ * @module gh
  */
 
 "use strict"
 
+/**
+ * @class gh
+ */
 var gh = (function(gh){
 
 	console.log("json.js loaded");
 
+	/**
+	 * @class json
+	 * @constructor
+	 */
 	gh.json = gh.json || {};
 
+	/**
+	 * @method loadDataFile
+	 */
 	gh.json.loadDataFile = function(path){
 		var data;
 
@@ -23,6 +35,9 @@ var gh = (function(gh){
 		return data;
 	};
 
+	/**
+	 * @method getTeams
+	 */
 	gh.json.getTeams = function(jsonTeam){
 		var teams = {};
 
@@ -33,6 +48,9 @@ var gh = (function(gh){
 		return teams;
 	};
 
+	/**
+	 * @method getFloor
+	 */
 	gh.json.getFloor = function(jsonMap, directory, jsonStdGraphics){
 		var floor = [];
 
@@ -95,13 +113,16 @@ var gh = (function(gh){
 					}
 
 				}
-				floor[y].push(new gh.Cell(x, y, directory + "Graphics/Floor Tiles/", jsonMap[y][x].img, border, 64));
+				floor[y].push(new gh.Cell(x, y, directory + "Graphics/Floor Tiles/", jsonMap[y][x].img, border, 64, jsonMap[y][x].walkable));
 			}
 		}
 
 		return floor;
 	};
 
+	/**
+	 * @method getAgents
+	 */
 	gh.json.getAgents = function(jsonAgents, jsonAgentTemplates, directory){
 		var agents = [];
 
@@ -110,7 +131,8 @@ var gh = (function(gh){
 				jsonAgents[it].id,
 				{"x" : jsonAgents[it].position.x, "y" : jsonAgents[it].position.y},
 				jsonAgents[it].faction,
-				jsonAgentTemplates[jsonAgents[it].id].sprites);
+				jsonAgentTemplates[jsonAgents[it].id].sprites
+				jsonAgentTemplates[jsonAgents[it].id].moveDice);
 
 			agents[agent.position.y] = agents[agent.position.y] || [];
 			agents[agent.position.y][agent.position.x] = agents[agent.position.y][agent.position.x] || [];
@@ -120,6 +142,10 @@ var gh = (function(gh){
 		return agents;
 	};
 
+
+	/**
+	 * @method getTriggers
+	 */
 	gh.json.getTriggers = function(jsonTriggers){
 		var triggers = {};
         triggers.entry = triggers.entry || [];
@@ -146,6 +172,9 @@ var gh = (function(gh){
 		return triggers;
 	}
 
+	/**
+	 * @method getLevel
+	 */
 	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates){
 		var jsonLevel   = gh.json.loadDataFile(directory + "Data/" + levelName + ".json");		
 		var teams       = gh.json.getTeams(jsonLevel.teams);
@@ -164,6 +193,9 @@ var gh = (function(gh){
 		return level;
 	};
 
+	/**
+	 * @method getCampaignLevels
+	 */
 	gh.json.getCampaignLevels = function(jsonLevels, directory, jsonAgentTemplates){
 		var levels = [];
 
@@ -174,6 +206,9 @@ var gh = (function(gh){
 		return levels;
 	};
 
+	/**
+	 * @method getCampaign
+	 */
 	gh.json.getCampaign = function(directory, campaignName){
 		var jsonCampaign = gh.json.loadDataFile(directory + campaignName + "/Data/" + campaignName + ".json");
 

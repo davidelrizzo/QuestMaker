@@ -1,12 +1,26 @@
+/**
+ * @module gh
+ */
+
 "use strict"
 
+/**
+ * @class gh
+ */
 var gh = (function(gh){
 
+	/**
+	 * @class Map
+	 * @constructor
+	 */
 	function Map(floor, cellSize){
 		this.floor        = floor;
 		this.cellSize     = cellSize;
 	}
 
+	/**
+	 * @method drawFloor
+	 */
 	Map.prototype.drawFloor = function(context, scale, offset, sprites, team){
 		for(var y = 0; y < this.floor.length; y++){
 			for(var x = 0; x < this.floor[y].length; x++){
@@ -17,6 +31,9 @@ var gh = (function(gh){
 		}
 	};
 
+	/**
+	 * @method drawGrid
+	 */
 	Map.prototype.drawGrid = function(canvas, context, scale, offset){
 		context.save();
 		context.strokeStyle = "grey";
@@ -41,6 +58,8 @@ var gh = (function(gh){
 	/**
 	 * To build a list of unique doors (a door is refferenced twice in every map)
 	 * it is necessary to select only the 'left' and 'top' doors.
+	 *
+	 * @method getDoors
 	 */
 	Map.prototype.getDoors = function(){
         var doors = [];
@@ -65,6 +84,29 @@ var gh = (function(gh){
         return doors;
 	};
 
+	/**
+	 * @method updateAgentView
+	 * @param {Agent} agent The agent for which the map visibility should be updated.
+	 */
+	Map.prototype.updateAgentView = function(agent){
+		for(var y = 0; y < this.floor.length; y++){
+			for(var x = 0; x < this.floor[y].length; ){
+				var line = this.getLine(agent.position.x, agent.position.y, x, y);
+				this.setRayVisibility(line, agent.faction, true);
+				if(y === 0 || y === (this.floor.length - 1)){
+					x++;
+				} else if(x === 0){
+					x = this.floor[y].length - 1;
+				} else {
+					x++;
+				}
+			}
+		}
+	}
+
+	/**
+	 * @method clearVisibility
+	 */
 	Map.prototype.clearVisibility = function(teams){
 		for(var y = 0; y < this.floor.length; y++){
 			for(var x = 0; x < this.floor[y].length; x++){
@@ -85,6 +127,8 @@ var gh = (function(gh){
 	 *		ray: 		an array of cells which are in a line
 	 *		faction: 	the string reference of the faction for which to set visibility
 	 *		visible: 	the visibility to set the cells to
+	 *
+	 * @method setRayVisibility
 	 */
 	Map.prototype.setRayVisibility = function(ray, faction, visible){
 		for(var c = 0; c < ray.length; c++){
@@ -164,6 +208,13 @@ var gh = (function(gh){
 		}
 	};
 
+	/**
+	 * DESC
+	 *		This function returns an array of cells that lie between two points.
+	 *      This line is not interrupted by lack of visibility or objects.
+	 *
+	 * @method getLine
+	 */
 	Map.prototype.getLine = function(x0, y0, x1, y1){
 
 		var dy 			= y1-y0;						// change in y
