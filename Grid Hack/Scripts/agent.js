@@ -8,6 +8,7 @@
  * @class gh
  */
 var gh = (function(gh){
+	console.log("agents.js laoded");
 
 	/**
 	 * @class Agent
@@ -18,14 +19,35 @@ var gh = (function(gh){
 	 * @param {Object} sprites An object which contains the images for the various action states the agent might be in.
 	 * @param {Integer} moveDice The number of dice rolled when a user moves.
 	 */
-	function Agent(name, position, team, sprites, moveDice){
+	function Agent(name, position, team, sprites, moveDice, baseMove){
 		this.name			= name;
 		this.position       = position;
 		this.team			= team;
 		this.sprites 		= sprites;
 		this.focus          = false;
-		this.moveDice 		= moveDice;
+		this.moveDice 		= moveDice || 0;
+		this.baseMove		= baseMove || 0;
+
+		this.move           = 0;
+
+		console.log(moveDice);
 	}
+
+	/**
+	 * @method newTurn
+	 * @param {Object} dice A dice of the requisite number of sides to be used when 'rolling' the agents potential movement.
+	 */
+	Agent.prototype.newTurn = function(dice){
+		this.move = 0;
+
+		for(var it = 0; it < this.moveDice; it++){
+			this.move = this.move + dice.roll();
+		}
+
+		this.move = this.move + this.baseMove;
+
+		console.log(this.move);
+	};
 
 	/** 
 	 * @method draw
@@ -63,6 +85,14 @@ var gh = (function(gh){
 		*/
 
 		console.log(args);
+
+		/**
+		 * Does the agent have any movement left?
+		 */
+		console.log(this.move);
+		if(this.move <= 0){
+			return;
+		}
 
 		var pos = {
 			"x" : this.position.x,
@@ -123,6 +153,12 @@ var gh = (function(gh){
 				return;
 			}
 		}
+
+		/**
+		 * The move is valid.
+		 */
+		this.move--;
+		console.log(this.move);
 
 		/**
 		 * Update the agent location in the map.

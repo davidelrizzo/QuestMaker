@@ -39,8 +39,10 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/Agent.html">Agent</a></li>
+                                <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
                                 <li><a href="../classes/Computer.html">Computer</a></li>
+                                <li><a href="../classes/Dice.html">Dice</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
@@ -143,6 +145,7 @@ var gh = (function(gh){
 
 			console.log(gh.ptrActiveLevel.turnOrder);
 
+			stateGame.diceA = new gh.Dice(6, &quot;dice1.png&quot;);
 		};
 
 		/**
@@ -268,6 +271,10 @@ var gh = (function(gh){
 		stateGame.render = function(){
 			gh.display.clear();
 
+			/**
+			 * Draw the game board
+			 */
+
 			gh.display.context.save();
 			gh.display.context.fillRect(0, 0, gh.display.canvas.width, gh.display.canvas.height);
 			gh.display.context.restore();
@@ -292,6 +299,14 @@ var gh = (function(gh){
 				gh.display.scale, 
 				gh.display.offset);
 
+			/**
+			 * Draw the hud
+			 */
+			stateGame.diceA.draw(
+				3, 
+				gh.display.context, 
+				64, 64, 64*gh.display.scale, 64*gh.display.scale, 
+				gh.assets.sprites);
 		};
 
 		return stateGame;

@@ -57,7 +57,9 @@
         "assets.js": {
             "name": "assets.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "assets": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -66,6 +68,15 @@
             "modules": {},
             "classes": {
                 "Cell": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "dice.js": {
+            "name": "dice.js",
+            "modules": {},
+            "classes": {
+                "Dice": 1
             },
             "fors": {},
             "namespaces": {}
@@ -170,7 +181,9 @@
                 "gh": 1,
                 "json": 1,
                 "Agent": 1,
+                "assets": 1,
                 "Cell": 1,
+                "Dice": 1,
                 "Level": 1,
                 "Map": 1,
                 "stateGame": 1,
@@ -313,6 +326,19 @@
                 }
             ]
         },
+        "assets": {
+            "name": "assets",
+            "shortname": "assets",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "assets.js",
+            "line": 25
+        },
         "Cell": {
             "name": "Cell",
             "shortname": "Cell",
@@ -358,6 +384,20 @@
                     "type": "Integer"
                 }
             ]
+        },
+        "Dice": {
+            "name": "Dice",
+            "shortname": "Dice",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "gh",
+            "namespace": "",
+            "file": "dice.js",
+            "line": 12,
+            "is_constructor": 1
         },
         "Level": {
             "name": "Level",
@@ -744,9 +784,46 @@
         },
         {
             "file": "assets.js",
-            "line": 1,
-            "description": "DESCRIPTION\n       assets.js contains methods which relate to loading and manipulating game\n       resources, specifically music and graphic assets.  These should be loaded\n       prior to running a level and removed once the level is complete.  \n\nTO CONSIDER\n       At present, as the assets are loaded after the other game data, game objects \n       which interact with the assets for drawing or playing music rely on some \n       knowledge of the assets structures, and are thus coupled.  E.g. a cell has\n       a sprite \"name\" value which indexes the correct sprite to draw in the asset\n       sprite object.  It would be better for the cell to have a pointer variable\n       to that sprite object.",
-            "class": "gh",
+            "line": 30,
+            "itemtype": "method",
+            "name": "loadMapSprites",
+            "class": "assets",
+            "module": "gh"
+        },
+        {
+            "file": "assets.js",
+            "line": 45,
+            "itemtype": "method",
+            "name": "loadStdGraphics",
+            "class": "assets",
+            "module": "gh"
+        },
+        {
+            "file": "assets.js",
+            "line": 60,
+            "itemtype": "method",
+            "name": "loadAgentSprites",
+            "class": "assets",
+            "module": "gh"
+        },
+        {
+            "file": "assets.js",
+            "line": 74,
+            "itemtype": "method",
+            "name": "loadDiceSprites",
+            "params": [
+                {
+                    "name": "directory",
+                    "description": "The path in which the image of the dice is located.  This should be a sprite sheet with each side fo the die depicted.",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "description": "The name of the image in the directory.",
+                    "type": "String"
+                }
+            ],
+            "class": "assets",
             "module": "gh"
         },
         {
@@ -795,6 +872,63 @@
             "module": "gh"
         },
         {
+            "file": "dice.js",
+            "line": 23,
+            "itemtype": "method",
+            "name": "roll",
+            "return": {
+                "description": "",
+                "type": "Integer"
+            },
+            "class": "Dice",
+            "module": "gh"
+        },
+        {
+            "file": "dice.js",
+            "line": 31,
+            "itemtype": "method",
+            "name": "draw",
+            "params": [
+                {
+                    "name": "num",
+                    "description": "The number value of the side of the dice to draw.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "context",
+                    "description": "The canvas context upon which to draw.",
+                    "type": "Object"
+                },
+                {
+                    "name": "x",
+                    "description": "The x coordinate where to draw from.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "y",
+                    "description": "The y coordinate where to draw from.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "w",
+                    "description": "The width fo the image to be drawn.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "h",
+                    "description": "The height of the image to be drawn.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "sprites",
+                    "description": "An object containing Sprites indexed by the name of the image.",
+                    "type": "Object"
+                }
+            ],
+            "class": "Dice",
+            "module": "gh"
+        },
+        {
             "file": "door.js",
             "line": 6,
             "description": "INPUT\n   cell1, cell2: \n       A string denoting the side of a cell which the door\n       occupies.  Accepted values are \"top\", \"left\", \"right\", \"bottom\".\n   x1, y1, x2, y2: \n       a number value representing a cell x or y\n       coordinate in the map.\n   open: \n       boolean value noting whether or not the door is opem.\n   images: \n       the sprites which depict the door in its various states.",
@@ -833,7 +967,14 @@
         },
         {
             "file": "gh.js",
-            "line": 48,
+            "line": 42,
+            "description": "Load the dice sprite sheet",
+            "class": "gh",
+            "module": "gh"
+        },
+        {
+            "file": "gh.js",
+            "line": 52,
             "description": "The main game loop",
             "itemtype": "method",
             "name": "run",
@@ -842,7 +983,7 @@
         },
         {
             "file": "gh.js",
-            "line": 59,
+            "line": 63,
             "description": "Dummy function to generate a group of starting heroes for placement.",
             "itemtype": "method",
             "name": "generateStartingPlayers",
@@ -979,7 +1120,7 @@
         },
         {
             "file": "stateGame.js",
-            "line": 52,
+            "line": 53,
             "description": "This method calls the update and render methods.  If there is no",
             "itemtype": "method",
             "name": "run",
@@ -988,7 +1129,7 @@
         },
         {
             "file": "stateGame.js",
-            "line": 63,
+            "line": 64,
             "description": "This method adjudicates user mouse and keyboard input and updates message queues accordingly.",
             "itemtype": "method",
             "name": "update",
@@ -1001,24 +1142,38 @@
         },
         {
             "file": "stateGame.js",
-            "line": 95,
+            "line": 96,
             "description": "Handle mouse input.",
             "class": "stateGame",
             "module": "gh"
         },
         {
             "file": "stateGame.js",
-            "line": 106,
+            "line": 107,
             "description": "Handle keyboard input.",
             "class": "stateGame",
             "module": "gh"
         },
         {
             "file": "stateGame.js",
-            "line": 167,
+            "line": 168,
             "description": "This method draws the board to the canvas with respect to a players (team) view.",
             "itemtype": "method",
             "name": "render",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 176,
+            "description": "Draw the game board",
+            "class": "stateGame",
+            "module": "gh"
+        },
+        {
+            "file": "stateGame.js",
+            "line": 204,
+            "description": "Draw the hud",
             "class": "stateGame",
             "module": "gh"
         },
@@ -1139,10 +1294,6 @@
             "line": " agent.js:144"
         },
         {
-            "message": "Missing item type\nDESCRIPTION\n       assets.js contains methods which relate to loading and manipulating game\n       resources, specifically music and graphic assets.  These should be loaded\n       prior to running a level and removed once the level is complete.  \n\nTO CONSIDER\n       At present, as the assets are loaded after the other game data, game objects \n       which interact with the assets for drawing or playing music rely on some \n       knowledge of the assets structures, and are thus coupled.  E.g. a cell has\n       a sprite \"name\" value which indexes the correct sprite to draw in the asset\n       sprite object.  It would be better for the cell to have a pointer variable\n       to that sprite object.",
-            "line": " assets.js:1"
-        },
-        {
             "message": "Missing item type\nINPUT\n   cell1, cell2: \n       A string denoting the side of a cell which the door\n       occupies.  Accepted values are \"top\", \"left\", \"right\", \"bottom\".\n   x1, y1, x2, y2: \n       a number value representing a cell x or y\n       coordinate in the map.\n   open: \n       boolean value noting whether or not the door is opem.\n   images: \n       the sprites which depict the door in its various states.",
             "line": " door.js:6"
         },
@@ -1153,6 +1304,10 @@
         {
             "message": "Missing item type\nINPUT\n   args:\n       mouseX\n       mouseY\n       cellX\n       cellY\n       cellSize\n       offset {x, y}\n       scale\n       cell\n       agents",
             "line": " door.js:61"
+        },
+        {
+            "message": "Missing item type\nLoad the dice sprite sheet",
+            "line": " gh.js:42"
         },
         {
             "message": "Missing item type\nPrivate Globals",
@@ -1168,11 +1323,19 @@
         },
         {
             "message": "Missing item type\nHandle mouse input.",
-            "line": " stateGame.js:95"
+            "line": " stateGame.js:96"
         },
         {
             "message": "Missing item type\nHandle keyboard input.",
-            "line": " stateGame.js:106"
+            "line": " stateGame.js:107"
+        },
+        {
+            "message": "Missing item type\nDraw the game board",
+            "line": " stateGame.js:176"
+        },
+        {
+            "message": "Missing item type\nDraw the hud",
+            "line": " stateGame.js:204"
         },
         {
             "message": "Missing item type\nFILE stateSetup.js\nDESC This class singleton handles the setup phase of the game.\n     The user selectes the initial placement of the starting heroes.\n     The user might enter through a door, or alternatively, pre-selected\n     starting squares.\n\n     Starting squres: these are highlighted and the user may place a \n     hero by left clicking on them.\n\n     Starting door: this is more complicated as in reality the player\n     moves through it on the first turn.  That is to say it doesn't fit\n     within the starting square paradigm and more appropriately belongs in\n     the gameState phase of the application.  However, this would then\n     require a check to see if the player is on the board every level?\n\n     Maybe consider rebuilding.  Each player has a starting action sequence\n     that should be completed before proceeding to a standard action phase?\n\n     Eg \n\t\t\tif play.position !== onBoard\n\t\t\t\tplace at entry location",

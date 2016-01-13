@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Input\mouse.js</title>
+    <title>dice.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,56 +92,61 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: Input\mouse.js</h1>
+<h1 class="file-heading">File: dice.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * @module input
+ * @module gh
  */
 
 &quot;use strict&quot;
 
-/**
- * @class input
+/** 
+ * @class gh
  */
-var input = (function(input){
+var gh = (function(gh){
 
 	/**
-	 * @class mouse
-	 * @submodule input
+	 * @class Dice
+	 * @constructor
+	 * param {Integer} sides The number of sides the dice has, defaults to 6.
+	 * param {String}  spriteSheet The index name of the sprite sheet  of the dice.
 	 */
-	var mouse = (function(mouse){
-		mouse.x			= 0;
-		mouse.y			= 0;
-		mouse.cicked    = false;
+	function Dice(sides, spriteSheet){
+		this.sides = sides || 6;
+		this.spriteSheet = spriteSheet;
+	}
 
-		/**
-		 * @event onMouseMove
-		 * @param {event} evt An event which contains the relevant mouse data.
-		 */
-		mouse.onMouseMove = function(evt){
-			var rect = this.getBoundingClientRect();
+	/**
+	 * @method roll
+	 * @return {Integer}
+	 */
+	Dice.prototype.roll = function(){
+		return Math.floor(Math.random() * this.sides) + 1;
+	};
 
-			mouse.x = evt.clientX - rect.left;
-			mouse.y = evt.clientY - rect.top;
-		};
+	/**
+	 * @method draw
+	 * @param {Integer} num The number value of the side of the dice to draw.
+	 * @param {Object}  context The canvas context upon which to draw.
+	 * @param {Integer} x The x coordinate where to draw from.
+	 * @param {Integer} y The y coordinate where to draw from.
+	 * @param {Integer} w The width fo the image to be drawn.
+	 * @param {Integer} h The height of the image to be drawn.
+	 * @param {Object}  sprites An object containing Sprites indexed by the name of the image.
+	 */
+	Dice.prototype.draw = function(num, context, x, y, w, h, sprites){
+		context.drawImage(
+			sprites[this.spriteSheet].img,
+			(num - 1) * 100, 0, 100, 100,
+			x, y, w, h);
+	};
 
-		/**
-		 * @event onClick
-		 * @param {event} evt An event which contains the relevant mouse data.
-		 */
-		mouse.onClick = function(evt){
-            mouse.clicked = true;
-		}
+	gh.Dice = Dice;
 
-		return mouse;
-	})(mouse || {});
-
-	input.mouse = mouse;
-
-	return input;
-})(input || {});
+	return gh;
+})(gh || {});
     </pre>
 </div>
                     </div>

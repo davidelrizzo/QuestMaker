@@ -47,6 +47,9 @@ var gh = (function(gh){
 
 			console.log(gh.ptrActiveLevel.turnOrder);
 
+			stateGame.diceA = new gh.Dice(6, "dice1.png");
+			stateGame.diceB = new gh.Dice(6, "dice1.png");
+			gh.ptrActiveLevel.heroes[0].newTurn(stateGame.diceA);
 		};
 
 		/**
@@ -172,6 +175,10 @@ var gh = (function(gh){
 		stateGame.render = function(){
 			gh.display.clear();
 
+			/**
+			 * Draw the game board
+			 */
+
 			gh.display.context.save();
 			gh.display.context.fillRect(0, 0, gh.display.canvas.width, gh.display.canvas.height);
 			gh.display.context.restore();
@@ -196,6 +203,29 @@ var gh = (function(gh){
 				gh.display.scale, 
 				gh.display.offset);
 
+			/**
+			 * Draw the hud
+			 */
+			var n = gh.ptrActiveLevel.heroes[0].move;
+			if( (n-6) > 0 ){
+				stateGame.diceA.draw(
+					6, 
+					gh.display.context, 
+					64, 64, 64*gh.display.scale, 64*gh.display.scale, 
+					gh.assets.sprites);
+
+				stateGame.diceB.draw(
+					n-6,
+					gh.display.context,
+					128, 64, 64 * gh.display.scale, 64 * gh.display.scale,
+					gh.assets.sprites);
+			} else {
+				stateGame.diceA.draw(
+					n,
+					gh.display.context,
+					64, 64, 64*gh.display.scale, 64*gh.display.scale, 
+					gh.assets.sprites);
+			}
 		};
 
 		return stateGame;

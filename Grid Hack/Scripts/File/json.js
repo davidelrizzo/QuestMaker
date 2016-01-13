@@ -131,8 +131,9 @@ var gh = (function(gh){
 				jsonAgents[it].id,
 				{"x" : jsonAgents[it].position.x, "y" : jsonAgents[it].position.y},
 				jsonAgents[it].faction,
-				jsonAgentTemplates[jsonAgents[it].id].sprites
-				jsonAgentTemplates[jsonAgents[it].id].moveDice);
+				jsonAgentTemplates[jsonAgents[it].id].sprites,
+				jsonAgentTemplates[jsonAgents[it].id].moveDice,
+				jsonAgentTemplates[jsonAgents[it].id].baseMove);
 
 			agents[agent.position.y] = agents[agent.position.y] || [];
 			agents[agent.position.y][agent.position.x] = agents[agent.position.y][agent.position.x] || [];

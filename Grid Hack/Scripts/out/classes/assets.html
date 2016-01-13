@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Input\mouse.js</title>
+    <title>assets</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,57 +92,227 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: Input\mouse.js</h1>
+<h1>assets Class</h1>
+<div class="box meta">
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-/**
- * @module input
- */
 
-&quot;use strict&quot;
+        <div class="foundat">
+            Defined in: <a href="../files/assets.js.html#l25"><code>assets.js:25</code></a>
+        </div>
 
-/**
- * @class input
- */
-var input = (function(input){
+            Module: <a href="../modules/gh.html">gh</a>
 
-	/**
-	 * @class mouse
-	 * @submodule input
-	 */
-	var mouse = (function(mouse){
-		mouse.x			= 0;
-		mouse.y			= 0;
-		mouse.cicked    = false;
+</div>
 
-		/**
-		 * @event onMouseMove
-		 * @param {event} evt An event which contains the relevant mouse data.
-		 */
-		mouse.onMouseMove = function(evt){
-			var rect = this.getBoundingClientRect();
 
-			mouse.x = evt.clientX - rect.left;
-			mouse.y = evt.clientY - rect.top;
-		};
+<div class="box intro">
+    
+</div>
 
-		/**
-		 * @event onClick
-		 * @param {event} evt An event which contains the relevant mouse data.
-		 */
-		mouse.onClick = function(evt){
-            mouse.clicked = true;
-		}
 
-		return mouse;
-	})(mouse || {});
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
 
-	input.mouse = mouse;
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
 
-	return input;
-})(input || {});
-    </pre>
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_loadAgentSprites">loadAgentSprites</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_loadDiceSprites">loadDiceSprites</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_loadMapSprites">loadMapSprites</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_loadStdGraphics">loadStdGraphics</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_loadAgentSprites" class="method item">
+    <h3 class="name"><code>loadAgentSprites</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/assets.js.html#l60"><code>assets.js:60</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_loadDiceSprites" class="method item">
+    <h3 class="name"><code>loadDiceSprites</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>directory</code>
+                </li>
+                <li class="arg">
+                        <code>name</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/assets.js.html#l74"><code>assets.js:74</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">directory</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The path in which the image of the dice is located.  This should be a sprite sheet with each side fo the die depicted.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The name of the image in the directory.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_loadMapSprites" class="method item">
+    <h3 class="name"><code>loadMapSprites</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/assets.js.html#l30"><code>assets.js:30</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_loadStdGraphics" class="method item">
+    <h3 class="name"><code>loadStdGraphics</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/assets.js.html#l45"><code>assets.js:45</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
 </div>
                     </div>
                 </div>

@@ -39,8 +39,10 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/Agent.html">Agent</a></li>
+                                <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
                                 <li><a href="../classes/Computer.html">Computer</a></li>
+                                <li><a href="../classes/Dice.html">Dice</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
@@ -135,6 +137,10 @@ var gh = (function(gh){
 
 		gh.ptrActiveLevel.heroes = gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates);
 
+		/**
+		 * Load the dice sprite sheet
+		 */
+		gh.assets.loadDiceSprites(&quot;./Data/Graphics/&quot;, &quot;dice1.png&quot;);
 
 		gh.stateSetup.initialize();
 

@@ -39,8 +39,10 @@
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
                                 <li><a href="../classes/Agent.html">Agent</a></li>
+                                <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
                                 <li><a href="../classes/Computer.html">Computer</a></li>
+                                <li><a href="../classes/Dice.html">Dice</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
@@ -107,14 +109,25 @@
  *        a sprite &quot;name&quot; value which indexes the correct sprite to draw in the asset
  *        sprite object.  It would be better for the cell to have a pointer variable
  *        to that sprite object.
+ *
+ * @module gh
  */
 
 &quot;use strict&quot;
 
+/** 
+ * @class gh
+ */
 var gh = (function(gh){
 
+	/**
+	 * @class assets
+	 */
 	var assets = (function(assets){
 
+		/** 
+		 * @method loadMapSprites
+		 */
 		assets.loadMapSprites = function(jsonMap, directory){
 			this.sprites = this.sprites || {};
 
@@ -127,6 +140,9 @@ var gh = (function(gh){
 			}
 		};
 
+		/**
+		 * @method loadStdGraphics
+		 */
 		assets.loadStdGraphics = function(jsonStdGraphics, directory){
 			this.sprites = this.sprites || {};
 
@@ -139,6 +155,9 @@ var gh = (function(gh){
 			}
 		};
 
+		/**
+		 * @method loadAgentSprites
+		 */
 		assets.loadAgentSprites = function(jsonAgents, directory){
 			this.sprites = this.sprites || {};
 
@@ -148,6 +167,17 @@ var gh = (function(gh){
 					this.sprites[agent[img]] = new graphics.Sprite(directory + agent[img]);
 				}
 			}
+		};
+
+		/**
+		 * @method loadDiceSprites
+		 * @param {String} directory The path in which the image of the dice is located.  This should be a sprite sheet with each side fo the die depicted.
+		 * @param {String} name The name of the image in the directory.
+		 */
+		assets.loadDiceSprites = function(directory, name){
+			this.sprites = this.sprites || {};
+
+			this.sprites[name] = new graphics.Sprite(directory + name);
 		};
 
 		return assets;

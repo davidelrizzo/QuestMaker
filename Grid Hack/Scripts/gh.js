@@ -39,6 +39,10 @@ var gh = (function(gh){
 
 		gh.ptrActiveLevel.heroes = gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates);
 
+		/**
+		 * Load the dice sprite sheet
+		 */
+		gh.assets.loadDiceSprites("./Data/Graphics/", "dice1.png");
 
 		gh.stateSetup.initialize();
 
@@ -69,7 +73,9 @@ var gh = (function(gh){
 			"Barbarian",
 			undefined,
 			"Empire",
-			jsonAgentTemplates["Barbarian"].sprites
+			jsonAgentTemplates["Barbarian"].sprites,
+			2,
+			0
 			);
 		players.push(barbarian);
 
@@ -77,7 +83,9 @@ var gh = (function(gh){
 			"Elf",
 			undefined,
 			"Empire",
-			jsonAgentTemplates["Elf"].sprites
+			jsonAgentTemplates["Elf"].sprites,
+			2,
+			0
 			);
 		players.push(elf);
 
@@ -85,7 +93,9 @@ var gh = (function(gh){
 			"Dwarf",
 			undefined,
 			"Empire",
-			jsonAgentTemplates["Dwarf"].sprites
+			jsonAgentTemplates["Dwarf"].sprites,
+			2,
+			0
 			);
 		players.push(dwarf);
 
@@ -93,7 +103,9 @@ var gh = (function(gh){
 			"Wizard",
 			undefined,
 			"Empire",
-			jsonAgentTemplates["Wizard"].sprites
+			jsonAgentTemplates["Wizard"].sprites,
+			2,
+			0
 			);
 		players.push(wizard);
 

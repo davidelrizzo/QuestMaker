@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>json</title>
+    <title>Dice</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,12 +92,12 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>json Class</h1>
+<h1>Dice Class</h1>
 <div class="box meta">
 
 
         <div class="foundat">
-            Defined in: <a href="../files/File_json.js.html#l20"><code>File\json.js:20</code></a>
+            Defined in: <a href="../files/dice.js.html#l12"><code>dice.js:12</code></a>
         </div>
 
             Module: <a href="../modules/gh.html">gh</a>
@@ -111,8 +111,8 @@
 
     <div class="constructor">
         <h2>Constructor</h2>
-<div id="method_json" class="method item">
-    <h3 class="name"><code>json</code></h3>
+<div id="method_Dice" class="method item">
+    <h3 class="name"><code>Dice</code></h3>
 
         <span class="paren">()</span>
 
@@ -126,7 +126,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/File_json.js.html#l20"><code>File\json.js:20</code></a>
+        <a href="../files/dice.js.html#l12"><code>dice.js:12</code></a>
         </p>
 
 
@@ -159,35 +159,11 @@
 
                     <ul class="index-list methods">
                             <li class="index-item method">
-                                <a href="#method_getAgents">getAgents</a>
+                                <a href="#method_draw">draw</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getCampaign">getCampaign</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getCampaignLevels">getCampaignLevels</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getFloor">getFloor</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getLevel">getLevel</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getTeams">getTeams</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_getTriggers">getTriggers</a>
-
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_loadDataFile">loadDataFile</a>
+                                <a href="#method_roll">roll</a>
 
                             </li>
                     </ul>
@@ -200,10 +176,34 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_getAgents" class="method item">
-    <h3 class="name"><code>getAgents</code></h3>
+<div id="method_draw" class="method item">
+    <h3 class="name"><code>draw</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>num</code>
+                </li>
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+                <li class="arg">
+                        <code>w</code>
+                </li>
+                <li class="arg">
+                        <code>h</code>
+                </li>
+                <li class="arg">
+                        <code>sprites</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
 
 
@@ -215,7 +215,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/File_json.js.html#l123"><code>File\json.js:123</code></a>
+        <a href="../files/dice.js.html#l31"><code>dice.js:31</code></a>
         </p>
 
 
@@ -226,15 +226,101 @@
         
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">num</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>The number value of the side of the dice to draw.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>The canvas context upon which to draw.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>The x coordinate where to draw from.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>The y coordinate where to draw from.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">w</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>The width fo the image to be drawn.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">h</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>The height of the image to be drawn.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">sprites</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>An object containing Sprites indexed by the name of the image.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
 
 
 
 </div>
-<div id="method_getCampaign" class="method item">
-    <h3 class="name"><code>getCampaign</code></h3>
+<div id="method_roll" class="method item">
+    <h3 class="name"><code>roll</code></h3>
 
         <span class="paren">()</span>
 
+        <span class="returns-inline">
+            <span class="type">Integer</span>
+        </span>
 
 
 
@@ -245,7 +331,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/File_json.js.html#l209"><code>File\json.js:209</code></a>
+        <a href="../files/dice.js.html#l23"><code>dice.js:23</code></a>
         </p>
 
 
@@ -257,186 +343,13 @@
     </div>
 
 
-
-
-</div>
-<div id="method_getCampaignLevels" class="method item">
-    <h3 class="name"><code>getCampaignLevels</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l196"><code>File\json.js:196</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getFloor" class="method item">
-    <h3 class="name"><code>getFloor</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l51"><code>File\json.js:51</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getLevel" class="method item">
-    <h3 class="name"><code>getLevel</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l175"><code>File\json.js:175</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getTeams" class="method item">
-    <h3 class="name"><code>getTeams</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l38"><code>File\json.js:38</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getTriggers" class="method item">
-    <h3 class="name"><code>getTriggers</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l146"><code>File\json.js:146</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_loadDataFile" class="method item">
-    <h3 class="name"><code>loadDataFile</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l26"><code>File\json.js:26</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Integer</span>:
+            </div>
+        </div>
 
 
 </div>
