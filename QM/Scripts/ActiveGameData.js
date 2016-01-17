@@ -7,10 +7,11 @@ var QM = (function(QM){
 		this.activeLevel = 0;
 		this.activeMapSprites = [];
 
-
 		this.activeTeam = 0;
 		this.activeCreature = 0;
 		this.activeCreatureSprites = {};
+		this.activeMap = new QM.API.Map(this.campaign.levels[this.activeLevel].mapData.map);
+		console.log(this.activeMap);
 		this.turn = 0;
 
 		this.creatures = loadCreatures(this.campaign, this.activeLevel);
@@ -37,8 +38,16 @@ var QM = (function(QM){
 				//creatures[n][c].rightHand	= undefined;
 				//creaures[n][c].chest		= undefined;
 				//creatures[n][c].head		= undefined;
-				creatures[n][c].posX 		=campaign.levels[activeLevel].teams[n].creatures[c].posX;
-				creatures[n][c].posY 		=campaign.levels[activeLevel].teams[n].creatures[c].posY;	
+				creatures[n][c].posX 		= campaign.levels[activeLevel].teams[n].creatures[c].posX;
+				creatures[n][c].posY 		= campaign.levels[activeLevel].teams[n].creatures[c].posY;
+				
+				if(creatures[n][c].team == "Zargon"){
+					creatures[n][c].active = false;
+				} else {
+					creatures[n][c].active = true;
+				}
+
+				console.log(creatures[n][c].team);
 			}
 		}
 
@@ -46,10 +55,9 @@ var QM = (function(QM){
 	}
 
 	ActiveGameData.prototype.loadMapSprites = function(){
-		var len = this.campaign.levels[this.activeLevel].mapData.spriteIndex.length;
-		for(var x = 0; x < len; x++){
+		for(var key in this.campaign.levels[this.activeLevel].mapData.spriteIndex){
 			try{
-				this.activeMapSprites[x] = LoadImage(this.campaign.levels[this.activeLevel].mapData.spriteIndex[x]);
+				this.activeMapSprites[key] = LoadImage(this.campaign.levels[this.activeLevel].mapData.spriteIndex[key]);
 			} catch (e) { console.log(e); };
 		}
 	};
@@ -58,6 +66,10 @@ var QM = (function(QM){
 		for(var key in this.campaign.creatureTemplates){
 			this.activeCreatureSprites[key] = LoadImage(this.campaign.creatureTemplates[key].sprite);
 		}
+	}
+
+	ActiveGameData.prototype.getActiveCreature = function(){
+		return this.creatures[this.activeTeam][this.activeCreature];
 	}
 
 	QM.ActiveGameData = ActiveGameData;

@@ -1,6 +1,51 @@
 {
 	"name" : "Hero Quest",
 	"introText" : "The fire burns warmly, but casts little light into Mentor's study.\n The flickering shadows only hint at the vast number of books and scrolls that fill the many shelves.  Slowly Mentor walks over to the fire. Well, my friends, your training is complete. You are not yet true Heroes, you have yet to prove yourself. But first, let me tell you of Zargon... Many centuries ago, Zargon was my apprentice.  He worked hard and learned quickly. But impatience devoured him. He wanted to learn more powerful magic. I told him of the dangers, and that he should be patient, for in time he would become a great Sorcerer. But Zargon could not wait; each night he broke into my study and read my spell books. The secrets that were held within them were great indeed. Once he learned these secrets, Zargon fled. When I caught up with him, I found him greatly changed. He had pledged his allegiance to the Great Powers of Chaos. Fool! He saw magic only as a short-cut to power and paid no heed to the terrible price he would have to pay. I tried to reason with him, but to no avail. He laughed in my face and then unleashed a terrible spell which I was hard-pressed to counter. For many days we battled, but Zargon had allies stronger even than I, and I could not defeat him. In the end, as we both weakened, he fled and sought refuge in the Northern Chaos Wastes. There he licked his wounds and honed his skills, conjuring ancient powers with which to overthrow the Empire.\n",
+	"equipmentTemplates" : {
+		"weapons" : {
+			"Dagger" : {
+				"damage" : 1, 
+				"restricted" : [],
+				"cost" : 25,
+				"diagonal" : true,
+				"threat" : 1,
+				"ranged" : true,
+				"use" : 1
+			},
+			"Shortsword" : {
+				"damage" : 2,
+				"restricted" : ["Wizard", "Monk", "Bard"],
+				"cost" : 150,
+				"diagonal" : false,
+				"threat" : 1,
+				"ranged" : false
+			},
+			"Broadsword" : {
+				"damage" : 3,
+				"restricted" : ["Wizard", "Monk", "Bard"],
+				"cost" : 250,
+				"diagonal" : false,
+				"threat" : 1,
+				"ranged" : false
+			},
+			"Longsword" : {
+				"damage" : 3,
+				"restricted" : ["Wizard", "Monk", "Bard"],
+				"cost" : 350,
+				"diagonal" : true,
+				"threat" : 1,
+				"ranged" : false
+			},
+			"Staff" : {
+				"damage" : 1,
+				"restricted" : [],
+				"cost" : 100,
+				"diagonal" : true,
+				"threat" : 1,
+				"ranged" : false
+			}
+		}
+	},
 	"creatureTemplates" : {
 		"Barbarian_001" : {
 			"name" : "Barbarian",
@@ -13,16 +58,28 @@
 			"rightHand" : "",
 			"chest" : "",
 			"head" : "",
-			"sprite" : "./Images/Creatures/spriteBarbarian.gif"
+			"sprite" : "./Images/Creatures/barbarian.png"
 		},
 		"Elf_001" : {
-			"name" : "Elf"
+			"name" : "Elf",
+			"body" : 6,
+			"mind" : 4,
+			"attackDice" : 2,
+			"defendDice" : 2,
+			"moveDice" : 2,
+			"leftHand" : "",
+			"rightHand" : "",
+			"chest" : "",
+			"head" : "",
+			"sprite" : "./Images/Creatures/elf.png"
 		},
 		"Dwarf_001" : {
-			"name" : "Dwarf"
+			"name" : "Dwarf",
+			"sprite" : "./Images/Creatures/dwarf.png"
 		},
 		"Wizard_001" : {
-			"name" : "Wizard"
+			"name" : "Wizard",
+			"sprite" : "./Images/Creatures/wizard.png"
 		},
 		"Goblin_001" : {
 			"name" : "Goblin", 
@@ -31,7 +88,7 @@
 			"attackDice" : 2, 
 			"defendDice" : 1, 
 			"moveTotal" : 10,
-			"sprite" : "./Images/Creatures/Goblin.gif"
+			"sprite" : "./Images/Creatures/goblin.png"
 		},
 		"Orc_001" : {
 			"name" : "Orc",
@@ -40,7 +97,7 @@
 			"attackDice" : 3,
 			"defendDice" : 2,
 			"moveTotal" : 8,
-			"sprite" : "./Images/Creatures/Orc.gif"
+			"sprite" : "./Images/Creatures/orc.png"
 		},
 		"Gargoyl_001" : {
 			"name" : "Gargoyl",
@@ -49,7 +106,7 @@
 			"attackDice" : 4,
 			"defendDice" : 4,
 			"moveTotal" : 6,
-			"sprite" : "./Images/Creatures/Gargoyl.gif"
+			"sprite" : "./Images/Creatures/gargoyl.png"
 		}
 	},
 	"levels" : [
@@ -60,65 +117,269 @@
 				{
 					"name" : "Empire", 
 					"creatures" : [
-						{"templateID" : "Barbarian_001"},
-						{"templateID" : "Elf_001"}, 
-						{"templateID" : "Dwarf_001"},
-						{"templateID" : "Wizard_001"}
+						{"templateID" : "Barbarian_001", 	"posX" : 2, "posY" : 14},
+						{"templateID" : "Elf_001", 			"posX" : 2, "posY" : 13}, 
+						{"templateID" : "Dwarf_001", 		"posX" : 1, "posY" : 14},
+						{"templateID" : "Wizard_001", 		"posX" : 1, "posY" : 13}
 					]
 				},
 				{
 					"name" : "Zargon", 
 					"creatures" : [
-						{"templateID" : "Orc_001", 		"posX" : 2, "posY" : 2}, 
-						{"templateID" : "Goblin_001", 	"posX" : 1, "posY" : 1}, 
-						{"templateID" : "Gargoyl_001", 	"posX" : 3, "posY" : 3}
+						{"templateID" : "Orc_001", 			"posX" : 2, "posY" : 2}, 
+						{"templateID" : "Goblin_001", 		"posX" : 1, "posY" : 1}, 
+						{"templateID" : "Gargoyl_001", 		"posX" : 3, "posY" : 3},
+						{"templateID" : "Goblin_001", 		"posX" : 2, "posY" : 11},
+						{"templateID" : "Orc_001",			"posX" : 2, "posY" : 12},
+						{"templateID" : "Orc_001",			"posX" : 7, "posY" : 14},
+						{"templateID" : "Orc_001",			"posX" : 8, "posY" : 15}
+
 					]
 				}
 			],
 			"mapData" : {
-				"spriteIndex" : [
-				    "./Images/Floor Tiles/hidden.bmp",
-					"./Images/Floor Tiles/stone_tile_001.bmp",
-					"./Images/Floor Tiles/stone_tile_002.bmp",
-					"./Images/Floor Tiles/stone_tile_003.bmp",
-					"./Images/Floor Tiles/stone_tile_004.bmp",
-					"./Images/Floor Tiles/stone_tile_005.bmp",
-					"./Images/Floor Tiles/stone_tile_006.bmp",
-					"./Images/Floor Tiles/stone_tile_007.bmp",
-					"./Images/Floor Tiles/stone_tile_008.bmp",
-					"./Images/Floor Tiles/stone_tile_009.bmp",
-					"./Images/Floor Tiles/stone_tile_010.bmp",
-					"./Images/Floor Tiles/stone_tile_011.bmp",
-					"./Images/Floor Tiles/stone_tile_012.bmp",
-					"./Images/Floor Tiles/stone_tile_013.bmp",
-					"./Images/Floor Tiles/stone_tile_014.bmp",
-					"./Images/Floor Tiles/stone_tile_015.bmp",
-					"./Images/Floor Tiles/stone_tile_016.bmp"
-				],
+				"spriteIndex" : {
+				  	"0" : "./Images/Floor Tiles/hidden.bmp",
+					
+					"1"  : "./Images/Floor Tiles/stone_tile_001.bmp",
+					"2"  : "./Images/Floor Tiles/stone_tile_002.bmp",
+					"3"  : "./Images/Floor Tiles/stone_tile_003.bmp",
+					"4"  : "./Images/Floor Tiles/stone_tile_004.bmp",
+					"5"  : "./Images/Floor Tiles/stone_tile_005.bmp",
+					"6"  : "./Images/Floor Tiles/stone_tile_006.bmp",
+					"7"  : "./Images/Floor Tiles/stone_tile_007.bmp",
+					"8"  : "./Images/Floor Tiles/stone_tile_008.bmp",
+					"9"  : "./Images/Floor Tiles/stone_tile_009.bmp",
+					"10" : "./Images/Floor Tiles/stone_tile_010.bmp",
+					"11" : "./Images/Floor Tiles/stone_tile_011.bmp",
+					"12" : "./Images/Floor Tiles/stone_tile_012.bmp",
+					"13" : "./Images/Floor Tiles/stone_tile_013.bmp",
+					"14" : "./Images/Floor Tiles/stone_tile_014.bmp",
+					"15" : "./Images/Floor Tiles/stone_tile_015.bmp",
+					"16" : "./Images/Floor Tiles/stone_tile_016.bmp",
+
+					"17" : "./Images/Floor Tiles/stone_tile_017.bmp",
+					"18" : "./Images/Floor Tiles/stone_tile_018.bmp",
+					"19" : "./Images/Floor Tiles/stone_tile_019.bmp",
+					"20" : "./Images/Floor Tiles/stone_tile_020.png",
+					"21" : "./Images/Floor Tiles/stone_tile_021.png",
+					"22" : "./Images/Floor Tiles/stone_tile_022.png",
+					"23" : "./Images/Floor Tiles/stone_tile_023.png",
+					"24" : "./Images/Floor Tiles/stone_tile_024.png",
+					"25" : "./Images/Floor Tiles/stone_tile_025.png",
+					"26" : "./Images/Floor Tiles/stone_tile_026.png",
+					"27" : "./Images/Floor Tiles/stone_tile_027.png",
+					"28" : "./Images/Floor Tiles/stone_tile_028.png",
+					"29" : "./Images/Floor Tiles/stone_tile_029.png",
+					"30" : "./Images/Floor Tiles/stone_tile_030.png",
+					"31" : "./Images/Floor Tiles/stone_tile_031.png",
+					"32" : "./Images/Floor Tiles/stone_tile_032.png",
+					"33" : "./Images/Floor Tiles/stone_tile_033.png",
+					"34" : "./Images/Floor Tiles/stone_tile_034.png",
+					"35" : "./Images/Floor Tiles/stone_tile_035.png",
+					"36" : "./Images/Floor Tiles/stone_tile_036.png",
+
+					"37" : "./Images/Floor Tiles/stone_tile_037.png",
+					"38" : "./Images/Floor Tiles/stone_tile_038.png",
+					"39" : "./Images/Floor Tiles/stone_tile_039.png",
+					"40" : "./Images/Floor Tiles/stone_tile_040.png",
+					"41" : "./Images/Floor Tiles/stone_tile_041.png",
+					"42" : "./Images/Floor Tiles/stone_tile_042.png",
+					"43" : "./Images/Floor Tiles/stone_tile_043.png",
+					"44" : "./Images/Floor Tiles/stone_tile_044.png",
+					"45" : "./Images/Floor Tiles/stone_tile_045.png",
+					"46" : "./Images/Floor Tiles/stone_tile_046.png",
+					"47" : "./Images/Floor Tiles/stone_tile_047.png",
+					"48" : "./Images/Floor Tiles/stone_tile_048.png",
+					"49" : "./Images/Floor Tiles/stone_tile_049.png",
+					"50" : "./Images/Floor Tiles/stone_tile_050.png",
+					"51" : "./Images/Floor Tiles/stone_tile_051.png",
+					"52" : "./Images/Floor Tiles/stone_tile_052.png",
+
+					"53" : "./Images/Walls/white_wall.png",
+					"54" : "./Images/Walls/Door.png",
+
+					"55" : "./Images/Floor Tiles/corridoor_001.png",
+					"56" : "./Images/Floor Tiles/corridoor_002.png",
+					"57" : "./Images/Floor Tiles/corridoor_003.png",
+					"58" : "./Images/Floor Tiles/corridoor_004.png",
+					"59" : "./Images/Floor Tiles/corridoor_005.png",
+					"60" : "./Images/Floor Tiles/corridoor_006.png",
+					"61" : "./Images/Floor Tiles/corridoor_007.png",
+					"62" : "./Images/Floor Tiles/corridoor_008.png",
+					"63" : "./Images/Floor Tiles/corridoor_009.png",
+
+					"64" : "./Images/Floor Tiles/stone_tile_19_1.png",
+					"65" : "./Images/Floor Tiles/stone_tile_19_2.png",
+					"66" : "./Images/Floor Tiles/stone_tile_19_3.png",
+					"67" : "./Images/Floor Tiles/stone_tile_19_4.png",
+					"68" : "./Images/Floor Tiles/stone_tile_19_5.png",
+					"69" : "./Images/Floor Tiles/stone_tile_19_6.png",
+					"70" : "./Images/Floor Tiles/stone_tile_19_7.png",
+					"71" : "./Images/Floor Tiles/stone_tile_19_8.png",
+					"72" : "./Images/Floor Tiles/stone_tile_19_9.png",
+					"73" : "./Images/Floor Tiles/stone_tile_19_10.png",
+					"74" : "./Images/Floor Tiles/stone_tile_19_11.png",
+					"75" : "./Images/Floor Tiles/stone_tile_19_12.png",
+					"76" : "./Images/Floor Tiles/stone_tile_19_13.png",
+					"77" : "./Images/Floor Tiles/stone_tile_19_14.png",
+					"78" : "./Images/Floor Tiles/stone_tile_19_15.png"
+				},
 				"map" : [
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+					[{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
 					[
-						{"id" : 1, 	"rotation" : 0, "wall" : ["left", "top"]},
-					 	{"id" : 2, 	"rotation" : 0, "wall" : ["top"]},
-					 	{"id" : 3, 	"rotation" : 0, "wall" : ["top"]},
-					 	{"id" : 4, 	"rotation" : 0, "wall" : ["top", "right"]}
+						{},
+						{"id" : 37, "rotation" : 0, "border" : {"wall" : ["left","top"]}},
+						{"id" : 38, "rotation" : 0, "border" : {"wall" : ["top"]}},
+						{"id" : 39, "rotation" : 0, "border" : {"wall" : ["top"]}},
+						{"id" : 40, "rotation" : 0, "border" : {"wall" : ["top","right"]}},
+						{},{},
+						{},{},
+						{},
+						{},{},{},{},{},{},
+						{}
 					],
 					[
-						{"id" : 5, 	"rotation" : 0, "wall" : ["left"]},
-					 	{"id" : 6, 	"rotation" : 0, "wall" : []},
-					 	{"id" : 7, 	"rotation" : 0, "wall" : []},
-					 	{"id" : 8, 	"rotation" : 0, "wall" : ["right"]}
+						{},
+						{"id" : 41, "rotation" : 0, "border" : {"wall" : [], "door" : [{"side" : "left", "open" : false, "id" : 54}]}},
+						{"id" : 42, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 43, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 44, "rotation" : 0, "border" : {"wall" : ["right"]}},
+						{},{},
+						{},{},
+						{},
+						{},{},{},{},{},{},
+						{}
 					],
 					[
-						{"id" : 9,	"rotation" : 0, "wall" : ["left"]},
-					 	{"id" : 10, "rotation" : 0, "wall" : []},
-					 	{"id" : 11, "rotation" : 0, "wall" : []},
-					 	{"id" : 12, "rotation" : 0, "wall" : ["right"]}
+						{},
+						{"id" : 45, "rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 46, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 47, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 48, "rotation" : 0, "border" : {"wall" : ["right"]}},
+						{},{},
+						{},{},
+						{},{},{},{},{},{},{},{},{}
 					],
 					[
-						{"id" : 13, "rotation" : 0, "wall" : ["left", "bottom"]},
-						{"id" : 14, "rotation" : 0, "wall" : ["bottom"]},
-					 	{"id" : 15, "rotation" : 0, "wall" : ["bottom"]},
-					 	{"id" : 16, "rotation" : 0, "wall" : ["bottom", "right"]}
+						{},
+						{"id" : 49, "rotation" : 0, "border" : {"wall" : ["left","bottom"]}},
+						{"id" : 50, "rotation" : 0, "border" : {"wall" : ["bottom"]}},
+						{"id" : 51, "rotation" : 0, "border" : {"wall" : ["bottom"]}},
+						{"id" : 52, "rotation" : 0, "border" : {"wall" : ["right", "bottom"]}},
+
+						{"id" : 17, "rotation" : 0, "border" : {"wall" : ["left", "top"]}},
+						{"id" : 18, "rotation" : 0, "border" : {"wall" : ["top"]}},
+						{"id" : 19, "rotation" : 0, "border" : {"wall" : ["top"]}},
+						{"id" : 20, "rotation" : 0, "border" : {"wall" : ["top", "right"]}},
+
+						{"id" : 64, "rotation" : 0, "border" : {"wall" : ["left", "top"]}},
+						{"id" : 65, "rotation" : 0, "border" : {"wall" : [], "door" : [{"side" : "top", "open" : false, "id" : 54}]}},
+						{"id" : 66, "rotation" : 0, "border" : {"wall" : ["right", "top"]}},
+						{},{},
+						{},{},{},{}
+					],
+					[
+						{},
+						{"id" : 1, 	"rotation" : 0, "border" : {"wall" : ["left", "top"]}},
+						{"id" : 2, 	"rotation" : 0, "border" : {"wall" : ["top"]}},
+						{"id" : 3, 	"rotation" : 0, "border" : {"wall" : ["top"]}},
+						{"id" : 4, 	"rotation" : 0, "border" : {"wall" : ["top", "right"]}},
+
+						{"id" : 21, "rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 22, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 23, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 24, "rotation" : 0, "border" : {"wall" : ["right"]}},
+
+						{"id" : 67, "rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 68, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 69, "rotation" : 0, "border" : {"wall" : ["right"]}},
+						{},{},
+						{},{},{},{}
+					],
+					[
+						{},
+						{"id" : 5, 	"rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 6, 	"rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 7, 	"rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 8, 	"rotation" : 0, "border" : {"wall" : ["right"]}},
+
+						{"id" : 25, "rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 26, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 27, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 28, "rotation" : 0, "border" : {"wall" : [], "door" : [{"side" : "right", "open" : false, "id" : 54}]}},
+
+						{"id" : 70, "rotation" : 0, "border" : {"wall" : [], "door" : [{"side" : "left", "open" : false, "id" : 54}]}},
+						{"id" : 71, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 72, "rotation" : 0, "border" : {"wall" : ["right"]}},
+						{},{},
+						{},{},{},{}
+					],
+					[
+						{},
+						{"id" : 9,	"rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 10, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 11, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 12, "rotation" : 0, "border" : {"wall" : ["right"]}},
+
+						{"id" : 29, "rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 30, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 31, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 32, "rotation" : 0, "border" : {"wall" : ["right"]}},
+
+						{"id" : 73, "rotation" : 0, "border" : {"wall" : ["left"]}},
+						{"id" : 74, "rotation" : 0, "border" : {"wall" : []}},
+						{"id" : 75, "rotation" : 0, "border" : {"wall" : ["right"]}},
+
+						{},{},
+						{},{},{},{}
+					],
+					[
+						{},
+						{"id" : 13, "rotation" : 0, "border" : {"wall" : ["left", "bottom"]}},
+						{"id" : 14, "rotation" : 0, "border" : {"wall" : ["bottom"]}},
+						{"id" : 15, "rotation" : 0, "border" : {"wall" : [], "door" : [{"side" : "bottom", "open" : false, "id" : 54}], "secret-door" : {}}},
+						{"id" : 16, "rotation" : 0, "border" : {"wall" : ["bottom", "right"]}},
+
+						{"id" : 33, "rotation" : 0, "border" : {"wall" : ["bottom", "left"]}},
+						{"id" : 34, "rotation" : 0, "border" : {"wall" : ["bottom"]}},
+						{"id" : 35, "rotation" : 0, "border" : {"wall" : [], "door" : [{"side" : "bottom", "open" : false, "id" : 54}]}},
+						{"id" : 36, "rotation" : 0, "border" : {"wall" : ["bottom", "right"]}},
+
+						{"id" : 76, "rotation" : 0, "border" : {"wall" : ["left", "bottom"]}},
+						{"id" : 77, "rotation" : 0, "border" : {"wall" : ["bottom"]}},
+						{"id" : 78, "rotation" : 0, "border" : {"wall" : ["bottom", "right"]}},
+
+						{},{},
+						{},{},{},{}
+					],
+					[
+						{"id" : 55, "rotation" : 0, "border" : {"wall" : ["left", "bottom"]}},
+
+						{"id" : 56, "rotation" : 0, "border" : {"wall" : ["bottom", "top"]}},
+						{"id" : 57, "rotation" : 0, "border" : {"wall" : ["bottom", "top"]}},
+						{"id" : 58, "rotation" : 0, "border" : {"wall" : ["bottom"], "door" : [{"side" : "top", "open" : false, "id" : 54}]}},
+						{"id" : 59, "rotation" : 0, "border" : {"wall" : ["bottom", "top"]}},
+
+						{"id" : 60, "rotation" : 0, "border" : {"wall" : ["bottom", "top"]}},
+						{"id" : 61, "rotation" : 0, "border" : {"wall" : ["bottom", "top"]}},
+						{"id" : 62, "rotation" : 0, "border" : {"wall" : ["bottom"], "door" : [{"side" : "top", "open" : false, "id" : 54}]}},
+						{"id" : 63, "rotation" : 0, "border" : {"wall" : ["bottom", "top"]}},
+
+						{},{},{},
+
+						{},{},
+
+						{},
+						{},{},{}
 					]
 				],
 				"creatures" : []
@@ -129,23 +390,6 @@
 			"introText" : "Sir Ragnar, one of the Emperor's most powerful knights, has been captured. There is reason to believe that he is being held prisoner by Ulag, the Orc Warlord. You are to find Sir Ragnar and bring him back to the stairway. Prince Magnus will pay 240 gold coins to be divided among the Heroes, if they rescue Sir Ragnar. No reward will be paid if Sir Ragnar is killed during the escape.",
 			"mapData" : {
 				"sprites" : [
-				    "./Images/Floor Tiles/hidden.bmp",
-					"./Images/Floor Tiles/stone_tile_001.bmp",
-					"./Images/Floor Tiles/stone_tile_002.bmp",
-					"./Images/Floor Tiles/stone_tile_003.bmp",
-					"./Images/Floor Tiles/stone_tile_004.bmp",
-					"./Images/Floor Tiles/stone_tile_005.bmp",
-					"./Images/Floor Tiles/stone_tile_006.bmp",
-					"./Images/Floor Tiles/stone_tile_007.bmp",
-					"./Images/Floor Tiles/stone_tile_008.bmp",
-					"./Images/Floor Tiles/stone_tile_009.bmp",
-					"./Images/Floor Tiles/stone_tile_010.bmp",
-					"./Images/Floor Tiles/stone_tile_011.bmp",
-					"./Images/Floor Tiles/stone_tile_012.bmp",
-					"./Images/Floor Tiles/stone_tile_013.bmp",
-					"./Images/Floor Tiles/stone_tile_014.bmp",
-					"./Images/Floor Tiles/stone_tile_015.bmp",
-					"./Images/Floor Tiles/stone_tile_016.bmp"
 				],
 				"map" : [
 					[{},{},{},{}],

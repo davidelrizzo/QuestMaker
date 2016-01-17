@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>File\json.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Agent.html">Agent</a></li>
+                                <li><a href="../classes/assets.html">assets</a></li>
+                                <li><a href="../classes/Cell.html">Cell</a></li>
+                                <li><a href="../classes/Computer.html">Computer</a></li>
+                                <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/input.html">input</a></li>
+                                <li><a href="../classes/json.html">json</a></li>
+                                <li><a href="../classes/keybaord.html">keybaord</a></li>
+                                <li><a href="../classes/Level.html">Level</a></li>
+                                <li><a href="../classes/Map.html">Map</a></li>
+                                <li><a href="../classes/mouse.html">mouse</a></li>
+                                <li><a href="../classes/Player.html">Player</a></li>
+                                <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/User.html">User</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/input.html">input</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: File\json.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * TO CONSIDER
+ *        Handling the directories in which files are placed assumes some knowledge of the
+ *        file structure.  E.g. a campaign json data file is located in 
+ *        &quot;./Data/Campaigns/*campaign name* /Data/*specific file name*&quot;.  This might not be
+ *        a sensible assumption with regards to flexibility in design.
+ *
+ * @module gh
+ */
+
+&quot;use strict&quot;
+
+/**
+ * @class gh
+ */
+var gh = (function(gh){
+
+	console.log(&quot;json.js loaded&quot;);
+
+	/**
+	 * @class json
+	 * @constructor
+	 */
+	gh.json = gh.json || {};
+
+	/**
+	 * @method loadDataFile
+	 */
+	gh.json.loadDataFile = function(path){
+		var data;
+
+		data = file.getAJAX(path);
+		data = JSON.parse(data);
+
+		return data;
+	};
+
+	/**
+	 * @method getTeams
+	 */
+	gh.json.getTeams = function(jsonTeam){
+		var teams = {};
+
+		for(var key in jsonTeam){
+			teams[key] = new gh.Team(key, jsonTeam[key]);
+		}
+
+		return teams;
+	};
+
+	/**
+	 * @method getFloor
+	 */
+	gh.json.getFloor = function(jsonMap, directory, jsonStdGraphics){
+		var floor = [];
+
+		for(var y = 0; y &lt; jsonMap.length; y++){
+			floor.push([]);
+			for(var x = 0; x &lt; jsonMap[y].length; x++){
+				var border = {};
+
+				if(jsonMap[y][x].border !== undefined){
+					
+					var jsonBorder = jsonMap[y][x].border;
+					if(jsonBorder.wall !== undefined){
+						for(var it = 0; it &lt; jsonBorder.wall.length; it++){
+							switch(jsonBorder.wall[it]){
+								case &quot;top&quot;:
+								  var wall = new gh.Wall(&quot;top&quot;, x, y, &quot;bottom&quot;, x, y-1);
+								  border.top = wall;
+								  if(y &gt; 0){
+								  	floor[y-1][x].borders = floor[y-1][x].borders || {};
+								  	floor[y-1][x].borders.bottom = wall;
+								  }
+								  break;
+								case &quot;left&quot;:
+								  var wall = new gh.Wall(&quot;left&quot;, x, y, &quot;right&quot;, x-1, y);
+								  border.left = wall;
+								  if(x &gt; 0){
+								  	floor[y][x-1].borders = floor[y][x-1].borders || {};
+								  	floor[y][x-1].borders.right = wall;
+								  }
+								  break;
+								default:
+								  break;
+							}
+						}
+					}
+
+					if(jsonBorder.door !== undefined){
+						for(var key in jsonBorder.door){
+							switch (key){
+								case &quot;top&quot;:
+								  var door = new gh.Door(&quot;top&quot;, x, y, &quot;bottom&quot;, x, y-1, jsonBorder.door.top.open, jsonStdGraphics.door);
+								  border.top = door;
+								  if(y &gt; 0){
+								  	floor[y-1][x].borders = floor[y-1][x].borders || {};
+								  	floor[y-1][x].borders.bottom = door;
+								  }
+								  break;
+								case &quot;left&quot;:
+								  var door = new gh.Door(&quot;left&quot;, x, y, &quot;right&quot;, x-1, y, jsonBorder.door.left.open, jsonStdGraphics.door);
+								  border.left = door;
+								  if(x &gt; 0){
+								  	floor[x-1][y].borders = floor[x-1][y].borders || {};
+								  	floor[x-1][y].borders.right = door;
+								  }
+								  break;
+								default:
+								  break;
+							}
+						}
+					}
+
+				}
+				floor[y].push(new gh.Cell(x, y, directory + &quot;Graphics/Floor Tiles/&quot;, jsonMap[y][x].img, border, 64, jsonMap[y][x].walkable));
+			}
+		}
+
+		return floor;
+	};
+
+	/**
+	 * @method getAgents
+	 */
+	gh.json.getAgents = function(jsonAgents, jsonAgentTemplates, directory){
+		var agents = [];
+
+		for(var it = 0; it &lt; jsonAgents.length; it++){
+			var agent = new gh.Agent(
+				jsonAgents[it].id,
+				{&quot;x&quot; : jsonAgents[it].position.x, &quot;y&quot; : jsonAgents[it].position.y},
+				jsonAgents[it].faction,
+				jsonAgentTemplates[jsonAgents[it].id].sprites,
+				jsonAgentTemplates[jsonAgents[it].id].moveDice);
+
+			agents[agent.position.y] = agents[agent.position.y] || [];
+			agents[agent.position.y][agent.position.x] = agents[agent.position.y][agent.position.x] || [];
+			agents[agent.position.y][agent.position.x] = agent;
+		}
+
+		return agents;
+	};
+
+
+	/**
+	 * @method getTriggers
+	 */
+	gh.json.getTriggers = function(jsonTriggers){
+		var triggers = {};
+        triggers.entry = triggers.entry || [];
+        triggers.exit  = triggers.exit || [];
+
+		for(var it = 0; it &lt; jsonTriggers.length; it++){
+			switch(jsonTriggers[it].type){
+				case &quot;entry&quot;:
+				  triggers.entry.push(
+				  	new gh.EntryTrigger(
+				  		jsonTriggers[it].pos.x, 
+				  		jsonTriggers[it].pos.y));
+				  break;
+				case &quot;exit&quot;:
+				  triggers.exit.push(new gh.ExitTrigger(jsonTriggers[it].type, jsonTriggers[it].pos.x, jsonTriggers[it].pos.y));
+				  break;
+				default:
+				  triggers.push(new gh.Trigger(jsonTriggers[it].type, jsonTriggers[it].pos.x, jsonTriggers[it].pos.y));
+				  break;
+			}
+			
+		}
+
+		return triggers;
+	}
+
+	/**
+	 * @method getLevel
+	 */
+	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates){
+		var jsonLevel   = gh.json.loadDataFile(directory + &quot;Data/&quot; + levelName + &quot;.json&quot;);		
+		var teams       = gh.json.getTeams(jsonLevel.teams);
+
+		var level = new gh.Level(
+			jsonLevel.name, 
+			jsonLevel.introText, 
+			jsonLevel.numHeroes, 
+			jsonLevel.availableHeroes, 
+			teams,
+			new gh.Map(gh.json.getFloor(jsonLevel.mapData.map, directory, jsonLevel.stdGraphics), 64),
+			gh.json.getAgents(jsonLevel.mapData.agents, jsonAgentTemplates, directory),
+			gh.json.getTriggers(jsonLevel.mapData.triggers),
+			jsonLevel.stdGraphics);
+
+		return level;
+	};
+
+	/**
+	 * @method getCampaignLevels
+	 */
+	gh.json.getCampaignLevels = function(jsonLevels, directory, jsonAgentTemplates){
+		var levels = [];
+
+		for(var it = 0; it &lt; jsonLevels.length; it++){
+			levels.push(gh.json.getLevel(directory, jsonLevels[it], jsonAgentTemplates));
+		}
+
+		return levels;
+	};
+
+	/**
+	 * @method getCampaign
+	 */
+	gh.json.getCampaign = function(directory, campaignName){
+		var jsonCampaign = gh.json.loadDataFile(directory + campaignName + &quot;/Data/&quot; + campaignName + &quot;.json&quot;);
+
+		var jsonAgentTemplates = gh.json.loadDataFile(directory + campaignName + &quot;/Data/creatures.json&quot;);
+		var levels = gh.json.getCampaignLevels(jsonCampaign.levels, directory + campaignName + &quot;/&quot;, jsonAgentTemplates);
+		
+
+		var campaign = new gh.Campaign(
+			jsonCampaign.name,
+			jsonCampaign.introText,
+			jsonAgentTemplates,
+			levels);
+
+		campaign.ptrActiveLevel = campaign.levels[0];
+
+		return campaign;
+	}
+
+	return gh;
+})(gh || {});
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

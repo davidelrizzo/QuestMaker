@@ -37,6 +37,8 @@ var QM = (function(QM){
 
 		this.posX 				= undefined;
 		this.posY 				= undefined;
+
+		this.actions			= {"current" : 0, "max" : 2};
 	}
 
 	Creature.prototype.move = function(){
@@ -72,6 +74,13 @@ var QM = (function(QM){
 		}
 
 		//return this.defendDice;
+	};
+
+	Creature.prototype.hasActions = function(){
+		if(this.actions.current < this.actions.max){
+			return true;
+		}
+		return false;
 	};
 
 	QM.API = QM.API || {};
