@@ -11,38 +11,20 @@ var gh = (function(gh){
 
 
 	/**
-	 * @class User
 	 * @constructor
+	 * @class User
+	 * @method User
+	 * @param {String} team The name of the team which the user 'player' belongs to.
+	 * @param {Array} roster An array containing the agents belonging to the user.
+	 * @return 
 	 */
-	function User(team, agents){
+	function User(team, roster){
 		this.team = team;
+		this.roster = roster;
 	}
-
-    /**
-     * @class Player
-     * @extends User
-     * @constructor
-     */
-	function Player(name, team, agents){
-		User.call(this, team, agents);
-		this.name = name;
-	}
-	Player.prototype = Object.create(User.prototype);
-
-    /**
-     * @class Computer
-     * @extends User
-     * @constructor
-     */
-	function Computer(team, agents){
-		User.call(this, team, agents);
-	}
-	Computer.prototype = Object.create(User.prototype);
 
 
 	gh.User = User;
-	gh.Player = Player;
-	gh.Computer = Computer;
 	
 	return gh;
 })(gh || {});

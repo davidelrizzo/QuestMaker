@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -112,57 +115,130 @@ var gh = (function(gh){
 	console.log(&quot;cell.js loaded&quot;);
 
 	/**
-	 * @class Cell
 	 * @constructor
+	 * @class Cell
+	 * @method Cell
 	 * @param {Integer} x The x-coordinate of a cell.
 	 * @param {Integer} y The y-coordinate of a cell.
-	 * @param {String} path The path of the cell image.
-	 * @param {Sprite} img The sprite reperasentative of the cell.
+	 * @param {} walkable
+	 * @param {} visible
 	 * @param {Object} borders The borders of the cell.
-	 * @param {Integer} size The pixel size of the cell.
+	 * @param {} items
+	 * @param {} agents
+	 * @param {} triggers
+	 * @param {Sprite} img The sprite reperasentative of the cell.
+	 * @return 
 	 */
-	function Cell(x, y, path, img, borders, size, walkable){
+	function Cell(x, y, walkable, visible, borders, items, agents, triggers, img){
 		this.x 				= x;
 		this.y 				= y;
-		this.sprites        = img;
-		this.borders	    = borders;
-		this.size           = size;
-		this.visible        = undefined;
 		this.walkable 		= walkable;
+		this.visible        = visible;
+		this.borders 		= borders;
+		this.items 			= items;
+		this.agents			= agents;
+		this.triggers		= triggers;
+
+		this.sprite 		= img;
 	}
 
 	/**
+	 * Description
 	 * @method draw
+	 * @param {} context
+	 * @param {} size
+	 * @param {} scale
+	 * @param {} offset
+	 * @param {} sprites
+	 * @return 
 	 */
-	Cell.prototype.draw = function(context, x, y, scale, sprites){
-		context.save();
- 		if(this.sprites !== undefined){
- 			sprites[this.sprites].draw(context, x, y, this.size * scale, this.size*scale);
- 		}
+	Cell.prototype.draw = function(context, size, scale, offset, sprites){
 
- 		if(this.borders !== undefined){
+		if(this.sprite !== undefined){
+			sprites[this.sprite].draw(
+				context, 
+				this.x * size * scale + offset.x, 
+				this.y * size * scale + offset.y, 
+				size * scale, 
+				size * scale);
+		}
+
+		if(this.borders !== undefined){
  			if(this.borders.top !== undefined){
- 				this.borders.top.draw(context, x, y, this.size, scale, sprites, &quot;top&quot;);
+ 				this.borders.top.draw(
+ 					context, 
+ 					this.x * size * scale + offset.x, 
+ 					this.y * size * scale + offset.y, 
+ 					size, 
+ 					scale,
+ 					sprites, 
+ 					&quot;top&quot;);
  			}
 
  			if(this.borders.left !== undefined){
- 				this.borders.left.draw(context, x, y, this.size, scale, sprites, &quot;left&quot;);
+ 				this.borders.left.draw(
+ 					context, 
+ 					this.x * size * scale + offset.x, 
+ 					this.y * size * scale + offset.y, 
+ 					size, 
+ 					scale, 
+ 					sprites, 
+ 					&quot;left&quot;);
  			}
 
  			if(this.borders.right !== undefined){
- 				this.borders.right.draw(context, x, y, this.size, scale, sprites, &quot;right&quot;);
+ 				this.borders.right.draw(
+ 					context, 
+ 					this.x * size * scale + offset.x, 
+ 					this.y * size * scale + offset.y, 
+ 					size, 
+ 					scale, 
+ 					sprites, 
+ 					&quot;right&quot;);
  			}
 
  			if(this.borders.bottom !== undefined){
- 				this.borders.bottom.draw(context, x, y, this.size, scale, sprites, &quot;bottom&quot;);
- 			}
- 		}
+ 				this.borders.bottom.draw(
+ 					context, 
+ 					this.x * size * scale + offset.x, 
+ 					this.y * size * scale + offset.y, 
+ 					size, 
+ 					scale, 
+ 					sprites, 
+ 					&quot;bottom&quot;);
+ 			}			
+		}
 
-		context.restore();
+		if(this.items){
+			// draw the items.
+		}
+
+		if(this.agents &amp;&amp; this.agents.length &gt; 0){
+			var it = this.agents.length-1;
+			this.agents[it].draw(
+				&quot;token&quot;,
+				sprites,
+				context, 
+				scale, 
+				size, 
+				offset);
+		}
+
+		if(this.triggers){
+			for(var it = 0; it &lt; this.triggers.length; it++){
+				this.triggers[it].draw(
+					context,
+					scale,
+					size,
+					offset);
+			}
+		}
 	};
 
 	/**
+	 * Description
 	 * @method getDoors
+	 * @return doors
 	 */
 	Cell.prototype.getDoors = function(){
         var doors = [];
@@ -179,8 +255,8 @@ var gh = (function(gh){
 	/**
 	 * This function returns true if the cell is a walkable &#x27;floor&#x27;.
 	 * This function returns false if the cell is not a walkable &#x27;floor&#x27;.
-	 *
 	 * @method isFloor
+	 * @return Literal
 	 */
 	Cell.prototype.isFloor = function(){
 		console.log(this);
@@ -193,10 +269,9 @@ var gh = (function(gh){
 
 	/**
 	 * This method determines whether or not the border of a cell is &#x27;blocked&#x27;.  A wall, closed door or closed secret-door all qualify as blocking objects.  Open doors and open secret doors do not qualify as blocking objects.
-	 *
 	 * @method isBorderBlocked
 	 * @param {String} side The border of the cell which should be checked.
-	 * @return {bool} true if the border is blocked or false if the border is not blocked.
+	 * @return Literal
 	 */
 	Cell.prototype.isBorderBlocked = function(side){
 		if(!this.borders){

@@ -24,7 +24,38 @@ var gh = (function(gh){
 	gh.json = gh.json || {};
 
 	/**
+	 * This method loads a campaign from a number of json files located within the given directory.
+	 * This method assumes the following file structure:
+	 * 'directory'/'campaignName'
+	 * 'directory'/'campaignName'/Data/ - This folder houses the relevant json assets
+	 * 'directory'/'campaignName'/Graphics/ - This folder houses the relevant graphic assets
+	 * @method getCampaign
+	 * @param {String} directory The directory in which the campaign data is located.
+	 * @param {String} campaignName The name of the campaign json file.
+	 * @return campaign
+	 */
+	gh.json.getCampaign = function(directory, campaignName){
+		var jsonCampaign 		= gh.json.loadDataFile(directory + campaignName + "/Data/" + campaignName + ".json");
+		var jsonAgentTemplates 	= gh.json.loadDataFile(directory + campaignName + "/Data/creatures.json");
+		var jsonLevels 			= gh.json.getCampaignLevels(jsonCampaign.levels, directory + campaignName + "/", jsonAgentTemplates);
+		
+
+		var campaign = new gh.Campaign(
+			jsonCampaign.name,
+			jsonCampaign.introText,
+			jsonAgentTemplates,
+			jsonLevels);
+
+		campaign.ptrActiveLevel = campaign.levels[0];
+
+		return campaign;
+	}
+
+	/**
+	 * Description
 	 * @method loadDataFile
+	 * @param {} path
+	 * @return data
 	 */
 	gh.json.loadDataFile = function(path){
 		var data;
@@ -36,7 +67,69 @@ var gh = (function(gh){
 	};
 
 	/**
+	 * Description
+	 * @method getCampaignLevels
+	 * @param {} jsonLevels
+	 * @param {} directory
+	 * @param {} jsonAgentTemplates
+	 * @return levels
+	 */
+	gh.json.getCampaignLevels = function(jsonLevels, directory, jsonAgentTemplates){
+		var levels = [];
+
+		for(var it = 0; it < jsonLevels.length; it++){
+			var level = gh.json.getLevel(
+				directory, 
+				jsonLevels[it], 
+				jsonAgentTemplates);
+			levels.push(level);
+		}
+
+		return levels;
+	};
+
+	/**
+	 * Description
+	 * @method getLevel
+	 * @param {String} directory The directory in which the campaign data is located.
+	 * @param {} levelName
+	 * @param {} jsonAgentTemplates
+	 * @return level
+	 */
+	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates){
+		var jsonLevel   = gh.json.loadDataFile(directory + "Data/" + levelName + ".json");		
+		var teams       = gh.json.getTeams(jsonLevel.teams);
+		var agents 	 	= gh.json.getAgents(jsonLevel.mapData.agents, jsonAgentTemplates, directory);
+		var items 		= undefined;
+		var triggers    = gh.json.getTriggers(jsonLevel.mapData.triggers);
+		var floor 		= gh.json.getFloor(
+			jsonLevel.mapData.map, 
+			directory, 
+			jsonLevel.stdGraphics,
+			agents,
+			items,
+			triggers);
+		var map 		= new gh.Map(floor);
+
+		var level = new gh.Level(
+			jsonLevel.name, 
+			jsonLevel.introText, 
+			jsonLevel.numHeroes, 
+			jsonLevel.availableHeroes, 
+			teams,
+			map,
+			agents,
+			triggers,
+			jsonLevel.stdGraphics);
+
+		return level;
+	};
+
+	/**
+	 * Description
 	 * @method getTeams
+	 * @param {} jsonTeam
+	 * @return teams
 	 */
 	gh.json.getTeams = function(jsonTeam){
 		var teams = {};
@@ -49,9 +142,44 @@ var gh = (function(gh){
 	};
 
 	/**
-	 * @method getFloor
+	 * This method builds an array of agents which are present in a level.
+	 * @method getAgents
+	 * @param {} jsonAgents
+	 * @param {} jsonAgentTemplates
+	 * @return agents
 	 */
-	gh.json.getFloor = function(jsonMap, directory, jsonStdGraphics){
+	gh.json.getAgents = function(jsonAgents, jsonAgentTemplates){
+		var agents = [];
+
+		for(var it = 0; it < jsonAgents.length; it++){
+			agents.push(
+				new gh.Agent(
+					jsonAgents[it].name,
+					jsonAgents[it].id,
+					{"x" : jsonAgents[it].position.x, "y" : jsonAgents[it].position.y},
+					jsonAgents[it].faction,
+					jsonAgentTemplates[jsonAgents[it].name].sprites,
+					jsonAgentTemplates[jsonAgents[it].name].moveDice,
+					jsonAgentTemplates[jsonAgents[it].name].baseMove)
+				);
+		}
+
+		return agents;
+	};
+
+
+	/**
+	 * Description
+	 * @method getFloor
+	 * @param {} jsonMap
+	 * @param {} directory
+	 * @param {} jsonStdGraphics
+	 * @param {} agents
+	 * @param {} itmes
+	 * @param {} triggers
+	 * @return floor
+	 */
+	gh.json.getFloor = function(jsonMap, directory, jsonStdGraphics, agents, itmes, triggers){
 		var floor = [];
 
 		for(var y = 0; y < jsonMap.length; y++){
@@ -59,6 +187,9 @@ var gh = (function(gh){
 			for(var x = 0; x < jsonMap[y].length; x++){
 				var border = {};
 
+				/**
+				 * Get the borders
+				 */
 				if(jsonMap[y][x].border !== undefined){
 					
 					var jsonBorder = jsonMap[y][x].border;
@@ -113,17 +244,71 @@ var gh = (function(gh){
 					}
 
 				}
-				floor[y].push(new gh.Cell(x, y, directory + "Graphics/Floor Tiles/", jsonMap[y][x].img, border, 64, jsonMap[y][x].walkable));
+
+				var cell = new gh.Cell(
+					x, 
+					y, 
+					jsonMap[y][x].walkable,
+					undefined,					// walkable
+					border,
+					undefined,					// items
+					undefined,					// agents
+					undefined,					// triggers
+					jsonMap[y][x].img);
+				floor[y].push(cell);
 			}
 		}
+
+		this.addAgents(floor, agents);
+		this.addTriggers(floor, triggers);
 
 		return floor;
 	};
 
 	/**
-	 * @method getAgents
+	 * Description
+	 * @method addAgents
+	 * @param {} map
+	 * @param {} agents
+	 * @return 
 	 */
-	gh.json.getAgents = function(jsonAgents, jsonAgentTemplates, directory){
+	gh.json.addAgents = function(map, agents){
+		for(var it = 0; it < agents.length; it++){
+			map[agents[it].position.y][agents[it].position.x].agents = map[agents[it].position.y][agents[it].position.x].agents || [];
+			map[agents[it].position.y][agents[it].position.x].agents.push(agents[it]);
+		}
+	};
+
+	/**
+	 * Description
+	 * @method addTriggers
+	 * @param {} map
+	 * @param {} triggers
+	 * @return 
+	 */
+	gh.json.addTriggers = function(map, triggers){
+		for(var key in triggers){
+			for(var it = 0; it < triggers[key].length; it++){
+				var cell = map[triggers[key][it].y][triggers[key][it].x];
+				cell.triggers = cell.triggers || [];
+				cell.triggers.push(triggers[key][it]);
+			}
+		}
+	};
+
+
+	/**
+	 * This method builds a 2d list of agents, with the location of the agent on the map the same as its
+	 * location in the 2d array.
+	 * This method has been depreciated and no longer part of the framework.
+	 * A key weakness of this method is it does not (without alteration) permit multible agents to occupy a cell.
+	 * @method getAgentGrid
+	 * @param {} jsonAgents
+	 * @param {} jsonAgentTemplates
+	 * @param {String} directory This variable is currently not utilized by the method.
+	 * @return agents
+	 */
+	gh.json.getAgentGrid = function(jsonAgents, jsonAgentTemplates, directory){
 		var agents = [];
 
 		for(var it = 0; it < jsonAgents.length; it++){
@@ -145,7 +330,10 @@ var gh = (function(gh){
 
 
 	/**
+	 * Description
 	 * @method getTriggers
+	 * @param {} jsonTriggers
+	 * @return triggers
 	 */
 	gh.json.getTriggers = function(jsonTriggers){
 		var triggers = {};
@@ -161,71 +349,21 @@ var gh = (function(gh){
 				  		jsonTriggers[it].pos.y));
 				  break;
 				case "exit":
-				  triggers.exit.push(new gh.ExitTrigger(jsonTriggers[it].type, jsonTriggers[it].pos.x, jsonTriggers[it].pos.y));
+				  triggers.exit.push(
+				  	new gh.ExitTrigger(
+				  		jsonTriggers[it].pos.x, 
+				  		jsonTriggers[it].pos.y));
 				  break;
 				default:
-				  triggers.push(new gh.Trigger(jsonTriggers[it].type, jsonTriggers[it].pos.x, jsonTriggers[it].pos.y));
+				  triggers.push(new gh.Trigger(
+				  	jsonTriggers[it].pos.x, 
+				  	jsonTriggers[it].pos.y));
 				  break;
 			}
 			
 		}
 
 		return triggers;
-	}
-
-	/**
-	 * @method getLevel
-	 */
-	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates){
-		var jsonLevel   = gh.json.loadDataFile(directory + "Data/" + levelName + ".json");		
-		var teams       = gh.json.getTeams(jsonLevel.teams);
-
-		var level = new gh.Level(
-			jsonLevel.name, 
-			jsonLevel.introText, 
-			jsonLevel.numHeroes, 
-			jsonLevel.availableHeroes, 
-			teams,
-			new gh.Map(gh.json.getFloor(jsonLevel.mapData.map, directory, jsonLevel.stdGraphics), 64),
-			gh.json.getAgents(jsonLevel.mapData.agents, jsonAgentTemplates, directory),
-			gh.json.getTriggers(jsonLevel.mapData.triggers),
-			jsonLevel.stdGraphics);
-
-		return level;
-	};
-
-	/**
-	 * @method getCampaignLevels
-	 */
-	gh.json.getCampaignLevels = function(jsonLevels, directory, jsonAgentTemplates){
-		var levels = [];
-
-		for(var it = 0; it < jsonLevels.length; it++){
-			levels.push(gh.json.getLevel(directory, jsonLevels[it], jsonAgentTemplates));
-		}
-
-		return levels;
-	};
-
-	/**
-	 * @method getCampaign
-	 */
-	gh.json.getCampaign = function(directory, campaignName){
-		var jsonCampaign = gh.json.loadDataFile(directory + campaignName + "/Data/" + campaignName + ".json");
-
-		var jsonAgentTemplates = gh.json.loadDataFile(directory + campaignName + "/Data/creatures.json");
-		var levels = gh.json.getCampaignLevels(jsonCampaign.levels, directory + campaignName + "/", jsonAgentTemplates);
-		
-
-		var campaign = new gh.Campaign(
-			jsonCampaign.name,
-			jsonCampaign.introText,
-			jsonAgentTemplates,
-			levels);
-
-		campaign.ptrActiveLevel = campaign.levels[0];
-
-		return campaign;
 	}
 
 	return gh;

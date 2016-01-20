@@ -27,23 +27,31 @@ var gh = (function(gh){
 	 */
 	var assets = (function(assets){
 
-		/** 
+		/**
+		 * Description
 		 * @method loadMapSprites
+		 * @param {} jsonMap
+		 * @param {} directory
+		 * @return 
 		 */
 		assets.loadMapSprites = function(jsonMap, directory){
 			this.sprites = this.sprites || {};
 
 			for(var y = 0; y < jsonMap.floor.length; y++){
 				for(var x = 0; x < jsonMap.floor[y].length; x++){
-					if(jsonMap.floor[y][x].sprites !== undefined){
-						this.sprites[jsonMap.floor[y][x].sprites] = new graphics.Sprite(directory + jsonMap.floor[y][x].sprites);
+					if(jsonMap.floor[y][x].sprite !== undefined){
+						this.sprites[jsonMap.floor[y][x].sprite] = new graphics.Sprite(directory + jsonMap.floor[y][x].sprite);
 					}
 				}
 			}
 		};
 
 		/**
+		 * Description
 		 * @method loadStdGraphics
+		 * @param {} jsonStdGraphics
+		 * @param {} directory
+		 * @return 
 		 */
 		assets.loadStdGraphics = function(jsonStdGraphics, directory){
 			this.sprites = this.sprites || {};
@@ -58,7 +66,11 @@ var gh = (function(gh){
 		};
 
 		/**
+		 * Description
 		 * @method loadAgentSprites
+		 * @param {} jsonAgents
+		 * @param {} directory
+		 * @return 
 		 */
 		assets.loadAgentSprites = function(jsonAgents, directory){
 			this.sprites = this.sprites || {};
@@ -72,9 +84,11 @@ var gh = (function(gh){
 		};
 
 		/**
+		 * Description
 		 * @method loadDiceSprites
 		 * @param {String} directory The path in which the image of the dice is located.  This should be a sprite sheet with each side fo the die depicted.
 		 * @param {String} name The name of the image in the directory.
+		 * @return 
 		 */
 		assets.loadDiceSprites = function(directory, name){
 			this.sprites = this.sprites || {};

@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -109,38 +112,34 @@
  */
 var gh = (function(gh){
 	console.log(&quot;gh.js loaded&quot;);
-	
 
 	/**
-	 * Load various game assets here.
-	 *
-	 * TO DO
-	 *    o add a player hero roster for placement on the board
-	 *    o add creatures to the resources list
-	 *
+	 * Public globals.
+	 */
+	gh.ptrActiveCampaign 	= undefined;
+	gh.ptrActiveLevel 		= undefined;
+
+	/**
+	 * Public methods
+	 */
+
+
+	/**
+	 * Prep the application for running here by laoding the requisit file data and initializing the gameStates.
+	 * 1) Load the display object.
+	 * 2) Load the campaign data from JSON sources.
+	 * 3) Load game assets (graphics, music, etc.).
+	 * 4) initialize the stateSetup prior to its use.
 	 * @method setup
 	 * @param {String} canvasID The identifier of a DOM canvas element.
+	 * @return 
 	 */
 	gh.setup = function(canvasID){
-		console.log(&quot;gh.setup&quot;);
-
 		gh.display 			   = new graphics.Display(canvasID);
 		gh.activeState         = &quot;stateSetup&quot;;
 
-		gh.ptrActiveCampaign   = gh.json.getCampaign(&quot;./Data/Campaigns/&quot;, &quot;Hero Quest&quot;);
-		gh.ptrActiveLevel      = gh.ptrActiveCampaign.ptrActiveLevel;
-
-		gh.assets.loadMapSprites(gh.ptrActiveLevel.map, &quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Floor Tiles/&quot;);
-		gh.assets.loadStdGraphics(gh.ptrActiveLevel.stdGraphics, &quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Border/&quot;);
-		gh.assets.loadAgentSprites(gh.ptrActiveCampaign.agentTemplates, &quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Creatures/&quot;);
-		gh.assets.sprites.tokenHighlight = new graphics.Sprite(&quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Creatures/tokenHighlight.gif&quot;);
-
-		gh.ptrActiveLevel.heroes = gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates);
-
-		/**
-		 * Load the dice sprite sheet
-		 */
-		gh.assets.loadDiceSprites(&quot;./Data/Graphics/&quot;, &quot;dice1.png&quot;);
+		gh.loadCampaignData();
+		gh.loadAssets();
 
 		gh.stateSetup.initialize();
 
@@ -148,9 +147,35 @@ var gh = (function(gh){
 	};
 
 	/**
+	 * Load the campaign data here.
+	 * This method is a dummy method. It is assumed that a game menu system, when followed, will
+	 * replace this.
+	 * @method loadCampaignData
+	 * @return 
+	 */
+	gh.loadCampaignData = function(){
+		gh.ptrActiveCampaign 		= gh.json.getCampaign(&quot;./Data/Campaigns/&quot;, &quot;Hero Quest&quot;);
+		gh.ptrActiveLevel 			= gh.ptrActiveCampaign.ptrActiveLevel;
+		gh.ptrActiveLevel.heroes 	= gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates);
+	};
+
+	/**
+	 * Load the image data and music data.
+	 * @method loadAssets
+	 * @return 
+	 */
+	gh.loadAssets = function(){
+		gh.assets.loadMapSprites(gh.ptrActiveLevel.map, &quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Floor Tiles/&quot;);
+		gh.assets.loadStdGraphics(gh.ptrActiveLevel.stdGraphics, &quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Border/&quot;);
+		gh.assets.loadAgentSprites(gh.ptrActiveCampaign.agentTemplates, &quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Creatures/&quot;);
+		gh.assets.sprites.tokenHighlight = new graphics.Sprite(&quot;./Data/Campaigns/&quot; + gh.ptrActiveCampaign.name + &quot;/Graphics/Creatures/tokenHighlight.gif&quot;);
+		gh.assets.loadDiceSprites(&quot;./Data/Graphics/&quot;, &quot;dice1.png&quot;);
+	};
+
+	/**
 	 * The main game loop
-	 *
 	 * @method run
+	 * @return 
 	 */
 	gh.run = function(){
 		gh.activeState = gh[gh.activeState].run();
@@ -160,9 +185,9 @@ var gh = (function(gh){
 	
 	/**
 	 * Dummy function to generate a group of starting heroes for placement.
-	 *
 	 * @method generateStartingPlayers
 	 * @param {json} jsonAgentTemplates A json object which defines the properties of agents in the game.
+	 * @return players
 	 */
 	gh.generateStartingPlayers = function(jsonAgentTemplates){
 		var players = [];
@@ -171,7 +196,9 @@ var gh = (function(gh){
 			&quot;Barbarian&quot;,
 			undefined,
 			&quot;Empire&quot;,
-			jsonAgentTemplates[&quot;Barbarian&quot;].sprites
+			jsonAgentTemplates[&quot;Barbarian&quot;].sprites,
+			2,
+			0
 			);
 		players.push(barbarian);
 
@@ -179,7 +206,9 @@ var gh = (function(gh){
 			&quot;Elf&quot;,
 			undefined,
 			&quot;Empire&quot;,
-			jsonAgentTemplates[&quot;Elf&quot;].sprites
+			jsonAgentTemplates[&quot;Elf&quot;].sprites,
+			2,
+			0
 			);
 		players.push(elf);
 
@@ -187,7 +216,9 @@ var gh = (function(gh){
 			&quot;Dwarf&quot;,
 			undefined,
 			&quot;Empire&quot;,
-			jsonAgentTemplates[&quot;Dwarf&quot;].sprites
+			jsonAgentTemplates[&quot;Dwarf&quot;].sprites,
+			2,
+			0
 			);
 		players.push(dwarf);
 
@@ -195,7 +226,9 @@ var gh = (function(gh){
 			&quot;Wizard&quot;,
 			undefined,
 			&quot;Empire&quot;,
-			jsonAgentTemplates[&quot;Wizard&quot;].sprites
+			jsonAgentTemplates[&quot;Wizard&quot;].sprites,
+			2,
+			0
 			);
 		players.push(wizard);
 

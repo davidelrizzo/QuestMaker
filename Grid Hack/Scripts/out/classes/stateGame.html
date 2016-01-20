@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -156,6 +159,9 @@
 
         <span class="paren">()</span>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -177,13 +183,18 @@
         <p>This method must be called prior to the run method.
 It is responsible for:</p>
 <ol>
-<li>Setting up the games player turn order</li>
 <li>Setting up the message listening queue's for agents, objects, borders, cells and triggers.</li>
 </ol>
 
     </div>
 
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -192,6 +203,9 @@ It is responsible for:</p>
 
         <span class="paren">()</span>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -202,7 +216,7 @@ It is responsible for:</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/stateGame.js.html#l168"><code>stateGame.js:168</code></a>
+        <a href="../files/stateGame.js.html#l190"><code>stateGame.js:190</code></a>
         </p>
 
 
@@ -215,6 +229,12 @@ It is responsible for:</p>
     </div>
 
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -223,39 +243,8 @@ It is responsible for:</p>
 
         <span class="paren">()</span>
 
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/stateGame.js.html#l53"><code>stateGame.js:53</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>This method calls the update and render methods.  If there is no</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_update" class="method item">
-    <h3 class="name"><code>update</code></h3>
-
-        <span class="paren">()</span>
-
         <span class="returns-inline">
-            <span class="type">String</span>
+            <span class="type"></span>
         </span>
 
 
@@ -267,7 +256,49 @@ It is responsible for:</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/stateGame.js.html#l64"><code>stateGame.js:64</code></a>
+        <a href="../files/stateGame.js.html#l49"><code>stateGame.js:49</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method calls the update and render methods.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>Literal</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_update" class="method item">
+    <h3 class="name"><code>update</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/stateGame.js.html#l61"><code>stateGame.js:61</code></a>
         </p>
 
 
@@ -284,8 +315,7 @@ It is responsible for:</p>
             <h4>Returns:</h4>
 
             <div class="returns-description">
-                        <span class="type">String</span>:
-                    <p>id of the Grid Hack game state to continue with: &quot;stateGame&quot; or &quot;stateExit&quot;.</p>
+                    <p>Literal</p>
 
             </div>
         </div>

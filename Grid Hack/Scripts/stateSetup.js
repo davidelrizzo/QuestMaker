@@ -1,42 +1,57 @@
 /**
- * FILE stateSetup.js
- * DESC This class singleton handles the setup phase of the game.
- *      The user selectes the initial placement of the starting heroes.
- *      The user might enter through a door, or alternatively, pre-selected
- *      starting squares.
- *
- *      Starting squres: these are highlighted and the user may place a 
- *      hero by left clicking on them.
- *
- *      Starting door: this is more complicated as in reality the player
- *      moves through it on the first turn.  That is to say it doesn't fit
- *      within the starting square paradigm and more appropriately belongs in
- *      the gameState phase of the application.  However, this would then
- *      require a check to see if the player is on the board every level?
- *
- *      Maybe consider rebuilding.  Each player has a starting action sequence
- *      that should be completed before proceeding to a standard action phase?
- *
- *      Eg 
- *			if play.position !== onBoard
- *				place at entry location
+ * @module gh
  */
 
 "use strict"
 
+/**
+ * @class gh
+ */
 var gh = (function(gh){
 
+	/**
+	 * DESC This class singleton handles the setup phase of the game.
+	 *      The user selectes the initial placement of the starting heroes.
+	 *      The user might enter through a door, or alternatively, pre-selected
+	 *      starting squares.
+	 *
+	 *      Starting squres: these are highlighted and the user may place a 
+	 *      hero by left clicking on them.
+	 *
+	 *      Starting door: this is more complicated as in reality the player
+	 *      moves through it on the first turn.  That is to say it doesn't fit
+	 *      within the starting square paradigm and more appropriately belongs in
+	 *      the gameState phase of the application.  However, this would then
+	 *      require a check to see if the player is on the board every level?
+	 *
+	 *      Maybe consider rebuilding.  Each player has a starting action sequence
+	 *      that should be completed before proceeding to a standard action phase?
+	 *
+	 *      Eg 
+	 *			if play.position !== onBoard
+	 *				place at entry location
+	 *
+	 * @class stateSetup
+	 */
 	var stateSetup = (function(stateSetup){
 		console.log("stateSetup.js loaded");
 
+		/**
+		 * Private globals
+		 */
 		var placed = 0; // The number of heroes placed on the board.
 
+		/**
+		 * Public globals
+		 */
 		stateSetup.msgPump = new stdlib.MessagePump();
 
 
 		/**
-		 * o Add message handlers
-		 * o Setup board visiblity
+		 * Add message handlers
+		 * Setup board visiblity
+		 * @method initialize
+		 * @return 
 		 */
 		stateSetup.initialize = function(){
 			console.log("initialize");
@@ -47,28 +62,22 @@ var gh = (function(gh){
             	this.msgPump.addListener("onClick", entryT[it], "onClick");
             }
 
-            this.msgPump.addListener("addPlayer", this, "addPlayer");
-
-            // get a list of doors.
-            /*
-            var doors = gh.ptrActiveLevel.map.getDoors();
-            for(var it = 0; it < doors.length; it++){
-            	this.msgPump.addListener("onMouseOver", doors[it], "onMouseOver");
+            // Activte the entry triggers.
+            var entryT = gh.ptrActiveLevel.triggers.entry;
+            for(var it = 0; it < entryT.length; it++){
+            	entryT[it].active = true;
             }
-            */
+            console.log(entryT);
+
+            this.msgPump.addListener("addPlayer", this, "addPlayer");
 
             // Add the agent onMouseOver message handlers.
             
             var agents = gh.ptrActiveLevel.agents;
-            for(var y = 0; y < agents.length; y++){
-            	if(agents[y] !== undefined){
-            		for(var x = 0; x < agents[y].length; x++){
-            			if(agents[y][x] !== undefined){
-            				this.msgPump.addListener("onMouseOver", agents[y][x], "onMouseOver");
-            			}
-            		}
-            	}
+            for(var it = 0; it < agents.length; it++){
+            	this.msgPump.addListener("onMouseOver", agents[it], "onMouseOver");
             }
+
 
             // Set the initial map visibility
             gh.ptrActiveLevel.map.clearVisibility(gh.ptrActiveLevel.teams);
@@ -92,18 +101,21 @@ var gh = (function(gh){
             }
 		};
 
+		/**
+		 * Description
+		 * @method run
+		 * @return Literal
+		 */
 		stateSetup.run = function(){
 			this.update();
 			this.render();
 
 			if(placed >= gh.ptrActiveLevel.heroes.length){
-				// setup turn order.
-
-				gh.ptrActiveLevel.turnOrder = new gh.TurnOrder(["Empire", "Zargon"]);
-				gh.ptrActiveLevel.players = {
-					"Empire" : new gh.Player("Chris", "Empire", gh.ptrActiveLevel.heroes),
-					"Zargon" : new gh.Computer("Zargon", undefined)
-				};
+				// set the entry triggers to inactive.
+				var entryT = gh.ptrActiveLevel.triggers.entry;
+				for(var it = 0; it < entryT.length; it++){
+					entryT[it].active = false;
+				}
 
 				gh.stateGame.initialize();
 				return "stateGame";
@@ -113,42 +125,12 @@ var gh = (function(gh){
 		};
 
 		/**
-		 * DESC
-		 *   This function is intended to set the focus of a given cell to
-		 *   the object which is beneith the mouse.
-		 * NOTE
-		 *   This function may be redundant.
-		 *   To an extent couple with gh.display.
+		 * Description
+		 * @method update
+		 * @return Literal
 		 */
-		stateSetup.setMouseFocus = function(cellX, cellY, mouseX, mouseY){
-			// 1> check agent
-			// 2> check object
-			// 3> check border
-			// 4> set tile focus
-			if(gh.ptrActiveLevel.agents[cellY] !== undefined){
-				var target = gh.ptrActiveLevel.agents[cellY][cellX];
-				if(target !== undefined){
-					if(target.isMouseOver(
-						cellX, 
-						cellY, 
-						mouseX, 
-						mouseY, 
-						gh.display.cellSize, 
-						gh.display.offset, 
-						gh.display.scale)){
-	                    
-	                    target.focus = true;
-					} else {
-						target.focus = false;
-					}
-				}
-			}
-		} 	
-
 		stateSetup.update = function(){
 			var selectedCell = gh.display.getMouseToCell(input.mouse.x, input.mouse.y);
-
-			console.log("update");
 
 			var cell;
 			if(gh.ptrActiveLevel.map.floor[selectedCell.y] !== undefined){
@@ -215,9 +197,85 @@ var gh = (function(gh){
 			return "stateSetup";
 		};
 
+		/**
+		 * Draw the visible map
+		 * Draw the borders
+		 * Draw objects
+		 * Draw agents
+		 * Draw the grid
+		 * @method render
+		 * @return 
+		 */
+		stateSetup.render = function(){
+			gh.display.clear();
+
+			// clear the screen to black background.
+			
+			gh.display.context.save();
+			gh.display.context.fillRect(0, 0, gh.display.canvas.width, gh.display.canvas.height);
+			gh.display.context.restore();
+
+			gh.ptrActiveLevel.draw(
+				gh.display.context, 
+				gh.display.scale,
+				gh.display.cellSize,
+				gh.display.offset, 
+				gh.assets.sprites, 
+				"Empire");
+
+		};
+
+		/**
+		 * DESC
+		 *   This function is intended to set the focus of a given cell to
+		 *   the object which is beneith the mouse.
+		 * NOTE
+		 *   This function may be redundant.
+		 *   To an extent couple with gh.display.
+		 * @method setMouseFocus
+		 * @param {Integer} cellX The x coordinate of the cell which the mouse is over.
+		 * @param {Integer} cellY The y coordinate of the cell which the mouse is over.
+		 * @param {Integer} mouseX The x coordinate of the mouse cursor on the screen.
+		 * @param {Integer} mouseY The y coordinate of the mouse cursor on the screen.
+		 * @return 
+		 */
+		stateSetup.setMouseFocus = function(cellX, cellY, mouseX, mouseY){
+			// 1> check agent
+			// 2> check object
+			// 3> check border
+			// 4> set tile focus
+			if(gh.ptrActiveLevel.agents[cellY] !== undefined){
+				//var target = gh.ptrActiveLevel.map.getAgentsAt(cellY, cellX);
+				var target = gh.ptrActiveLevel.map.floor[cellY, cellX].agents;
+				for(var it = 0; it < target.length; it++){
+					if(target[it] !== undefined){
+						if(target[it].isMouseOver(
+							cellX, 
+							cellY, 
+							mouseX, 
+							mouseY, 
+							gh.display.cellSize, 
+							gh.display.offset, 
+							gh.display.scale)){
+		                    
+		                    target[it].focus = true;
+						} else {
+							target[it].focus = false;
+						}
+					}
+				}
+			}
+		} 	
+
+
+		/**
+		 * Description
+		 * @event addPlayer
+		 * @method addPlayer
+		 * @param {Integer} args.y
+		 * @return 
+		 */
 		stateSetup.addPlayer = function(args){
-			console.log("addPlayer");
-			console.log(args);
 
 			// get a hero to place
 			if(gh.ptrActiveLevel.heroes !== undefined){
@@ -225,20 +283,20 @@ var gh = (function(gh){
 				while(gh.ptrActiveLevel.heroes[it].position !== undefined){
 					it++;
 				}
+
 				var hero = gh.ptrActiveLevel.heroes[it];
 
 				// Check if a hero is alread on the board.
 				// If so, remove that one.
-				if(gh.ptrActiveLevel.agents !== undefined){
-					if(gh.ptrActiveLevel.agents[args.y] !== undefined){
-						if(gh.ptrActiveLevel.agents[args.y][args.x] !== undefined){
-							console.log("occupied");
+				//var agents = gh.ptrActiveLevel.map.getAgentsAt(args.x, args.y);
+				var agents = gh.ptrActiveLevel.map.floor[args.y][args.x].agents;
 
-							gh.ptrActiveLevel.agents[args.y][args.x].position = undefined;
-							gh.ptrActiveLevel.agents[args.y][args.x] = undefined;
-
-							placed--;
-						}
+				for(var c = 0; c < gh.ptrActiveLevel.agents.length; c++){
+					if(gh.ptrActiveLevel.agents[c].position.x === args.x && gh.ptrActiveLevel.agents[c].position.y === args.y){
+						gh.ptrActiveLevel.agents[c].position = undefined;
+						gh.ptrActiveLevel.agents.splice(c, 1);
+						c--;
+						placed--;
 					}
 				}
 
@@ -246,60 +304,16 @@ var gh = (function(gh){
 				hero.position.x = args.x;
 				hero.position.y = args.y;
 
-				gh.ptrActiveLevel.agents = gh.ptrActiveLevel.agents || [];
-				gh.ptrActiveLevel.agents[args.y] = gh.ptrActiveLevel.agents[args.y] || [];
-				gh.ptrActiveLevel.agents[args.y][args.x] = hero;
+				gh.ptrActiveLevel.agents.unshift(hero);
+
+				gh.ptrActiveLevel.map.floor[args.y][args.x].agents = gh.ptrActiveLevel.map.floor[args.y][args.x].agents || [];
+				gh.ptrActiveLevel.map.floor[args.y][args.x].agents.push(hero);
 
 				placed++;
 			}
 		};
 
-		stateSetup.render = function(){
-			// Draw visible map
-			// Draw borders
-			// Draw objects
-			// Draw agents
-			gh.display.clear();
 
-			gh.display.context.save();
-			gh.display.context.fillRect(0, 0, gh.display.canvas.width, gh.display.canvas.height);
-			gh.display.context.restore();
-						
-			gh.ptrActiveLevel.map.drawFloor(
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.offset, 
-				gh.assets.sprites,
-				"Empire");
-
-			gh.ptrActiveLevel.drawAgents(
-				gh.display.context,
-				gh.display.scale,
-				gh.display.cellSize,
-				gh.display.offset,
-				"Empire");
-
-			gh.ptrActiveLevel.drawEntryTriggers(
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.cellSize, 
-				gh.display.offset);
-
-			gh.ptrActiveLevel.map.drawGrid(
-				gh.display.canvas, 
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.offset);
-			
-		};
-
-		stateSetup.setupTurnOrder = function(){
-			gh.ptrActiveLevel.turnOrder = {
-				"player" : gh.ptrActiveLevel.heroes, // List of heroes.
-				"agnets" : undefined
-			};
-		};
-	
 		return stateSetup;		
 	})(stateSetup || {});
 

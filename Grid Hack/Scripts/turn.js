@@ -16,20 +16,13 @@ var gh = (function(gh){
 
 
 	/**
-	 * INPUT
-	 *		players: the players.  EG. "Empire" and "Zargon"
-	 *		playrs need to be set up in advance.
-	 *      Players need 
-	 */
+     * Description
+     * @method TurnOrder
+     * @param {} playerOrder
+     * @return 
+     */
     function TurnOrder(playerOrder){
-    	this.playerOrder = playerOrder;
-    	this.currentTurn = 0;
     }
-
-    TurnOrder.getNextPlayer = function(){
-    	return this.playerOrder[this.currentTurn];
-    };
-
 
 
     gh.TurnOrder = TurnOrder;

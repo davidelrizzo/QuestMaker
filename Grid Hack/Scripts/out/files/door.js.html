@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -102,18 +105,28 @@ var gh = (function(gh){
 	console.log(&quot;door.js loaded&quot;);
 
     /**
-     * INPUT
-     *    cell1, cell2: 
-     *        A string denoting the side of a cell which the door
-     *        occupies.  Accepted values are &quot;top&quot;, &quot;left&quot;, &quot;right&quot;, &quot;bottom&quot;.
-     *    x1, y1, x2, y2: 
-     *        a number value representing a cell x or y
-     *        coordinate in the map.
-     *    open: 
-     *        boolean value noting whether or not the door is opem.
-     *    images: 
-     *        the sprites which depict the door in its various states.
-     */
+	 * INPUT
+	 *    cell1, cell2: 
+	 *        A string denoting the side of a cell which the door
+	 *        occupies.  Accepted values are &quot;top&quot;, &quot;left&quot;, &quot;right&quot;, &quot;bottom&quot;.
+	 *    x1, y1, x2, y2: 
+	 *        a number value representing a cell x or y
+	 *        coordinate in the map.
+	 *    open: 
+	 *        boolean value noting whether or not the door is opem.
+	 *    images: 
+	 *        the sprites which depict the door in its various states.
+	 * @method Door
+	 * @param {} cell1
+	 * @param {} x1
+	 * @param {} y1
+	 * @param {} cell2
+	 * @param {} x2
+	 * @param {} y2
+	 * @param {} open
+	 * @param {} images
+	 * @return 
+	 */
 	function Door(cell1, x1, y1, cell2, x2, y2, open, images){
 		this.id = &quot;door&quot;;
 
@@ -139,6 +152,9 @@ var gh = (function(gh){
 	 *    Change the state of the door from open to closed or vis versa.
 	 * INPUT
 	 *    args:
+	 * @method onUse
+	 * @param {} args
+	 * @return 
 	 */
 	Door.prototype.onUse = function(args){
 		if(this.focus === true){
@@ -157,18 +173,21 @@ var gh = (function(gh){
 	}
 
     /**
-     * INPUT
-     *    args:
-     *        mouseX
-     *        mouseY
-     *        cellX
-     *        cellY
-     *        cellSize
-     *        offset {x, y}
-     *        scale
-     *        cell
-     *        agents
-     */
+	 * INPUT
+	 *    args:
+	 *        mouseX
+	 *        mouseY
+	 *        cellX
+	 *        cellY
+	 *        cellSize
+	 *        offset {x, y}
+	 *        scale
+	 *        cell
+	 *        agents
+	 * @method onMouseOver
+	 * @param {} args
+	 * @return 
+	 */
 	Door.prototype.onMouseOver = function(args){
 
         // Does this cell have a door?
@@ -280,6 +299,18 @@ var gh = (function(gh){
         this.focus = false;
 	};
 
+	/**
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} x
+	 * @param {} y
+	 * @param {} size
+	 * @param {} scale
+	 * @param {} sprites
+	 * @param {} side
+	 * @return 
+	 */
 	Door.prototype.draw = function(context, x, y, size, scale, sprites, side){
 		context.save();
 
@@ -325,8 +356,7 @@ var gh = (function(gh){
 			default:
 			  break;
 		}
-
-
+		
 		context.restore();
 	};
 

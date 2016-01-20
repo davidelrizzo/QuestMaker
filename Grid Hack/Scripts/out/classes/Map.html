@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -114,8 +117,17 @@
 <div id="method_Map" class="method item">
     <h3 class="name"><code>Map</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>floor</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -137,7 +149,30 @@
         
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">floor</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>A 2d array of Cell objects.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -163,11 +198,19 @@
 
                             </li>
                             <li class="index-item method">
+                                <a href="#method_draw">draw</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_drawFloor">drawFloor</a>
 
                             </li>
                             <li class="index-item method">
                                 <a href="#method_drawGrid">drawGrid</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getAgentsAt">getAgentsAt</a>
 
                             </li>
                             <li class="index-item method">
@@ -199,8 +242,17 @@
 <div id="method_clearVisibility" class="method item">
     <h3 class="name"><code>clearVisibility</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>teams</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -211,7 +263,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l107"><code>map.js:107</code></a>
+        <a href="../files/map.js.html#l174"><code>map.js:174</code></a>
         </p>
 
 
@@ -219,18 +271,189 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">teams</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_draw" class="method item">
+    <h3 class="name"><code>draw</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+                <li class="arg">
+                        <code>size</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+                <li class="arg">
+                        <code>sprites</code>
+                </li>
+                <li class="arg">
+                        <code>team</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/map.js.html#l23"><code>map.js:23</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">size</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">sprites</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">team</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
 <div id="method_drawFloor" class="method item">
     <h3 class="name"><code>drawFloor</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+                <li class="arg">
+                        <code>sprites</code>
+                </li>
+                <li class="arg">
+                        <code>team</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -241,7 +464,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l21"><code>map.js:21</code></a>
+        <a href="../files/map.js.html#l49"><code>map.js:49</code></a>
         </p>
 
 
@@ -249,18 +472,99 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">sprites</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">team</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
 <div id="method_drawGrid" class="method item">
     <h3 class="name"><code>drawGrid</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>canvas</code>
+                </li>
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -271,7 +575,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l34"><code>map.js:34</code></a>
+        <a href="../files/map.js.html#l71"><code>map.js:71</code></a>
         </p>
 
 
@@ -279,10 +583,140 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">canvas</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getAgentsAt" class="method item">
+    <h3 class="name"><code>getAgentsAt</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/map.js.html#l130"><code>map.js:130</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>agents</p>
+
+            </div>
+        </div>
 
 
 </div>
@@ -291,6 +725,9 @@
 
         <span class="paren">()</span>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -301,7 +738,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l58"><code>map.js:58</code></a>
+        <a href="../files/map.js.html#l101"><code>map.js:101</code></a>
         </p>
 
 
@@ -315,14 +752,40 @@ it is necessary to select only the 'left' and 'top' doors.</p>
     </div>
 
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>doors</p>
+
+            </div>
+        </div>
 
 
 </div>
 <div id="method_getLine" class="method item">
     <h3 class="name"><code>getLine</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x0</code>
+                </li>
+                <li class="arg">
+                        <code>y0</code>
+                </li>
+                <li class="arg">
+                        <code>x1</code>
+                </li>
+                <li class="arg">
+                        <code>y1</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -333,7 +796,7 @@ it is necessary to select only the 'left' and 'top' doors.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l211"><code>map.js:211</code></a>
+        <a href="../files/map.js.html#l281"><code>map.js:281</code></a>
         </p>
 
 
@@ -347,15 +810,84 @@ This line is not interrupted by lack of visibility or objects.</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x0</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y0</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">x1</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y1</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>path</p>
+
+            </div>
+        </div>
 
 
 </div>
 <div id="method_setRayVisibility" class="method item">
     <h3 class="name"><code>setRayVisibility</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ray</code>
+                </li>
+                <li class="arg">
+                        <code>faction</code>
+                </li>
+                <li class="arg">
+                        <code>visible</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -366,7 +898,7 @@ This line is not interrupted by lack of visibility or objects.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l121"><code>map.js:121</code></a>
+        <a href="../files/map.js.html#l191"><code>map.js:191</code></a>
         </p>
 
 
@@ -385,7 +917,49 @@ visible:    the visibility to set the cells to</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ray</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">faction</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">visible</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -400,6 +974,9 @@ visible:    the visibility to set the cells to</p>
             </ul><span class="paren">)</span>
         </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -410,7 +987,7 @@ visible:    the visibility to set the cells to</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/map.js.html#l87"><code>map.js:87</code></a>
+        <a href="../files/map.js.html#l149"><code>map.js:149</code></a>
         </p>
 
 
@@ -418,7 +995,8 @@ visible:    the visibility to set the cells to</p>
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
         <div class="params">
@@ -439,6 +1017,12 @@ visible:    the visibility to set the cells to</p>
             </ul>
         </div>
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>

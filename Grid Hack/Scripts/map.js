@@ -10,17 +10,53 @@
 var gh = (function(gh){
 
 	/**
-	 * @class Map
 	 * @constructor
+	 * @class Map
+	 * @method Map
+	 * @param {Object} floor A 2d array of Cell objects.
+	 * @return 
 	 */
-	function Map(floor, cellSize){
-		this.floor        = floor;
-		this.cellSize     = cellSize;
+	function Map(floor){
+		this.floor      = floor;
 	}
 
 	/**
-	 * @method drawFloor
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} size
+	 * @param {} offset
+	 * @param {} sprites
+	 * @param {} team
+	 * @return 
 	 */
+	Map.prototype.draw = function(context, scale, size, offset, sprites, team){
+		for(var y = 0; y < this.floor.length; y++){
+			for(var x = 0; x < this.floor[y].length; x++){
+				if(this.floor[y][x].visible[team] === true){
+					this.floor[y][x].draw(
+						context, 
+						scale,
+						size,
+						offset,
+						sprites);
+				}
+			}
+		}
+	};
+
+	/**
+	 * Description
+	 * @method drawFloor
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} offset
+	 * @param {} sprites
+	 * @param {} team
+	 * @return 
+	 */
+	/*
 	Map.prototype.drawFloor = function(context, scale, offset, sprites, team){
 		for(var y = 0; y < this.floor.length; y++){
 			for(var x = 0; x < this.floor[y].length; x++){
@@ -30,9 +66,16 @@ var gh = (function(gh){
 			}
 		}
 	};
+	*/
 
 	/**
+	 * Description
 	 * @method drawGrid
+	 * @param {} canvas
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} offset
+	 * @return 
 	 */
 	Map.prototype.drawGrid = function(canvas, context, scale, offset){
 		context.save();
@@ -58,8 +101,8 @@ var gh = (function(gh){
 	/**
 	 * To build a list of unique doors (a door is refferenced twice in every map)
 	 * it is necessary to select only the 'left' and 'top' doors.
-	 *
 	 * @method getDoors
+	 * @return doors
 	 */
 	Map.prototype.getDoors = function(){
         var doors = [];
@@ -85,14 +128,38 @@ var gh = (function(gh){
 	};
 
 	/**
+	 * Description
+	 * @method getAgentsAt
+	 * @param {Integer} x
+	 * @param {Integer} y
+	 * @return agents
+	 */
+	Map.prototype.getAgentsAt = function(x, y){
+		var agents = [];
+
+		for(var it = 0; it < this.agents.length; it++){
+			if(this.agents[it].position.x === x && this.agents[it].position.y === y){
+				agents.push(this.agents[it]);
+			}
+		}
+
+		return agents;
+	};
+
+	/**
+	 * Description
 	 * @method updateAgentView
 	 * @param {Agent} agent The agent for which the map visibility should be updated.
+	 * @return 
 	 */
 	Map.prototype.updateAgentView = function(agent){
+		console.log("updateAgentView");
+		console.log(agent);
+
 		for(var y = 0; y < this.floor.length; y++){
 			for(var x = 0; x < this.floor[y].length; ){
 				var line = this.getLine(agent.position.x, agent.position.y, x, y);
-				this.setRayVisibility(line, agent.faction, true);
+				this.setRayVisibility(line, agent.team, true);
 				if(y === 0 || y === (this.floor.length - 1)){
 					x++;
 				} else if(x === 0){
@@ -105,7 +172,10 @@ var gh = (function(gh){
 	}
 
 	/**
+	 * Description
 	 * @method clearVisibility
+	 * @param {} teams
+	 * @return 
 	 */
 	Map.prototype.clearVisibility = function(teams){
 		for(var y = 0; y < this.floor.length; y++){
@@ -119,16 +189,19 @@ var gh = (function(gh){
 	};
 
 	/**
-	 *	DESC
-	 *		This function sets the visibility of a ray of cells from the first cell in
-	 *		the ray.  This function checks for doors and walls which may obstruct the
-	 *		rays 'line of sight'.
+	 * DESC
+	 * 	This function sets the visibility of a ray of cells from the first cell in
+	 * 	the ray.  This function checks for doors and walls which may obstruct the
+	 * 	rays 'line of sight'.
 	 * 	INPUT
-	 *		ray: 		an array of cells which are in a line
-	 *		faction: 	the string reference of the faction for which to set visibility
-	 *		visible: 	the visibility to set the cells to
-	 *
+	 * 	ray: 		an array of cells which are in a line
+	 * 	faction: 	the string reference of the faction for which to set visibility
+	 * 	visible: 	the visibility to set the cells to
 	 * @method setRayVisibility
+	 * @param {} ray
+	 * @param {} faction
+	 * @param {} visible
+	 * @return 
 	 */
 	Map.prototype.setRayVisibility = function(ray, faction, visible){
 		for(var c = 0; c < ray.length; c++){
@@ -169,15 +242,12 @@ var gh = (function(gh){
 						}
 					} else if(ray[c+1].y > ray[c].y){
 						// check the bottom border
-						console.log("check bottom");
 						if(ray[c].borders.bottom){
 							switch(ray[c].borders.bottom.id){
 								case "wall":
 									return;
 									break;
 								case "door":
-									console.log("bottom door");
-									console.log(ray[c].borders.bottom);
 									if(ray[c].borders.bottom.open === false){
 										return;
 									}
@@ -210,10 +280,14 @@ var gh = (function(gh){
 
 	/**
 	 * DESC
-	 *		This function returns an array of cells that lie between two points.
+	 * 	This function returns an array of cells that lie between two points.
 	 *      This line is not interrupted by lack of visibility or objects.
-	 *
 	 * @method getLine
+	 * @param {} x0
+	 * @param {} y0
+	 * @param {} x1
+	 * @param {} y1
+	 * @return path
 	 */
 	Map.prototype.getLine = function(x0, y0, x1, y1){
 

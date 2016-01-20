@@ -20,21 +20,24 @@ var gh = (function(gh){
 		/**
 		 * This method must be called prior to the run method.
 		 * It is responsible for:
-		 * 1) Setting up the games player turn order
-		 * 2) Setting up the message listening queue's for agents, objects, borders, cells and triggers.
-		 *
+		 * 1) Setting up the message listening queue's for agents, objects, borders, cells and triggers.
 		 * @method initialize
+		 * @return 
 		 */
 		stateGame.initialize = function(){
 
-			/**
-			 * Setup the turn order
-			 */
-			//stateGame.turnOrder = new gh.Turn(["Empire", "Zargon"],gh.ptrActiveLevel.heroes, undefined);
+			gh.hud.setup();
 
-			/**
+
+			/**	
 			 * Setup message listeners
 			 */
+
+			// Hud listeners
+			this.msgPump.addListener("onMouseOver", gh.hud.buttonEndTurn, "onMouseOver");
+			this.msgPump.addListener("onClick", gh.hud.buttonEndTurn, "onClick");
+
+			// Board listeners
 
 			// Doors
 			var doors = gh.ptrActiveLevel.map.getDoors();
@@ -43,18 +46,25 @@ var gh = (function(gh){
 				this.msgPump.addListener("onClick", doors[it], "onUse");
 			}
 
-			this.msgPump.addListener("move", gh.ptrActiveLevel.heroes[0], "onMove");
-
-			console.log(gh.ptrActiveLevel.turnOrder);
+			// Add the agents to the listening queue
+			//this.msgPump.addListener("move", gh.ptrActiveLevel.heroes[0], "onMove");
+			console.log(gh.ptrActiveLevel.agents);
+			for(var it = 0; it < gh.ptrActiveLevel.agents.length; it++){
+				this.msgPump.addListener("move", gh.ptrActiveLevel.agents[it], "onMove");
+			}
 
 			stateGame.diceA = new gh.Dice(6, "dice1.png");
 			stateGame.diceB = new gh.Dice(6, "dice1.png");
+
+			// Set the first turn to the first agent.
 			gh.ptrActiveLevel.heroes[0].newTurn(stateGame.diceA);
+			gh.ptrActiveLevel.activeAgent = gh.ptrActiveLevel.agents[0];
 		};
 
 		/**
-		 * This method calls the update and render methods.  If there is no
+		 * This method calls the update and render methods.
 		 * @method run
+		 * @return Literal
 		 */
 		stateGame.run = function(){
 			this.update();
@@ -65,11 +75,15 @@ var gh = (function(gh){
 
 		/**
 		 * This method adjudicates user mouse and keyboard input and updates message queues accordingly.
-		 * 
 		 * @method update
-		 * @return {string} id of the Grid Hack game state to continue with: "stateGame" or "stateExit".
+		 * @return Literal
 		 */
 		stateGame.update = function(){
+			if(gh.hud.buttonEndTurn.clicked === true){
+				this.msgPump.removeListener("move", gh.ptrActiveLevel.activeAgent);
+				gh.hud.buttonEndTurn.clicked = false;
+			}
+
 			var selectedCell = gh.display.getMouseToCell(input.mouse.x, input.mouse.y);
 
 			var cell;
@@ -141,23 +155,49 @@ var gh = (function(gh){
 				gh.display.offset.x += 5;
 			}
 
-
 			// character movement input
 			if(input.keyboard.isPressed(input.keyboard.A)){
-				console.log("A key pressed");
-				this.msgPump.postMessage("move", {"direction" : "left", "floor" : gh.ptrActiveLevel.map.floor, "agents" : gh.ptrActiveLevel.agents, "objects" : undefined});
+				this.msgPump.postMessage(
+					"move", 
+					{
+						"direction" : "left", 
+						"map" 		: gh.ptrActiveLevel.map, 
+						"agents" 	: gh.ptrActiveLevel.agents, 
+						"objects" 	: undefined
+					});
 				input.keyboard.key[input.keyboard.A].pressed = false;
 			}
 			if(input.keyboard.isPressed(input.keyboard.D)){
-				this.msgPump.postMessage("move", {"direction" : "right", "floor" : gh.ptrActiveLevel.map.floor, "agents" : gh.ptrActiveLevel.agents, "objects" : undefined});
+				this.msgPump.postMessage(
+					"move", 
+					{
+						"direction" : "right", 
+						"map" 		: gh.ptrActiveLevel.map, 
+						"agents" 	: gh.ptrActiveLevel.agents, 
+						"objects" 	: undefined
+					});
 				input.keyboard.key[input.keyboard.D].pressed = false;
 			}
 			if(input.keyboard.isPressed(input.keyboard.S)){
-				this.msgPump.postMessage("move", {"direction" : "down", "floor" : gh.ptrActiveLevel.map.floor, "agents" : gh.ptrActiveLevel.agents, "objects" : undefined});
+				this.msgPump.postMessage(
+					"move", 
+					{
+						"direction" : "down", 
+						"map" 		: gh.ptrActiveLevel.map, 
+						"agents" 	: gh.ptrActiveLevel.agents, 
+						"objects" 	: undefined
+					});
 				input.keyboard.key[input.keyboard.S].pressed = false;
 			}
 			if(input.keyboard.isPressed(input.keyboard.W)){
-				this.msgPump.postMessage("move", {"direction" : "up", "floor" : gh.ptrActiveLevel.map.floor, "agents" : gh.ptrActiveLevel.agents, "objects" : undefined});
+				this.msgPump.postMessage(
+					"move", 
+					{
+						"direction" : "up", 
+						"map" 		: gh.ptrActiveLevel.map, 
+						"agents" 	: gh.ptrActiveLevel.agents, 
+						"objects" 	: undefined
+					});
 				input.keyboard.key[input.keyboard.W].pressed = false;
 			}
 
@@ -169,8 +209,8 @@ var gh = (function(gh){
 
 		/**
 		 * This method draws the board to the canvas with respect to a players (team) view.
-		 *
 		 * @method render
+		 * @return 
 		 */
 		stateGame.render = function(){
 			gh.display.clear();
@@ -183,25 +223,13 @@ var gh = (function(gh){
 			gh.display.context.fillRect(0, 0, gh.display.canvas.width, gh.display.canvas.height);
 			gh.display.context.restore();
 
-			gh.ptrActiveLevel.map.drawFloor(
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.offset, 
-				gh.assets.sprites,
-				"Empire");
-
-			gh.ptrActiveLevel.drawAgents(
+			gh.ptrActiveLevel.draw(
 				gh.display.context,
 				gh.display.scale,
 				gh.display.cellSize,
 				gh.display.offset,
+				gh.assets.sprites,
 				"Empire");
-
-			gh.ptrActiveLevel.map.drawGrid(
-				gh.display.canvas, 
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.offset);
 
 			/**
 			 * Draw the hud
@@ -226,6 +254,8 @@ var gh = (function(gh){
 					64, 64, 64*gh.display.scale, 64*gh.display.scale, 
 					gh.assets.sprites);
 			}
+
+			gh.hud.draw();
 		};
 
 		return stateGame;

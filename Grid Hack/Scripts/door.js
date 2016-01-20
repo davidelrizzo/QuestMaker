@@ -4,18 +4,28 @@ var gh = (function(gh){
 	console.log("door.js loaded");
 
     /**
-     * INPUT
-     *    cell1, cell2: 
-     *        A string denoting the side of a cell which the door
-     *        occupies.  Accepted values are "top", "left", "right", "bottom".
-     *    x1, y1, x2, y2: 
-     *        a number value representing a cell x or y
-     *        coordinate in the map.
-     *    open: 
-     *        boolean value noting whether or not the door is opem.
-     *    images: 
-     *        the sprites which depict the door in its various states.
-     */
+	 * INPUT
+	 *    cell1, cell2: 
+	 *        A string denoting the side of a cell which the door
+	 *        occupies.  Accepted values are "top", "left", "right", "bottom".
+	 *    x1, y1, x2, y2: 
+	 *        a number value representing a cell x or y
+	 *        coordinate in the map.
+	 *    open: 
+	 *        boolean value noting whether or not the door is opem.
+	 *    images: 
+	 *        the sprites which depict the door in its various states.
+	 * @method Door
+	 * @param {} cell1
+	 * @param {} x1
+	 * @param {} y1
+	 * @param {} cell2
+	 * @param {} x2
+	 * @param {} y2
+	 * @param {} open
+	 * @param {} images
+	 * @return 
+	 */
 	function Door(cell1, x1, y1, cell2, x2, y2, open, images){
 		this.id = "door";
 
@@ -41,6 +51,9 @@ var gh = (function(gh){
 	 *    Change the state of the door from open to closed or vis versa.
 	 * INPUT
 	 *    args:
+	 * @method onUse
+	 * @param {} args
+	 * @return 
 	 */
 	Door.prototype.onUse = function(args){
 		if(this.focus === true){
@@ -59,18 +72,21 @@ var gh = (function(gh){
 	}
 
     /**
-     * INPUT
-     *    args:
-     *        mouseX
-     *        mouseY
-     *        cellX
-     *        cellY
-     *        cellSize
-     *        offset {x, y}
-     *        scale
-     *        cell
-     *        agents
-     */
+	 * INPUT
+	 *    args:
+	 *        mouseX
+	 *        mouseY
+	 *        cellX
+	 *        cellY
+	 *        cellSize
+	 *        offset {x, y}
+	 *        scale
+	 *        cell
+	 *        agents
+	 * @method onMouseOver
+	 * @param {} args
+	 * @return 
+	 */
 	Door.prototype.onMouseOver = function(args){
 
         // Does this cell have a door?
@@ -182,6 +198,18 @@ var gh = (function(gh){
         this.focus = false;
 	};
 
+	/**
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} x
+	 * @param {} y
+	 * @param {} size
+	 * @param {} scale
+	 * @param {} sprites
+	 * @param {} side
+	 * @return 
+	 */
 	Door.prototype.draw = function(context, x, y, size, scale, sprites, side){
 		context.save();
 
@@ -227,8 +255,7 @@ var gh = (function(gh){
 			default:
 			  break;
 		}
-
-
+		
 		context.restore();
 	};
 

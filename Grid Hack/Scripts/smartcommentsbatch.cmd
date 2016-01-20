@@ -1,0 +1,1 @@
+D:\Programming\node_modules\smartcomments\bin\smartcomments --generate

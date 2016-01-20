@@ -3,6 +3,12 @@
 var file = file || {};
 
 
+/**
+ * Description
+ * @method getAJAX
+ * @param {} path
+ * @return Literal
+ */
 file.getAJAX = function(path){
 	var request = new XMLHttpRequest();
 	request.open("GET", path, false);

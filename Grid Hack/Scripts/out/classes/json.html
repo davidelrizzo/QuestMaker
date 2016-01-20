@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -159,6 +162,18 @@
 
                     <ul class="index-list methods">
                             <li class="index-item method">
+                                <a href="#method_addAgents">addAgents</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_addTriggers">addTriggers</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getAgentGrid">getAgentGrid</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_getAgents">getAgents</a>
 
                             </li>
@@ -200,11 +215,23 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_getAgents" class="method item">
-    <h3 class="name"><code>getAgents</code></h3>
+<div id="method_addAgents" class="method item">
+    <h3 class="name"><code>addAgents</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>map</code>
+                </li>
+                <li class="arg">
+                        <code>agents</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -215,7 +242,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/File_json.js.html#l123"><code>File\json.js:123</code></a>
+        <a href="../files/File_json.js.html#l267"><code>File\json.js:267</code></a>
         </p>
 
 
@@ -223,198 +250,309 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">map</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">agents</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_addTriggers" class="method item">
+    <h3 class="name"><code>addTriggers</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>map</code>
+                </li>
+                <li class="arg">
+                        <code>triggers</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l281"><code>File\json.js:281</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">map</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">triggers</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getAgentGrid" class="method item">
+    <h3 class="name"><code>getAgentGrid</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>jsonAgents</code>
+                </li>
+                <li class="arg">
+                        <code>jsonAgentTemplates</code>
+                </li>
+                <li class="arg">
+                        <code>directory</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l299"><code>File\json.js:299</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method builds a 2d list of agents, with the location of the agent on the map the same as its
+location in the 2d array.
+This method has been depreciated and no longer part of the framework.
+A key weakness of this method is it does not (without alteration) permit multible agents to occupy a cell.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">jsonAgents</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">jsonAgentTemplates</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">directory</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>This variable is currently not utilized by the method.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>agents</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getAgents" class="method item">
+    <h3 class="name"><code>getAgents</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>jsonAgents</code>
+                </li>
+                <li class="arg">
+                        <code>jsonAgentTemplates</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l144"><code>File\json.js:144</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method builds an array of agents which are present in a level.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">jsonAgents</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">jsonAgentTemplates</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>agents</p>
+
+            </div>
+        </div>
 
 
 </div>
 <div id="method_getCampaign" class="method item">
     <h3 class="name"><code>getCampaign</code></h3>
 
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l209"><code>File\json.js:209</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getCampaignLevels" class="method item">
-    <h3 class="name"><code>getCampaignLevels</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l196"><code>File\json.js:196</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getFloor" class="method item">
-    <h3 class="name"><code>getFloor</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l51"><code>File\json.js:51</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getLevel" class="method item">
-    <h3 class="name"><code>getLevel</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l175"><code>File\json.js:175</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getTeams" class="method item">
-    <h3 class="name"><code>getTeams</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l38"><code>File\json.js:38</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_getTriggers" class="method item">
-    <h3 class="name"><code>getTriggers</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/File_json.js.html#l146"><code>File\json.js:146</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        
-    </div>
-
-
-
-
-</div>
-<div id="method_loadDataFile" class="method item">
-    <h3 class="name"><code>loadDataFile</code></h3>
-
-        <span class="paren">()</span>
-
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>directory</code>
+                </li>
+                <li class="arg">
+                        <code>campaignName</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -433,10 +571,553 @@
     </div>
 
     <div class="description">
-        
+        <p>This method loads a campaign from a number of json files located within the given directory.
+This method assumes the following file structure:
+'directory'/'campaignName'
+'directory'/'campaignName'/Data/ - This folder houses the relevant json assets
+'directory'/'campaignName'/Graphics/ - This folder houses the relevant graphic assets</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">directory</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The directory in which the campaign data is located.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">campaignName</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The name of the campaign json file.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>campaign</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getCampaignLevels" class="method item">
+    <h3 class="name"><code>getCampaignLevels</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>jsonLevels</code>
+                </li>
+                <li class="arg">
+                        <code>directory</code>
+                </li>
+                <li class="arg">
+                        <code>jsonAgentTemplates</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l69"><code>File\json.js:69</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">jsonLevels</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">directory</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">jsonAgentTemplates</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>levels</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getFloor" class="method item">
+    <h3 class="name"><code>getFloor</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>jsonMap</code>
+                </li>
+                <li class="arg">
+                        <code>directory</code>
+                </li>
+                <li class="arg">
+                        <code>jsonStdGraphics</code>
+                </li>
+                <li class="arg">
+                        <code>agents</code>
+                </li>
+                <li class="arg">
+                        <code>itmes</code>
+                </li>
+                <li class="arg">
+                        <code>triggers</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l170"><code>File\json.js:170</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">jsonMap</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">directory</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">jsonStdGraphics</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">agents</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">itmes</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">triggers</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>floor</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getLevel" class="method item">
+    <h3 class="name"><code>getLevel</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>directory</code>
+                </li>
+                <li class="arg">
+                        <code>levelName</code>
+                </li>
+                <li class="arg">
+                        <code>jsonAgentTemplates</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l91"><code>File\json.js:91</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">directory</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The directory in which the campaign data is located.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">levelName</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">jsonAgentTemplates</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>level</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getTeams" class="method item">
+    <h3 class="name"><code>getTeams</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>jsonTeam</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l128"><code>File\json.js:128</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">jsonTeam</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>teams</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getTriggers" class="method item">
+    <h3 class="name"><code>getTriggers</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>jsonTriggers</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l331"><code>File\json.js:331</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">jsonTriggers</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>triggers</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_loadDataFile" class="method item">
+    <h3 class="name"><code>loadDataFile</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>path</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/File_json.js.html#l54"><code>File\json.js:54</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">path</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>data</p>
+
+            </div>
+        </div>
 
 
 </div>

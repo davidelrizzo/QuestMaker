@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -125,23 +128,31 @@ var gh = (function(gh){
 	 */
 	var assets = (function(assets){
 
-		/** 
+		/**
+		 * Description
 		 * @method loadMapSprites
+		 * @param {} jsonMap
+		 * @param {} directory
+		 * @return 
 		 */
 		assets.loadMapSprites = function(jsonMap, directory){
 			this.sprites = this.sprites || {};
 
 			for(var y = 0; y &lt; jsonMap.floor.length; y++){
 				for(var x = 0; x &lt; jsonMap.floor[y].length; x++){
-					if(jsonMap.floor[y][x].sprites !== undefined){
-						this.sprites[jsonMap.floor[y][x].sprites] = new graphics.Sprite(directory + jsonMap.floor[y][x].sprites);
+					if(jsonMap.floor[y][x].sprite !== undefined){
+						this.sprites[jsonMap.floor[y][x].sprite] = new graphics.Sprite(directory + jsonMap.floor[y][x].sprite);
 					}
 				}
 			}
 		};
 
 		/**
+		 * Description
 		 * @method loadStdGraphics
+		 * @param {} jsonStdGraphics
+		 * @param {} directory
+		 * @return 
 		 */
 		assets.loadStdGraphics = function(jsonStdGraphics, directory){
 			this.sprites = this.sprites || {};
@@ -156,7 +167,11 @@ var gh = (function(gh){
 		};
 
 		/**
+		 * Description
 		 * @method loadAgentSprites
+		 * @param {} jsonAgents
+		 * @param {} directory
+		 * @return 
 		 */
 		assets.loadAgentSprites = function(jsonAgents, directory){
 			this.sprites = this.sprites || {};
@@ -170,9 +185,11 @@ var gh = (function(gh){
 		};
 
 		/**
+		 * Description
 		 * @method loadDiceSprites
 		 * @param {String} directory The path in which the image of the dice is located.  This should be a sprite sheet with each side fo the die depicted.
 		 * @param {String} name The name of the image in the directory.
+		 * @return 
 		 */
 		assets.loadDiceSprites = function(directory, name){
 			this.sprites = this.sprites || {};

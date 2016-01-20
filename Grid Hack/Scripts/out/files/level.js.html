@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -108,55 +111,79 @@
 var gh = (function(gh){
 	console.log(&quot;level.js loaded&quot;);
 
-	/** 
-	 * @class Level
+	/**
 	 * @constructor
+	 * @class Level
+	 * @method Level
+	 * @param {String} name The name of the level.
+	 * @param {String} introText The introductory text for the level.
+	 * @param {} maxHeroes
+	 * @param {Array} availableHeroes An array of 
+	 * @param {} teams
+	 * @param {} map
+	 * @param {} agents
+	 * @param {} triggers
+	 * @param {} stdGraphics
+	 * @return 
 	 */
-	function Level(name, introText, numHeroes, availableHeroes, teams, map, agents, triggers, stdGraphics){
-		this.name                = name;
-		this.introText           = introText;
-		this.numHeroes           = numHeroes;
-		this.availableHeroes     = availableHeroes;
-		this.teams               = teams;
-		this.map			     = map;
-		this.agents              = agents;
-		this.triggers            = triggers;
-		this.stdGraphics         = stdGraphics;
+	function Level(name, introText, maxHeroes, availableHeroes, teams, map, agents, triggers, stdGraphics){
+		this.name               = name;
+		this.introText          = introText;
+		this.maxHeroes          = maxHeroes;
+		this.availableHeroes    = availableHeroes;
+		this.teams              = teams;
+		this.map			    = map;
+		this.agents 			= agents;
+		this.triggers 			= triggers;
+		this.stdGraphics        = stdGraphics;
 	}
 
 	/**
-	 * This method draws the visible agents to the board.
-	 *
-	 * @method drawAgents
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} size
+	 * @param {} offset
+	 * @param {} sprites
+	 * @param {} team
+	 * @return 
 	 */
-	Level.prototype.drawAgents = function(context, scale, size, offset, team){
-		//console.log(this.agents);
-
-		for(var y = 0; y &lt; this.agents.length; y++){
-			if(this.agents[y] !== undefined){
-				for(var x = 0; x &lt; this.agents[y].length; x++){
-					if(this.agents[y][x] !== undefined){
-						if(this.map.floor[y][x].visible[team] === true){
-							this.agents[y][x].draw(
-								&quot;token&quot;, 
-								gh.assets.sprites, 
-								context, 
-								scale, 
-								size, 
-								offset);							
-						}
-					}
-				}
-			}
-		}
-
+	Level.prototype.draw = function(context, scale, size, offset, sprites, team){
+		this.map.draw(context, size, scale, offset, sprites, team);
 	};
 
 	/**
-	 * @method drawEntry
+	 * This method draws the visible agents to the board.
+	 * @method drawAgents
+	 * @param {Object} context The context upon which to draw.
+	 * @param {Float} scale The scale to draw the agent by.
+	 * @param {Integer} size The cell size of the map grid.
+	 * @param {Object} offset An object which cointains the viewport x and y offset for drawing.
+	 * @param {} team
+	 * @return 
+	 */
+	Level.prototype.drawAgents = function(context, scale, size, offset, team){
+		var agents = this.agents;
+
+		for(var it = 0; it &lt; agents.length; it++){
+			if(this.map.floor[agents[it].position.y][agents[it].position.x].visible[team] === true){
+				agents[it].draw(&quot;token&quot;, gh.assets.sprites, context, scale, size, offset);
+			}
+		}
+	};
+
+	/**
+	 * Description
+	 * @method drawEntryTriggers
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} size
+	 * @param {} offset
+	 * @return 
 	 */
 	Level.prototype.drawEntryTriggers = function(context, scale, size, offset){
-		var entryTriggers = this.triggers.entry;
+		var entryTriggers = this.map.triggers.entry;
 
 		for(var it = 0; it &lt; entryTriggers.length; it++){
 			entryTriggers[it].draw(context, scale, size, offset);
@@ -164,7 +191,11 @@ var gh = (function(gh){
 	}
 
 	/**
+	 * Description
 	 * @method isEntryTriggerSelected
+	 * @param {} x
+	 * @param {} y
+	 * @return 
 	 */
 	Level.prototype.isEntryTriggerSelected = function(x, y){
 		for(var it = 0; it &lt; this.triggers.entry.length; it++){

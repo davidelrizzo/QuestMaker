@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -114,8 +117,41 @@
 <div id="method_Level" class="method item">
     <h3 class="name"><code>Level</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+                <li class="arg">
+                        <code>introText</code>
+                </li>
+                <li class="arg">
+                        <code>maxHeroes</code>
+                </li>
+                <li class="arg">
+                        <code>availableHeroes</code>
+                </li>
+                <li class="arg">
+                        <code>teams</code>
+                </li>
+                <li class="arg">
+                        <code>map</code>
+                </li>
+                <li class="arg">
+                        <code>agents</code>
+                </li>
+                <li class="arg">
+                        <code>triggers</code>
+                </li>
+                <li class="arg">
+                        <code>stdGraphics</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -137,7 +173,112 @@
         
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The name of the level.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">introText</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>The introductory text for the level.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">maxHeroes</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">availableHeroes</code>
+                        <span class="type">Array</span>
+
+
+                    <div class="param-description">
+                        <p>An array of</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">teams</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">map</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">agents</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">triggers</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">stdGraphics</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -159,11 +300,15 @@
 
                     <ul class="index-list methods">
                             <li class="index-item method">
+                                <a href="#method_draw">draw</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_drawAgents">drawAgents</a>
 
                             </li>
                             <li class="index-item method">
-                                <a href="#method_drawEntry">drawEntry</a>
+                                <a href="#method_drawEntryTriggers">drawEntryTriggers</a>
 
                             </li>
                             <li class="index-item method">
@@ -180,11 +325,35 @@
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_drawAgents" class="method item">
-    <h3 class="name"><code>drawAgents</code></h3>
+<div id="method_draw" class="method item">
+    <h3 class="name"><code>draw</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+                <li class="arg">
+                        <code>size</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+                <li class="arg">
+                        <code>sprites</code>
+                </li>
+                <li class="arg">
+                        <code>team</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -195,7 +364,131 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/level.js.html#l29"><code>level.js:29</code></a>
+        <a href="../files/level.js.html#l40"><code>level.js:40</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">size</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">sprites</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">team</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_drawAgents" class="method item">
+    <h3 class="name"><code>drawAgents</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+                <li class="arg">
+                        <code>size</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+                <li class="arg">
+                        <code>team</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/level.js.html#l55"><code>level.js:55</code></a>
         </p>
 
 
@@ -207,15 +500,99 @@
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>The context upon which to draw.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Float</span>
+
+
+                    <div class="param-description">
+                        <p>The scale to draw the agent by.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">size</code>
+                        <span class="type">Integer</span>
+
+
+                    <div class="param-description">
+                        <p>The cell size of the map grid.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>An object which cointains the viewport x and y offset for drawing.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">team</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
-<div id="method_drawEntry" class="method item">
-    <h3 class="name"><code>drawEntry</code></h3>
+<div id="method_drawEntryTriggers" class="method item">
+    <h3 class="name"><code>drawEntryTriggers</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>context</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+                <li class="arg">
+                        <code>size</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -226,7 +603,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/level.js.html#l57"><code>level.js:57</code></a>
+        <a href="../files/level.js.html#l75"><code>level.js:75</code></a>
         </p>
 
 
@@ -234,18 +611,83 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">size</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
 <div id="method_isEntryTriggerSelected" class="method item">
     <h3 class="name"><code>isEntryTriggerSelected</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -256,7 +698,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/level.js.html#l68"><code>level.js:68</code></a>
+        <a href="../files/level.js.html#l92"><code>level.js:92</code></a>
         </p>
 
 
@@ -264,10 +706,43 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>

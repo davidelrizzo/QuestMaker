@@ -19,8 +19,11 @@ var input = (function(input){
 		mouse.cicked    = false;
 
 		/**
+		 * Description
 		 * @event onMouseMove
+		 * @method onMouseMove
 		 * @param {event} evt An event which contains the relevant mouse data.
+		 * @return 
 		 */
 		mouse.onMouseMove = function(evt){
 			var rect = this.getBoundingClientRect();
@@ -30,8 +33,11 @@ var input = (function(input){
 		};
 
 		/**
+		 * Description
 		 * @event onClick
+		 * @method onClick
 		 * @param {event} evt An event which contains the relevant mouse data.
+		 * @return 
 		 */
 		mouse.onClick = function(evt){
             mouse.clicked = true;

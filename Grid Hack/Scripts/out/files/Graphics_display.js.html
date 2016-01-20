@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -111,6 +114,12 @@
 var graphics = (function(graphics){
 	console.log(&quot;display.js loaded&quot;);
 
+	/**
+	 * Description
+	 * @method Display
+	 * @param {} canvasID
+	 * @return 
+	 */
 	function Display(canvasID){
 		this.canvas 	= document.getElementById(canvasID);
 		this.context	= this.canvas.getContext(&quot;2d&quot;);
@@ -119,10 +128,22 @@ var graphics = (function(graphics){
 		this.offset     = {&quot;x&quot; : 0, &quot;y&quot; : 0};
 	}
 
+	/**
+	 * Description
+	 * @method clear
+	 * @return 
+	 */
 	Display.prototype.clear = function(){
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	};
 
+	/**
+	 * Description
+	 * @method getMouseToCell
+	 * @param {} x
+	 * @param {} y
+	 * @return pos
+	 */
 	Display.prototype.getMouseToCell = function(x, y){
 		var pos = {};
 

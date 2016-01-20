@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -97,7 +100,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/agent.js.html#l12"><code>agent.js:12</code></a>
+            Defined in: <a href="../files/agent.js.html#l13"><code>agent.js:13</code></a>
         </div>
 
             Module: <a href="../modules/gh.html">gh</a>
@@ -131,9 +134,18 @@
                 <li class="arg">
                         <code>moveDice</code>
                 </li>
+                <li class="arg">
+                        <code>baseMove</code>
+                </li>
+                <li class="arg">
+                        <code>active</code>
+                </li>
             </ul><span class="paren">)</span>
         </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -144,7 +156,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/agent.js.html#l12"><code>agent.js:12</code></a>
+        <a href="../files/agent.js.html#l13"><code>agent.js:13</code></a>
         </p>
 
 
@@ -172,12 +184,11 @@
                 </li>
                 <li class="param">
                         <code class="param-name">position</code>
-                        <span class="type">Object(Inteter, Integer)</span>
+                        <span class="type">Object</span>
 
 
                     <div class="param-description">
-                        <p>{x, y} The x,y coordinates of the agent in the game world.</p>
-
+                         
                     </div>
 
                 </li>
@@ -214,9 +225,35 @@
                     </div>
 
                 </li>
+                <li class="param">
+                        <code class="param-name">baseMove</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">active</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
             </ul>
         </div>
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -243,6 +280,10 @@
                             </li>
                             <li class="index-item method">
                                 <a href="#method_isMouseOver">isMouseOver</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_newTurn">newTurn</a>
 
                             </li>
                             <li class="index-item method">
@@ -289,6 +330,9 @@
             </ul><span class="paren">)</span>
         </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -299,7 +343,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/agent.js.html#l30"><code>agent.js:30</code></a>
+        <a href="../files/agent.js.html#l57"><code>agent.js:57</code></a>
         </p>
 
 
@@ -307,7 +351,8 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
         <div class="params">
@@ -382,14 +427,47 @@
             </ul>
         </div>
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
 <div id="method_isMouseOver" class="method item">
     <h3 class="name"><code>isMouseOver</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>cellX</code>
+                </li>
+                <li class="arg">
+                        <code>cellY</code>
+                </li>
+                <li class="arg">
+                        <code>mouseX</code>
+                </li>
+                <li class="arg">
+                        <code>mouseY</code>
+                </li>
+                <li class="arg">
+                        <code>cellSize</code>
+                </li>
+                <li class="arg">
+                        <code>offset</code>
+                </li>
+                <li class="arg">
+                        <code>scale</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -400,7 +478,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/agent.js.html#l207"><code>agent.js:207</code></a>
+        <a href="../files/agent.js.html#l264"><code>agent.js:264</code></a>
         </p>
 
 
@@ -408,18 +486,112 @@
     </div>
 
     <div class="description">
-        
+        <p>Description</p>
+
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">cellX</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">cellY</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">mouseX</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">mouseY</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">cellSize</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">offset</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">scale</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                    <p>Literal</p>
+
+            </div>
+        </div>
 
 
 </div>
-<div id="method_onMouseOver" class="method item">
-    <h3 class="name"><code>onMouseOver</code></h3>
+<div id="method_newTurn" class="method item">
+    <h3 class="name"><code>newTurn</code></h3>
 
-        <span class="paren">()</span>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>dice</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -430,7 +602,70 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/agent.js.html#l151"><code>agent.js:151</code></a>
+        <a href="../files/agent.js.html#l39"><code>agent.js:39</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Description</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">dice</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>A dice of the requisite number of sides to be used when 'rolling' the agents potential movement.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
+
+
+</div>
+<div id="method_onMouseOver" class="method item">
+    <h3 class="name"><code>onMouseOver</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>args</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/agent.js.html#l209"><code>agent.js:209</code></a>
         </p>
 
 
@@ -448,13 +683,35 @@ cellSize
 offset {x, y}
 scale
 cell
-agents</p>
-<p>Agents get priority focus, so need to disable the focus on any
+agents
+Agents get priority focus, so need to disable the focus on any
 other objects in a cell if the mouse is over the agent.</p>
 
     </div>
 
+        <div class="params">
+            <h4>Parameters:</h4>
 
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">args</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>
@@ -469,6 +726,9 @@ other objects in a cell if the mouse is over the agent.</p>
             </ul><span class="paren">)</span>
         </div>
 
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
 
 
 
@@ -479,7 +739,7 @@ other objects in a cell if the mouse is over the agent.</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/agent.js.html#l49"><code>agent.js:49</code></a>
+        <a href="../files/agent.js.html#l78"><code>agent.js:78</code></a>
         </p>
 
 
@@ -487,7 +747,15 @@ other objects in a cell if the mouse is over the agent.</p>
     </div>
 
     <div class="description">
-        <p>This method moves the agent one step up, down, left or rigth.</p>
+        <p>This method moves the agent one step up, down, left or rigth.
+It currently checks to ensure the move is valid. If the move is not valid the method simply returns without making any changes to the agents location.
+TO DO
+Add conditionals to the parameters for checking aspects of a valid move.
+EG a clipping option to allow the player to move through border obstructions, or an option to define which agents can or can not be moved through.
+args.direction
+args.map
+args.agents
+args.objects</p>
 
     </div>
 
@@ -497,14 +765,11 @@ other objects in a cell if the mouse is over the agent.</p>
             <ul class="params-list">
                 <li class="param">
                         <code class="param-name">args</code>
-                        <span class="type">String</span>
+                        <span class="type">Object</span>
 
 
                     <div class="param-description">
-                        <p>args.direction is one of four values: &quot;left&quot;, &quot;right&quot;, &quot;up&quot; and &quot;down&quot;.
-args.floor
-args.agents
-args.objects</p>
+                        <p>args.direction is one of four values: &quot;left&quot;, &quot;right&quot;, &quot;up&quot; and &quot;down&quot;.</p>
 
                     </div>
 
@@ -512,6 +777,12 @@ args.objects</p>
             </ul>
         </div>
 
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+            </div>
+        </div>
 
 
 </div>

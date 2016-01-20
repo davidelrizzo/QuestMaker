@@ -10,55 +10,79 @@
 var gh = (function(gh){
 	console.log("level.js loaded");
 
-	/** 
-	 * @class Level
+	/**
 	 * @constructor
+	 * @class Level
+	 * @method Level
+	 * @param {String} name The name of the level.
+	 * @param {String} introText The introductory text for the level.
+	 * @param {} maxHeroes
+	 * @param {Array} availableHeroes An array of 
+	 * @param {} teams
+	 * @param {} map
+	 * @param {} agents
+	 * @param {} triggers
+	 * @param {} stdGraphics
+	 * @return 
 	 */
-	function Level(name, introText, numHeroes, availableHeroes, teams, map, agents, triggers, stdGraphics){
-		this.name                = name;
-		this.introText           = introText;
-		this.numHeroes           = numHeroes;
-		this.availableHeroes     = availableHeroes;
-		this.teams               = teams;
-		this.map			     = map;
-		this.agents              = agents;
-		this.triggers            = triggers;
-		this.stdGraphics         = stdGraphics;
+	function Level(name, introText, maxHeroes, availableHeroes, teams, map, agents, triggers, stdGraphics){
+		this.name               = name;
+		this.introText          = introText;
+		this.maxHeroes          = maxHeroes;
+		this.availableHeroes    = availableHeroes;
+		this.teams              = teams;
+		this.map			    = map;
+		this.agents 			= agents;
+		this.triggers 			= triggers;
+		this.stdGraphics        = stdGraphics;
 	}
 
 	/**
-	 * This method draws the visible agents to the board.
-	 *
-	 * @method drawAgents
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} size
+	 * @param {} offset
+	 * @param {} sprites
+	 * @param {} team
+	 * @return 
 	 */
-	Level.prototype.drawAgents = function(context, scale, size, offset, team){
-		//console.log(this.agents);
-
-		for(var y = 0; y < this.agents.length; y++){
-			if(this.agents[y] !== undefined){
-				for(var x = 0; x < this.agents[y].length; x++){
-					if(this.agents[y][x] !== undefined){
-						if(this.map.floor[y][x].visible[team] === true){
-							this.agents[y][x].draw(
-								"token", 
-								gh.assets.sprites, 
-								context, 
-								scale, 
-								size, 
-								offset);							
-						}
-					}
-				}
-			}
-		}
-
+	Level.prototype.draw = function(context, scale, size, offset, sprites, team){
+		this.map.draw(context, size, scale, offset, sprites, team);
 	};
 
 	/**
-	 * @method drawEntry
+	 * This method draws the visible agents to the board.
+	 * @method drawAgents
+	 * @param {Object} context The context upon which to draw.
+	 * @param {Float} scale The scale to draw the agent by.
+	 * @param {Integer} size The cell size of the map grid.
+	 * @param {Object} offset An object which cointains the viewport x and y offset for drawing.
+	 * @param {} team
+	 * @return 
+	 */
+	Level.prototype.drawAgents = function(context, scale, size, offset, team){
+		var agents = this.agents;
+
+		for(var it = 0; it < agents.length; it++){
+			if(this.map.floor[agents[it].position.y][agents[it].position.x].visible[team] === true){
+				agents[it].draw("token", gh.assets.sprites, context, scale, size, offset);
+			}
+		}
+	};
+
+	/**
+	 * Description
+	 * @method drawEntryTriggers
+	 * @param {} context
+	 * @param {} scale
+	 * @param {} size
+	 * @param {} offset
+	 * @return 
 	 */
 	Level.prototype.drawEntryTriggers = function(context, scale, size, offset){
-		var entryTriggers = this.triggers.entry;
+		var entryTriggers = this.map.triggers.entry;
 
 		for(var it = 0; it < entryTriggers.length; it++){
 			entryTriggers[it].draw(context, scale, size, offset);
@@ -66,7 +90,11 @@ var gh = (function(gh){
 	}
 
 	/**
+	 * Description
 	 * @method isEntryTriggerSelected
+	 * @param {} x
+	 * @param {} y
+	 * @return 
 	 */
 	Level.prototype.isEntryTriggerSelected = function(x, y){
 		for(var it = 0; it < this.triggers.entry.length; it++){

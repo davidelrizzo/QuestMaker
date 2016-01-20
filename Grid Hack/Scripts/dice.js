@@ -11,10 +11,12 @@ var gh = (function(gh){
 	console.log("dice.js loaded");
 	
 	/**
-	 * @class Dice
 	 * @constructor
-	 * param {Integer} sides The number of sides the dice has, defaults to 6.
-	 * param {String}  spriteSheet The index name of the sprite sheet  of the dice.
+	 * @class Dice
+	 * @method Dice
+	 * @param {Integer} sides The number of sides the dice has, defaults to 6.
+	 * @param {String} spriteSheet The index name of the sprite sheet  of the dice.
+	 * @return 
 	 */
 	function Dice(sides, spriteSheet){
 		this.sides = sides || 6;
@@ -22,14 +24,16 @@ var gh = (function(gh){
 	}
 
 	/**
+	 * Roll the dice with the resulting roll being returned.
 	 * @method roll
-	 * @return {Integer}
+	 * @return BinaryExpression
 	 */
 	Dice.prototype.roll = function(){
 		return Math.floor(Math.random() * this.sides) + 1;
 	};
 
 	/**
+	 * Description
 	 * @method draw
 	 * @param {Integer} num The number value of the side of the dice to draw.
 	 * @param {Object}  context The canvas context upon which to draw.
@@ -38,6 +42,7 @@ var gh = (function(gh){
 	 * @param {Integer} w The width fo the image to be drawn.
 	 * @param {Integer} h The height of the image to be drawn.
 	 * @param {Object}  sprites An object containing Sprites indexed by the name of the image.
+	 * @return 
 	 */
 	Dice.prototype.draw = function(num, context, x, y, w, h, sprites){
 		context.drawImage(

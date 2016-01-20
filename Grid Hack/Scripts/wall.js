@@ -4,6 +4,17 @@ var gh = (function(gh){
 
 	console.log("wall.js loaded");
 
+	/**
+	 * Description
+	 * @method Wall
+	 * @param {} side1
+	 * @param {} x1
+	 * @param {} y1
+	 * @param {} side2
+	 * @param {} x2
+	 * @param {} y2
+	 * @return 
+	 */
 	function Wall(side1, x1, y1, side2, x2, y2){
 		this.id         = "wall";
 		this[side1]     = {"x" : x1, "y" : y1};
@@ -18,13 +29,22 @@ var gh = (function(gh){
 		}
 	}
 
-	/** 
+	/**
 	 *  INPUT
 	 *        context: the context upon which to draw
 	 *        x, y:    the x and y pixel coordinates of the cell
 	 *        scale:   the scale at which to draw the walls
 	 *        sprites: a list of sprites loaded into memory.  Not used by Wall at
 	 *                 this juncture.
+	 * @method draw
+	 * @param {} context
+	 * @param {} x
+	 * @param {} y
+	 * @param {} size
+	 * @param {} scale
+	 * @param {} sprites
+	 * @param {} side
+	 * @return 
 	 */
 	Wall.prototype.draw = function(context, x, y, size, scale, sprites, side){
 		context.save();

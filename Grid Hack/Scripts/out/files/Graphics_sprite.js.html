@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -106,10 +109,15 @@
  *        o add cursor hit detection
  *        o this requires a imageData storage component
  *          build this when the sprite is initialized?
+ *
+ * @module graphics
  */
 
 &quot;use strict&quot;
 
+/**
+ * @class graphics
+ */
 var graphics = (function(graphics){
 	console.log(&quot;sprite.js loaded&quot;);
 
@@ -123,10 +131,21 @@ var graphics = (function(graphics){
 	var BLUE     = 2;
 	var ALPHA    = 3;
 
+	/**
+	 * Description
+	 * @method getLoaded
+	 * @return loaded
+	 */
 	graphics.getLoaded = function(){
 		return loaded;
 	};
 	
+	/**
+	 * Description
+	 * @method Sprite
+	 * @param {} path
+	 * @return 
+	 */
 	function Sprite(path){
 		loaded++;
 		this.img 			= new Image();
@@ -137,10 +156,20 @@ var graphics = (function(graphics){
 		this.context = this.canvas.getContext(&#x27;2d&#x27;);
 	}
 
+	/**
+	 * Description
+	 * @method onload
+	 * @return 
+	 */
 	Sprite.prototype.onload = function(){
 		loaded--;
 	};
 
+	/**
+	 * Description
+	 * @method buildImageData
+	 * @return 
+	 */
 	Sprite.prototype.buildImageData = function(){
 		this.context.drawImage(
 			this.img,
@@ -151,6 +180,13 @@ var graphics = (function(graphics){
 		this.data 			= this.imageData.data;
 	};
 
+	/**
+	 * Description
+	 * @method getPixelColor
+	 * @param {} x
+	 * @param {} y
+	 * @return pixel
+	 */
 	Sprite.prototype.getPixelColor = function(x, y){
         if(this.data === undefined){
             return undefined;	
@@ -168,11 +204,28 @@ var graphics = (function(graphics){
 		return pixel;        
 	};
 
+	/**
+	 * Description
+	 * @method isMouseOver
+	 * @param {} x
+	 * @param {} y
+	 * @return Literal
+	 */
 	Sprite.prototype.isMouseOver = function(x, y){
 
         return false;
 	};
 
+	/**
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} x
+	 * @param {} y
+	 * @param {} w
+	 * @param {} h
+	 * @return 
+	 */
 	Sprite.prototype.draw = function(context, x, y, w, h){
 		context.save();
 

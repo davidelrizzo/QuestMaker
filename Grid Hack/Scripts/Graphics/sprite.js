@@ -8,10 +8,15 @@
  *        o add cursor hit detection
  *        o this requires a imageData storage component
  *          build this when the sprite is initialized?
+ *
+ * @module graphics
  */
 
 "use strict"
 
+/**
+ * @class graphics
+ */
 var graphics = (function(graphics){
 	console.log("sprite.js loaded");
 
@@ -25,10 +30,23 @@ var graphics = (function(graphics){
 	var BLUE     = 2;
 	var ALPHA    = 3;
 
+	/**
+	 * Description
+	 * @method getLoaded
+	 * @return loaded
+	 */
 	graphics.getLoaded = function(){
 		return loaded;
 	};
 	
+	/**
+	 * Description
+	 * @class Sprite
+	 * @constructor
+	 * @method Sprite
+	 * @param {} path
+	 * @return 
+	 */
 	function Sprite(path){
 		loaded++;
 		this.img 			= new Image();
@@ -39,10 +57,20 @@ var graphics = (function(graphics){
 		this.context = this.canvas.getContext('2d');
 	}
 
+	/**
+	 * Description
+	 * @method onload
+	 * @return 
+	 */
 	Sprite.prototype.onload = function(){
 		loaded--;
 	};
 
+	/**
+	 * Description
+	 * @method buildImageData
+	 * @return 
+	 */
 	Sprite.prototype.buildImageData = function(){
 		this.context.drawImage(
 			this.img,
@@ -53,6 +81,13 @@ var graphics = (function(graphics){
 		this.data 			= this.imageData.data;
 	};
 
+	/**
+	 * Description
+	 * @method getPixelColor
+	 * @param {} x
+	 * @param {} y
+	 * @return pixel
+	 */
 	Sprite.prototype.getPixelColor = function(x, y){
         if(this.data === undefined){
             return undefined;	
@@ -70,11 +105,28 @@ var graphics = (function(graphics){
 		return pixel;        
 	};
 
+	/**
+	 * Description
+	 * @method isMouseOver
+	 * @param {} x
+	 * @param {} y
+	 * @return Literal
+	 */
 	Sprite.prototype.isMouseOver = function(x, y){
 
         return false;
 	};
 
+	/**
+	 * Description
+	 * @method draw
+	 * @param {} context
+	 * @param {} x
+	 * @param {} y
+	 * @param {} w
+	 * @param {} h
+	 * @return 
+	 */
 	Sprite.prototype.draw = function(context, x, y, w, h){
 		context.save();
 

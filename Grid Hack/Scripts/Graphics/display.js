@@ -13,6 +13,12 @@
 var graphics = (function(graphics){
 	console.log("display.js loaded");
 
+	/**
+	 * Description
+	 * @method Display
+	 * @param {} canvasID
+	 * @return 
+	 */
 	function Display(canvasID){
 		this.canvas 	= document.getElementById(canvasID);
 		this.context	= this.canvas.getContext("2d");
@@ -21,10 +27,22 @@ var graphics = (function(graphics){
 		this.offset     = {"x" : 0, "y" : 0};
 	}
 
+	/**
+	 * Description
+	 * @method clear
+	 * @return 
+	 */
 	Display.prototype.clear = function(){
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	};
 
+	/**
+	 * Description
+	 * @method getMouseToCell
+	 * @param {} x
+	 * @param {} y
+	 * @return pos
+	 */
 	Display.prototype.getMouseToCell = function(x, y){
 		var pos = {};
 

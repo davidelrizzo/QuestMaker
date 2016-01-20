@@ -247,9 +247,9 @@
 		],
 		"objects" 	: [],
 		"agents"	: [
-			{"id" : "Orc", "position" : {"x" : 2, "y" : 11}, "faction" : "Zargon"},
-			{"id" : "Orc", "position" : {"x" : 7, "y" : 13}, "faction" : "Zargon"},
-			{"id" : "Orc", "position" : {"x" : 8, "y" : 14}, "faction" : "Zargon"}
+			{"name" : "Orc", "id" : "Orc01", "position" : {"x" : 2, "y" : 11}, "faction" : "Zargon"},
+			{"name" : "Orc", "id" : "Orc02", "position" : {"x" : 7, "y" : 13}, "faction" : "Zargon"},
+			{"name" : "Orc", "id" : "Orc03", "position" : {"x" : 8, "y" : 14}, "faction" : "Zargon"}
 		]
 	}
 }

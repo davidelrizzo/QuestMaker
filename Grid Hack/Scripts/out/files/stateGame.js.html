@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -118,19 +121,13 @@ var gh = (function(gh){
 		/**
 		 * This method must be called prior to the run method.
 		 * It is responsible for:
-		 * 1) Setting up the games player turn order
-		 * 2) Setting up the message listening queue&#x27;s for agents, objects, borders, cells and triggers.
-		 *
+		 * 1) Setting up the message listening queue&#x27;s for agents, objects, borders, cells and triggers.
 		 * @method initialize
+		 * @return 
 		 */
 		stateGame.initialize = function(){
 
-			/**
-			 * Setup the turn order
-			 */
-			//stateGame.turnOrder = new gh.Turn([&quot;Empire&quot;, &quot;Zargon&quot;],gh.ptrActiveLevel.heroes, undefined);
-
-			/**
+			/**	
 			 * Setup message listeners
 			 */
 
@@ -146,11 +143,14 @@ var gh = (function(gh){
 			console.log(gh.ptrActiveLevel.turnOrder);
 
 			stateGame.diceA = new gh.Dice(6, &quot;dice1.png&quot;);
+			stateGame.diceB = new gh.Dice(6, &quot;dice1.png&quot;);
+			gh.ptrActiveLevel.heroes[0].newTurn(stateGame.diceA);
 		};
 
 		/**
-		 * This method calls the update and render methods.  If there is no
+		 * This method calls the update and render methods.
 		 * @method run
+		 * @return Literal
 		 */
 		stateGame.run = function(){
 			this.update();
@@ -161,9 +161,8 @@ var gh = (function(gh){
 
 		/**
 		 * This method adjudicates user mouse and keyboard input and updates message queues accordingly.
-		 * 
 		 * @method update
-		 * @return {string} id of the Grid Hack game state to continue with: &quot;stateGame&quot; or &quot;stateExit&quot;.
+		 * @return Literal
 		 */
 		stateGame.update = function(){
 			var selectedCell = gh.display.getMouseToCell(input.mouse.x, input.mouse.y);
@@ -237,23 +236,49 @@ var gh = (function(gh){
 				gh.display.offset.x += 5;
 			}
 
-
 			// character movement input
 			if(input.keyboard.isPressed(input.keyboard.A)){
-				console.log(&quot;A key pressed&quot;);
-				this.msgPump.postMessage(&quot;move&quot;, {&quot;direction&quot; : &quot;left&quot;, &quot;floor&quot; : gh.ptrActiveLevel.map.floor, &quot;agents&quot; : gh.ptrActiveLevel.agents, &quot;objects&quot; : undefined});
+				this.msgPump.postMessage(
+					&quot;move&quot;, 
+					{
+						&quot;direction&quot; : &quot;left&quot;, 
+						&quot;map&quot; 		: gh.ptrActiveLevel.map, 
+						&quot;agents&quot; 	: gh.ptrActiveLevel.agents, 
+						&quot;objects&quot; 	: undefined
+					});
 				input.keyboard.key[input.keyboard.A].pressed = false;
 			}
 			if(input.keyboard.isPressed(input.keyboard.D)){
-				this.msgPump.postMessage(&quot;move&quot;, {&quot;direction&quot; : &quot;right&quot;, &quot;floor&quot; : gh.ptrActiveLevel.map.floor, &quot;agents&quot; : gh.ptrActiveLevel.agents, &quot;objects&quot; : undefined});
+				this.msgPump.postMessage(
+					&quot;move&quot;, 
+					{
+						&quot;direction&quot; : &quot;right&quot;, 
+						&quot;map&quot; 		: gh.ptrActiveLevel.map, 
+						&quot;agents&quot; 	: gh.ptrActiveLevel.agents, 
+						&quot;objects&quot; 	: undefined
+					});
 				input.keyboard.key[input.keyboard.D].pressed = false;
 			}
 			if(input.keyboard.isPressed(input.keyboard.S)){
-				this.msgPump.postMessage(&quot;move&quot;, {&quot;direction&quot; : &quot;down&quot;, &quot;floor&quot; : gh.ptrActiveLevel.map.floor, &quot;agents&quot; : gh.ptrActiveLevel.agents, &quot;objects&quot; : undefined});
+				this.msgPump.postMessage(
+					&quot;move&quot;, 
+					{
+						&quot;direction&quot; : &quot;down&quot;, 
+						&quot;map&quot; 		: gh.ptrActiveLevel.map, 
+						&quot;agents&quot; 	: gh.ptrActiveLevel.agents, 
+						&quot;objects&quot; 	: undefined
+					});
 				input.keyboard.key[input.keyboard.S].pressed = false;
 			}
 			if(input.keyboard.isPressed(input.keyboard.W)){
-				this.msgPump.postMessage(&quot;move&quot;, {&quot;direction&quot; : &quot;up&quot;, &quot;floor&quot; : gh.ptrActiveLevel.map.floor, &quot;agents&quot; : gh.ptrActiveLevel.agents, &quot;objects&quot; : undefined});
+				this.msgPump.postMessage(
+					&quot;move&quot;, 
+					{
+						&quot;direction&quot; : &quot;up&quot;, 
+						&quot;map&quot; 		: gh.ptrActiveLevel.map, 
+						&quot;agents&quot; 	: gh.ptrActiveLevel.agents, 
+						&quot;objects&quot; 	: undefined
+					});
 				input.keyboard.key[input.keyboard.W].pressed = false;
 			}
 
@@ -265,8 +290,8 @@ var gh = (function(gh){
 
 		/**
 		 * This method draws the board to the canvas with respect to a players (team) view.
-		 *
 		 * @method render
+		 * @return 
 		 */
 		stateGame.render = function(){
 			gh.display.clear();
@@ -279,34 +304,39 @@ var gh = (function(gh){
 			gh.display.context.fillRect(0, 0, gh.display.canvas.width, gh.display.canvas.height);
 			gh.display.context.restore();
 
-			gh.ptrActiveLevel.map.drawFloor(
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.offset, 
-				gh.assets.sprites,
-				&quot;Empire&quot;);
-
-			gh.ptrActiveLevel.drawAgents(
+			gh.ptrActiveLevel.draw(
 				gh.display.context,
 				gh.display.scale,
 				gh.display.cellSize,
 				gh.display.offset,
+				gh.assets.sprites,
 				&quot;Empire&quot;);
-
-			gh.ptrActiveLevel.map.drawGrid(
-				gh.display.canvas, 
-				gh.display.context, 
-				gh.display.scale, 
-				gh.display.offset);
 
 			/**
 			 * Draw the hud
 			 */
-			stateGame.diceA.draw(
-				3, 
-				gh.display.context, 
-				64, 64, 64*gh.display.scale, 64*gh.display.scale, 
-				gh.assets.sprites);
+			var n = gh.ptrActiveLevel.heroes[0].move;
+			if( (n-6) &gt; 0 ){
+				stateGame.diceA.draw(
+					6, 
+					gh.display.context, 
+					64, 64, 64*gh.display.scale, 64*gh.display.scale, 
+					gh.assets.sprites);
+
+				stateGame.diceB.draw(
+					n-6,
+					gh.display.context,
+					128, 64, 64 * gh.display.scale, 64 * gh.display.scale,
+					gh.assets.sprites);
+			} else {
+				stateGame.diceA.draw(
+					n,
+					gh.display.context,
+					64, 64, 64*gh.display.scale, 64*gh.display.scale, 
+					gh.assets.sprites);
+			}
+
+			gh.hud.draw();
 		};
 
 		return stateGame;

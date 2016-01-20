@@ -41,23 +41,26 @@
                                 <li><a href="../classes/Agent.html">Agent</a></li>
                                 <li><a href="../classes/assets.html">assets</a></li>
                                 <li><a href="../classes/Cell.html">Cell</a></li>
-                                <li><a href="../classes/Computer.html">Computer</a></li>
                                 <li><a href="../classes/Dice.html">Dice</a></li>
+                                <li><a href="../classes/EntryTrigger.html">EntryTrigger</a></li>
                                 <li><a href="../classes/gh.html">gh</a></li>
+                                <li><a href="../classes/graphics.html">graphics</a></li>
                                 <li><a href="../classes/input.html">input</a></li>
                                 <li><a href="../classes/json.html">json</a></li>
                                 <li><a href="../classes/keybaord.html">keybaord</a></li>
                                 <li><a href="../classes/Level.html">Level</a></li>
                                 <li><a href="../classes/Map.html">Map</a></li>
                                 <li><a href="../classes/mouse.html">mouse</a></li>
-                                <li><a href="../classes/Player.html">Player</a></li>
                                 <li><a href="../classes/stateGame.html">stateGame</a></li>
+                                <li><a href="../classes/stateSetup.html">stateSetup</a></li>
+                                <li><a href="../classes/Trigger.html">Trigger</a></li>
                                 <li><a href="../classes/User.html">User</a></li>
                             </ul>
                 
                 
                             <ul id="api-modules" class="apis modules">
                                 <li><a href="../modules/gh.html">gh</a></li>
+                                <li><a href="../modules/graphics.html">graphics</a></li>
                                 <li><a href="../modules/input.html">input</a></li>
                             </ul>
                         </div>
@@ -109,38 +112,20 @@ var gh = (function(gh){
 
 
 	/**
-	 * @class User
 	 * @constructor
+	 * @class User
+	 * @method User
+	 * @param {String} team The name of the team which the user &#x27;player&#x27; belongs to.
+	 * @param {Array} roster An array containing the agents belonging to the user.
+	 * @return 
 	 */
-	function User(team, agents){
+	function User(team, roster){
 		this.team = team;
+		this.roster = roster;
 	}
-
-    /**
-     * @class Player
-     * @extends User
-     * @constructor
-     */
-	function Player(name, team, agents){
-		User.call(this, team, agents);
-		this.name = name;
-	}
-	Player.prototype = Object.create(User.prototype);
-
-    /**
-     * @class Computer
-     * @extends User
-     * @constructor
-     */
-	function Computer(team, agents){
-		User.call(this, team, agents);
-	}
-	Computer.prototype = Object.create(User.prototype);
 
 
 	gh.User = User;
-	gh.Player = Player;
-	gh.Computer = Computer;
 	
 	return gh;
 })(gh || {});

@@ -32,15 +32,14 @@ var input = (function(input){
 		keyboard.key = {};
 
 		/**
+		 * Description
 		 * @event onKeyDown
+		 * @method onKeyDown
 		 * @param {event} evt An event which contains the relevant KeyCode data.
+		 * @return 
 		 */
 		keyboard.onKeyDown = function(evt){
-			console.log(evt.keyCode);
-//			keyboard.key[evt.keyCode] = true;
 			keyboard.key[evt.keyCode] = keyboard.key[evt.keyCode] || {};
-
-//			console.log(keyboard);
 
 			if(keyboard.key[evt.keyCode].pressed === true){
 				keyboard.key[evt.keyCode].repeat = true;
@@ -52,8 +51,11 @@ var input = (function(input){
 		};
 
 		/**
+		 * Description
 		 * @event onKeyUp
+		 * @method onKeyUp
 		 * @param {event} evt An event which contains the relevant KeyCode data.
+		 * @return 
 		 */
 		keyboard.onKeyUp = function(evt){
 			keyboard.key[evt.keyCode].pressed = false;
@@ -65,16 +67,9 @@ var input = (function(input){
 		 *  
 		 * @method isPressed
 		 * @param {Integer} key The ascii value of the key for which to querry its state.
+		 * @return Literal
 		 */
 		keyboard.isPressed = function(key){
-			//console.log(key);
-			//console.log(this.key[key]);
-
-/*
-			if(!keyboard.key){
-				return false;
-			}
-*/
 			if(keyboard.key[key]){
 				if(keyboard.key[key].pressed === true && keyboard.key[key].repeat === false){
 					return true;
