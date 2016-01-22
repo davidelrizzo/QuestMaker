@@ -15,6 +15,15 @@ var gh = (function(gh){
      */
 	var stateGame = (function(stateGame){
 
+		/**
+		 * Private globals
+		 */
+		var d6 	= new gh.Dice(6, "dice1.png");
+
+
+		/**
+		 * Public globals
+		 */
 		stateGame.msgPump = new stdlib.MessagePump();
 
 		/**
@@ -28,6 +37,7 @@ var gh = (function(gh){
 
 			gh.hud.setup();
 
+			console.log(gh);
 
 			/**	
 			 * Setup message listeners
@@ -46,19 +56,19 @@ var gh = (function(gh){
 				this.msgPump.addListener("onClick", doors[it], "onUse");
 			}
 
-			// Add the agents to the listening queue
-			//this.msgPump.addListener("move", gh.ptrActiveLevel.heroes[0], "onMove");
-			console.log(gh.ptrActiveLevel.agents);
-			for(var it = 0; it < gh.ptrActiveLevel.agents.length; it++){
-				this.msgPump.addListener("move", gh.ptrActiveLevel.agents[it], "onMove");
-			}
-
 			stateGame.diceA = new gh.Dice(6, "dice1.png");
 			stateGame.diceB = new gh.Dice(6, "dice1.png");
 
+
 			// Set the first turn to the first agent.
-			gh.ptrActiveLevel.heroes[0].newTurn(stateGame.diceA);
-			gh.ptrActiveLevel.activeAgent = gh.ptrActiveLevel.agents[0];
+			var manager = gh.ptrActiveLevel.manager;
+			var player  = manager.players[manager.activePlayer];
+			var agent 	= player.roster[player.activeAgent];
+			agent.newTurn(stateGame.diceA);
+
+			this.msgPump.addListener("move", agent, "onMove");
+
+			console.log(agent);
 		};
 
 		/**
@@ -80,7 +90,10 @@ var gh = (function(gh){
 		 */
 		stateGame.update = function(){
 			if(gh.hud.buttonEndTurn.clicked === true){
-				this.msgPump.removeListener("move", gh.ptrActiveLevel.activeAgent);
+				this.msgPump.removeListener("move", gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent());
+				gh.ptrActiveLevel.manager.setNextTurn();
+				this.msgPump.addListener("move", gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent(), "onMove");
+				gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent().newTurn(d6);
 				gh.hud.buttonEndTurn.clicked = false;
 			}
 
@@ -234,7 +247,8 @@ var gh = (function(gh){
 			/**
 			 * Draw the hud
 			 */
-			var n = gh.ptrActiveLevel.heroes[0].move;
+			//var n = gh.ptrActiveLevel.heroes[0].move;
+			var n = gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent().move;
 			if( (n-6) > 0 ){
 				stateGame.diceA.draw(
 					6, 

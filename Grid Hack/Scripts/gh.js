@@ -40,6 +40,16 @@ var gh = (function(gh){
 		gh.loadCampaignData();
 		gh.loadAssets();
 
+		/**
+		 * Add user
+		 */
+		gh.ptrActiveLevel.players.push(
+			new gh.Player("Empire", false, [])
+		);
+
+		var player = gh.ptrActiveLevel.getPlayer("Empire");
+		//player.roster = player.roster.concat(gh.ptrActiveLevel.heroes);
+
 		gh.stateSetup.initialize();
 
 		console.log(this);

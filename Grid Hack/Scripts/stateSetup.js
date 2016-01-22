@@ -8,6 +8,7 @@
  * @class gh
  */
 var gh = (function(gh){
+	console.log("stateSetup.js loaded");
 
 	/**
 	 * DESC This class singleton handles the setup phase of the game.
@@ -34,7 +35,6 @@ var gh = (function(gh){
 	 * @class stateSetup
 	 */
 	var stateSetup = (function(stateSetup){
-		console.log("stateSetup.js loaded");
 
 		/**
 		 * Private globals
@@ -54,8 +54,6 @@ var gh = (function(gh){
 		 * @return 
 		 */
 		stateSetup.initialize = function(){
-			console.log("initialize");
-
             // Add the entry trigger message handlers.
             var entryT = gh.ptrActiveLevel.triggers.entry;
             for(var it = 0; it < entryT.length; it++){
@@ -67,9 +65,8 @@ var gh = (function(gh){
             for(var it = 0; it < entryT.length; it++){
             	entryT[it].active = true;
             }
-            console.log(entryT);
 
-            this.msgPump.addListener("addPlayer", this, "addPlayer");
+            this.msgPump.addListener("addPlayer", this, "addPlayerAgent");
 
             // Add the agent onMouseOver message handlers.
             
@@ -99,6 +96,9 @@ var gh = (function(gh){
 					}
 				}            	
             }
+
+ 			gh.ptrActiveLevel.manager = new gh.Manager(gh.ptrActiveLevel.players);
+ 			gh.ptrActiveLevel.manager.setActivePlayer("Empire");
 		};
 
 		/**
@@ -267,52 +267,70 @@ var gh = (function(gh){
 			}
 		} 	
 
-
 		/**
-		 * Description
-		 * @event addPlayer
-		 * @method addPlayer
-		 * @param {Integer} args.y
-		 * @return 
+		 * This method adds an agent to a players roster
+		 * @event addPlayerAgent
+		 * @method addPlayerAgent
+		 * @param {} args
+		 * @return
 		 */
-		stateSetup.addPlayer = function(args){
+		stateSetup.addPlayerAgent = function(args){
+			console.log("addPlayerAgent");
+			if(gh.ptrActiveLevel.heroes === undefined){
+				return;
+			}
 
-			// get a hero to place
-			if(gh.ptrActiveLevel.heroes !== undefined){
-				var it = 0;
-				while(gh.ptrActiveLevel.heroes[it].position !== undefined){
-					it++;
-				}
+			// get the active player
+			var player = gh.ptrActiveLevel.manager.getActivePlayer();
 
-				var hero = gh.ptrActiveLevel.heroes[it];
+			// get the first unasigned player agent to place
+			var it = 0;
+			while(gh.ptrActiveLevel.heroes[it].position !== undefined){
+				it++;
+			}
 
-				// Check if a hero is alread on the board.
-				// If so, remove that one.
-				//var agents = gh.ptrActiveLevel.map.getAgentsAt(args.x, args.y);
-				var agents = gh.ptrActiveLevel.map.floor[args.y][args.x].agents;
+			var hero = gh.ptrActiveLevel.heroes[it];
+			hero.position = {"x" : args.x, "y" : args.y};
 
-				for(var c = 0; c < gh.ptrActiveLevel.agents.length; c++){
-					if(gh.ptrActiveLevel.agents[c].position.x === args.x && gh.ptrActiveLevel.agents[c].position.y === args.y){
-						gh.ptrActiveLevel.agents[c].position = undefined;
-						gh.ptrActiveLevel.agents.splice(c, 1);
-						c--;
-						placed--;
+			// Is there a hero already at that location on the board?
+			// If so, remove it from the board and player roster.
+			var agents = gh.ptrActiveLevel.map.floor[args.y][args.x].agents || [];
+			for(var it = 0; it < agents.length; it++){
+				var a = agents[it];
+
+				a.position = undefined;
+
+				// Remove the hero from the map
+				agents.splice(it, 1);
+
+				// Remove the hero from the player'r roster
+				for(var p = 0; p < gh.ptrActiveLevel.manager.players.length; p++){
+					for(var n = 0; n < gh.ptrActiveLevel.manager.players[p].roster.length; n++){
+						if(a === gh.ptrActiveLevel.manager.players[p].roster[n]){
+							gh.ptrActiveLevel.manager.players[p].roster.shift(n, 1);
+							n--;
+						}
 					}
 				}
 
-				hero.position = {};
-				hero.position.x = args.x;
-				hero.position.y = args.y;
-
-				gh.ptrActiveLevel.agents.unshift(hero);
-
-				gh.ptrActiveLevel.map.floor[args.y][args.x].agents = gh.ptrActiveLevel.map.floor[args.y][args.x].agents || [];
-				gh.ptrActiveLevel.map.floor[args.y][args.x].agents.push(hero);
-
-				placed++;
+				placed--;
 			}
-		};
 
+			// add the hero to the cell?
+			gh.ptrActiveLevel.map.floor[args.y][args.x].agents = gh.ptrActiveLevel.map.floor[args.y][args.x].agents || [];
+			gh.ptrActiveLevel.map.floor[args.y][args.x].agents.push(hero);
+
+			// add the hero to the player roster?
+			player.roster = player.roster || [];
+			player.roster.push(hero);
+
+			// add the hero to the agent queue?
+
+			console.log(gh.ptrActiveLevel);
+
+			placed++;
+
+		};
 
 		return stateSetup;		
 	})(stateSetup || {});

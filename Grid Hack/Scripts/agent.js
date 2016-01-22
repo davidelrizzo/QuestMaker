@@ -1,4 +1,15 @@
 /**
+ * CLASS Agent
+ * METHODS
+ * function Agent(name, id, position, team, sprites, moveDice, baseMove, active)
+ * Agent.prototype.newTurn = function(dice)
+ * Agent.prototype.draw = function(imgState, spriteTable, context, scale, cellSize, offset)
+ * Agent.prototype.onMove = function(args)
+ * Agent.prototype.onMouseOver = function(args)
+ * Agent.prototype.isMouseOver = function(cellX, cellY, mouseX, mouseY, cellSize, offset, scale)
+ * 
+ * 
+ * 
  * @module gh
  */
 
@@ -38,7 +49,10 @@ var gh = (function(gh){
 	}
 
 	/**
-	 * Description
+	 * This method must be called when an agent's turn is initiated.  It resets paramaters such as actions used,
+	 * or movement undertaken to 0, and generates other paramaters, such as possible movement by 'rolling' the
+	 * movement dice.
+	 *
 	 * @method newTurn
 	 * @param {Object} dice A dice of the requisite number of sides to be used when 'rolling' the agents potential movement.
 	 * @return 

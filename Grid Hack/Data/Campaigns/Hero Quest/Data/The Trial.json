@@ -3,6 +3,17 @@
 	"introText"			: "You have learned well, my friends. Now has come the in the catacombs. This Quest is not easy and you must time of your first trial. You must first enter the work together in order to survive. This is your first catacombs which contain Fellmarg’s Tomb. You must step on the road to becoming true Heroes. Tread seek out and destroy Verag, a foul Gargoyle who hides carefully my friends.",
 	"numHeroes"			: 4,
 	"availableHeroes"	: [ "Barbarian", "Elf", "Dwarf", "Wizard"],
+	"players"			: [
+		{
+			"name" 	: "Zargon",
+			"AI" 	: true, 
+			"roster" : [
+				{"name" : "Orc", "id" : "Orc01", "position" : {"x" : 2, "y" : 11}, "faction" : "Zargon"},
+				{"name" : "Orc", "id" : "Orc02", "position" : {"x" : 7, "y" : 13}, "faction" : "Zargon"},
+				{"name" : "Orc", "id" : "Orc03", "position" : {"x" : 8, "y" : 14}, "faction" : "Zargon"}
+			]
+		}
+	],
 	"teams"			: {
 		"Empire"			: {"hostile" : ["Zargon"], "allies" : ["Empire"]},
 		"Zargon"			: {"hostile" : ["Empire"], "allies" : ["Zargon"]}

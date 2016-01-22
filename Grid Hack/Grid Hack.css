@@ -31,8 +31,3 @@ body{
 #ghCanvas{
 	position: absolute;
 }
-
-#endTurn{
-	position: relative;
-	z-index: 10;
-}

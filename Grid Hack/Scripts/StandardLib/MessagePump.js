@@ -72,10 +72,8 @@ var stdlib = (function(stdlib){
         console.log(arguments);
         for(var it = 0; it < this.listeners[msg].length; it++){
             if(el === this.listeners[msg][it].el){
-                console.log(this.listeners[msg][it]);
                 this.listeners[msg].splice(it, 1);
                 it--;
-                console.log(this.listeners[msg]);
             }
         }
     };

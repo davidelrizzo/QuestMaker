@@ -1,12 +1,22 @@
+/**
+ * @module gh
+ */
+
 "use strict"
 
+/**
+ * @class gh
+ */
 var gh = (function(gh){
+	console.log("team.js loaded");
 
 	/**
 	 * Description
+	 * @class Team
+	 * @constructor
 	 * @method Team
-	 * @param {} name
-	 * @param {} relations
+	 * @param {String} name
+	 * @param {Object} relations
 	 * @return 
 	 */
 	function Team(name, relations){

@@ -29,6 +29,7 @@ var gh = (function(gh){
 	 * 'directory'/'campaignName'
 	 * 'directory'/'campaignName'/Data/ - This folder houses the relevant json assets
 	 * 'directory'/'campaignName'/Graphics/ - This folder houses the relevant graphic assets
+	 *
 	 * @method getCampaign
 	 * @param {String} directory The directory in which the campaign data is located.
 	 * @param {String} campaignName The name of the campaign json file.
@@ -52,7 +53,8 @@ var gh = (function(gh){
 	}
 
 	/**
-	 * Description
+	 * Generic AJAX JSON file loader.
+	 *
 	 * @method loadDataFile
 	 * @param {} path
 	 * @return data
@@ -99,18 +101,19 @@ var gh = (function(gh){
 	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates){
 		var jsonLevel   = gh.json.loadDataFile(directory + "Data/" + levelName + ".json");		
 		var teams       = gh.json.getTeams(jsonLevel.teams);
-		var agents 	 	= gh.json.getAgents(jsonLevel.mapData.agents, jsonAgentTemplates, directory);
+		var players 	= gh.json.getPlayers(jsonLevel.players, jsonAgentTemplates);
+		var agents 		= gh.json.buildAgentList(players);
 		var items 		= undefined;
 		var triggers    = gh.json.getTriggers(jsonLevel.mapData.triggers);
 		var floor 		= gh.json.getFloor(
 			jsonLevel.mapData.map, 
 			directory, 
 			jsonLevel.stdGraphics,
-			agents,
+			players,
 			items,
 			triggers);
 		var map 		= new gh.Map(floor);
-
+		
 		var level = new gh.Level(
 			jsonLevel.name, 
 			jsonLevel.introText, 
@@ -118,6 +121,7 @@ var gh = (function(gh){
 			jsonLevel.availableHeroes, 
 			teams,
 			map,
+			players,
 			agents,
 			triggers,
 			jsonLevel.stdGraphics);
@@ -139,6 +143,34 @@ var gh = (function(gh){
 		}
 
 		return teams;
+	};
+
+	gh.json.getPlayers = function(jsonPlayers, jsonAgentTemplates){
+		jsonPlayers = jsonPlayers || [];
+
+		var players = [];
+		for(var it = 0; it < jsonPlayers.length; it++){
+			players.push(
+				new gh.Player(
+					jsonPlayers[it].name, 
+					jsonPlayers[it].AI, 
+					gh.json.getAgents(jsonPlayers[it].roster, jsonAgentTemplates))
+			);
+		}
+
+		return players;
+	};
+
+	gh.json.buildAgentList = function(players){
+		var agents = [];
+		players = players || [];
+
+		for(var it = 0; it < players.length; it++){
+			players[it].roster = players[it].roster || [];
+			agents = agents.concat(players[it].roster);
+		}
+
+		return agents;
 	};
 
 	/**
@@ -179,7 +211,7 @@ var gh = (function(gh){
 	 * @param {} triggers
 	 * @return floor
 	 */
-	gh.json.getFloor = function(jsonMap, directory, jsonStdGraphics, agents, itmes, triggers){
+	gh.json.getFloor = function(jsonMap, directory, jsonStdGraphics, players, itmes, triggers){
 		var floor = [];
 
 		for(var y = 0; y < jsonMap.length; y++){
@@ -249,7 +281,7 @@ var gh = (function(gh){
 					x, 
 					y, 
 					jsonMap[y][x].walkable,
-					undefined,					// walkable
+					undefined,					// visible
 					border,
 					undefined,					// items
 					undefined,					// agents
@@ -259,14 +291,31 @@ var gh = (function(gh){
 			}
 		}
 
-		this.addAgents(floor, agents);
+		this.addPlayerAgentsToMap(floor, players);
 		this.addTriggers(floor, triggers);
 
 		return floor;
 	};
 
 	/**
+	 *
+	 */
+	gh.json.addPlayerAgentsToMap = function(map, players){
+		players = players || [];
+		for(var it = 0; it < players.length; it++){
+			players[it].roster = players[it].roster || [];
+			for(var a = 0; a < players[it].roster.length; a++){
+				var agent = players[it].roster[a];
+				map[agent.position.y][agent.position.x].agents = map[agent.position.y][agent.position.x].agents || [];
+				map[agent.position.y][agent.position.x].agents.push(agent);
+			}
+		}
+	};
+
+	/**
 	 * Description
+	 *
+	 * @depreciated
 	 * @method addAgents
 	 * @param {} map
 	 * @param {} agents
@@ -302,7 +351,9 @@ var gh = (function(gh){
 	 * location in the 2d array.
 	 * This method has been depreciated and no longer part of the framework.
 	 * A key weakness of this method is it does not (without alteration) permit multible agents to occupy a cell.
+	 *
 	 * @method getAgentGrid
+	 * @depreciated
 	 * @param {} jsonAgents
 	 * @param {} jsonAgentTemplates
 	 * @param {String} directory This variable is currently not utilized by the method.

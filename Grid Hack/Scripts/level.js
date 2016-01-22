@@ -20,21 +20,26 @@ var gh = (function(gh){
 	 * @param {Array} availableHeroes An array of 
 	 * @param {} teams
 	 * @param {} map
+	 * @param {} players
 	 * @param {} agents
 	 * @param {} triggers
 	 * @param {} stdGraphics
 	 * @return 
 	 */
-	function Level(name, introText, maxHeroes, availableHeroes, teams, map, agents, triggers, stdGraphics){
+	function Level(name, introText, maxHeroes, availableHeroes, teams, map, players, agents, triggers, stdGraphics){
 		this.name               = name;
 		this.introText          = introText;
 		this.maxHeroes          = maxHeroes;
 		this.availableHeroes    = availableHeroes;
 		this.teams              = teams;
 		this.map			    = map;
+		this.players 			= players;
 		this.agents 			= agents;
 		this.triggers 			= triggers;
 		this.stdGraphics        = stdGraphics;
+
+		this.heroes 			= undefined;
+		this.manager 			= undefined;
 	}
 
 	/**
@@ -100,6 +105,23 @@ var gh = (function(gh){
 		for(var it = 0; it < this.triggers.entry.length; it++){
 			//if(this.triggers)
 		}  
+	}
+
+	/**
+	 * This method finds a player of a given name and returns it or undefined.
+	 * @method getPlayer
+	 * @param {String} name The name of the player to be found.
+	 */
+	Level.prototype.getPlayer = function(name){
+		var players = this.players || [];
+
+		for(var it = 0; it < players.length; it++){
+			if(players[it].name === name){
+				return players[it];
+			}
+		}
+
+		return undefined;
 	}
 
 	gh.Level = Level;
