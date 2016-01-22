@@ -1,0 +1,36 @@
+
+var campaignJSON = {
+
+  "name": "HeroQuest",
+
+  "creatures": {
+    "barbarian": {
+      "name":"Barbarian"
+    }
+  },
+
+
+  "levels": [
+    {
+      "name": "The Trial",
+      "map": [
+        [
+          { "wallTop":{"type":"stone"}, "wallLeft":{"type":"stone"}, "floor":{"x":0,"y":0,"rotation":0} },
+          { "wallTop":{"type":"stone"}, "floor":{"x":70,"y":0,"rotation":90} },
+          { "wallLeft":{"type":"stone"}, "wallBottom":{"type":"stone"}, "floor":{"x":140,"y":0,"rotation":270} },
+        ],
+        [
+          { "wallTop":{"type":"stone"},"floor":{"x":70,"y":0,"rotation":90} },
+          { "trigger":{"type":"entry"},"floor":{"x":140,"y":0,"rotation":90} },
+          { "wallBottom":{"type":"stone"},"floor":{"x":70,"y":0,"rotation":90} }
+        ],
+        [
+          { "wallTop":{"type":"stone"},"wallRight":{"type":"stone"},"floor":{"x":140,"y":0,"rotation":0} },
+          { "wallRight":{"type":"stone"},"floor":{"x":140,"y":0,"rotation":180} },
+          { "wallBottom":{"type":"stone"},"wallRight":{"type":"stone"},"floor":{"x":70,"y":0,"rotation":180} }
+        ]
+      ]
+    }
+  ]
+
+}

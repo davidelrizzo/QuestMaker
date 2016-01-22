@@ -1,0 +1,47 @@
+/* Fonts
+**********************************/
+/*@font-face {
+    font-family: 'heroquestregular';
+    src: url('../fonts/heroquest.woff2') format('woff2'),
+         url('../fonts/heroquest.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+
+
+/* Interface
+**********************************/
+
+* { box-sizing: border-box; }
+html, body { width:100%; height:100%;}
+
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: slategrey url('../img/interface/background_stone.gif');
+}
+
+.title {
+    min-height: 63px;
+    margin: 10px 0 0;
+    text-align: center;
+    font: 0/0 a;
+    color: white;
+    background: url('../img/interface/header.gif') 50% 50% no-repeat;
+}
+
+canvas {
+    height:100%;
+    margin: 15px 20px 20px;
+    background: saddlebrown url('../img/interface/background_wood.gif');
+    border-radius: 10px;
+    box-shadow: inset 0 0 40px black;
+}
+
+
+
+/* Utilities
+**********************************/
