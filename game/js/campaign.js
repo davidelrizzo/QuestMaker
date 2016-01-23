@@ -3,27 +3,38 @@ var Campaign = function(initObj) {
   'use strict';
 
 
+  /* Private variables
+  ****************************/
+  initObj = initObj || {};
+
+
   /* Public variables
   ****************************/
-  this.name = "Anonymous campaign";
+  this.name = initObj.name || "Default campaign";
   this.players = [];
   this.currentLevel = null;
 
 
   /* Init
   ****************************/
-  if( initObj.name ) this.name = initObj.name;
-  if( initObj.creatures ) Creature.DATA = initObj.creatures;
-  if( initObj.levels ) Level.DATA = initObj.levels;
+  // Create Creature prototypes for all creatures in initObj.creatures
+  // http://stackoverflow.com/questions/2342490/dynamically-creating-a-new-javascript-class-from-an-existing-object
   console.log( "New Campaign: "+this.name );
+
 
 
   /* Public methods
   ****************************/
+
+  // Returns 'Level' object of next playable level
   this.getNextLevel = function() {
     var newLevel = null;
     if( this.currentLevel === null ) {
-      newLevel = new Level( Level.DATA[0] );
+      if( Array.isArray(initObj.levels) ) {
+        newLevel = new Level( initObj.levels[0] );
+      } else {
+        newLevel = new Level();
+      }
     }
     return newLevel;
   };

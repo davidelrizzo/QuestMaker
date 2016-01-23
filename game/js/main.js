@@ -1,3 +1,4 @@
+
 //(function() {
 
   // Run the main game
@@ -7,11 +8,11 @@
 
 
   // Create new campaign
-  var c = new Campaign(campaignJSON);
-  c.players.push( new Player({ name:"Davide", isHuman:true, creatures:[new Creature("barbarian")] }) );
-  c.players.push( new Player({ name:"Morcar", isHuman:true, }) );
-  c.currentLevel = c.getNextLevel(); // returns Level
-  //c.currentLevel.startLevel();
+  var campaign = new Campaign(campaignJSON);
+  campaign.players.push( new Player({ name:"Davide", isHuman:true, creatures:[{"type":"barbarian"}] }) );
+  campaign.players.push( new Player({ name:"Morcar", isHuman:true, }) );
+  campaign.currentLevel = campaign.getNextLevel(); // returns Level
+  //campaign.currentLevel.startLevel();
 
   // start new level
   // Draw map

@@ -3,30 +3,34 @@ var Level = function(initObj) {
   'use strict';
 
 
-  /* Static variables
+  /* Private variables
   ****************************/
-  //Level.DATA - Blueprint data for all levels
+  initObj = initObj || {};
 
 
   /* Public variables
   ****************************/
-  this.name = "Anonymous level";
-  this.map = [[]];
+  this.name = initObj.name || "Default level";
+  this.map = [];
 
-
-  /* Private methods
-  ****************************/
-  var _buildMap = function(mapDATA) {
-    // Take map JSON data and build 2D array of Class objects
-    console.log( "_buildMap()" );
-  };
 
 
   /* Init
   ****************************/
-  if( initObj.name ) this.name = initObj.name;
+
+  // Build map
+  if( initObj.map ) {
+    for( var x=0 ; x<initObj.map.length ; x++ ) {
+      if( this.map[x] === undefined ) this.map[x] = [];
+      for( var y=0 ; y<initObj.map.length ; y++ ) {
+        initObj.map[x][y].x = x;
+        initObj.map[x][y].y = y;
+        this.map[x][y] = new Tile(initObj.map[x][y]);
+      }
+    }
+  }
+
   console.log( "New Level: "+this.name );
-  if( initObj.map ) this.map = _buildMap(initObj.map);
 
 
 };

@@ -5,16 +5,18 @@ var Player = function(initObj) {
 
   /* Public variables
   ****************************/
-  this.name = "Anonymous player";
-  this.isHuman = true;
+  this.name = initObj.name || "Anonymous player";
+  this.isHuman = initObj.isHuman || true;
   this.creatures = [];
 
 
   /* Init
   ****************************/
-  if( initObj.name ) this.name = initObj.name;
-  if( initObj.isHuman ) this.isAI = initObj.isAI;
-  if( initObj.creatures ) this.creatures.concat( initObj.creatures );
+  if( Array.isArray(initObj.creatures) ) {
+    for( var i=0 ; i<initObj.creatures.length ; i++ ) {
+      this.creatures.push( new Creature( initObj.creatures[i] ) );
+    }
+  }
   console.log( "New Player: "+this.name );
 
 };

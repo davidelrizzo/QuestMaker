@@ -1,5 +1,5 @@
 
-var Creature = function(initObj) {
+var Floor = function(initObj) {
   'use strict';
 
 
@@ -10,14 +10,12 @@ var Creature = function(initObj) {
 
   /* Public variables
   ****************************/
-  this.type = initObj.type || "defaultcreature";
-  this.name = initObj.name || "Default Creature";
+  this.facing = initObj.facing || 0;
   this.graphicsID = initObj.graphicsID || null;
-
 
 
   /* Init
   ****************************/
-  console.log( "New Creature: "+this.name );
+  console.log("New Floor");
 
 };
