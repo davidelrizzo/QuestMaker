@@ -57,18 +57,50 @@ var gh = (function(gh){
 	 */
 	Door.prototype.onUse = function(args){
 		if(this.focus === true){
-			switch(this.open){
-				case true:
-				  this.open = false;
-				  break;
-				case false:
-				  this.open = true;
-				  break;
-				default:
-				  break;
+			if(this.isNextTo(args.agent)){
+				switch(this.open){
+					case true:
+					  this.open = false;
+					  break;
+					case false:
+					  this.open = true;
+					  args.map.updateAgentView(args.agent);
+					  break;
+					default:
+					  break;
+				}
 			}
 		}
+	};
 
+	Door.prototype.isNextTo = function(agent){
+		var pos = agent.position;
+
+		switch(this.side){
+			case "top":
+				if(pos.x === this.top.x && pos.y === this.top.y){
+			  		return true;
+				}
+
+				if(pos.x === this.bottom.x && pos.y === this.bottom.y){
+					return true;
+				}
+				break;
+			case "left":
+				if(pos.x === this.left.x && pos.y === this.left.y){
+					return true;
+				}
+
+				if(pos.x === this.right.x && pos.y === this.right.y){
+					return true;
+				}
+				break;
+			default:
+				return false;
+				break;
+		}
+
+		return false;
 	}
 
     /**
@@ -213,8 +245,6 @@ var gh = (function(gh){
 	Door.prototype.draw = function(context, x, y, size, scale, sprites, side){
 		context.save();
 
-		//console.log("A");
-		//console.log(sprites);
 		if(this.open){
 			if(this.focus){
 				var doorSprite = sprites[this.images.openDoorHighlight];
@@ -222,18 +252,12 @@ var gh = (function(gh){
 				var doorSprite = sprites[this.images.open];
 			}
 		} else {
-			//console.log("B");
 			if(this.focus){
-			//	console.log("D");
 				var doorSprite = sprites[this.images.closedHighlight];
 			} else {
-			//	console.log("C");
 				var doorSprite = sprites[this.images.closed];
 			}
 		}
-
-        //console.log("X");
-		//console.log(doorSprite);
 
 		switch(side){
 			case "top":

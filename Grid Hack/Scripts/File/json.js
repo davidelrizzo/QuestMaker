@@ -38,13 +38,19 @@ var gh = (function(gh){
 	gh.json.getCampaign = function(directory, campaignName){
 		var jsonCampaign 		= gh.json.loadDataFile(directory + campaignName + "/Data/" + campaignName + ".json");
 		var jsonAgentTemplates 	= gh.json.loadDataFile(directory + campaignName + "/Data/creatures.json");
-		var jsonLevels 			= gh.json.getCampaignLevels(jsonCampaign.levels, directory + campaignName + "/", jsonAgentTemplates);
+		var jsonWeaponTemplates = gh.json.loadDataFile(directory + campaignName + "/Data/weapons.json" )
+		var jsonLevels 			= gh.json.getCampaignLevels(
+			jsonCampaign.levels, 
+			directory + campaignName + "/", 
+			jsonAgentTemplates, 
+			jsonWeaponTemplates);
 		
 
 		var campaign = new gh.Campaign(
 			jsonCampaign.name,
 			jsonCampaign.introText,
 			jsonAgentTemplates,
+			jsonWeaponTemplates,
 			jsonLevels);
 
 		campaign.ptrActiveLevel = campaign.levels[0];
@@ -76,14 +82,15 @@ var gh = (function(gh){
 	 * @param {} jsonAgentTemplates
 	 * @return levels
 	 */
-	gh.json.getCampaignLevels = function(jsonLevels, directory, jsonAgentTemplates){
+	gh.json.getCampaignLevels = function(jsonLevels, directory, jsonAgentTemplates, jsonWeaponTemplates){
 		var levels = [];
 
 		for(var it = 0; it < jsonLevels.length; it++){
 			var level = gh.json.getLevel(
 				directory, 
 				jsonLevels[it], 
-				jsonAgentTemplates);
+				jsonAgentTemplates,
+				jsonWeaponTemplates);
 			levels.push(level);
 		}
 
@@ -98,10 +105,10 @@ var gh = (function(gh){
 	 * @param {} jsonAgentTemplates
 	 * @return level
 	 */
-	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates){
+	gh.json.getLevel = function(directory, levelName, jsonAgentTemplates, jsonWeaponTemplates){
 		var jsonLevel   = gh.json.loadDataFile(directory + "Data/" + levelName + ".json");		
 		var teams       = gh.json.getTeams(jsonLevel.teams);
-		var players 	= gh.json.getPlayers(jsonLevel.players, jsonAgentTemplates);
+		var players 	= gh.json.getPlayers(jsonLevel.players, jsonAgentTemplates, jsonWeaponTemplates);
 		var agents 		= gh.json.buildAgentList(players);
 		var items 		= undefined;
 		var triggers    = gh.json.getTriggers(jsonLevel.mapData.triggers);
@@ -145,7 +152,7 @@ var gh = (function(gh){
 		return teams;
 	};
 
-	gh.json.getPlayers = function(jsonPlayers, jsonAgentTemplates){
+	gh.json.getPlayers = function(jsonPlayers, jsonAgentTemplates, jsonWeaponTemplates){
 		jsonPlayers = jsonPlayers || [];
 
 		var players = [];
@@ -154,7 +161,7 @@ var gh = (function(gh){
 				new gh.Player(
 					jsonPlayers[it].name, 
 					jsonPlayers[it].AI, 
-					gh.json.getAgents(jsonPlayers[it].roster, jsonAgentTemplates))
+					gh.json.getAgents(jsonPlayers[it].roster, jsonAgentTemplates, jsonWeaponTemplates))
 			);
 		}
 
@@ -180,10 +187,12 @@ var gh = (function(gh){
 	 * @param {} jsonAgentTemplates
 	 * @return agents
 	 */
-	gh.json.getAgents = function(jsonAgents, jsonAgentTemplates){
+	gh.json.getAgents = function(jsonAgents, jsonAgentTemplates, jsonWeaponTemplates){
 		var agents = [];
 
 		for(var it = 0; it < jsonAgents.length; it++){
+			var mainHand = jsonAgentTemplates[jsonAgents[it].name].mainHand;
+			var weapon = jsonWeaponTemplates[mainHand];
 			agents.push(
 				new gh.Agent(
 					jsonAgents[it].name,
@@ -192,7 +201,16 @@ var gh = (function(gh){
 					jsonAgents[it].faction,
 					jsonAgentTemplates[jsonAgents[it].name].sprites,
 					jsonAgentTemplates[jsonAgents[it].name].moveDice,
-					jsonAgentTemplates[jsonAgents[it].name].baseMove)
+					jsonAgentTemplates[jsonAgents[it].name].baseMove,
+					jsonAgentTemplates[jsonAgents[it].name].baseDefence,
+					new gh.Weapon(
+						weapon.name,
+						weapon.size,
+						weapon.attack,
+						weapon.hands,
+						weapon.range,
+						weapon.diagonal,
+						weapon.cost))
 				);
 		}
 
