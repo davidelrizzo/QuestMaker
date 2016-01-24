@@ -39,7 +39,8 @@ var gh = (function(gh){
 		 * @method
 		 */		
 		hud.buttonEndTurn.onClick = function(args){
-			if(this.isMouseOver){
+			//console.log(args);
+			if(this.isMouseOver(args.mouseX, args.mouseY)){
 				console.log("buttonEndTurn clicked");
 				this.clicked = true;
 			}	

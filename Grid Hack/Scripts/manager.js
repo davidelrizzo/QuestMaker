@@ -64,7 +64,7 @@ var gh = (function(gh){
 	 */
 	function Player(name, AI, roster){
 		this.name 			= name;
-		this.AI 			= AI || true;
+		this.AI 			= AI;
 		this.roster 		= roster || [];
 		this.activeAgent 	= 0;
 	}

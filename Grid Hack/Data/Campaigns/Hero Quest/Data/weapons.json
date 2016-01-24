@@ -24,7 +24,8 @@
 		"hands" : 		1,
 		"range" : 		1,
 		"diagonal" :	false,
-		"cost" : 		250
+		"cost" : 		250,
+		"sprite" : 		"broadsword.png"
 	},
 	"Longsword" : {
 		"name" : 		"longsword",

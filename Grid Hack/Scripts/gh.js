@@ -65,7 +65,7 @@ var gh = (function(gh){
 	gh.loadCampaignData = function(){
 		gh.ptrActiveCampaign 		= gh.json.getCampaign("./Data/Campaigns/", "Hero Quest");
 		gh.ptrActiveLevel 			= gh.ptrActiveCampaign.ptrActiveLevel;
-		gh.ptrActiveLevel.heroes 	= gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates);
+		gh.ptrActiveLevel.heroes 	= gh.generateStartingPlayers(gh.ptrActiveCampaign.agentTemplates, gh.ptrActiveCampaign.weaponTemplates);
 	};
 
 	/**
@@ -79,6 +79,11 @@ var gh = (function(gh){
 		gh.assets.loadAgentSprites(gh.ptrActiveCampaign.agentTemplates, "./Data/Campaigns/" + gh.ptrActiveCampaign.name + "/Graphics/Creatures/");
 		gh.assets.sprites.tokenHighlight = new graphics.Sprite("./Data/Campaigns/" + gh.ptrActiveCampaign.name + "/Graphics/Creatures/tokenHighlight.gif");
 		gh.assets.loadDiceSprites("./Data/Graphics/", "dice1.png");
+
+		console.log("begin load weapon sprites");
+		//\Data\Campaigns\Hero Quest\Graphics\Equipment
+		gh.assets.loadWeaponSprites(gh.ptrActiveCampaign.weaponTemplates, "./Data/Campaigns/" + gh.ptrActiveCampaign.name + "/Graphics/Equipment/");
+		console.log("end load weapon sprites");
 	};
 
 	/**
@@ -98,8 +103,20 @@ var gh = (function(gh){
 	 * @param {json} jsonAgentTemplates A json object which defines the properties of agents in the game.
 	 * @return players
 	 */
-	gh.generateStartingPlayers = function(jsonAgentTemplates){
+	gh.generateStartingPlayers = function(jsonAgentTemplates, jsonWeaponTemplates){
 		var players = [];
+
+		var weaponTemplate = jsonWeaponTemplates[jsonAgentTemplates.Barbarian.mainHand];
+		var weapon = new gh.Weapon(
+			weaponTemplate.name,
+			weaponTemplate.size,
+			weaponTemplate.attack,
+			weaponTemplate.hands,
+			weaponTemplate.range,
+			weaponTemplate.diagonal,
+			weaponTemplate.cost,
+			weaponTemplate.sprite
+			);
 
 		var barbarian = new gh.Agent(
 			"Barbarian",
@@ -107,41 +124,82 @@ var gh = (function(gh){
 			undefined,
 			"Empire",
 			jsonAgentTemplates["Barbarian"].sprites,
-			2,
-			0
+			jsonAgentTemplates["Barbarian"].moveDice,
+			jsonAgentTemplates["Barbarian"].baseMove,
+			jsonAgentTemplates["Barbarian"].baseDefence,
+			weapon
 			);
 		players.push(barbarian);
 
+		weaponTemplate = jsonWeaponTemplates[jsonAgentTemplates.Elf.mainHand];
+		weapon = new gh.Weapon(
+			weaponTemplate.name,
+			weaponTemplate.size,
+			weaponTemplate.attack,
+			weaponTemplate.hands,
+			weaponTemplate.range,
+			weaponTemplate.diagonal,
+			weaponTemplate.cost,
+			weaponTemplate.sprite
+			);
 		var elf = new gh.Agent(
 			"Elf",
 			"Elf01",
 			undefined,
 			"Empire",
 			jsonAgentTemplates["Elf"].sprites,
-			2,
-			0
+			jsonAgentTemplates["Elf"].moveDice,
+			jsonAgentTemplates["Elf"].baseMove,
+			jsonAgentTemplates["Elf"].baseDefence,
+			weapon
 			);
 		players.push(elf);
 
+		weaponTemplate = jsonWeaponTemplates[jsonAgentTemplates.Dwarf.mainHand];
+		weapon = new gh.Weapon(
+			weaponTemplate.name,
+			weaponTemplate.size,
+			weaponTemplate.attack,
+			weaponTemplate.hands,
+			weaponTemplate.range,
+			weaponTemplate.diagonal,
+			weaponTemplate.cost,
+			weaponTemplate.sprite
+			);
 		var dwarf = new gh.Agent(
 			"Dwarf",
 			"Dwarf01",
 			undefined,
 			"Empire",
 			jsonAgentTemplates["Dwarf"].sprites,
-			2,
-			0
+			jsonAgentTemplates["Dwarf"].moveDice,
+			jsonAgentTemplates["Dwarf"].baseMove,
+			jsonAgentTemplates["Dwarf"].baseDefence,
+			weapon
 			);
 		players.push(dwarf);
 
+		weaponTemplate = jsonWeaponTemplates[jsonAgentTemplates.Wizard.mainHand];
+		weapon = new gh.Weapon(
+			weaponTemplate.name,
+			weaponTemplate.size,
+			weaponTemplate.attack,
+			weaponTemplate.hands,
+			weaponTemplate.range,
+			weaponTemplate.diagonal,
+			weaponTemplate.cost,
+			weaponTemplate.sprite
+			);
 		var wizard = new gh.Agent(
 			"Wizard",
 			"Wizard01",
 			undefined,
 			"Empire",
 			jsonAgentTemplates["Wizard"].sprites,
-			2,
-			0
+			jsonAgentTemplates["Wizard"].moveDice,
+			jsonAgentTemplates["Wizard"].baseMove,
+			jsonAgentTemplates["Wizard"].baseDefence,
+			weapon
 			);
 		players.push(wizard);
 

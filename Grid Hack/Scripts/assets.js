@@ -96,6 +96,17 @@ var gh = (function(gh){
 			this.sprites[name] = new graphics.Sprite(directory + name);
 		};
 
+		assets.loadWeaponSprites = function(weaponTemplates, directory){
+			this.sprites = this.sprites || {};
+
+			for(var key in weaponTemplates){
+				var weapon = weaponTemplates[key].sprite;
+				if(weapon !== undefined){
+					this.sprites[weapon] = new graphics.Sprite(directory + weapon);
+				}
+			}
+		}
+
 		return assets;
 	})(assets || {});
 	

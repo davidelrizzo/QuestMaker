@@ -34,7 +34,7 @@ var gh = (function(gh){
 	 * @param {} active
 	 * @return 
 	 */
-	function Agent(name, id, position, team, sprites, moveDice, baseMove, active){
+	function Agent(name, id, position, team, sprites, moveDice, baseMove, baseDefence, mainHand, active){
 		this.name			= name;
 		this.id 			= id;
 		this.position       = position;
@@ -42,10 +42,14 @@ var gh = (function(gh){
 		this.sprites 		= sprites;
 		this.moveDice 		= moveDice 	|| 0;
 		this.baseMove		= baseMove 	|| 0;
+		this.baseDefence 	= baseDefence || 1;
 		this.active			= active 	|| false;
+		this.mainHand 		= mainHand;
 
-		this.focus          = false;	
-		this.move           = 0;
+		this.move           = 0;		// A value of 0 (or less) indicates the agent has no more movement left.
+		this.action 		= 0;		// A value of 1 indicates the agent has used up all of its actions.
+
+		this.focus          = false;	// Indicates whether or not the agent is currently under the cursor.
 	}
 
 	/**
@@ -259,7 +263,7 @@ var gh = (function(gh){
 	       		// disable focus from other elements in teh same cell
 	       		args.cell.focus = false;
 	       	    for(var key in args.cell.borders){
-	       	    	console.log(key);
+	       	    	//console.log(key);
 	       	    }
 	       		return;
 	       	} else {

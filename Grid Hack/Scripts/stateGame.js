@@ -68,6 +68,13 @@ var gh = (function(gh){
 
 			this.msgPump.addListener("move", agent, "onMove");
 
+			// Add agents to the onMoueseOver event
+			for(var p = 0; p < manager.players.length; p++){
+				for(var a = 0; a < manager.players[p].roster.length; a++){
+					this.msgPump.addListener("onMouseOver", manager.players[p].roster[a], "onMouseOver");
+				}
+			}
+
 			console.log(agent);
 		};
 
@@ -89,16 +96,14 @@ var gh = (function(gh){
 		 * @return Literal
 		 */
 		stateGame.update = function(){
+
+			gh.display.handleInput(input);
+
 			if(gh.hud.buttonEndTurn.clicked === true){
-				this.msgPump.removeListener("move", gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent());
-				gh.ptrActiveLevel.manager.setNextTurn();
-				this.msgPump.addListener("move", gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent(), "onMove");
-				gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent().newTurn(d6);
-				gh.hud.buttonEndTurn.clicked = false;
+				this.endTurn();
 			}
 
 			var selectedCell = gh.display.getMouseToCell(input.mouse.x, input.mouse.y);
-
 			var cell;
 			if(gh.ptrActiveLevel.map.floor[selectedCell.y] !== undefined){
 				if(gh.ptrActiveLevel.map.floor[selectedCell.y][selectedCell.x] !== undefined){
@@ -108,110 +113,91 @@ var gh = (function(gh){
 				}
 			}
 
-			this.msgPump.postMessage(
-				"onMouseOver", 
-				{
-					"mouseX"    : input.mouse.x, 
-				    "mouseY"    : input.mouse.y, 
-				    "cellX"     : selectedCell.x, 
-				    "cellY"     : selectedCell.y,
-				    "cellSize"  : gh.display.cellSize,
-				    "scale"     : gh.display.scale,
-				    "offset"    : gh.display.offset,
-				    "cell"      : cell,
-				    "agents"    : gh.ptrActiveLevel.agents
-				});
+			if(gh.ptrActiveLevel.manager.getActivePlayer().AI === true){
+				console.log("AI turn");
+				this.endTurn();
+			} else {
+				console.log("Player turn");
 
-			/**
-			 * Handle mouse input.
-			 */
-			if(input.mouse.clicked === true){
-				this.msgPump.postMessage("onClick", {"mouseX" : input.mouse.x, "mouseY" : input.mouse.y, "cellX" : selectedCell.x, "cellY" : selectedCell.y});
-				input.mouse.clicked = false;
+				this.msgPump.postMessage(
+					"onMouseOver", 
+					{
+						"mouseX"    : input.mouse.x, 
+					    "mouseY"    : input.mouse.y, 
+					    "cellX"     : selectedCell.x, 
+					    "cellY"     : selectedCell.y,
+					    "cellSize"  : gh.display.cellSize,
+					    "scale"     : gh.display.scale,
+					    "offset"    : gh.display.offset,
+					    "cell"      : cell,
+					    "agents"    : gh.ptrActiveLevel.agents
+					}
+				);
 
-				// Has an EntryTrigger been selected?
+				if(input.mouse.clicked === true){
+					this.msgPump.postMessage(
+						"onClick", 
+						{
+							"mouseX" 	: input.mouse.x, 
+							"mouseY" 	: input.mouse.y, 
+							"cellX" 	: selectedCell.x, 
+							"cellY" 	: selectedCell.y, 
+							"agent" 	: gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent(),
+							"map"		: gh.ptrActiveLevel.map
+						}
+					);
+					input.mouse.clicked = false;
 
-			}
+					// Has an EntryTrigger been selected?
 
-			/**
-			 * Handle keyboard input.
-			 */
-
-			// display scale input
-			if(input.keyboard.isPressed(input.keyboard.PLUS)){
-				input.keyboard.key[input.keyboard.PLUS].pressed = false;
-				gh.display.scale += 0.05;
-			}
-			if(input.keyboard.isPressed(input.keyboard.MINUS)){
-				input.keyboard.key[input.keyboard.MINUS].pressed = false;
-				gh.display.scale -= 0.05;
-				if(gh.display.scale < 0.2){
-					gh.display.scale = 0.2;
 				}
-			}
 
-			// display location input
-			//if(input.keyboard.key[input.keyboard.UP]){
-			if(input.keyboard.isPressed(input.keyboard.UP)){
-				gh.display.offset.y -= 5;
-			}
-			//if(input.keyboard.key[input.keyboard.DOWN]){
-			if(input.keyboard.isPressed(input.keyboard.DOWN)){
-				gh.display.offset.y += 5;
-			}
-			//if(input.keyboard.key[input.keyboard.LEFT]){
-			if(input.keyboard.isPressed(input.keyboard.LEFT)){
-				gh.display.offset.x -= 5;
-			}
-			//if(input.keyboard.key[input.keyboard.RIGHT]){
-			if(input.keyboard.isPressed(input.keyboard.RIGHT)){
-				gh.display.offset.x += 5;
-			}
+				// character movement input
+				if(input.keyboard.isPressed(input.keyboard.A)){
+					this.msgPump.postMessage(
+						"move", 
+						{
+							"direction" : "left", 
+							"map" 		: gh.ptrActiveLevel.map, 
+							"agents" 	: gh.ptrActiveLevel.agents, 
+							"objects" 	: undefined
+						});
+					input.keyboard.key[input.keyboard.A].pressed = false;
+				}
+				if(input.keyboard.isPressed(input.keyboard.D)){
+					this.msgPump.postMessage(
+						"move", 
+						{
+							"direction" : "right", 
+							"map" 		: gh.ptrActiveLevel.map, 
+							"agents" 	: gh.ptrActiveLevel.agents, 
+							"objects" 	: undefined
+						});
+					input.keyboard.key[input.keyboard.D].pressed = false;
+				}
+				if(input.keyboard.isPressed(input.keyboard.S)){
+					this.msgPump.postMessage(
+						"move", 
+						{
+							"direction" : "down", 
+							"map" 		: gh.ptrActiveLevel.map, 
+							"agents" 	: gh.ptrActiveLevel.agents, 
+							"objects" 	: undefined
+						});
+					input.keyboard.key[input.keyboard.S].pressed = false;
+				}
+				if(input.keyboard.isPressed(input.keyboard.W)){
+					this.msgPump.postMessage(
+						"move", 
+						{
+							"direction" : "up", 
+							"map" 		: gh.ptrActiveLevel.map, 
+							"agents" 	: gh.ptrActiveLevel.agents, 
+							"objects" 	: undefined
+						});
+					input.keyboard.key[input.keyboard.W].pressed = false;
+				}
 
-			// character movement input
-			if(input.keyboard.isPressed(input.keyboard.A)){
-				this.msgPump.postMessage(
-					"move", 
-					{
-						"direction" : "left", 
-						"map" 		: gh.ptrActiveLevel.map, 
-						"agents" 	: gh.ptrActiveLevel.agents, 
-						"objects" 	: undefined
-					});
-				input.keyboard.key[input.keyboard.A].pressed = false;
-			}
-			if(input.keyboard.isPressed(input.keyboard.D)){
-				this.msgPump.postMessage(
-					"move", 
-					{
-						"direction" : "right", 
-						"map" 		: gh.ptrActiveLevel.map, 
-						"agents" 	: gh.ptrActiveLevel.agents, 
-						"objects" 	: undefined
-					});
-				input.keyboard.key[input.keyboard.D].pressed = false;
-			}
-			if(input.keyboard.isPressed(input.keyboard.S)){
-				this.msgPump.postMessage(
-					"move", 
-					{
-						"direction" : "down", 
-						"map" 		: gh.ptrActiveLevel.map, 
-						"agents" 	: gh.ptrActiveLevel.agents, 
-						"objects" 	: undefined
-					});
-				input.keyboard.key[input.keyboard.S].pressed = false;
-			}
-			if(input.keyboard.isPressed(input.keyboard.W)){
-				this.msgPump.postMessage(
-					"move", 
-					{
-						"direction" : "up", 
-						"map" 		: gh.ptrActiveLevel.map, 
-						"agents" 	: gh.ptrActiveLevel.agents, 
-						"objects" 	: undefined
-					});
-				input.keyboard.key[input.keyboard.W].pressed = false;
 			}
 
 			this.msgPump.handleMessages();
@@ -270,6 +256,14 @@ var gh = (function(gh){
 			}
 
 			gh.hud.draw();
+		};
+
+		stateGame.endTurn = function(){
+			this.msgPump.removeListener("move", gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent());
+			gh.ptrActiveLevel.manager.setNextTurn();
+			this.msgPump.addListener("move", gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent(), "onMove");
+			gh.ptrActiveLevel.manager.getActivePlayer().getActiveAgent().newTurn(d6);
+			gh.hud.buttonEndTurn.clicked = false;
 		};
 
 		return stateGame;
