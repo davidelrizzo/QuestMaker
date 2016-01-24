@@ -17,8 +17,8 @@ var Campaign = function(initObj) {
 
   /* Init
   ****************************/
-  // Create Creature prototypes for all creatures in initObj.creatures
-  // http://stackoverflow.com/questions/2342490/dynamically-creating-a-new-javascript-class-from-an-existing-object
+  // create Creature templates
+  if( Array.isArray(initObj.creatures) ) Creature.TEMPLATES = initObj.creatures;
   console.log( "New Campaign: "+this.name );
 
 
