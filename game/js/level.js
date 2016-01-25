@@ -12,6 +12,7 @@ var Level = function(initObj) {
   /* Public variables
   ****************************/
   this.name = initObj.name || "Default level";
+  //this.furnitureGroups = initObj.furnitureGroups || [];
   this.map = [];
 
 

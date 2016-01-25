@@ -5,7 +5,6 @@ var Creature = function(initObj) {
 
   /* Static variables
   ****************************/
-
   // data for Creature templates (loaded by Campaign)
   /* jshint ignore:start */
   Creature.TEMPLATES;
@@ -15,7 +14,16 @@ var Creature = function(initObj) {
   /* Private variables
   ****************************/
   initObj = initObj || {};
-  var i, p;
+
+
+  /* Init
+  ****************************/
+  // merge initObj with Template initObj if 'types' match
+  var result = Creature.TEMPLATES.filter( function(prop) {
+    return prop.type == initObj.type;
+  });
+  result = result[0];
+  for (var prop in result) { initObj[prop] = result[prop]; }
 
 
   /* Public variables
@@ -24,25 +32,6 @@ var Creature = function(initObj) {
   this.name = initObj.name || "Default Creature";
   this.graphicsID = initObj.graphicsID || null;
 
-
-
-  /* Init
-  ****************************/
   console.log( "New Creature: "+this.name );
 
-};
-
-
-
-/* Static methods
-  ****************************/
-
-// merges Creature init object with Template init object if matching
-Creature.TEMPLATE = function(initObj) {
-  var result = Creature.TEMPLATES.filter( function(prop) {
-    return prop.type == initObj.type;
-  });
-  result = result[0];
-  for (var prop in result) { initObj[prop] = result[prop]; }
-  return initObj;
 };

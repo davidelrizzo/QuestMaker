@@ -8,18 +8,21 @@ var campaignJSON = {
     {"type":"goblin","name":"Goblin","graphicsID":1}
   ],
 
-  "furnitureGroups": [
-    [{"type":"gold","quantity":10}]
+  "triggers": [
+    {"type":"entry"}
   ],
 
   "levels": [
     {
       "name": "The Trial",
+      // "furnitureGroups": [
+      //   {"name":"chest", "inventory":[{"type":"gold","quantity":10}]}
+      // ],
       "map": [
         [
           {"trigger":{"type":"entry"}, "wallTop":{"type":"stone"}, "wallLeft":{"type":"stone"}, "floor":{"graphicsID":0,"facing":0}},
           {"wallTop":{"type":"stone"}, "floor":{"graphicsID":1,"facing":3}},
-          {"furniture":{"graphicsID":0,"facing":2,"group":0}, "wallLeft":{"type":"stone"}, "wallBottom":{"type":"stone"}, "floor":{"graphicsID":1,"facing":2}},
+          {"furniture":{"graphicsID":0,"facing":2,"group":0}, "wallLeft":{"type":"stone"}, "wallBottom":{"type":"stone"}, "floor":{"graphicsID":1,"facing":2}}
         ],
         [
           {"wallTop":{"type":"stone"},"floor":{"graphicsID":1,"facing":0}},

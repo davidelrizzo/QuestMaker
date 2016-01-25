@@ -25,7 +25,7 @@ var Player = function(initObj) {
   ****************************/
   if( Array.isArray(initObj.creatures) ) {
     for( i=0 ; i<initObj.creatures.length ; i++ ) {
-      this.creatures.push( new Creature( Creature.TEMPLATE(initObj.creatures[i]) ) );
+      this.creatures.push( new Creature(initObj.creatures[i]) );
     }
   }
   console.log( "New Player: "+this.name );

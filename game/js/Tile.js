@@ -23,8 +23,11 @@ var Tile = function(initObj) {
 
   /* Init
   ****************************/
-  if( initObj.x!==undefined && initObj.y!==undefined ) this.loc = new Pt(initObj.x,initObj.y);
-  if(initObj.creature) this.creature = new Creature( Creature.TEMPLATE(initObj.creature) );
+  if(initObj.x!==undefined && initObj.y!==undefined) this.loc = new Pt(initObj.x,initObj.y);
+  if(initObj.creature) this.creature = new Creature(initObj.creature);
+  if(initObj.furniture) this.furniture = new Furniture(initObj.furniture);
+  if(initObj.trigger) this.trigger = new Trigger(initObj.trigger);
+  // wall
   if(initObj.floor) this.floor = new Floor(initObj.floor);
   console.log( "New Tile" );
 
