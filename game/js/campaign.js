@@ -6,6 +6,7 @@ var Campaign = function(initObj) {
   /* Private variables
   ****************************/
   initObj = initObj || {};
+  var _this = this;
   var i;
 
 
@@ -13,10 +14,9 @@ var Campaign = function(initObj) {
   ****************************/
   this.name = initObj.name || "Default campaign";
   this.players = [];
-  this.currentPlayerIndex = null;
+  this.currentPlayerIndex = 0;
   this.levels = [];
-  this.currentLevelIndex = null;
-
+  this.currentLevelIndex = 0;
 
 
   /* Init
@@ -30,16 +30,21 @@ var Campaign = function(initObj) {
   /* Public methods
   ****************************/
 
-  this.getCurrentPlayer = function() {
-    return this.players[this.currentPlayerIndex];
+  // this.getCurrentPlayer = function() {
+  //   return this.players[this.currentPlayerIndex];
+  // };
+
+  // this.getCurrentLevel = function() {
+  //   return this.levels[this.currentLevelIndex];
+  // };
+
+  this.addPlayer = function(player) {
+    this.players.push(player);
   };
 
-  this.getCurrentLevel = function() {
-    return this.levels[this.currentLevelIndex];
-  };
-
-  // Creates 'Level' object at given index of levels property
-  this.generateLevel = function(index) {
+  this.startLevel = function(index) {
+    index = index || 0;
+    this.currentLevelIndex = index;
     if(initObj.levels[index]) {
       return (this.levels[index] = new Level( initObj.levels[index] ));
     } else {

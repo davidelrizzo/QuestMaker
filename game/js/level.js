@@ -40,6 +40,8 @@ var Level = function(initObj) {
   /* Public methods
   ****************************/
 
+
+  // CONSIDER: adding creatures 'next to' location if it is already occupied
   this.addCreature = function(creature,location) {
     // creature: Creature object
     // location: Pt object or String("entry") for 'enter on random (unocupied) entry trigger'
@@ -50,6 +52,7 @@ var Level = function(initObj) {
       if( location instanceof Pt ) {
         if( this.map[location.x][location.y].creature === null ) {
           this.map[location.x][location.y].creature = creature;
+          this.map[location.x][location.y].creature.tile = this.map[location.x][location.y].creature;
           console.log( "Level: addCreature(success) '"+creature.name+"' added at "+location.toString() );
           return true;
         } else {
@@ -70,6 +73,7 @@ var Level = function(initObj) {
           var rand = Math.randomInt( 0, entryPts.length-1 );
           if( this.map[entryPts[rand].x][entryPts[rand].y].creature === null ) {
             this.map[entryPts[rand].x][entryPts[rand].y].creature = creature;
+            this.map[entryPts[rand].x][entryPts[rand].y].creature.tile = this.map[entryPts[rand].x][entryPts[rand].y];
             console.log( "Level: addCreature(success) '"+creature.name+"' added at 'Entry Trigger' ("+entryPts[rand].x+","+entryPts[rand].y+") " );
             return true;
           }
