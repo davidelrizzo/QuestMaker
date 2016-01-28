@@ -1,5 +1,5 @@
 
-var Floor = function(initObj) {
+var Floor = function(initObj, tile) {
   'use strict';
 
 
@@ -11,6 +11,7 @@ var Floor = function(initObj) {
   /* Public variables
   ****************************/
   this.facing = initObj.facing || 0;
+  this.tile = tile || null;
   this.graphicsID = initObj.graphicsID || null;
 
 

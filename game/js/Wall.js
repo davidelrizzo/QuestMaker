@@ -1,5 +1,5 @@
 
-var Wall = function(initObj) {
+var Wall = function(initObj, tile) {
   'use strict';
 
 
@@ -11,6 +11,9 @@ var Wall = function(initObj) {
   /* Public variables
   ****************************/
   this.type = initObj.type || "defaultwall";
+  this.facing = initObj.facing || null;
+  this.tile = tile || null;
+  this.graphicsID = initObj.graphicsID || null;
 
 
   /* Init

@@ -2,11 +2,12 @@
 /* Player (initObj)
     name: String for display name
     isHuman: Boolean, true if player is not AI controlled
-    creatures: Array of Creature init objects, creatures this player starts with
+    creatures: Array of Creature init objects; creatures this player starts with
   ================================================ */
 
 var Player = function(initObj) {
   'use strict';
+
 
   /* Private variables
   ****************************/

@@ -1,5 +1,5 @@
 
-var Trigger = function(initObj) {
+var Trigger = function(initObj, tile) {
   'use strict';
 
 
@@ -11,6 +11,7 @@ var Trigger = function(initObj) {
   /* Public variables
   ****************************/
   this.type = initObj.type || "defaulttrigger";
+  this.tile = tile || null;
 
 
   /* Init

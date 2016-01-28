@@ -1,5 +1,5 @@
 
-var Furniture = function(initObj) {
+var Furniture = function(initObj, tile) {
   'use strict';
 
 
@@ -12,6 +12,7 @@ var Furniture = function(initObj) {
   ****************************/
   this.facing = initObj.facing || 0;
   this.group = initObj.group || null;
+  this.tile = tile || null;
   this.graphicsID = initObj.graphicsID || null;
 
 

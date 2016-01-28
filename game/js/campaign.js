@@ -6,13 +6,17 @@ var Campaign = function(initObj) {
   /* Private variables
   ****************************/
   initObj = initObj || {};
+  var i;
 
 
   /* Public variables
   ****************************/
   this.name = initObj.name || "Default campaign";
   this.players = [];
-  this.currentLevel = null;
+  this.currentPlayerIndex = null;
+  this.levels = [];
+  this.currentLevelIndex = null;
+
 
 
   /* Init
@@ -26,17 +30,22 @@ var Campaign = function(initObj) {
   /* Public methods
   ****************************/
 
-  // Returns 'Level' object of next playable level
-  this.getNextLevel = function() {
-    var newLevel = null;
-    if( this.currentLevel === null ) {
-      if( Array.isArray(initObj.levels) ) {
-        newLevel = new Level( initObj.levels[0] );
-      } else {
-        newLevel = new Level();
-      }
-    }
-    return newLevel;
+  this.getCurrentPlayer = function() {
+    return this.players[this.currentPlayerIndex];
   };
+
+  this.getCurrentLevel = function() {
+    return this.levels[this.currentLevelIndex];
+  };
+
+  // Creates 'Level' object at given index of levels property
+  this.generateLevel = function(index) {
+    if(initObj.levels[index]) {
+      return (this.levels[index] = new Level( initObj.levels[index] ));
+    } else {
+      throw new Error('Campaign: Level['+index+'] data does not exist.');
+    }
+  };
+
 
 };
