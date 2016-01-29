@@ -6,14 +6,15 @@ var Level = function(initObj) {
   /* Private variables
   ****************************/
   initObj = initObj || {};
-  var i, x, y;
+  var i, r, x, y;
 
 
   /* Public variables
   ****************************/
   this.name = initObj.name || "Default level";
-  //this.furnitureGroups = initObj.furnitureGroups || [];
   this.map = [];
+  //this.furnitureGroups = initObj.furnitureGroups || [];
+  //this.turnCounter = null;
   //this.activeCreature = null;
 
 
@@ -40,48 +41,36 @@ var Level = function(initObj) {
   /* Public methods
   ****************************/
 
+  this.startTurn = function(activeCreature) {
+    this.enterCreature(activeCreature);
+  };
 
-  // CONSIDER: adding creatures 'next to' location if it is already occupied
-  this.addCreature = function(creature,location) {
-    // creature: Creature object
-    // location: Pt object or String("entry") for 'enter on random (unocupied) entry trigger'
+
+  this.enterCreature = function(creature) {
     if( !(creature instanceof Creature) ) {
-      console.log( "Level: addCreature(fail) creature not supplied." );
-      return false;
+      throw new Error('Level:enterCreature() creature not supplied.');
     } else {
-      if( location instanceof Pt ) {
-        if( this.map[location.x][location.y].creature === null ) {
-          this.map[location.x][location.y].creature = creature;
-          this.map[location.x][location.y].creature.tile = this.map[location.x][location.y].creature;
-          console.log( "Level: addCreature(success) '"+creature.name+"' added at "+location.toString() );
-          return true;
-        } else {
-          console.log( "Level: addCreature(fail) creature already exists at "+location.toString() );
-          return false;
-        }
-      } else if( location == "entry" ) {
-        var entryPts = [];
-        for( x=0 ; x<this.map.length ; x++ ) {
-          for( y=0 ; y<this.map[x].length ; y++ ) {
-            if( this.map[x][y].trigger && this.map[x][y].trigger.type == "entry" ) {
-              var newPt = new Pt(x,y);
-              entryPts.push(newPt);
-            }
+      var entryPts = [];
+      for( x=0 ; x<this.map.length ; x++ ) {
+        for( y=0 ; y<this.map[x].length ; y++ ) {
+          if( this.map[x][y].trigger && this.map[x][y].trigger.type == "entry" ) {
+            var newPt = new Pt(x,y);
+            entryPts.push(newPt);
           }
         }
-        while(entryPts.length > 0) {
-          var rand = Math.randomInt( 0, entryPts.length-1 );
-          if( this.map[entryPts[rand].x][entryPts[rand].y].creature === null ) {
-            this.map[entryPts[rand].x][entryPts[rand].y].creature = creature;
-            this.map[entryPts[rand].x][entryPts[rand].y].creature.tile = this.map[entryPts[rand].x][entryPts[rand].y];
-            console.log( "Level: addCreature(success) '"+creature.name+"' added at 'Entry Trigger' ("+entryPts[rand].x+","+entryPts[rand].y+") " );
-            return true;
-          }
-          entryPts.splice(rand,1);
-        }
-        console.log( "Level: addCreature(fail) no entry triggers available."  );
-        return false;
       }
+      while(entryPts.length > 0) {
+        var r = Math.randomInt( 0, entryPts.length-1 );
+        if( this.map[entryPts[r].x][entryPts[r].y].creature === null ) {
+          this.map[entryPts[r].x][entryPts[r].y].creature = creature;
+          this.map[entryPts[r].x][entryPts[r].y].creature.tile = this.map[entryPts[r].x][entryPts[r].y];
+          console.log( "Level:enterCreature() '"+creature.name+"' entered at entry Trigger ("+entryPts[r].x+","+entryPts[r].y+") " );
+          // Return Tile creature is 'entered' at
+          return this.map[entryPts[r].x][entryPts[r].y];
+        }
+        entryPts.splice(r,1);
+      }
+      throw new Error('Level:enterCreature() no entry triggers available.');
     }
   };
 

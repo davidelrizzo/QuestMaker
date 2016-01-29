@@ -11,7 +11,7 @@ var Tile = function(initObj) {
   /* Public variables
   ****************************/
   this.location = null;  // x,y Pt of this Tile's location on the map
-  this.explored = false;  // true if this Tile has been revealed by any creature
+  this.revealed = false;  // true if this Tile has been revealed by any creature
   this.creature = null;
   this.furniture = null;
   this.trigger = null;

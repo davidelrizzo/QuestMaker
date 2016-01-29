@@ -14,9 +14,9 @@ var Campaign = function(initObj) {
   ****************************/
   this.name = initObj.name || "Default campaign";
   this.players = [];
-  this.currentPlayerIndex = 0;
+  this.currentPlayerIndex = null;
   this.levels = [];
-  this.currentLevelIndex = 0;
+  this.currentLevelIndex = null;
 
 
   /* Init
@@ -38,10 +38,23 @@ var Campaign = function(initObj) {
   //   return this.levels[this.currentLevelIndex];
   // };
 
-  this.addPlayer = function(player) {
-    this.players.push(player);
+  this.addPlayer = function(playerInitObj) {
+    var newPlayer = new Player(playerInitObj);
+    this.players.push(newPlayer);
+    return newPlayer;
   };
 
+
+  this.addCreature = function(creatureInitObj, tile, player) {
+    var newCreature = new Creature(creatureInitObj, tile, player);
+    if( tile instanceof Tile ) tile.creature = newCreature;
+    // CONSIDER: what happens if a creature already exists here?
+    if( player instanceof Player ) player.creatures.push(newCreature);
+    return newCreature;
+  };
+
+
+  // Genrates new Level instance at campaign.levels[index]
   this.startLevel = function(index) {
     index = index || 0;
     this.currentLevelIndex = index;
@@ -51,6 +64,16 @@ var Campaign = function(initObj) {
       throw new Error('Campaign: Level['+index+'] data does not exist.');
     }
   };
+
+
+  // this.getNextActivePlayer = function() {
+  //   if( this.currentPlayerIndex === null || this.currentPlayerIndex >= this.players.length ) {
+  //     this.currentPlayerIndex = 0;
+  //   } else {
+  //     this.currentPlayerIndex++;
+  //   }
+  //   return this.players[this.currentPlayerIndex];
+  // };
 
 
 };

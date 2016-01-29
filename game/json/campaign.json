@@ -2,6 +2,7 @@
 var campaignDATA = {
 
   "name": "HeroQuest",
+  //"teams": 2,
 
   "creatures": [
     {"type":"barbarian","name":"Barbarian","graphicsID":0},
@@ -10,6 +11,10 @@ var campaignDATA = {
 
   "triggers": [
     {"type":"entry"}
+  ],
+
+  "walls": [
+    {"type":"stone","graphicsID":0}
   ],
 
   "levels": [
@@ -21,27 +26,27 @@ var campaignDATA = {
       "map": [
         [
           {},
-          {"wallRight":{"type":"stone","graphicsID":0}},
-          {"wallRight":{"type":"stone","graphicsID":0}},
-          {"wallRight":{"type":"stone","graphicsID":0}}
+          {"wallRight":{"type":"stone"}},
+          {"wallRight":{"type":"stone"}},
+          {"wallRight":{"type":"stone"}}
         ],
         [
-          {"wallBottom":{"type":"stone","graphicsID":0}},
+          {"wallBottom":{"type":"stone"}},
           {"trigger":{"type":"entry"},"floor":{"graphicsID":0,"facing":0}},
           {"floor":{"graphicsID":1,"facing":3}},
-          {"furniture":{"graphicsID":0,"facing":0,"group":0}, "wallBottom":{"type":"stone","graphicsID":0}, "floor":{"graphicsID":1,"facing":2}}
+          {"furniture":{"graphicsID":0,"facing":0,"group":0}, "wallBottom":{"type":"stone"}, "floor":{"graphicsID":1,"facing":2}}
         ],
         [
-          {"wallBottom":{"type":"stone","graphicsID":0}},
+          {"wallBottom":{"type":"stone"}},
           {"floor":{"graphicsID":1,"facing":0}},
           {"floor":{"graphicsID":2,"facing":2}},
-          {"wallBottom":{"type":"stone","graphicsID":0},"floor":{"graphicsID":1,"facing":1}}
+          {"wallBottom":{"type":"stone"},"floor":{"graphicsID":1,"facing":1}}
         ],
         [
-          {"wallBottom":{"type":"stone","graphicsID":0}},
-          {"wallRight":{"type":"stone","graphicsID":0},"floor":{"graphicsID":0,"facing":1}},
-          {"wallRight":{"type":"stone","graphicsID":0},"floor":{"graphicsID":0,"facing":3}},
-          {"creature":{"type":"goblin"},"wallBottom":{"type":"stone","graphicsID":0},"wallRight":{"type":"stone"},"floor":{"graphicsID":1,"facing":2}}
+          {"wallBottom":{"type":"stone"}},
+          {"wallRight":{"type":"stone"},"floor":{"graphicsID":0,"facing":1}},
+          {"wallRight":{"type":"stone"},"floor":{"graphicsID":0,"facing":3}},
+          {"creature":{"type":"goblin"},"wallBottom":{"type":"stone"},"wallRight":{"type":"stone"},"floor":{"graphicsID":1,"facing":2}}
         ]
       ]
     }
