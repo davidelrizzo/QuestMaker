@@ -30,10 +30,17 @@ var Creature = function(initObj, tile, player) {
   ****************************/
   this.type = initObj.type || "defaultcreature";
   this.name = initObj.name || "Default Creature";
+  this.team = initObj.team || 0;
   this.tile = tile || null;
   this.player = player || null;
+  this.lineOfSight = [];
   this.graphicsID = initObj.graphicsID || null;
 
   console.log( "New Creature: "+this.name );
+
+
+
+  /* Public methods
+  ****************************/
 
 };

@@ -41,10 +41,6 @@ var Level = function(initObj) {
   /* Public methods
   ****************************/
 
-  this.startTurn = function(activeCreature) {
-    this.enterCreature(activeCreature);
-  };
-
 
   this.enterCreature = function(creature) {
     if( !(creature instanceof Creature) ) {
@@ -61,17 +57,26 @@ var Level = function(initObj) {
       }
       while(entryPts.length > 0) {
         var r = Math.randomInt( 0, entryPts.length-1 );
-        if( this.map[entryPts[r].x][entryPts[r].y].creature === null ) {
-          this.map[entryPts[r].x][entryPts[r].y].creature = creature;
-          this.map[entryPts[r].x][entryPts[r].y].creature.tile = this.map[entryPts[r].x][entryPts[r].y];
+        var creatureAtEntry = this.map[entryPts[r].x][entryPts[r].y].creature;
+        if( creatureAtEntry === null ) {
+          creatureAtEntry = creature;
+          this.map[entryPts[r].x][entryPts[r].y].creature = creatureAtEntry;
+          creatureAtEntry.tile = this.map[entryPts[r].x][entryPts[r].y];
           console.log( "Level:enterCreature() '"+creature.name+"' entered at entry Trigger ("+entryPts[r].x+","+entryPts[r].y+") " );
-          // Return Tile creature is 'entered' at
-          return this.map[entryPts[r].x][entryPts[r].y];
+          this.updateLineOfSight(creatureAtEntry);
+          return true;
         }
         entryPts.splice(r,1);
       }
       throw new Error('Level:enterCreature() no entry triggers available.');
     }
+  };
+
+
+  this.updateLineOfSight = function(creature) {
+    var origin = creature.tile.location;
+    console.log( "Creature:updateLineOfSight() for '"+creature.name+"' from "+origin.toString() );
+
   };
 
 

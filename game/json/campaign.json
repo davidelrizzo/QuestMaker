@@ -17,6 +17,16 @@ var campaignDATA = {
     {"type":"stone","graphicsID":0}
   ],
 
+  // "graphics": {
+  //   "unitSize": "70px",
+  //   "creatureImage":"images/creatures.png",
+  //   "furnitureImage":"images/furniture.png",
+  //   "triggerImage":"images/triggers.png",
+  //   "wallImage":"images/walls.png",
+  //   "floorImage":"images/floors.png",
+  //   "equipmentImage":"images/equipement.png"
+  // },
+
   "levels": [
     {
       "name": "The Trial",
@@ -46,7 +56,7 @@ var campaignDATA = {
           {"wallBottom":{"type":"stone"}},
           {"wallRight":{"type":"stone"},"floor":{"graphicsID":0,"facing":1}},
           {"wallRight":{"type":"stone"},"floor":{"graphicsID":0,"facing":3}},
-          {"creature":{"type":"goblin"},"wallBottom":{"type":"stone"},"wallRight":{"type":"stone"},"floor":{"graphicsID":1,"facing":2}}
+          {"creature":{"type":"goblin","team":1},"wallBottom":{"type":"stone"},"wallRight":{"type":"stone"},"floor":{"graphicsID":1,"facing":2}}
         ]
       ]
     }

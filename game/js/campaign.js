@@ -30,13 +30,13 @@ var Campaign = function(initObj) {
   /* Public methods
   ****************************/
 
-  // this.getCurrentPlayer = function() {
-  //   return this.players[this.currentPlayerIndex];
-  // };
+  this.getCurrentPlayer = function() {
+    return this.players[this.currentPlayerIndex];
+  };
 
-  // this.getCurrentLevel = function() {
-  //   return this.levels[this.currentLevelIndex];
-  // };
+  this.getCurrentLevel = function() {
+    return this.levels[this.currentLevelIndex];
+  };
 
   this.addPlayer = function(playerInitObj) {
     var newPlayer = new Player(playerInitObj);
@@ -47,8 +47,11 @@ var Campaign = function(initObj) {
 
   this.addCreature = function(creatureInitObj, tile, player) {
     var newCreature = new Creature(creatureInitObj, tile, player);
-    if( tile instanceof Tile ) tile.creature = newCreature;
-    // CONSIDER: what happens if a creature already exists here?
+    if( tile instanceof Tile ) {
+      // CONSIDER: what happens if a creature already exists here?
+      tile.creature = newCreature;
+      this.getCurrentLevel.updateLineOfSight(newCreature);
+    }
     if( player instanceof Player ) player.creatures.push(newCreature);
     return newCreature;
   };
